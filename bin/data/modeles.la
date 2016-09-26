@@ -170,7 +170,7 @@ des:1,2:2:-;-
 modele:miles
 R:2:K
 des:1,2:2:-;-
-des:3-12:1:ĕm;ĭs;ī;ĕ;ēs;ēs;ēs;ŭm;ĭbŭs
+des:3-12:1:ĕm;ĭs;ī;ĕ;ēs;ēs;ēs;ŭm;ĭbŭs;ĭbŭs
 
 modele:honor
 pere:miles
@@ -327,7 +327,7 @@ abs:13-48,85-120
 
 modele:unus
 pere:doctus
-des:16,28,40:0:ī̆ŭs;ī̆ŭs;ī̆ŭs
+des:16,28,40:0:īŭs;īŭs;īŭs
 des:17,29,41:0:ī;ī;ī
 abs:49-120
 
@@ -468,8 +468,8 @@ des:37,39-43,45-48:1:quŏd;quŏd;cūjŭs,quōjŭs;cuī,quŏī;quō;quāe;quāe;q
 modele:quicumque
 pere:qui
 R:1:9,0
-sufd:cūnquĕ
 sufd:cūmquĕ
+sufd:cūnquĕ
 
 modele:quidam
 pere:qui
@@ -567,7 +567,7 @@ suf:17,29:mĕt
 modele:uter
 pere:pulcher
 R:0:4,ū̆tr
-des:16,17,28,29,40,41:0:ī̆ŭs;ī;ī̆ŭs;ī;ī̆ŭs;ī
+des:16,17,28,29,40,41:0:īŭs;ī;īŭs;ī;īŭs;ī
 abs:49-120
 
 modele:uterque
@@ -578,8 +578,8 @@ sufd:quĕ
 
 modele:nemo
 R:0:3,0
-des:13,15-18:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
-des:25,27-30:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
+des:13,15-18:0:ēmō;ēmĭnĕm;ūllīŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
+des:25,27-30:0:ēmō;ēmĭnĕm;ūllīŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
 des:37,39:0:ĭhĭl
 
 modele:plerique
@@ -592,16 +592,16 @@ modele:amo
 R:0:1,0
 R:1:1,āv
 R:2:1,āt
-des:121-126:0:ō̆;ās;ăt;āmŭs;ātĭs;ānt
+des:121-126:0:ō;ās;ăt;āmŭs;ātĭs;ānt
 des:127-132:0:ābăm;ābās;ābăt;ābāmŭs;ābātĭs;ābānt
-des:133-138:0:ābō̆;ābĭs;ābĭt;ābĭmŭs;ābĭtĭs;ābūnt
+des:133-138:0:ābō;ābĭs;ābĭt;ābĭmŭs;ābĭtĭs;ābūnt
 des:139-144:1:ī;īstī;ĭt;ĭmŭs;īstĭs;ērūnt,ērĕ
 des:145-150:1:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
-des:151-156:1:ĕrō̆;ĕrī̆s;ĕrĭt;ĕrī̆mŭs;ĕrī̆tĭs;ĕrīnt
+des:151-156:1:ĕrō;ĕrīs;ĕrĭt;ĕrīmŭs;ĕrītĭs;ĕrīnt
 ! subjonctif
 des:157-162:0:$em
 des:163-168:0:ārĕm;ārēs;ārĕt;ārēmŭs;ārētĭs;ārēnt
-des:169-174:1:ĕrĭm;ĕrī̆s;ĕrĭt;ĕrī̆mŭs;ĕrī̆tĭs;ĕrīnt
+des:169-174:1:ĕrĭm;ĕrīs;ĕrĭt;ĕrīmŭs;ĕrītĭs;ĕrīnt
 des:175-180:1:īssĕm;īssēs;īssĕt;īssēmŭs;īssētĭs;īssēnt
 ! impératif
 des:181-186:0:ā;ātĕ;ātō;ātō;ātōtĕ;āntō
@@ -643,9 +643,9 @@ des:363-374:0:ānd$templum
 modele:do
 pere:amo
 R:2:1,ăt
-des:121-126:0:ō̆;ās;ăt;ămŭs;ătĭs;ānt
+des:121-126:0:ō;ās;ăt;ămŭs;ătĭs;ānt
 des:127-132:0:ăbăm;ăbās;ăbăt;ăbāmŭs;ăbātĭs;ăbānt
-des:133-138:0:ăbō̆;ăbĭs;ăbĭt;ăbĭmŭs;ăbĭtĭs;ăbūnt
+des:133-138:0:ăbō;ăbĭs;ăbĭt;ăbĭmŭs;ăbĭtĭs;ăbūnt
 ! subjonctif
 des:163-168:0:ărĕm;ărēs;ărĕt;ărēmŭs;ărētĭs;ărēnt
 ! impératif
@@ -666,9 +666,9 @@ des:302:0:ărī
 modele:moneo
 pere:amo
 R:0:2,0
-des:121-126:0:ĕō̆;ēs;ĕt;ēmŭs;ētĭs;ēnt
+des:121-126:0:ĕō;ēs;ĕt;ēmŭs;ētĭs;ēnt
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
-des:133-138:0:ēbō̆;ēbĭs;ēbĭt;ēbĭmŭs;ēbĭtĭs;ēbūnt
+des:133-138:0:ēbō;ēbĭs;ēbĭt;ēbĭmŭs;ēbĭtĭs;ēbūnt
 ! subjonctif
 des:157-162:0:ĕăm;ĕās;ĕăt;ĕāmŭs;ĕātĭs;ĕānt
 des:163-168:0:ērĕm;ērēs;ērĕt;ērēmŭs;ērētĭs;ērēnt
@@ -705,7 +705,7 @@ abs:121,122,124-128,130-134,136-140,142-146,148-152,154-158,160-164,166-170,172-
 modele:lego
 pere:moneo
 R:0:1,0
-des:121-126:0:ō̆;ĭs;ĭt;ĭmŭs;ĭtĭs;ūnt
+des:121-126:0:ō;ĭs;ĭt;ĭmŭs;ĭtĭs;ūnt
 des:133-138:0:ăm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 ! subjonctif
 des:157-162:0:ăm;ās;ăt;āmŭs;ātĭs;ānt
@@ -749,7 +749,7 @@ modele:aio
 pere:lego
 R:0:2,ĭ
 R:3:1,0
-des:121,126:3:ō̆;ūnt
+des:121,126:3:ō;ūnt
 des:122-125:0:s;t;mŭs;tĭs
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des+:127-132:0:băm;bās;băt;bāmŭs;bātĭs;bānt
@@ -786,7 +786,7 @@ modele:capio
 pere:lego
 R:3:2,0
 !indicatif
-des:121-126:3:ĭō̆;ĭs;ĭt;ĭmŭs;ĭtĭs;ĭūnt
+des:121-126:3:ĭō;ĭs;ĭt;ĭmŭs;ĭtĭs;ĭūnt
 ! subjonctif
 des:163-168:3:ĕrĕm;ĕrēs;ĕrĕt;ĕrēmŭs;ĕrētĭs;ĕrēnt
 ! impératif
@@ -830,7 +830,7 @@ modele:fio
 pere:audio
 R:4:2,ī
 R:5:2,0
-des:121,122,124-126:4:ō̆;s;mŭs;tĭs;ūnt
+des:121,122,124-126:4:ō;s;mŭs;tĭs;ūnt
 des:123:5:ĭt
 des:297:3:ĭĕrī
 des:163-168:3:ĭĕrĕm;ĭĕrēs;ĭĕrĕt;ĭĕrēmŭs;ĭĕrētĭs;ĭĕrēnt
@@ -848,7 +848,7 @@ abs:189-374
 des:121,124,126:0:ŭm;ŭmŭs;ūnt
 des:122,123,125:2:ĕs;ēst;ēstĭs
 des:127-132:2:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
-des:133-138:2:ĕrō̆;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
+des:133-138:2:ĕrō;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
 ! subjonctif
 des:157-162:6:$im
 des:163-168:7:$em
@@ -986,9 +986,9 @@ modele:eo
 pere:audio
 R:4:2,ī
 R:5:2,ĕū
-des:121,126:3:ĕō̆;ĕūnt
+des:121,126:3:ĕō;ĕūnt
 des:127-132:4:băm;bās;băt;bāmŭs;bātĭs;bānt
-des:133-138:4:bō̆;bĭs;bĭt;bĭmŭs;bĭtĭs;būnt
+des:133-138:4:bō;bĭs;bĭt;bĭmŭs;bĭtĭs;būnt
 ! impératif
 des:186:3:ĕūntō
 ! part. prés.
