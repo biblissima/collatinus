@@ -1071,6 +1071,8 @@ void MainWindow::createDockWindows()
     QVBoxLayout *vLayoutDic = new QVBoxLayout(dockWidgetDic);
     QHBoxLayout *hLayoutDic = new QHBoxLayout();
     lineEditDic = new QLineEdit(dockWidgetDic);
+    lineEditDic->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+    lineEditDic->setMinimumWidth(40);
     // Lemmatisation + recherche
     QToolButton *tbDic = new QToolButton(this);
     tbDic->setDefaultAction(dicAct);
@@ -1080,16 +1082,23 @@ void MainWindow::createDockWindows()
     // dictionnaire
     QToolButton *tbSync = new QToolButton(this);
     tbSync->setDefaultAction(syncAct);
+    tbSync->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
+    tbSync->setMinimumWidth(40);
     QToolButton *tbDicW = new QToolButton(this);
     tbDicW->setDefaultAction(visibleWAct);
+    tbDicW->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+    tbDicW->setMinimumWidth(40);
+    tbDicW->setMaximumSize(90);
     QToolButton *tbSyncDW = new QToolButton(this);
     tbSyncDW->setDefaultAction(syncDWAct);
+    tbSyncDW->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
+    tbSyncDW->setMinimumWidth(40);
     // choix des dictionnaires
     comboGlossaria = new QComboBox(this);
     anteButton = new QPushButton(this);
     labelLewis = new QLabel(this);
     postButton = new QPushButton(this);
-    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
+//    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
     //, QSizePolicy::Expanding, QSizePolicy::Minimum);
     hLayoutDic->addWidget(lineEditDic);
     hLayoutDic->addWidget(tbDic);
@@ -1098,7 +1107,8 @@ void MainWindow::createDockWindows()
     hLayoutDic->addWidget(anteButton);
     hLayoutDic->addWidget(labelLewis);
     hLayoutDic->addWidget(postButton);
-    hLayoutDic->addItem(hSpacerDic);
+//    hLayoutDic->addItem(hSpacerDic);
+    hLayoutDic->addStretch();
     hLayoutDic->addWidget(tbSync);
     hLayoutDic->addWidget(tbDicW);
     hLayoutDic->addWidget(tbSyncDW);

@@ -577,7 +577,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
     QString fa = assim(f);
     if (fa != f)
     {
-        MapLem nmm = lemmatiseM(fa);
+        MapLem nmm = lemmatiseM(fa, debPhr, true);
         // désassimiler les résultats
         foreach (Lemme *nl, nmm.keys())
         {
@@ -662,21 +662,28 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
  *	      Les paramètres et options true outrepassent les false,
  *        _majPert et _html sont dans les options de la classe.
  */
+QString Lemmat::lemmatiseT(QString t)
+{
+    return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
+}
+
 QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-    alpha = alpha || _alpha;
+/*    alpha = alpha || _alpha;
     cumVocibus = cumVocibus || _formeT;
     cumMorpho = cumMorpho || _morpho;
     nreconnu = nreconnu || _nonRec;
+*/
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
     t = t.simplified();
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
+//    qDebug() << lm[0] << lm[1] << lm[2] << lm[3] << lm[4] << lm[5];
     // conteneur pour les résultats
     QStringList lsv;
     // conteneur pour les échecs
@@ -688,7 +695,8 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         if (f.toInt() != 0) continue;
         // nettoyage et identification des débuts de phrase
         QString sep = lm.at(i - 1);
-        bool debPhr = (i == 1 || sep.contains(Ch::rePonct));
+        bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
+//        qDebug() << f << sep << debPhr << _majPert;
         // lemmatisation de la forme
         MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
@@ -799,9 +807,10 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         if (_html) nl = "<br/>";
         if (alpha) qSort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
         QString titreNR;
+        int tot = (lm.count() - 1) / 2;
         QTextStream(&titreNR) << "--- " << nonReconnus.count() << "/"
-                              << lm.count() << " ("
-                              << ((nonReconnus.count() * 100) / lm.count())
+                              << tot << " ("
+                              << ((nonReconnus.count() * 100) / tot)
                               << " %) FORMES NON RECONNUES ---" << nl << "\n";
         lRet.append(titreNR + nl);
         foreach (QString nr, nonReconnus)

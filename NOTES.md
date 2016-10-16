@@ -1,5 +1,26 @@
 # Collatinus-11, notes
 
+Dimanche 2 octobre 2016
+
+## BRANCHE SERVEUR
+J'ai repris le serveur TCP que j'avais implémenté dans C10.3 et je l'ai installé dans C11.
+Pour l'interroger, on utilise un client qui envoie une requête au serveur
+et affiche la réponse.
+
+La syntaxe est '[commande] [texte]' ou '[commande] -f nom_de_fichier'.
+
+Par défaut (sans commande), on obtient la scansion du texte.
+
+Les commandes possibles sont : 
+- -s : Scansion du texte (-s1 : avec recherche des mètres).
+- -a : Accentuation du texte (avec options -a1..-a3 et -a5..-a7).
+- -l : Lemmatisation du texte (avec options -l0..-l8).
+- -t : Langue cible pour les traductions (par exemple -tfr, -tuk).
+- -C : Majuscules pertinentes.
+- -c : Majuscules non-pertinentes.
+- -? : Affichage de l'aide.
+
+
 lundi 4 janvier 2016 
 
 <!-- voir syntaxe Algo -->
