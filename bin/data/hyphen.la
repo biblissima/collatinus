@@ -24,13 +24,12 @@
 ! Le format d'une ligne ressemble à celle de lemmes.fr.
 ! clef|début du mot
 ! Le tiret simple "-" marque l'emplacement de la césure
-! S'il y a plusieurs radicaux différents qui nécessite une césure,
+! S'il y a plusieurs radicaux différents qui nécessitent une césure,
 ! ils seront séparés par une virgule.
 !
-! Il ne contient que quelques exemples et il est appelé à croître et proporer.
+! Il ne contient que quelques exemples et il est appelé à croître et prospérer.
 !
 ! Philippe,	avril 2016.
-! P. Louis et Fr. Romain, octobre 2016.
 !
 posthac|post-
 abscindo|ab-
