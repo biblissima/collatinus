@@ -366,14 +366,16 @@ posthabeo|post-
 posthac|post-
 postilla|post-
 !
+praeterago|præter-
 praeterea|præter-
 praetereo|præter-
 praeteritus|præter-
+praetersum|præter-e
 !
 prodeo|prod-
 prodigo|prod-
 proditio|prod-
-! Césure de proditio différente selon que <prodo ou <prodeo
+! TODO : césure de proditio différente selon que <prodo ou <prodeo
 !
 subaudio|sub-
 subeo|sub-
@@ -397,7 +399,7 @@ superincido|super-
 superior|super-
 superius|super-
 supero|super-
-supersum|super-
+supersum|super-e
 superurgens|super-
 superus|super-
 !
