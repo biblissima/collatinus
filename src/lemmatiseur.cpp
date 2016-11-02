@@ -77,23 +77,6 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     ltr.removeOne("morphos.la");  // S'il traine encore...
     foreach (QString nfl, ltr)
         lisMorphos(QFileInfo(nfl).suffix());
-
-    /*
-    QFile f(_resDir + "morphos.la");
-    f.open(QFile::ReadOnly);
-    QTextStream fl(&f);
-    int i = 0;
-    while (!fl.atEnd())
-    {
-        QString l = fl.readLine();
-        if (l.startsWith('!')) continue;
-        if (i+1 != l.section(':',0,0).toInt())
-            qDebug() <<i<<"Fichier morphos.la, erreur dans la ligne"<<l;
-        else _morphos.append(l.section(':',1,1));
-        ++i;
-    }
-    f.close();
-*/
     lisModeles();
     lisLexique();
     lisTraductions(true, false);
@@ -101,18 +84,33 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisParPos();
 }
 
+QStringList Lemmat::lignesFichier(QString nf)
+{
+    QFile f(nf);
+    f.open(QFile::ReadOnly);
+    QTextStream flux(&f);
+    QStringList retour;
+    while (!flux.atEnd())
+    {
+        QString lin = flux.readLine();
+        if ((!lin.isEmpty()) && ((!lin.startsWith("!")) || lin.startsWith("! --- ")))
+            retour.append(lin);
+    }
+    f.close();
+    return retour;
+}
+
 void Lemmat::lisMorphos(QString lang)
 {
-    QFile f(_resDir + "morphos." + lang);
-    f.open(QFile::ReadOnly);
-    QTextStream fl(&f);
+    QStringList lignes = lignesFichier(_resDir + "morphos." + lang);
+    int max = lignes.count() - 1;
     int i = 0;
-    QString l = "";
+    QString l; // = "";
     QStringList morphos;
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    while (i <= max) // && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
+        if (l.startsWith("! --- ")) break;
         if (i+1 != l.section(':',0,0).toInt())
             qDebug() <<i<<"Fichier morphos." << lang << ", erreur dans la ligne "<<l;
         else morphos.append(l.section(':',1,1));
@@ -120,70 +118,68 @@ void Lemmat::lisMorphos(QString lang)
     }
     _morphos.insert(lang,morphos);
     QStringList cas;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         cas << l;
+        ++i;
     }
     _cas.insert(lang,cas);
     QStringList genres;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         genres << l;
+        ++i;
     }
     _genres.insert(lang,genres);
     QStringList nombres;
     l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         nombres << l;
+        ++i;
     }
     _nombres.insert(lang,nombres);
     QStringList temps;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         temps << l;
+        ++i;
     }
     _temps.insert(lang,temps);
     QStringList modes;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         modes << l;
+        ++i;
     }
     _modes.insert(lang,modes);
     QStringList voix;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         voix << l;
+        ++i;
     }
     _voix.insert(lang,voix);
     QStringList mc;
-    l = "";
-    while (!fl.atEnd() && !l.startsWith("! --- "))
+    l.clear();
+    while (i <= max && !l.startsWith("! --- "))
     {
-        l = fl.readLine();
-        if (l.startsWith('!')) continue;
+        l = lignes.at(i);
         mc << l;
+        ++i;
     }
     _motsClefs.insert(lang,mc);
-    f.close();
-
 }
 
 /**
@@ -195,18 +191,13 @@ void Lemmat::lisMorphos(QString lang)
 void Lemmat::ajAssims()
 {
     // peupler la QMap assims
-    QFile fAssims(_resDir + "assimilations.la");
-    fAssims.open(QFile::ReadOnly);
-    QTextStream fla(&fAssims);
-    while (!fla.atEnd())
+    QStringList lignes = lignesFichier(_resDir + "assimilations.la");
+    foreach (QString lin, lignes)
     {
-        QString lin = fla.readLine().simplified();
-        if (lin.isEmpty() || lin.startsWith("!")) continue;
         QStringList liste = lin.split(':');
         assimsq.insert(liste.at(0), liste.at(1));
         assims.insert(Ch::atone(liste.at(0)), Ch::atone(liste.at(1)));
     }
-    fAssims.close();
 }
 
 /**
@@ -218,17 +209,12 @@ void Lemmat::ajAssims()
 void Lemmat::ajContractions()
 {
     // peupler la QMap _contractions
-    QFile fContractions(_resDir + "contractions.la");
-    fContractions.open(QFile::ReadOnly);
-    QTextStream flc(&fContractions);
-    while (!flc.atEnd())
+    QStringList lignes = lignesFichier(_resDir + "contractions.la");
+    foreach (QString lin, lignes)
     {
-        QString lin = flc.readLine().simplified();
-        if (lin.isEmpty() || lin.startsWith("!")) continue;
         QStringList liste = lin.split(':');
         _contractions.insert(liste.at(0), liste.at(1));
     }
-    fContractions.close();
 }
 
 /**
@@ -963,13 +949,9 @@ QStringList Lemmat::lemmes(MapLem lm)
  */
 void Lemmat::lisIrreguliers()
 {
-    QFile firr(_resDir + "irregs.la");
-    firr.open(QFile::ReadOnly);
-    QTextStream fli(&firr);
-    while (!fli.atEnd())
+    QStringList lignes = lignesFichier(_resDir + "irregs.la");
+    foreach (QString lin, lignes)
     {
-        QString lin = fli.readLine().simplified();
-        if (lin.isEmpty() || lin.startsWith("!")) continue;
         Irreg *irr = new Irreg(lin, this);
         if (irr != 0 && irr->lemme() != 0)
             _irregs.insert(Ch::deramise(irr->gr()), irr);
@@ -978,7 +960,6 @@ void Lemmat::lisIrreguliers()
             std::cerr << "Irréguliers, erreur dans la ligne" << qPrintable(lin);
 #endif
     }
-    firr.close();
     // ajouter les irréguliers aux lemmes
     foreach (Irreg *ir, _irregs)
         ir->lemme()->ajIrreg(ir);
@@ -993,18 +974,13 @@ void Lemmat::lisFichierLexique(QString filepath)
 {
     int orig = 0;
     if (filepath.endsWith("ext.la")) orig = 1;
-    QFile flem(filepath);
-    flem.open(QFile::ReadOnly);
-    QTextStream fll(&flem);
-    while (!fll.atEnd())
+    QStringList lignes = lignesFichier(filepath);
+    foreach (QString lin, lignes)
     {
-        QString lin = fll.readLine().simplified();
-        if (lin.isEmpty() || lin.startsWith("!")) continue;
         Lemme *l = new Lemme(lin, orig, this);
         if (_lemmes.contains(l->cle())) qDebug() << orig << lin << l->cle();
         _lemmes.insert(l->cle(), l);
     }
-    flem.close();
 }
 
 /**
@@ -1032,21 +1008,19 @@ void Lemmat::lisExtension()
  */
 void Lemmat::lisModeles()
 {
-    QFile fm(_resDir + "modeles.la");
-    fm.open(QFile::ReadOnly);
-    QTextStream flm(&fm);
+    QStringList lignes = lignesFichier(_resDir + "modeles.la");
+    int max = lignes.count()-1;
     QStringList sl;
-    while (!flm.atEnd())
+    for (int i=0;i<=max;++i)
     {
-        QString l = flm.readLine().simplified();
-        if ((l.isEmpty() && !flm.atEnd()) || l.startsWith("!")) continue;
+        QString l = lignes.at(i);
         if (l.startsWith('$'))
         {
             _variables[l.section('=', 0, 0)] = l.section('=', 1, 1);
             continue;
         }
         QStringList eclats = l.split(":");
-        if ((eclats.at(0) == "modele" || flm.atEnd()) && !sl.empty())
+        if ((eclats.at(0) == "modele" || i == max) && !sl.empty())
         {
             Modele *m = new Modele(sl, this);
             _modeles.insert(m->gr(), m);
@@ -1054,7 +1028,6 @@ void Lemmat::lisModeles()
         }
         sl.append(l);
     }
-    fm.close();
 }
 
 /**
@@ -1064,22 +1037,13 @@ void Lemmat::lisModeles()
  */
 void Lemmat::lisParPos()
 {
-    QFile fpp(_resDir + "parpos.txt");
-    fpp.open(QFile::ReadOnly);
-    QTextStream flp(&fpp);
-    // fle.setCodec ("UTF-8");
-    QString ligne;
+    QStringList lignes = lignesFichier(_resDir + "parpos.txt");
     QStringList rr;
-    while (!fpp.atEnd())
+    foreach (QString ligne, lignes)
     {
-        ligne = fpp.readLine().simplified();
-        if (!ligne.isEmpty() && !ligne.startsWith('!'))
-        {
-            rr = ligne.split(";");
-            _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
-        }
+        rr = ligne.split(";");
+        _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
     }
-    fpp.close();
 }
 
 /**
@@ -1112,19 +1076,14 @@ void Lemmat::lisTraductions(bool base, bool extension)
     {
         // suffixe
         QString suff = QFileInfo(nfl).suffix();
-        QFile fl(_resDir + nfl);
-        fl.open(QFile::ReadOnly);
-        QTextStream flfl(&fl);
+        QStringList lignes = lignesFichier(_resDir + nfl);
         // lire le nom de la langue
-        flfl.readLine();
-        QString lang = flfl.readLine();
-        lang = lang.mid(1).simplified();
+        QString lang = lignes.takeFirst();
+        //lang = lang.mid(1).simplified();
         _cibles[suff] = lang;
 
-        while (!flfl.atEnd())
+        foreach (QString lin, lignes)
         {
-            QString lin = flfl.readLine().simplified();
-            if (lin.isEmpty() || lin.startsWith("!")) continue;
             Lemme *l = lemme(Ch::deramise(lin.section(':', 0, 0)));
             if (l != 0) l->ajTrad(lin.section(':', 1), suff);
 #ifdef DEBOG
@@ -1133,7 +1092,6 @@ void Lemmat::lisTraductions(bool base, bool extension)
                          << "\n  clé" << Ch::deramise(lin.section(':', 0, 0));
 #endif
         }
-        fl.close();
     }
 }
 
@@ -1345,16 +1303,9 @@ void Lemmat::lireHyphen(QString fichierHyphen)
     foreach (Lemme *l, _lemmes.values()) l->setHyphen("");
     if (!fichierHyphen.isEmpty())
     {
-        QFile Capsa(fichierHyphen);
-        Capsa.open(QIODevice::ReadOnly|QIODevice::Text);
-
-        QTextStream flux(&Capsa);
-        flux.setCodec("UTF-8");
-        QString linea;
-        while (!flux.atEnd())
+        QStringList lignes = lignesFichier(fichierHyphen);
+        foreach (QString linea, lignes)
         {
-            linea = flux.readLine ();
-            if (linea.isEmpty() || linea[0] == '!') continue;
             QStringList ecl = linea.split('|');
 #ifdef DEBOG
             if (ecl.count() != 2)
@@ -1371,7 +1322,5 @@ void Lemmat::lireHyphen(QString fichierHyphen)
             else qDebug () << linea << "erreur lireHyphen";
 #endif
         }
-        Capsa.close();
-
     }
 }

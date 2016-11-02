@@ -1,5 +1,5 @@
 ! lemmes.es
-! Español
+Español
 !
 !This file is part of COLLATINUS.
 !COLLATINUS is free software; you can redistribute it and/or modify

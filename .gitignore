@@ -39,3 +39,9 @@ Makefile*
 
 # QtCtreator CMake
 CMakeLists.txt.user
+bin/data/dicos/Gaffiot_2016-jun16.col
+bin/data/dicos/Georges_1913-avr16.col
+bin/data/dicos/Lewis_and_Short_1879-mai16.col
+bin/data/dicos/Quicherat_1836.cfg
+bin/data/dicos/Quicherat_1836.djvu
+bin/data/dicos/Quicherat_1836.idx

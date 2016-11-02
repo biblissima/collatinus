@@ -76,8 +76,8 @@ class Lemmat : public QObject
     QString _cible;  // langue courante, 2 caractères
     QMap<QString, QString> _cibles;
     QMap<QString, Lemme *> _lemmes;
+    QStringList             lignesFichier(QString nf);
     QMap<QString, Modele *> _modeles;
-//    QStringList _morphos;
     QMap<QString,QStringList> _morphos;
     QMap<QString,QStringList> _cas;
     QMap<QString,QStringList> _genres;
