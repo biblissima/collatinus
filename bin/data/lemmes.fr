@@ -1399,7 +1399,7 @@ Andromeda:Andromède
 Andromede:Andromède
 Andron2:Andron (médecin grec).
 andron:appartement des hommes, passage entre deux murs
-Andronicus:Livius Andronicus (poète latin, grammairien de Syrie, nom d'un ami de Cicéron)
+Andronicus:Livius Andronicus (poète latin, grammairien de Syrie, nom d'un ami de Cicéron); nom d'un personnage biblique
 Andros:île d'Andros [une des Cyclades, île entre la Bretagne et l'Irlande]
 Androsthenes:Androsthène [nom d'h.]
 anellus:petit anneau
@@ -1666,6 +1666,7 @@ appetisso:vouloir à toute force faire venir
 appetitio:désir [passionné], convoitise
 appetitus:désir de qqch
 appeto2:qui désire ardemment
+Appia:nom d'une femme dans la bible
 Appianus:Appianus
 Appias:les Appiades [groupe de nymphes ornant une fontaine située devant le temple de Vénus Genitrix, nom donné par Cic. à une Minerve d'Appius Claudius]
 Appia:(via -) la voie Appienne [commencée par Appius Claudius Caecus, ville de Phrygie]
@@ -7575,7 +7576,7 @@ Eous2:l'étoile du matin, habitant de l'Orient, Eous (un des chevaux du Soleil)
 Eoi:pl. de Eous
 Epaminondas:Epaminondas (célèbre général thébain)
 epaphaeresis:action de tondre
-Epaphroditus:Épaphrodite [affranchi de Néron]
+Epaphroditus:Épaphrodite [affranchi de Néron] ; nom d'un personnage biblique
 Epasnactus:Epasnactus
 epastus:dont on s'est repu, mangé
 Epeos:Epeos (Grec qui construisit le cheval de Troie)
@@ -14193,7 +14194,7 @@ Nape:Nape (nom de chienne, nom d'une esclave)
 Narbo:Narbonne
 Narbonensis:de Narbonne
 narcissus2:narcisse [fleur]
-Narcissus:Narcisse
+Narcissus:Narcisse; nom d'un personnage biblique
 nardum:nard [arbrisseau]
 nardus:nard [arbrisseau]
 nares:narines, nez, finesse, orifice
@@ -22067,7 +22068,8 @@ Thessalia:la Thessalie (grande province au nord de la Grèce)
 Thessalicus:de Thessalie
 Thessali:Thessaliens
 Thessalonica:Thessalonique (ville de Macédoine), Thessalonice (fille de Philippe)
-Thessalonicenses:habitants de Thessalonique
+!Thessalonicenses:habitants de Thessalonique
+Thessalonicensis:habitant de Thessalonique
 Thessalus2:Thessalus (nom d'h.)
 Thessalus:Thessalien
 Thessandrus:Thessandre (nom de guerrier grec)
@@ -22168,7 +22170,7 @@ Tigurini:Tigurins
 Tigurinus:Tigurinus (canton helvète)
 tilia:tilleul
 Tillius:Tillius
-Timaeus:Timée (historien; philosophe; titre d'un dialogue de Platon)
+Timaeus:Timée (historien; philosophe; titre d'un dialogue de Platon) ; nom d'un personnage biblique
 Timagenes:Timagène (rhéteur de l'époque d'Auguste)
 Timarchides:Timarchides (statuaire, affranchi de Verrès)
 Timarchus:Timarchus (statuaire)
@@ -22184,7 +22186,7 @@ Timocles:Timocles (statuaire)
 Timoneus:de Timon (célèbre misanthrape athénien)
 Timon:Timon d'Athènes (surnommé le Misanthrope)
 timor:peur
-Timotheus:Timotheus (musicien de Milet; restaurateur des murs d'Athènes)
+Timotheus:Timotheus (musicien de Milet; restaurateur des murs d'Athènes) ; nom d'un personnage biblique
 tinea:teigne, mite, ver intestina
 Tingitanus:de la Tingitane
 tingo:mouiller, teindre

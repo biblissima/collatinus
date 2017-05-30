@@ -1,31 +1,3 @@
-!               lem_ext.en
-English
-! Version 1 : 2017/04/04
-!
-!This file is part of COLLATINVS.
-!COLLATINVS is free software; you can redistribute it and/or modify
-!it under the terms of the GNU General Public License as published by
-!the Free Software Foundation; either version 2 of the License, or
-!(at your option) any later version.
-!
-!COLLATINVS is distributed in the hope that it will be useful,
-!but WITHOUT ANY WARRANTY; without even the implied warranty of
-!MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-!GNU General Public License for more details.
-!
-!You should have received a copy of the GNU General Public License
-!along with COLLATINVS; if not, write to the Free Software
-!Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-! (c) © Yves Ouvrard, 2011 - 2017
-!
-!	Extension du lexique obtenue par collation
-!	des dicos numériques
-!
-!	©  Philippe Verkerk, 2015
-!	14 Novembre 2015
-!
-!	Redistribué en Février 2017.
-!
 Aaron:Aaron, brother of Moses, first high-priest of the Hebrews
 Aaroneus:d'Aaron
 Aba:v. Aga
@@ -2002,7 +1974,7 @@ Auentia:nom d'une déesse des habitants d'Aventicum
 Auenticensis:d'Aventicum
 Auentinensis:of or belonging to Mount Aventine
 Auentiniensis:of or belonging to Mount Aventine
-!Auernus2:Without birds, absol., Lake Avernus, near Cum&oelig;, Puteoli, and Bai&oelig;, almost entirely enclosed by steep and wooded hills, Lago Averno, whose deadly exhalations killed the birds flying over it;, the lower world, the infernal regions, a deity
+Auernus2:Without birds, absol., Lake Avernus, near Cum&oelig;, Puteoli, and Bai&oelig;, almost entirely enclosed by steep and wooded hills, Lago Averno, whose deadly exhalations killed the birds flying over it;, the lower world, the infernal regions, a deity
 Auerruncus:an averting deity
 Aufeius:of or belonging to the
 Aufentum:fleuve du Latium
@@ -5848,7 +5820,7 @@ Eubois:de l'Eubée
 Eubolus:écrivain grec sur l'agriculture
 Eubuleus:one of the Anaces, Dioscuri
 Eubulides:nom d'un statuaire / maître de Démosthène
-Eubulus:nom d'homme, entre autres d'un statuaire
+Eubulus:nom d'homme, entre autres d'un statuaire ; name of a man in the Bible
 Eucarpeni:habitants d'Eucarpie [ville de Phrygie]
 Euchatae:peuple Scythe
 Eucheria:Euchérie [femme poète d'Aquitaine]
@@ -6242,6 +6214,7 @@ Fundanianus:qui a rapport à Fundanius
 Fundanius2:v. Fundi
 Fura:name of a goddess, otherwise unknown
 Furatrinus:le dieu du vol, Mercure
+Furiae:the three goddesses of vengeance, the Furies
 Furiani:the soldiers of M. Furius Camillus, the Furians
 Furianus:Furian
 Furina:a goddess worshipped in ancient Rome
@@ -6938,7 +6911,8 @@ Hestiaeotis:a district in Thessaly between Olympus and Ossa
 Hetaera:titre d'une comédie de Turpilius
 Hetereius:nom d'homme
 Heth:ind., fils de Chanaan
-Hethaei:Héthéens, Hittites
+!Hethaei:Héthéens, Hittites
+Hethaeus:Héthéen, Hittite
 Hetriculum:a city of the Bruttii
 Hetruria:a country of central Italy
 Hetruscus:of Etruria, Etruscan
@@ -6976,7 +6950,8 @@ Hieron2:Hiéron, [nom de deux rois de Syracuse]
 Hieronesus:île voisine de la Sicile
 Hierorenses:peuple de Galatie
 Hierosolymarius:of or belonging to Jerusalem;
-Hierosolymitae:habitants de Jérusalem
+!Hierosolymitae:habitants de Jérusalem
+Hierosolymita:an inhabitant of Jerusalem
 Hierosolymitanus:of Jerusalem
 Hierum:ville d'Asie, près du Palus-Méotide
 Hierus:nom d'homme
@@ -7602,7 +7577,8 @@ Isocrateus:of or pertaining to Isocrates, Isocratic
 Isocratius:a pupil of Isocrates
 Israel:a, Israel, another name of the patriarch Jacob
 Israel2:nom de Jacob et de ses descendants
-Israelitae:Israélites [la race d'Israël] / sing. Israelita
+!Israelitae:Israélites [la race d'Israël] / sing. Israelita
+Israelita:Israelite
 Israeliticus:Israelitish
 Israelitis:an Israelitish woman
 Israhel:Israël (nom de Jacob et de ses descendants).
@@ -8592,7 +8568,7 @@ Mallos:a city in Cilicia
 Mallotes:an inhabitant of Mallus
 Malotes:an inhabitant of Mallus
 Malthace:île près de Corcyre
-!Malthinus:a fictitious name
+Malthinus:a fictitious name
 Maluane:fleuve d'Afrique, sortant de l'Atlas
 Mamaea:v. Mamm-.
 Mamaeus:de Mama [ville d'Égypte ou d'Éthiopie]
@@ -10551,7 +10527,7 @@ Ortygia:Another name for the isle of Delos
 Orumbouii:peuple d'Italie
 Orumcolae:peuple de l'Inde
 Oruros:lieu ou ville de la Mésopotamie
-!Osca:a town in Hispania Tarraconensis, Huesca
+Osca:a town in Hispania Tarraconensis, Huesca
 Osce:in Oscan
 Oscensis:of or belonging to Osca, a town of Spain, Oscan
 Oscidates:peuple d'Aquitaine
@@ -12184,7 +12160,7 @@ Ptolemenses:An astrologer of the time of the emperor Otho
 Ptolemocratia:nom de femme
 Ptychia:an island near Corfu, Vido
 Publianus:of or belonging to a Publius
-!Publicianus:of or belonging to a Publicius, Publician
+Publicianus:of or belonging to a Publicius, Publician
 Publilia:seconde femme de Cicéron // (tribus) tribu Publilia
 Publilianus:Cicero's second wife, whom he married, and divorced the next year
 Publipor:The name of a slave
@@ -12639,6 +12615,7 @@ Sabaria:a city in Pannonia, a colony of the emperor Claudius, hence called Sabar
 Sabariensis:de Sabaria
 Sabate:ville d'Étrurie avec le lac du même nom, lacus Sabate
 Sabatha:ville de l'Arabie Heureuse,
+Sabatha2:name of a man in the Bible
 Sabatinca:ville de la Norique
 Sabatini:the inhabitants of a town in Campania
 Sabatinus:of or belonging to Sabate, the Lake of Sabate, Lago di Bracciano
@@ -14862,20 +14839,26 @@ Threce:difficulté de transcription hêta avec iota souscrit et accent aigu / �
 Threcicus:of or belonging to Thrace, Thracian
 Threcidica:
 Threcidicus:v. thraecidicus.
+Thriusi:peuplade de l'Attique
 Thronion:a town of the Locri Epicnemidii on the Boagrius
 Thronium:a town of the Locri Epicnemidii on the Boagrius
+Thronum:ville de Dalmatie
+Thryon:ville de Messénie
+Thryum:ville de Messénie
 Thubuscum:ville de la Mauritanie Césarienne
 Thucydidii:imitators of Thucydides
 Thucydidius:of or belonging to Thucydides, Thucydidian
 Thugga:ville de la Zeugitane
 Thuggensis:de Thugga
+Thuni:peuple de l'Asie orientale
+Thure:ville de Messénie
 Thuria:v. Turia.
 Thuriae:a town in Calabria, in the territory of the Salentines
 Thuringi:les Thuringiens [peuple germain]
 Thurini:the inhabitants of Thurii
-!Thurium:Thurium [ville de la Grande-Grèce]
+Thurium:Thurium [ville de la Grande-Grèce]
 Thurrus:roi d'Hispanie
-Thusci:the inhabitants of Etruria, the Tuscans, Etruscans, Etrurians
+Thusci:the inhabitants of Etru, ria, the Tuscans, Etruscans, Etrurians
 Thussagetae:a people of Asiatic Sarmatia, on the Wolga, Sing.
 Thyamis:a river in Epirus, the Calamas
 Thyatira:a town of Lydia, Ak-hissar
@@ -17292,7 +17275,7 @@ adoratus2:adoration, prières
 adordinatio:arrangement
 adordino:to set in order, to arrange
 adoreum:spelt
-!adorio:to attack, to assail, pass., adoratam.
+adorio:to attack, to assail, pass., adoratam.
 adornate:avec élégance
 adornatus:part. de adorno.
 adorsus:v. adorior
@@ -17503,7 +17486,7 @@ aemulatrix:a female emulator
 aemulatus:part. de aemulor.
 aemulo:v. aemulor.
 aena:chaudière
-!aeneator:one who blows a horn in war, a trumpeter
+aeneator:one who blows a horn in war, a trumpeter
 aeneatus:écrit ou gravé sur l'airain
 aenigmatice:d'une manière énigmatique
 aenigmaticus:like an enigma, obscure, enigmatic
@@ -17820,7 +17803,7 @@ albicantius:adv. comp., somewhat in the way of white
 albicapillus:vieillard aux cheveux blancs
 albicasco:to become white, to grow clear
 albiceratus:wax-white, light yellow
-!albicerus:
+albicerus:
 albicolor:of a white color
 albicomus:white-haired;, having white fibres
 albidulus:whitish
@@ -18349,7 +18332,7 @@ amygdalites:like the almond-tree
 amygdalus:an almond-tree
 amylatus:part. de amylo.
 amylo:to mix with starch
-!amylum:starch
+amylum:starch
 amynticus:préservatif
 ana2:prép. acc. [à partir de Végèce]
 anabaptismus:a second baptism
@@ -20332,8 +20315,8 @@ baiulus:he who bears burdens, a porter, carrier, day-laborer
 baiulus2:a porter, carrier.
 balabundus:bêlant
 balaena:a whale
-!balaenaceus:de baleine
-!balaenacius:of whalebone
+balaenaceus:de baleine
+balaenacius:of whalebone
 balaninus:made, prepared from the fruit of the balsam
 balanites:an unknown precious stone
 balanitis:skaped like an acorn
@@ -20998,7 +20981,7 @@ bractearia:batteuse de métaux
 bractearius:a worker in gold-leaf, a gold-beater, fem.
 bracteator:a goldbeater
 bracteatus:covered with gold-plate, gilt
-!bracteola:a thin leaf of gold
+bracteola:a thin leaf of gold
 bractor:pass.
 brado:jambon
 branca:patte [d'animal féroce]
@@ -22854,8 +22837,8 @@ chiliodynamia:polemonia ou philetaeria [plante]
 chiliophyllon:an unknown plant, thousand-leaves
 chilo:qui a de grosses lèvres
 chimerinus:winter
-!chiragra:gout in the hand
-!chiragricus:having the gout in the hand; subst.
+chiragra:gout in the hand
+chiragricus:having the gout in the hand; subst.
 chiridota:tunique à longues manches
 chiridotus:furnished with sleeves
 chirodyti:manches
@@ -23877,7 +23860,8 @@ coenobiolum:petit couvent, petit monastère
 coenobita:a cloister-brother, a monk
 coenobium:a cloister, convent
 coenolexia:expression banale
-coenomya:mouche commune
+!coenomya:mouche commune
+coenomya:the common fly
 coenomyia:the common fly
 coenonesis:notification aux juges ou à l'adversaire
 coenositas:f, a dirty place;
@@ -25159,7 +25143,7 @@ confricamentum:something for rubbing
 confricatio:a vigorous rubbing. friction;
 confricatus:part. de confrico.
 confrixo:to roast, fry with something
-!confrixus:part. de l'inus. confrigo, rôti, grillé
+confrixus:part. de l'inus. confrigo, rôti, grillé
 confuga:one who takes refuge somewhere, a refugee
 confugela:[arch.], refuge
 confugium:a place of refuge, a refuge, shelter
@@ -30615,8 +30599,8 @@ ethologia:the art of depicting, imitating character
 ethologus:one who jestingly imitates the manners, actions, gestures, of others, a mimic
 ethopoeia:an expression of character
 ethopoeiacus:servant à peindre le caractère
-!etiam2:adv, encore alors, jusque-là [dans le passé]
-!etiam3:adv, encore alors, jusque-là [dans le passé]
+etiam2:adv, encore alors, jusque-là [dans le passé]
+etiam3:adv, encore alors, jusque-là [dans le passé]
 etiamdum:hitherto, even till now, still, yet
 etussio:to cough up
 etymologia:etymology
@@ -31739,7 +31723,7 @@ faeceus:impure, feculent;
 faecinius:that makes, leaves dregs, abounding in dregs
 faecinus:that makes, leaves dregs, abounding in dregs
 faecla:burnt tartar, salt of tartar
-!faecosus:full of dregs
+faecosus:full of dregs
 faeculentia:lees, dregs; filth
 faeculentus:abounding in dregs, sediment, thick, impure, feculent
 faeles:e`
@@ -31980,7 +31964,7 @@ febrio:to be ill of a fever, to have a fever
 februamentum:a religious purification, expiation
 februatio:a religious purification, expiation
 februo:to purify, expiate
-!fecosus:v. faecosus, etc.
+fecosus:v. faecosus, etc.
 fecundator:he who fertilizes, makes fruitful
 fecunde:fruitfully, abundantly
 fecundia:c. fecunditas
@@ -33176,7 +33160,7 @@ gassinades:a Median precious stone
 gaster:the belly
 gastrimargia:voracité
 gastrimargus:vorace
-!gastrum:vase ventru
+gastrum:vase ventru
 gauata:écuelle, jatte
 gaudebundus:rejoicing
 gaudendus:de gaudeo
@@ -35178,7 +35162,7 @@ immontuosus:qui n'est pas montueux
 immorandus:que l'on doit maintenir
 immoranter:without delay, immediately
 immoratus:influence prolongée
-!immorsus:P. of immordeo
+immorsus:P. of immordeo
 immortale:éternellement
 immortaliter:infinitely
 immortalitus:from heaven, by the gift of the gods
@@ -35741,8 +35725,8 @@ incohatio:a beginning
 incohatiuus:beginning, denoting a beginning, inchoative;
 incohator:a beginner
 incohatus:Neutr., to begin, commence, take a beginning.
-!incohibilis:that cannot be held, kept together
-!incoibilis:difficile à rassembler.
+incohibilis:that cannot be held, kept together
+incoibilis:difficile à rassembler.
 incoinquinabilis:incorruptible
 incoinquinabiliter:sans souillure
 incoinquinatus:unde filed, unpolluted
@@ -38010,7 +37994,7 @@ iugus2:c. jugum
 iuli:chatons [du coudrier]
 iulis2:a kind of rockfish
 iulis3:a kind of rockfish
-!iulus2:down or woolly part of many plants, a catkin
+iulus2:down or woolly part of many plants, a catkin
 !ium:an idol-temple, med.
 iumentalis:c. jumentarius
 iumentarius:of or belonging to draught-cattle
@@ -40522,7 +40506,7 @@ metropolitanus:of or belonging to a metropolis, metropolitan, subst. m. a metrop
 metropolitanus3:a metropolitan, the bishop of a metropolitan church
 metuendus:fearful, terrible, dreadful, in battle, n, makes many terrible threats
 metutus:v. metuo
-!meum:mine, my property, my daughter, it is my affair, my concern, my duty, my custom
+meum:mine, my property, my daughter, it is my affair, my concern, my duty, my custom
 meum2:an umbelliferous plant, bear-wort
 micatio:a quick motion
 micatus:a quick motion
@@ -42540,7 +42524,7 @@ obsecutor:an obeyer, keeper, observer
 obsecutus:part. de obsequor
 obsepio:to hedge, fence in, to enclose;, to close up, to render impassable, inaccessible
 obseptus:v. obsaeptus.
-!obsequela:compliance, complaisance, obsequiousness, through obsequiousness in speaking, because they spoke as he liked
+obsequela:compliance, complaisance, obsequiousness, through obsequiousness in speaking, because they spoke as he liked
 obsequiae:funeral rites, obsequies
 obsequialis:complying, yielding, complaisant
 obsequibilis:com, plying, yielding, complaisant
@@ -43857,7 +43841,7 @@ papyrio:a place where papyrus grows abundantly
 papyrius:of papyrus, of paper
 parabalani:infirmiers
 parabolanus:a sick-nurse
-!parabole:a comparison.
+parabole:a comparison.
 parabolice:metaphorically
 parabolus:a reckless fellow
 paracenterium:a surgical instrument for making a perforation, a couching-needle
@@ -43876,9 +43860,9 @@ paradisiacola:qui habite le paradis.
 paradisiacus:of or belonging to Paradise, Paradisiacal, Paradise
 paradisicola:a dweller in Paradise, in heaven
 paradisus:a park.
-!paradoxa:
+paradoxa:
 paradoxi:mimes [acteurs de mimes] / ceux qui ont été vainqueurs [contre toute attente] le même jour dans la lutte et le pancrace
-!paradoxon:chose contraire à l'opinion / phrase suspendue, suspension [fig. de rhét.]
+paradoxon:chose contraire à l'opinion / phrase suspendue, suspension [fig. de rhét.]
 paradoxos:
 paradoxus:marvellous, strange, contrary to all expectation, paradoxical;, subst. m. one who, contrary to expectation, has conquered both in the lucta and in the pancratium on the same day
 paraenesis:an exhortation, admonition, precept
@@ -44952,7 +44936,7 @@ perleuiter:very lightly, very slightly
 perlibens:-I. med. -II. doing, seeing a thing very willingly, with good will, pleasure
 perlibenter:very willingly, with great pleasure
 perliberalis:very well bred, very genteel, Adv.
-!perlibet:it is very pleasing, agreeable, I should very much like
+perlibet:it is very pleasing, agreeable, I should very much like
 perlibratio:a levelling
 perlibro:to make exactly level, to level.
 perlicet:it is perfectly allowable
@@ -46088,7 +46072,7 @@ plumbosus:full of lead, having much lead mixed with it, Sup.
 plumella:a small feather
 plumesco:to begin to have, get feathers, to become fledged
 plumiger:feather-bearing, feathered
-!plumipes:feather-footed, with feathered feet
+plumipes:feather-footed, with feathered feet
 pluor:rain
 pluralis:belonging, relating to more than one, relating to many
 pluralis2:le pluriel
@@ -47863,7 +47847,7 @@ propungo:to prick, puncture in front
 propurgo:to cleanse beforehand
 propus:nom d'une étoile qui se trouve devant les pieds des Gémeaux
 propylaea:a gateway, entrance; esp., the Propylaea to the Parthenon
-!propylaeon:a gateway, entrance;, the Propyl&oelig;um
+propylaeon:a gateway, entrance;, the Propyl&oelig;um
 propylon:a gateway, entrance;, the Propyl&oelig;um
 proquaestor:proquesteur.
 proquirito:to cry out, exclaim in public, to publish, proclaim
@@ -48506,7 +48490,7 @@ pyramidatus:pyramidal
 pyrausta:insecte qui vit dans le feu
 pyraustes:insecte qui vit dans le feu
 pyren:a precious stone
-!pyrethron:a plant, Spanish chamomile, pellitory
+pyrethron:a plant, Spanish chamomile, pellitory
 pyreum:the sanctuary of Vesta
 pyrgis:a plant, dog, s-tongue
 pyrgus:a little wooden tower on the side of a gaming-board, hollow and having steps inside, through which the dice were thrown upon the board
@@ -50025,7 +50009,7 @@ rhedarius:de chariot
 rhedarius2:cocher / charron, carrossier
 rheno:a reindeer-skin, a fur pelisse, a Gallic dress
 rhetorica2:rhetoric
-!rhetorice:the art of oratory, rhetoric
+rhetorice:the art of oratory, rhetoric
 rhetorice2:in an oratorical or rhetorical manner, oratorically, rhetorically
 rhetorici:Teachers of oratory
 rhetorico:int., parler en rhéteur, faire de la rhétorique
@@ -52527,7 +52511,7 @@ spartaria2:places where broom grows
 spartarius:of or belonging to broom, bearing broom, Plur. subst.
 spartea:a shoe made of broom
 sparteolus:a watchman against fire, med.
-!sparton:a plant originally growing in Spain, of which ropes, mats, nets, were made, still called in Spain esparto, Spanish broom
+sparton:a plant originally growing in Spain, of which ropes, mats, nets, were made, still called in Spain esparto, Spanish broom
 spartopolia:sorte de pierre précieuse
 spartopolios:an unknown kind of precious stone
 sparum:c. sparus
@@ -58004,3 +57988,183 @@ zygostasium:the office of a weigh-master
 zygostata:vérificateur des poids
 zygostates:a master of the weights, weigh-master
 zythum:a kind of malt-liquor
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Flavigny
+! Accentuation of the Vulgate
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Abias:name of a man in the Bible
+Abiathar:name of a man in the Bible
+Abida:name of a man in the Bible
+Abilina:region of the ancient Syria
+Abimael:name of a man in the Bible
+Agareni:nomadic tribe of the North-Arabia
+Allophyli:name of a people of Palestine, the Philistines
+Alphaeus:name of a man in the Bible
+Amalec:name of a man and of a people in the Bible
+Amathaeus:name of people of Palestine
+Aminadab:name of a man in the Bible
+Amphipolis:greek town
+Anamim:name of a man in the Bible
+Ananias:name of many men in the Bible
+Antipatris:a town in Palestine
+Apollyon:exterminating Angel in the book of Revelation 
+Aracaeus:name of a people in the Bible
+Arbee:name of a giant in the Bible, father of the Enacim
+Aristobolus:name of a man in the Bible
+Arphaxad:name of a man in the Bible
+Asarmoth:name of a man in the Bible
+Asasonthamar:a town in the Bible
+Ascenez:name of a man in the Bible, descent of Japheth
+Assurim:name of a people in the Bible
+Astarothcarnaim:a town in the Bible
+Asyncritus:name of a man in the Bible
+Balaam:name of a false prophet in the Bible
+Balaan:name of a man in the Bible
+Balanan:name of a man in the Bible
+Barachias:name of a man in the Bible
+Bariesu:name of a man in the Bible
+Barsabas:name of a man in the Bible
+Bartimaeus:name of a man in the Bible
+Basemath:name of a woman in the Bible
+Bathuel:name of a man in the Bible, father of Rebekah, uncle of Isaac
+Beeri:name of a man in the Bible
+Benoni:other name of Benjamin
+Bersabee:a town in Palestine
+Bethphage:a town in Judaea
+Bethsabee:wife of Urias and then of David, mother of Solomon
+Boanerges:name given by Jesus to the Apostles James and John
+Boniportus:harbour in Crete
+Camuel:name of a man in the Bible
+Caphtorim:name of people in the Bible
+Cariathaim:a town in Palestine
+Cedmonaeus:one of the Kedmonites, a tribe in Palestine
+Cenezaeus:one of the Kenezites, a tribe in Palestine
+Cetura:second wife of Abraham
+Chalanne:a town in Mesopotamia
+Chasluim:name of people in the Bible
+Chodorlahomor:name of a man in the Bible
+Cinaeus:one of the Kenites, a tribe in Palestine
+Corozain:a town in Galilee
+Cyrinus:Quirinius, governor of Syria
+Dalmanutha:region of Palestine
+Damaris:name of a woman in the Bible
+Denaba:name of a town in the Bible
+Dodanim:name of a man or a people in the Bible
+Dothain:a town in Palestine
+Elcana:name of a man in the Bible
+Eliacim:name of a man in the Bible
+Elmodad:name of a man in the Bible
+Epaenetus:name of a man in the Bible
+Ephron:name of a man in the Bible
+Eutychus:name of a man in the Bible
+Gabbatha:name of a place in Jerusalem
+Galaad:region on the E. of Jordan
+Gamaliel:name of a man in the Bible
+Genesar:region of Palestine
+Genesareth:name of a lake in Palestine
+Gerara:a town in Palestine
+Gergesaeus:name of a people of Palestine
+Haceldama:name of a field (Gospels)
+Hermoniim:Hermon, a mountain of the Anti-Lebanon
+Hesebon:a town on the E. of Jordan
+Hevaeus:name of a people of Palestine
+Hevila:name of a man in the Bible
+Hevilath:region of Arabia (in the Bible)
+Horraei:name of a people in the Bible
+idipsum:the same thing (in idipsum:together)
+Issachar:one of the twelve sons of Israel
+Ithamar:name of a man in the Bible, son of Aaron
+Jairus=Iairus:name of a man in the Bible
+Jason:name of many men in the Bible
+Jebusaeus=Iebusaeus:name of a people of Palestine
+Jechonias=Iechonias:name of a man in the Bible
+Jemini=Iemini:name of a man in the Bible
+Joatham=Ioatham:name of a man in the Bible
+Jochabed=Iochabed:mother of Moses and Aaron
+Jonadab=Ionadab:name of a man in the Bible, father of the Rechabites
+Josaphat=Iosaphat:name of a man in the Bible
+Josias=Iosias:name of a man in the Bible
+Laabim:name of a man in the Bible
+Latusim:name of a people in the Bible
+Loomim:name of a people in the Bible
+Maacha:name of a man in the Bible
+Madai:name of a man in the Bible
+Magdiel:name of a man in the Bible
+Magedan:region of Palestine
+Mahanaim:name of a place in the Bible
+Maheleth:name of a woman in the Bible
+Malaleel:name of a man in the Bible
+Manahat:name of a man in the Bible
+Manahen:name of a man in the Bible
+Masreca:name of a town in the Bible
+Mathatha:name of a man in the Bible
+Mathathias:name of a man in the Bible
+Mathusael:name of a man in the Bible, desendant of Cain
+Mathusalem:name of a patriarch in the Bible
+Maviael:name of a man in the Bible, descendant of Cain
+Meetabel:name of a woman in the Bible
+Mezaab:name of a man in the Bible
+Melchisedech:name of a man in the Bible
+Melea:name of a man in the Bible
+Merari:name of a man in the Bible, one of the three sons of Levi
+Mesraim:name of a man in the Bible
+Misael:name of a man in the Bible
+Naaman:name of a man in the Bible
+Naasson:name of a man in the Bible
+Nabaioth:name of a man in the Bible, one of the sons of Ismael
+Nathanael:one of the twelve Apostles
+necnon:and, too
+nequando:lest
+Nephthalim:region of Palestine
+Nephtuim:name of a man in the Bible
+Nicodemus:name of a man in the Bible
+Noema:name of a woman in the Bible
+Oolibama:name of a woman in the Bible
+Ozias:name of a man in the Bible
+Parmenas:name of a man in the Bible
+Phanuel:name of a man in the Bible
+Phetrusim:name of people in the Bible
+Phinees:name of a man in the Bible
+Portius:name of a man in the Bible
+pseudoapostolus:false Apostle
+Putiphar:name of an Egyptian in the Bible
+quinimmo:on the contrary, rather
+Raguel:name of a man in the Bible
+Rahuel:name of a man in the Bible
+Ramesses:a town in Egypt
+Raphaim:name of a race of giants in the Bible
+Rohoboth:name of a town in the Bible
+Sabatacha:name of a man in the Bible
+Sabatha:name of a man in the Bible
+Salathiel:name of a man in the Bible
+Salmana:name of a man in the Bible
+Samaraeus:name of a people of Palestine
+Saphira:name of a woman in the Bible
+Sarai:Sara, wife of Abraham
+Sarona:a town in Palestine
+Sebeon:name of a man in the Bible
+Seboim:a town in Palestine
+Semeber:name of a man in the Bible
+Semei:name of a man in the Bible
+Sennaab:name of a man in the Bible
+Sephora:wife of Moses
+Sichima:Sichem, a town in Palestine
+Sinaeus:name of a people of Palestine
+Sosipater:name of a man in the Bible
+Sosthenes:name of a man in the Bible
+Susanna:name of many women in the Bible
+Tabee:name of a man in the Bible
+Tertullus:name of a man in the Bible
+Thaddaeus:one of the twelve Apostles
+Thogorma:name of a man in the Bible
+Trophimus:name of a man in the Bible
+Tubalcain:name of a man in the Bible, descendant of Cain
+Urias:name of a man in the Bible
+usquequo:until when?
+Zachaeus:name of a man in the Bible
+Zebee:name of a man in the Bible
+Ziphaei:inhabitants of Ziph, a town in Palestine
+Zorobabel:name of a man in the Bible
+

@@ -729,8 +729,7 @@ void MainWindow::createActions()
 //    reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
     quitAct->setShortcut(
         QKeySequence(tr("Ctrl+Q")));  // QKeySequence::Quit inopérant
-    lancAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
-    // Ctrl-L pour lancer la lemmatisation ou la scansion du texte
+    lancAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L)); // Raccourci pour lancer la lemmatisation ou la scansion du texte.
 
     // lemmatisation et options
     // ordre alpha
