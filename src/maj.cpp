@@ -59,7 +59,8 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
     if (dic)
     {
 //        texte.append("<ul>\n<li>");
-        QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
+        QString dicDir = QDir::homePath() + "/collatinus/dicos/";
+        QDir chDicos(dicDir);
         QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
         for (int i = 0; i < lcfg.count(); ++i)
         {
@@ -79,7 +80,8 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
     {
         // Les lexiques.
 //        texte.append("<br>\n<table><tr><td>• ");
-        QDir chDicos(qApp->applicationDirPath() + "/data");
+        QString resDir = "/usr/share/collatinus";
+        QDir chDicos(resDir + "/data");
         QStringList lcfg = chDicos.entryList(QStringList() << "lem*.*");
         for (int i = 0; i < lcfg.count(); ++i)
         {
@@ -143,19 +145,22 @@ bool Maj::installe(QString nfcol)
         QString nom = QFileInfo(nfcol).baseName();
         // Supprimer les versions antérieures
         QString nomSansDate = nom.section("-",0,-2) + "*.*";
-        QDir rep(qApp->applicationDirPath() + "/data/dicos",nomSansDate);
+        QString dicDir = QDir::homePath() + "/collatinus/dicos/";
+        QDir rep(dicDir,nomSansDate);
         QStringList lfrem = rep.entryList();
 //        qDebug() << lfrem;
         foreach (QString n, lfrem)
         {
-            QFile::remove(qApp->applicationDirPath() + "/data/dicos/" + n);
+            QFile::remove(dicDir + n);
         }
         // fichiers destination
-        QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom + ".");
+        QString nf(dicDir + nom + ".");
         QString nfcz = nf + lignes[1].section(":",0,0);
         // Taille du 1er morceau
         qint64 taille = lignes[1].section(':', 1, 1).toLongLong();
         // Créations
+        QDir dir(dicDir);
+        if (!dir.exists()) dir.mkpath(".");
         QFile fcz(nfcz);
         if (!fcz.open(QFile::WriteOnly))
         {
@@ -289,7 +294,8 @@ bool Maj::djvu2col(QString nfdjvu)
     // nom du paquet
     QString nom = QFileInfo(nfdjvu).baseName();
     // fichiers destination
-    QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom);
+    QString dicDir = QDir::homePath() + "/collatinus/dicos/";
+    QString nf(dicDir + nom);
     QString nfcol("/Users/Philippe/Documents/dicos_C11/" + nom + ".col");
     QString nfidx = nf + ".idx";
     QString nfcfg = nf + ".cfg";

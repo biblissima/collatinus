@@ -153,12 +153,14 @@ MainWindow::MainWindow()
     editLatin = new EditLatin(this);
     setCentralWidget(editLatin);
 
-    _lemCore = new LemCore(this);
-    _lemmatiseur = new Lemmatiseur(this,_lemCore);
+    QString resDir = "/usr/share/collatinus";
+    resDir += "/data/";
+    _lemCore = new LemCore(this, resDir);
+    _lemmatiseur = new Lemmatiseur(this,_lemCore,"",resDir);
     flechisseur = new Flexion(_lemCore);
-    lasla = new Lasla(this,_lemCore,"");
-    tagueur = new Tagueur(this,_lemCore);
-    scandeur = new Scandeur(this,_lemCore);
+    lasla = new Lasla(this,_lemCore,resDir);
+    tagueur = new Tagueur(this,_lemCore,"",resDir);
+    scandeur = new Scandeur(this,_lemCore,resDir);
 
     setLangue();
 
@@ -951,7 +953,8 @@ void MainWindow::createDicos(bool prim)
     else
         combo = comboGlossariaW;
     combo->clear();
-    QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
+    QString dicDir = QDir::homePath() + "/collatinus/dicos/";
+    QDir chDicos(dicDir);
     QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
     ldic.clear();
     foreach (QString fcfg, lcfg)
