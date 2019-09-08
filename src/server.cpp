@@ -32,12 +32,14 @@
 Server::Server()
 {
 
-    _lemCore = new LemCore(this);
-    _lemmatiseur = new Lemmatiseur(this,_lemCore);
+    QString resDir = "/usr/share/collatinus";
+    resDir += "/data/";
+    _lemCore = new LemCore(this, resDir);
+    _lemmatiseur = new Lemmatiseur(this,_lemCore,"",resDir);
     flechisseur = new Flexion(_lemCore);
-    lasla = new Lasla(this,_lemCore,"");
-    tagueur = new Tagueur(this,_lemCore);
-    scandeur = new Scandeur(this,_lemCore);
+    lasla = new Lasla(this,_lemCore,resDir);
+    tagueur = new Tagueur(this,_lemCore,"",resDir);
+    scandeur = new Scandeur(this,_lemCore,resDir);
 
     _lemCore->setExtension(true); // Je charge l'extension du lexique,
     _lemCore->setExtension(false); // mais je ne l'utilise que comme réserve.
