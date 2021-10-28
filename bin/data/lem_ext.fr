@@ -1965,7 +1965,7 @@ Atticula:dim. de Attica, fille d'Atticus
 Attidiates:habitants d'Attidium
 Attila:roi des Huns
 Attilanus:d'Attila
-Attilas:Attila (roi des Huns).
+!Attilas:Attila (roi des Huns).
 Attilius:nom de famille rom. ; en part. Attilius Régulus
 Attis:berger phrygien aimé de Cybèle, qui devint prêtre de la déesse et qui se mutila
 Attis2:Attic or Athenian ; subst. An Athenian woman / A female friend of Sappho / A name for Attica
@@ -41857,7 +41857,7 @@ neruicus:qui souffre de la goutte [aux mains] / musculeux, fort
 neruinus:corde de boyau
 neruositas:force [d'un fil]
 neruulus:petit muscle / pl., nerf, force, vigueur
-nes:one who dances on a thin cord, a, cord-dancer
+!nes:one who dances on a thin cord, a, cord-dancer
 nesciens:qui ne se connaît pas, inconscient
 nescienter:sans le savoir, sans s'en apercevoir
 nescientia:ignorance
@@ -51650,7 +51650,7 @@ seniculus:petit vieux
 senideni:chacun seize
 seniliter:à la manière des vieillards
 senipes:de six pieds, sénaire
-senius:vieillard, citation d.
+senius:vieillard
 sensa:sentiments, pensées
 sensate:sensément
 sensatus:[fig.] sensé
@@ -57326,7 +57326,7 @@ uiscatorium:glu
 uiscatura:
 uiscellatus:farci de viande
 uiscellum:farce de viande
-uiscera:les parties internes du corps, viscères, intestins, entrailles / [en part.] sein de la mère / testicules / chair [qui se trouve sous la peau de l'h. et des anim.] / [fig.] la chair d'une femme = le fruit de ses entrailles, progéniture, enfant / [fig.] entrailles, coeur, sein / le plus pur sang, la substance
+!uiscera:les parties internes du corps, viscères, intestins, entrailles / [en part.] sein de la mère / testicules / chair [qui se trouve sous la peau de l'h. et des anim.] / [fig.] la chair d'une femme = le fruit de ses entrailles, progéniture, enfant / [fig.] entrailles, coeur, sein / le plus pur sang, la substance
 uisceralis:
 uisceratim:adv., par morceaux, par lambeaux
 uiscereus:d'entrailles, qui est dans les entrailles

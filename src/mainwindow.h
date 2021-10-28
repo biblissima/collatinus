@@ -114,10 +114,11 @@ class MainWindow : public QMainWindow
     QAction *majPertAct;
     // L'option de majuscule pertinente doit être accessible depuis EditLatin.
     QStringList lemsDic;
-    int lireOptionsAccent();
+    int lireOptionsAccent(bool force = false);
     // Pour le serveur
     QString startServer ();
     QString stopServer ();
+//    int nbLg(QString str);
 
     QString lem2csv(QString texte);
 
@@ -182,6 +183,9 @@ class MainWindow : public QMainWindow
     void dockRestore ();
     void verbaCognita(bool vb=false);
     void verbaOut();
+    void txt2csv();
+//    void txt2ePub();
+//    void txt2vocab();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -242,6 +246,13 @@ class MainWindow : public QMainWindow
     // bascules du tagger
     QAction *affToutAct;
 
+    // bascule pour une liste de vocabulaire en double page.
+    // true : texte à gauche, vocabulaire à droite.
+    // false : texte en haut, vocabulaire en dessous.
+    QAction *dbPageAct;
+    // Option pour les textes en prose (double colonne 11cm + 0,69cm)
+    QAction *proseAct;
+
     // Pour le serveur
     QTcpServer * serveur;
     QTcpSocket * soquette;
@@ -279,6 +290,9 @@ class MainWindow : public QMainWindow
     QAction *extensionWAct;
     QAction *medievalAct;
     QAction *zoomAct;
+    QAction *actionTxt2csv;
+//    QAction *actionTxt2ePub;
+//    QAction *actionTxt2vocab;
     // QAction *undoAct;
     // widgets, variables et fonctions du dock dictionnaires
     QComboBox *comboGlossaria;

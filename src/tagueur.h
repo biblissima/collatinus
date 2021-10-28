@@ -26,6 +26,18 @@
 #include "mot.h"
 #include "ch.h"
 
+/**
+ * @brief La classe Tagueur regroupe les fonctions nécessaires
+ * pour lemmatiser et désambiguïser des textes avec un tagueur probabiliste.
+ *
+ * Actuellement, dans Collatinus, elle est appelée par MainWindow
+ * qui gère l'affichage et les lectures/écritures des fichiers.
+ * Elle partage donc le noyau de lemmatisation, LemCore,
+ * avec d'autres classes _intermédiaires_.
+ * Toutefois, cette classe pourrait être autonome, avec une autre interface,
+ * si on voulait, par exemple, n'avoir qu'un programme spécialisé.
+ *
+ */
 class Tagueur : public QObject
 {
 public:
@@ -34,7 +46,9 @@ public:
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
 
 private:
+    /*! Un pointeur vers le noyau de lemmatisation qui peut être partagé. */
     LemCore * _lemCore;
+    /*! Le nom du répertoire contenant les données. */
     QString _resDir;
 };
 

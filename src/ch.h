@@ -23,7 +23,7 @@ void allonge(QString *f);
 QString atone(const QString a, bool bdc = false);
 QString communes(QString g);
 void deQuant(QString *c);
-QString const consonnes = "bcdfgjklmnpqrstvxz";
+QString const consonnes = "bcdfgjklmnpqrstvwxz";
 void genStrNum(const QString s, QString *ch, int *n);
 QString deramise(QString r);
 QString deAccent(QString c);
@@ -38,6 +38,7 @@ bool inv_sort_i(const QString &a, const QString &b);
 QString versPC(QString k);
 QString versPedeCerto(QString k);
 QString const voyelles = "āăēĕīĭōŏūŭȳўĀĂĒĔĪĬŌŎŪŬȲЎ";
+QChar breve(QChar c);
 
 //QChar const separSyll = 0x02CC;
 //QChar const separSyll = 0x00AD;

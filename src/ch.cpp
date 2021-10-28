@@ -52,10 +52,14 @@ void Ch::allonge(QString *f)
     if (f->isEmpty()) return;
     int taille = f->size();
     // Je sais que le morceau à attacher commence par une consonne.
-    if (consonnes.contains(f->at(taille - 1)) &&
-        !QString("\u0101e \u0101u \u0113u \u014de")
+    if ((taille > 1) && consonnes.contains(f->at(taille - 1)) &&
+            (f->at(taille - 2) == QChar(774))) // combining breve
+        f->remove(taille - 2, 1);
+    else if (consonnes.contains(f->at(taille - 1)) &&
+        !QString("\u0101e \u0101u \u0113u \u014de \u0113i")
              .contains(f->mid(taille - 3, 2).toLower()))
-    {
+    { // Il ne faudrait pas allonger le 2e voyelles des diphtongues.
+        // Ajout de la diphtongue "ei" que l'on trouve dans "dein".
         f->replace(QRegExp("[a\u0103]([" + consonnes + "])$"), "\u0101\\1");
         f->replace(QRegExp("[e\u0115]([" + consonnes + "])$"), "\u0113\\1");
         f->replace(QRegExp("[i\u012d]([" + consonnes + "])$"), "\u012b\\1");
@@ -72,7 +76,7 @@ void Ch::allonge(QString *f)
 }
 
 /**
- * \fn Ch:atone(QString a, bool bdc)
+ * \fn Ch::atone(QString a, bool bdc)
  * \brief supprime tous les diacritiques de la chaîne a
  *        si bdc est à true, les diacritiques des majuscules
  *        sont également supprimés.
@@ -118,7 +122,39 @@ QString Ch::atone(QString a, bool bdc)
 }
 
 /**
- * \fn Ch:communes(QString g)
+ * @brief Ch::breve
+ * @param c : une voyelle sans quantité en minuscule
+ * @return la fonction retourne la voyelle brève correspondant à c.
+ * Si c n'est pas une voyelle (aeiouy), la fonction retourne c.
+ */
+QChar Ch::breve(QChar c)
+{
+    switch (c.unicode()) {
+    case 97: // 'a'
+        return voyelles[1];
+        break;
+    case 101:
+        return voyelles[3];
+        break;
+    case 105:
+        return voyelles[5];
+        break;
+    case 111:
+        return voyelles[7];
+        break;
+    case 117:
+        return voyelles[9];
+        break;
+    case 121:
+        return voyelles[11];
+        break;
+    default:
+        return c;
+        break;
+    }
+}
+/**
+ * \fn Ch::communes(QString g)
  * \brief note comme communes toutes les voyelles qui ne portent pas de quantité.
  */
 QString Ch::communes(QString g)
@@ -128,9 +164,9 @@ QString Ch::communes(QString g)
     if (g.contains("a") || g.contains("e") || g.contains("i") || g.contains("o") || g.contains("u") || g.contains("y"))
     {
         g.replace("a","ā̆");
-        g.replace(QRegExp("([^āăō])e"),"\\1ē̆");
-        g.replace(QRegExp("^e"),"ē̆");
-        g.replace("i","ī̆");
+        g.replace(QRegExp("([^āăō])e"),"\\1ē̆"); // e qui n'est pas précédé de āăō
+        g.replace(QRegExp("^e"),"ē̆"); // e en début de mot
+        g.replace(QRegExp("([^ē])i"),"\\1ī̆"); // i nu, sauf s'il est dans une diphtongue "ei" (deinde).
         g.replace("o","ō̆");
         g.replace(QRegExp("([^āēq])u"),"\\1ū̆");
         g.replace(QRegExp("^u"),"ū̆");
@@ -280,6 +316,7 @@ QString Ch::versPC(QString k)
     k.replace("ōe", "+");
     k.replace("āu", "+");
     k.replace("ēu", "+");
+    k.replace("ēi", "+");
     // Incomplet : manque la recherche de doubles consonnes ou voyelles
     k.replace("a", "*");
     k.replace("e", "*");
@@ -340,6 +377,7 @@ QString Ch::transforme(QString k)
     k.replace("ăe", "æ-");
     k.replace("Āe", "Æ+");
     k.replace("Ōe", "Œ+");
+    k.replace("ēi", "\u0117+"); // La diphtongue "ei" dans dein et deinde.
     // Je remplace les longues par +, les brèves par - et les communes par *
     // minuscules
     k.replace(0x0101, "a+");

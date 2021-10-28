@@ -22,7 +22,12 @@
 #include "tagueur.h"
 
 /**
- * @brief Tagueur::Tagueur :
+ * \file tagueur.cpp
+ * \brief module de lemmatisation et de désambiguïsation des formes latines
+ */
+
+/**
+ * @brief
  * \if French
  * Créateur de la classe Tagueur pour désambiguïser des textes.
  * \else
@@ -121,7 +126,7 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
 }
 
 /**
- * @brief Tagueur::tagTexte
+ * @brief
  * \if French
  * Pour désambiguïser une phrase (ou un texte) par étiquetage (HMM).
  * \else
@@ -151,6 +156,12 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * Option pour tenir compte des majuscules initiales.
  * \else
  * Option to take into account the initial uppercase characters.
+ * \endif
+ * @param affHTML :
+ * \if French
+ * Option pour choisir l'affichage en HTML (par defaut) ou une sortie en CSV.
+ * \else
+ * Option to choose between the standard HTML display and a CSV-output.
  * \endif
  * @return
  * \if French
@@ -501,6 +512,11 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             QString ligne = blabla.mid(blabla.indexOf("ng>")+3);
                             ligne = ligne.mid(0,ligne.indexOf("</span"));
                             QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
+                            lem.replace("<sup>","_");
+                            lem.remove("</sup>");
+                            // Le 12 janvier 2021, j'ai introduit le numéro
+                            // d'homonymie en exposant.
+                            // Dans le lemme, je le fais précéder par _.
                             ligne.replace("</strong>, <em>",", ");
                             if (ligne.contains("<small>("))
                             {
@@ -526,6 +542,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                                 ligne = ligne.mid(ligne.indexOf("ng>")+3);
                                 ligne = ligne.mid(0,ligne.indexOf("</span"));
                                 QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
+                                lem.replace("<sup>","_");
+                                lem.remove("</sup>");
                                 ligne.replace("</strong>, <em>",", ");
                                 if (ligne.contains("<small>("))
                                 {

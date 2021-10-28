@@ -31,6 +31,7 @@
 !
 ae;e
 oe;e
+ȩ;e
 ! Les diphtongues ae et oe deviennent e
 y;i
 ph;f

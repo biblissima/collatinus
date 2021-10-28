@@ -324,7 +324,6 @@ pos:n
 modele:dies
 pere:res
 des:4-5:1:ēī;ēī
-pos:n
 
 modele:abraham
 R:0:0,0
@@ -461,7 +460,7 @@ des:85-120:6:$lupus;$uita;$templum
 
 modele:infans
 pere:fortis
-des:37-39:1:ns
+des:37-39:4:-
 des+:18,30,42:1:ē
 des+:22,34,46:1:ŭm3
 
@@ -996,12 +995,14 @@ des:133-138:2:ĕrō̆;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
 ! subjonctif
 des:157-162:6:$im
 des:163-168:2:ēss$em
+!des:163-168:7:$em
 !des:163-165,168:4:fŏrĕm;fŏrēs;fŏrĕt;fŏrēnt
 ! impératif
 des:181-185:2:ĕs;ēstĕ;ēstō;ēstō;ēstōtĕ
 des:186:0:ūntō
 ! infinitif
 des:187:2:ēssĕ
+!des:187:7:ĕ
 des:416:4:fŏrĕ
 ! participe futur
 des:225-260:1:tūr$lupus;tūr$uita;tūr$templum
@@ -1011,6 +1012,8 @@ des:225-260:1:tūr$lupus;tūr$uita;tūr$templum
 
 modele:absum
 pere:sum
+!des:163-168:2:ēss$em
+!des:187:2:ēssĕ
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
@@ -1021,6 +1024,8 @@ pere:sum
 R:4:4,t
 !R:5:4,tĕr
 R:7:2,0
+des:163-168:7:$em
+des:187:7:ĕ
 ! Pas d'impératif, ni participe, ni supin (dixit Cart-Grimal)
 abs:181-186
 abs:225-260
@@ -1030,6 +1035,8 @@ pere:sum
 R:4:3,d
 !R:5:3,dĕr
 R:7:3,dēss
+des:163-168:7:$em
+des:187:7:ĕ
 
 modele:imitor
 R:0:2,0
@@ -1179,6 +1186,13 @@ modele:adv
 R:0:K
 des:414:0:-
 pos:d
+
+modele:bene
+pere:adv
+R:1:1,ĭ
+R:2:1,īssĭm
+des:411:1:ŭs
+des:412:2:ē
 
 modele:adve
 R:0:1,0

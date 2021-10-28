@@ -33,6 +33,7 @@
  * \brief Initialise le dictionnaire avec les données trouvées dans le fichier
  * cfg
  * \param cfg : nom du fichier de configuration
+ * \param parent : le parent de ce dictionnaire
  */
 Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
 {
@@ -166,7 +167,7 @@ QString Dictionnaire::nom()
     return nomCourt;
 }
 /**
- * \fn chopNum (const QString c)
+ * \fn Dictionnaire::chopNum (const QString c)
  * \brief Renvoie une copie de c tronquée de tous les caractères
  *        numériques qui la terminent.
  */
@@ -181,8 +182,15 @@ QString Dictionnaire::chopNum(const QString c)
  * \fn Dictionnaire::entree_pos
  *
  * \brief Lit l'article du dictionnaire qui débute à la position pos
- * \param pos : entier 64 avec la position du début de l'article dans le fichier
+ * \param pos : entier 64 bits avec la position du début de l'article dans le fichier
+ * \param taille : entier 64 bits avec la taille de l'article dans le fichier
  * \return Le texte de l'article en HTML
+ *
+ * Dans le fichier .cz, chaque article est compressé et ils sont mis bout à bout.
+ * L'index garde la trace de la position de chaque article et de sa longueur.
+ * Cette routine va donc chercher le bon morceau dans le fichier .cz
+ * et le décompresse pour obtenir l'HTML à afficher.
+ *
  */
 QString Dictionnaire::entree_pos(qint64 pos, qint64 taille)
 {
@@ -235,7 +243,7 @@ bool Dictionnaire::lis_index_djvu()
 }
 
 /**
- * \fn Dictionnaire::pageDjvu
+ * \fn Dictionnaire::pageDjvu(int p)
  * \brief Extrait du fichier djvu la page demandée au format TIF
  * qui sera affichée dans le navigateur.
  * \param p : numéro de la page du dictionnaire à afficher
@@ -302,9 +310,9 @@ QString Dictionnaire::pageDjvu(int p)
 }
 
 /**
- * \fn Dictionnaire::pageDjvu
+ * \fn Dictionnaire::pageDjvu(QStringList req, int no)
  *
- * Crée la ligne de liens correspondants aux différents lemmes présents dans la
+ * \brief Crée la ligne de liens correspondants aux différents lemmes présents dans la
  * requête, req.
  * Convertit la page contenant l'item n° no dans la liste req en TIF.
  * Retourne le texte HTML complet.

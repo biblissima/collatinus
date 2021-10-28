@@ -19,6 +19,40 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file mainwindow.cpp
+ * \brief interface graphique de Collatinus
+ *
+ * Ce fichier définit les classes EditLatin et MainWindow.
+ *
+ * EditLatin est une fenêtre d'édition de texte (QTextEdit)
+ * à laquelle Yves a ajouté la détection du survol d'un mot,
+ * qui conduit à l'affichage d'une bulle d'aide avec la lemmatisation,
+ * et l'interprétation du clic sur un mot, qui conduit à sa
+ * lemmatisation, scansion etc. en fonction de l'onglet actif.
+ *
+ * MainWindow est la GUI de Collatinus.
+ * Elle propose une fenêtre avec une barre d'outils,
+ * un EditLatin, pour le texte étudié,
+ * et une série d'onglets avec chacun sa spécialité :
+ *        - consultation des dictionnaires
+ *        - lemmatisation
+ *        - scansion
+ *        - flexion
+ *        - tagueur
+ *
+ * Ces onglets sont intimement liés à des classes _intermédiaires_,
+ * Lemmatiseur, Scandeur, Flexion et Tagueur qui font toutes appel
+ * au noyau de lemmatisation qu'est LemCore.
+ *
+ * La consultation d'un second dictionnaire est également
+ * possible dans une fenêtre séparée.
+ * Les onglets et la barre d'outils peuvent aussi être
+ * séparés de la fenêtre principale, mais ça peut vite
+ * devenir compliqué à gérer.
+ *
+ */
+
 #include "mainwindow.h"
 
 /**
@@ -236,10 +270,9 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
 }
 
 /**
- * \fn void MainWindow::afficheLemsDicLitt()
  * \brief Fonction de relais permettant d'utiliser
  *        la connexion entre une action et la fonction
- *        afficheLemsDic().
+ *        MainWindow::afficheLemsDic(bool litt, bool prim).
  */
 void MainWindow::afficheLemsDicLitt()
 {
@@ -247,11 +280,10 @@ void MainWindow::afficheLemsDicLitt()
 }
 
 /**
- * \fn void MainWindow::afficheLemsDicW ()
  * \brief Fonction de relais
  * permettant d'utiliser
  *        la connexion entre une action et la fonction
- *        afficheLemsDicW().
+ *        MainWindow::afficheLemsDic(bool litt, bool prim).
  *
  */
 void MainWindow::afficheLemsDicW()
@@ -260,11 +292,9 @@ void MainWindow::afficheLemsDicW()
 }
 
 /**
- * \fn afficheLemsDic(true,false);
- * \brief
  * \brief Fonction de relais permettant d'utiliser
  *        la connexion entre une action et la fonction
- *        afficheLemsDicW(), sans lemmatisation.
+ *        MainWindow::afficheLemsDic(bool litt, bool prim), sans lemmatisation.
  */
 void MainWindow::afficheLemsDicLittW()
 {
@@ -618,6 +648,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("windowState", saveState());
     settings.endGroup();
     settings.beginGroup("fichiers");
+    settings.setValue("repertoire", repertoire);
     if (!nfAb.isEmpty()) settings.setValue("nfAb", nfAb);
     settings.endGroup();
     settings.beginGroup("options");
@@ -708,6 +739,9 @@ void MainWindow::createActions()
         new QAction(QIcon(":/res/document-new.svg"), tr("&Nouveau"), this);
     ouvrirAct =
         new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
+    actionTxt2csv = new QAction(tr("txt2csv"), this);
+//    actionTxt2ePub = new QAction(tr("txt2ePub"), this);
+//    actionTxt2vocab = new QAction(tr("txt2vocab"), this);
     exportAct = new QAction(QIcon(":res/pdf.svg"), tr("Exporter en pdf"), this);
     exportCsvAct = new QAction(QIcon(":res/csv.svg"), tr("Exporter en csv"), this);
     printAct = new QAction(QIcon(":res/print.svg"), tr("Im&primer"), this);
@@ -795,6 +829,16 @@ void MainWindow::createActions()
     affToutAct = new QAction(tr("tout afficher"),this);
     affToutAct->setCheckable(true);
     affToutAct->setChecked(true);
+
+    // bascule pour une liste de vocabulaire en double page.
+    // true : texte à gauche, vocabulaire à droite.
+    // false : texte en haut, vocabulaire en dessous.
+    dbPageAct = new QAction(tr("Double page"), this);
+    dbPageAct->setCheckable(true);
+    dbPageAct->setChecked(true);
+    proseAct = new QAction(tr("Texte en prose"), this);
+    proseAct->setCheckable(true);
+    proseAct->setChecked(false);
 
     // Restauration des docks
     dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
@@ -935,6 +979,9 @@ void MainWindow::createConnections()
     connect(lancAct, SIGNAL(triggered()), this, SLOT(lancer()));
     connect(nouvAct, SIGNAL(triggered()), this, SLOT(nouveau()));
     connect(ouvrirAct, SIGNAL(triggered()), this, SLOT(ouvrir()));
+    connect(actionTxt2csv, SIGNAL(triggered()), this, SLOT(txt2csv()));
+//    connect(actionTxt2ePub, SIGNAL(triggered()), this, SLOT(txt2ePub()));
+//    connect(actionTxt2vocab, SIGNAL(triggered()), this, SLOT(txt2vocab()));
     connect(printAct, SIGNAL(triggered()), this, SLOT(imprimer()));
     connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
     connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
@@ -979,6 +1026,9 @@ void MainWindow::createMenus()
     fileMenu = menuBar()->addMenu(tr("&Fichier"));
     fileMenu->addAction(nouvAct);
     fileMenu->addAction(ouvrirAct);
+    fileMenu->addAction(actionTxt2csv);
+//    fileMenu->addAction(actionTxt2ePub);
+//    fileMenu->addAction(actionTxt2vocab);
     fileMenu->addSeparator();
     fileMenu->addAction(copieAct);
     fileMenu->addAction(exportAct);
@@ -1042,6 +1092,8 @@ void MainWindow::createMenus()
     optMenu->addAction(hyphenAct);
     optMenu->addSeparator();
     optMenu->addAction(affToutAct);
+    optMenu->addAction(dbPageAct);
+    optMenu->addAction(proseAct);
 //    optMenu->addAction(fontAct);
 //    optMenu->addAction(majAct);
 
@@ -1428,9 +1480,13 @@ void MainWindow::effaceRes()
 }
 
 /**
- * \fn
- * \brief
+ * \fn MainWindow::exportPdf
+ * \brief Slot pour exporter le texte et le résultat de la lemmatisation en PDF
  *
+ * Ouvre une fenêtre de dialogue pour choisir le nom du fichier à créer.
+ * Le contenu de la fenêtre de texte (editLatin) et
+ * celui de l'onglet de lemmatisation (textEditLem) sont mis
+ * bout à bout et imprimés dans le fichier sus-nommé.
  */
 void MainWindow::exportPdf()
 {
@@ -1453,16 +1509,25 @@ void MainWindow::exportPdf()
 }
 
 /**
- * \fn
- * \brief
+ * \brief Fonction qui permet d'exporter au format CSV
+ *
+ * En fonction de l'onglet affiché, le comportement sera différent.
+ * Dans le Lemmatiseur, cette fonction exporte l'ensemble des résultats affichés.
+ * Dans le Scandeur ou le Tagueur, cette fonction traite le texte présent dans EditLatin
+ * et procède à l'export du résultat.
+ *
+ * La raison de ces comportements différenciés est que le Tagueur ou le Scandeur
+ * concerne, en général, l'ensemble du texte. Dans le Lemmatiseur, l'utilisateur
+ * peut faire le choix des mots à analyser et n'exporter que les résultats obtenus.
  *
  */
 void MainWindow::exportCsv()
 {
     QString nf =
-        QFileDialog::getSaveFileName(this, "Export CSV", QString(), "*.csv");
+        QFileDialog::getSaveFileName(this, "Export CSV", repertoire, "*.csv");
     if (!nf.isEmpty())
     {
+        repertoire = QFileInfo (nf).absolutePath ();
         if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
         if (dockVisible(dockLem))
         {
@@ -1472,6 +1537,8 @@ void MainWindow::exportCsv()
                 // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
                 blabla = textEditLem->toHtml();
                 //        qDebug() << blabla;
+                blabla.replace("<sup>","_");
+                blabla.remove("</sup>");
                 int pCourante = 0;
                 int pPrecendente = 0;
                 int niveau = 0;
@@ -1526,7 +1593,7 @@ void MainWindow::exportCsv()
             //        qDebug() << lem2csv(blabla);
             // écrire le fichier en csv.
             QFile f(nf);
-            f.open(QFile::WriteOnly);
+            f.open(QFile::WriteOnly | QFile::Text);
             QTextStream flux(&f);
             flux.setCodec("UTF-8"); // Pour windôze !
             flux << lem2csv(blabla);
@@ -1535,15 +1602,119 @@ void MainWindow::exportCsv()
         else if (dockVisible(dockTag))
         {
             QFile f(nf);
-            f.open(QFile::WriteOnly);
+            f.open(QFile::WriteOnly | QFile::Text);
             QTextStream flux(&f);
             flux.setCodec("UTF-8"); // Pour windôze !
             flux << tagueur->tagTexte(editLatin->toPlainText(),
                         -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
             f.close();
         }
+        else if (dockVisible(dockScand))
+        {
+            QFile f(nf);
+            f.open(QFile::WriteOnly | QFile::Text);
+            QTextStream flux(&f);
+            flux.setCodec("UTF-8"); // Pour windôze !
+            flux << scandeur->txt2csv(editLatin->toPlainText(), lireOptionsAccent(true),
+                                      !majPertAct->isChecked());
+            f.close();
+        }
+        QMessageBox::about(
+            this, tr("File saved in the source folder !"),
+            tr("<b>Tip:</b> if you are using Excel,\n"
+               "open the file in Notepad <b>first</b>\n"
+               "and save it as <b>UTF-8</b>.\n"
+               "<b>Then</b> open it in Excel.\n"));
     }
 }
+
+/**
+ * \fn MainWindow::txt2csv
+ *
+ * \brief Fonction relais pour transformer un fichier TXT en CSV
+ *
+ * En fonction de l'onglet ouvert, cette routine va lemmatiser, scander ou taguer
+ * le texte du fichier d'entrée. Ce fichier doit être en ".txt".
+ * Le fichier en sortie est nommé automatiquement d'après le nom du fichier d'entrée.
+ * "_lem.csv", "_tag.csv" ou "_scan.csv" remplaceront l'extension ".txt" d'origine.
+ *
+ *
+ */
+void MainWindow::txt2csv()
+{
+//    qDebug() << repertoire;
+    QString nomFichier =
+            QFileDialog::getOpenFileName(this, "Lire le fichier",repertoire,"Text files (*.txt)");
+    if (nomFichier.isEmpty()) return;
+    repertoire = QFileInfo (nomFichier).absolutePath ();
+    QString txt;
+    QFile fEntree (nomFichier);
+    if (fEntree.open (QFile::ReadOnly | QFile::Text))
+    {
+        QTextStream fluxL (&fEntree);
+        fluxL.setCodec("UTF-8");
+        txt = fluxL.readAll();
+    }
+    fEntree.close();
+    if (txt.isEmpty()) return;
+    if (dockVisible(dockLem))
+    {
+        nomFichier.replace(".txt","_lem.csv");
+        QString blabla = _lemmatiseur->lemmatiseT(txt,false,true,false,false);
+        if (!blabla.endsWith("\n")) blabla.append("\n");
+        // écrire le fichier en csv.
+//        qDebug() << blabla;
+        QFile f(nomFichier);
+        f.open(QFile::WriteOnly | QFile::Text);
+        QTextStream flux(&f);
+        flux.setCodec("UTF-8"); // Pour windôze !
+        flux << lem2csv(blabla);
+        f.close();
+        if (actionVerba_cognita->isChecked())
+        {
+            // Le texte a été colorisé...
+            nomFichier.replace(".csv",".html");
+            f.setFileName(nomFichier);
+            f.open(QFile::WriteOnly | QFile::Text);
+            flux << "<!DOCTYPE html>\n<html>\n<head>"
+                 << "\n<!-- " << nomFichier
+                 << " Fichier issu de Collatinus -->"
+                    << "\n</head>\n<body>";
+            flux << txt;
+            flux << "\n</body>\n</html>";
+            f.close();
+        }
+    }
+    else if (dockVisible(dockTag))
+    {
+        nomFichier.replace(".txt","_tag.csv");
+        QFile f(nomFichier);
+        f.open(QFile::WriteOnly | QFile::Text);
+        QTextStream flux(&f);
+        flux.setCodec("UTF-8"); // Pour windôze !
+        flux << tagueur->tagTexte(txt,
+                    -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
+        f.close();
+    }
+    else if (dockVisible(dockScand))
+    {
+        nomFichier.replace(".txt","_scan.csv");
+        QFile f(nomFichier);
+        f.open(QFile::WriteOnly | QFile::Text);
+        QTextStream flux(&f);
+        flux.setCodec("UTF-8"); // Pour windôze !
+        flux << scandeur->txt2csv(txt, lireOptionsAccent(true),
+                                  !majPertAct->isChecked());
+        f.close();
+    }
+    QMessageBox::about(
+        this, tr("File saved in the source folder !"),
+        tr("<b>Tip:</b> if you are using Excel,\n"
+           "open the file in Notepad <b>first</b>\n"
+           "and save it as <b>UTF-8</b>.\n"
+           "<b>Then</b> open it in Excel.\n"));
+}
+
 
 QString MainWindow::lem2csv(QString texte)
 {
@@ -1556,8 +1727,11 @@ QString MainWindow::lem2csv(QString texte)
     int nbOcc;
     int nn = 0;
     int pos;
-    QString f1 = "%1\t%2\t"; // Début de ligne avec deux champs numériques
-    QString f2 = "\"%1\"\t\"%2\"\t\"%3\"\t%4\n"; // Fin de ligne avec quatre champs
+    QString f1 = "%1\t%2\t%3\t"; // Début de ligne avec deux champs numériques et la forme
+//    QString f2 = "\"%1\"\t\"%2\"\t\"%3\"\t%4\n"; // Fin de ligne avec quatre champs
+    QString f2 = "%1\t%2\t%3\t%4\n"; // Fin de ligne avec quatre champs
+    // pour la clef du lemme, le lemme avec ses formes canoniques, la traduction et le nb d'occ.
+//    qDebug() << texte.size() << texte.count("\n");
     while (texte.contains("\n"))
     {
         pos = texte.indexOf("\n");
@@ -1574,26 +1748,29 @@ QString MainWindow::lem2csv(QString texte)
             ligne = ligne.mid(2);
             fc = ligne.section(":",0,0).trimmed();
             trad =ligne.section(":",1).trimmed();
-            if (fc.contains("("))
+            if (fc.endsWith(")") && fc[fc.size() - 2].isDigit())
             {
                 fc.chop(1);
-                nbOcc = fc.section("(",1).toInt();
-                fc = fc.section("(",0,0).trimmed();
+                nbOcc = fc.section("(",-1).toInt();
+                fc = fc.section("(",0,-2).trimmed();
+                // Les indications morphologiques peuvent contenir des parenthèses.
             }
             else nbOcc = 0;
             if (nbOcc < 500) level = 3;
             else if (nbOcc < 5000) level = 2;
             else level = 1;
-            res.append(f1.arg(nn).arg(level));
-            res.append(f2.arg(forme).arg(fc).arg(trad).arg(nbOcc));
+            res.append(f1.arg(nn).arg(level).arg(forme));
+            QString clef = fc.simplified().section(",",0,0);
+            res.append(f2.arg(Ch::atone(clef)).arg(fc).arg(trad).arg(nbOcc));
         }
         else if (ligne.startsWith(">"))
         {
             nn += 1;
             ligne = ligne.mid(2);
             forme = ligne.section(" ",0,0);
-            res.append(f1.arg(nn).arg(3));
+            res.append(f1.arg(nn).arg(3).arg(forme));
             res.append(f2.arg(forme).arg("unknown").arg("").arg(""));
+            // Si la forme n'est pas reconnue, je la laisse en guise de clef.
         }
     }
     return res;
@@ -1788,9 +1965,10 @@ void MainWindow::ouvrir()
     nfAb = QFileDialog::getOpenFileName(this, "Collatinus - Ouvrir un fichier",
                                         repertoire);
     if (nfAb.isEmpty()) return;
+    repertoire = QFileInfo (nfAb).absolutePath ();
     charger(nfAb);
-    nfAd = nfAb;
-    nfAd.prepend("coll-");
+//    nfAd = nfAb;
+//    nfAd.prepend("coll-");
 }
 
 void MainWindow::police()
@@ -1851,9 +2029,11 @@ void MainWindow::readSettings()
     if (!nfAb.isEmpty())
     {
         charger(nfAb);
-        nfAd = nfAb;
-        nfAd.prepend("coll-");
+//        nfAd = nfAb;
+//        nfAd.prepend("coll-");
     }
+    repertoire = settings.value("repertoire").toString();
+    if (repertoire.isEmpty()) repertoire = "~";
     settings.endGroup();
     settings.beginGroup("options");
     // police
@@ -2166,10 +2346,11 @@ void MainWindow::setAccent(bool b)
     hyphenAct->setEnabled(b);
 }
 
-int MainWindow::lireOptionsAccent()
+int MainWindow::lireOptionsAccent(bool force)
 {
+    // J'ajoute un paramètre pour forcer la lecture des boutons.
     int retour = 0;
-    if (accentAct->isChecked())
+    if (accentAct->isChecked() || force)
     {
         if (illiusAct->isChecked()) retour += 8;
         if (hyphenAct->isChecked()) retour += 4;
@@ -2255,7 +2436,7 @@ void MainWindow::exec ()
         QString nom = requete.section("-f ",1,1).trimmed();
         requete = requete.section("-f ",0,0).trimmed();
         QFile fichier(nom);
-        if (fichier.open(QFile::ReadOnly))
+        if (fichier.open(QFile::ReadOnly | QFile::Text))
         {
             texte = fichier.readAll();
             fichier.close();
@@ -2412,7 +2593,7 @@ void MainWindow::exec ()
     else
     {
         QFile ficOut(fichierSortie);
-        if (ficOut.open(QFile::WriteOnly))
+        if (ficOut.open(QFile::WriteOnly | QFile::Text))
         {
             ficOut.write(rep.toUtf8());
             ficOut.close();

@@ -26,7 +26,7 @@
  * \version 11
  * \date 2016
  *
- * main
+ * main est le "lanceur" de l'application Collatinus
  */
 
 #include <QApplication>

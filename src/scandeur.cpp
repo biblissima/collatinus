@@ -22,7 +22,12 @@
 #include "scandeur.h"
 
 /**
- * @brief Scandeur::Scandeur
+ * \file scandeur.cpp
+ * \brief module de scansion des formes latines
+ */
+
+/**
+ * @brief
  * \if French
  * Créateur de la classe pour scander des textes.
  * \else
@@ -99,6 +104,7 @@ Scandeur::Scandeur(QObject *parent, LemCore *l, QString resDir) : QObject(parent
  * to read the rules for the quantities by position
  * \endif
  *
+ *
  * \if French
  * Les règles de quantité par position sont
  * enregistrées dans le fichier data/parpos.txt.
@@ -126,7 +132,7 @@ void Scandeur::lisParPos()
 }
 
 /**
- * @brief Scandeur::parPos
+ * @brief
  * \if French
  * détermine les quantités par position.
  * \else
@@ -142,7 +148,7 @@ void Scandeur::lisParPos()
  * \if French
  * la forme avec les quantités déterminables par position.
  * \else
- * the form with all the quantities that can be determined bytheir position
+ * the form with all the quantities that can be determined by their position
  * \endif
  *
  * \if French
@@ -166,19 +172,22 @@ QString Scandeur::parPos(QString f)
     f = f.toLower();
     foreach (Reglep r, _reglesp)
         f.replace(r.first, r.second);
+    if (f.endsWith("m") && !f.endsWith("āem") && !f.endsWith("ōem"))
+        f[f.size() - 2] = Ch::breve(f[f.size() - 2]);
+    // Un mot se terminant par "m" se termine par une syllabe brève.
     if (maj) f[0] = f[0].toUpper();
     return f;
 }
 
 /**
- * @brief Scandeur::cherchePieds
+ * @brief
  * \if French
- * recherche de dactyles et de spondées dans le schéma métrique d'un vers.
+ * Recherche de dactyles et de spondées dans le schéma métrique d'un vers.
  * \else
  * \endif
  * @param nbr :
  * \if French
- * nombre de mètres recherchés.
+ * Nombre de mètres recherchés.
  * \else
  * \endif
  * @param ligne :
@@ -200,6 +209,7 @@ QString Scandeur::parPos(QString f)
  * \if French
  * La liste de toutes les combinaisons de dactyles et spondées trouvées.
  * \else
+ * The list of all the combinasions of dactyls and spondees
  * \endif
  *
  * \if French
@@ -214,10 +224,10 @@ QString Scandeur::parPos(QString f)
  * des élisions avec un `.
  * Une grande partie de la difficulté vient des voyelles communes
  * ou indéterminées, notées *. S'il n'y avait que des + et des -,
- * on n'aurait que D=+-- et S=++. Avec l'* en plus, il faut considérer
+ * on n'aurait que D = + - - et S = + +. Avec l'* en plus, il faut considérer
  * toutes les possibilités :
- * s=*+, +* ou **
- * d=*--, +*-, +-*, +**, *-*, **- ou ***.
+ * s = * +, + * ou * *
+ * d = * - -, + * -, + - *, + * *, * - *, * * - ou * * *.
  * Le découpage en mètres n'est plus nécessairement univoque.
  *
  * cherchePieds est une routine récursive qui construit la liste
@@ -227,7 +237,7 @@ QString Scandeur::parPos(QString f)
  * elle va chercher toutes les combinaisons possibles à partir
  * du caractère d'indice i+3 ou i+2.
  *
- * Un hexamètre sera représenté par un séquence de cinq mètres,
+ * Un hexamètre sera représenté par une séquence de cinq mètres,
  * dactyles (D ou d) ou spondées (S ou s) suivi d'un sixième noté X
  * (presque spondée: deux syllabes dont la première est longue,
  * la dernière étant indifférente).
@@ -343,7 +353,7 @@ QStringList Scandeur::cherchePieds(int nbr, QString ligne, int i, bool pentam)
 }
 
 /**
- * @brief Scandeur::formeq
+ * @brief Scande ou accentue une forme
  * @param forme : la forme à scander ou à accentuer.
  * @param nonTrouve : booléen qui indique que la forme a été reconnue.
  * @param debPhr : booléen qui indique que l'initiale peut être en majuscule.
@@ -435,7 +445,7 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
 }
 
 /**
- * @brief Scandeur::scandeTxt
+ * @brief
  * \if French
  * Scande ou accentue le texte.
  * \else
@@ -474,7 +484,8 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
  * \endif
  *
  * Cette fonction scande ou accentue le texte donné.
- * Le paramètre accent détermine le comportement de la fonction.
+ *
+ * Le paramètre _accent_ détermine le comportement de la fonction.
  * S'il vaut 0, le texte est scandé.
  * Non nul, le texte sera accentué et plusieurs options sont possibles :
  *
@@ -498,7 +509,7 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
  * Les valeurs 4, 8 et 12 pourraient conduire à des résultats inattendus,
  * bien qu'aujourd'hui elles donnent le même résultat que la valeur 0 (texte scandé).
  *
- * Lorsque le texte est scandé (accent = 0) et que le booléen stats est true,
+ * Lorsque le texte est scandé (_accent = 0_) et que le booléen stats est true,
  * quelques statistiques seront faites sur les schémas métriques des vers
  * (séquences des longues et des brèves). Une recherche des hexamètres et des
  * pentamètres sera aussi effectuée, même si le texte est en prose.
@@ -796,4 +807,316 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
         // foreach (QString ligne, vers) aff.prepend(ligne);
     }
     return aff.join("");
+}
+
+/**
+ * @brief Transforme un texte en CSV
+ * @param texte : le texte à scander et accentuer
+ * @param accent : les paramètres pour l'accentuation
+ * @param majAut : booléen qui autorise les majuscules initiales
+ * @return Une chaine avec le contenu du fichier CSV à créer.
+ * La gestion des fichiers est laissée à la routine qui appelle cette fonction,
+ * actuellement MainWindow::txt2csv ou MainWindow::exportCsv.
+ *
+ * Cette routine est assez proche de Scandeur::scandeTxt.
+ * Toutefois, elle s'en distingue car elle donne à la fois la forme scandée
+ * et la forme accentuée, ainsi que les séparateurs des mots.
+ * Pour cette dernière, les options sont déterminées par le paramètre _accent_
+ * qui a les mêmes significations que dans Scandeur::scandeTxt.
+ *
+ * Le séparateur de champs dans le CSV est la tabulation.
+ * Les colonnes en sont :
+ *        1. un numéro d'ordre
+ *        2. le numéro du paragraphe (ou vers)
+ *        3. le numéro du mot dans ce paragraphe (ou vers)
+ *        4. la forme du texte
+ *        5. le séparateur (tout ce qu'il y a après ce mot et avant le mot suivant)
+ *        6. la forme scandée
+ *        7. le mot réduit à ses quantités
+ *        8. la forme accentuée
+ *        9. le rythme (voir Scandeur::code)
+ *
+ */
+QString Scandeur::txt2csv(QString texte, int accent, bool majAut)
+{
+//    qDebug() << "J'entre";
+    texte.replace(" & ", " et ");
+    int numMot = 0; // Un numéro pour les mots
+    int numPar = 0; // Un numéro pour les paragraphes
+    QString debut = "%1\t%2\t%3\t";
+    accent = accent & 15;
+    QString forme;
+    QMap<QString, int> freqMetric;
+    bool deb_phr;
+    int decalage;
+    QStringList vers;
+    QStringList formes;
+    QStringList lforme;
+    QStringList aff;
+    QStringList lignes = texte.split("\n");
+    qDebug() << lignes.size();
+    aff.append("#\t#Paragr\t#Mot\tFormeTxt\tSepar\tQuant\t"
+               "Metric\tAccent\tRythme");
+    foreach (QString ligne, lignes)
+    {
+        QStringList separ;
+        if (ligne.isEmpty())
+            separ.append(ligne);
+        else
+            separ = ligne.split(QRegExp("\\b"));
+        if (separ.count() > 0 && separ.at(0).count() > 0 &&
+            separ.at(0).at(0).isLetter())
+            separ.prepend("");
+        if (separ.count() > 0 && separ.at(separ.count() - 1).count() > 0 &&
+            separ.at(separ.count() - 1).at(0).isLetter())
+            separ.append("");
+        qDebug() << ligne << separ.size();
+        // J'ai maintenant une liste de formes et une liste de séparateurs
+        // la ligne d'origine est la concaténation de separ[i]
+        // Les termes pairs sont les séparateurs.
+        // Les termes impairs sont les mots.
+        // J'ai toujours un dernier séparateur, éventuellement vide.
+        int i = separ.size() - 2; // C'est le dernier mot
+        while (i > 0)
+        {
+            separ[i+1].replace("\t"," / ");
+            // Comme je vais sauver les séparateurs dans le CSV,
+            // ils ne doivent pas contenir de tabulation.
+            QString mot = separ[i];
+            while ((mot.size()>0) && mot[0].isDigit())
+            {
+                separ[i-1].append(mot[0]);
+                mot = mot.mid(1);
+            }
+            while ((mot.size()>0) && mot[mot.size() - 1].isDigit())
+            {
+                separ[i+1].prepend(mot[mot.size() - 1]);
+                mot.chop(1);
+            }
+            if (mot.size() == 0)
+            {
+                // Ce "mot" n'était que des chiffres
+                separ[i-1].append(separ[i + 1]);
+                separ.removeAt(i);
+                separ.removeAt(i);
+            }
+            else separ[i] = mot;
+            i -= 2;
+        }
+        separ[0].replace("\t"," / ");
+        // J'ai mis les chiffres qui pouvaient commencer ou finir les mots
+        // dans les séparateurs.
+        // La scansion peut commencer !
+//        decalage = aff.count();
+        ligne = debut.arg(aff.size() - 1).arg("").arg("");
+        ligne.append("¶\t" + separ[0] + "\t\t\t\t");
+        aff.append(ligne);
+        if (separ.size() < 3) continue;
+
+        numPar++;
+        bool nonTr;
+//        QStringList lfs = formeq(separ[1], &nonTrSuiv, true, 0);
+//        schemaMetric = "";
+        for (int i = 1; i < separ.length(); i += 2)
+        {
+            ligne = debut.arg(aff.size() - 1).arg(numPar).arg((i+1)/2);
+            forme = separ[i];
+            ligne.append(forme + "\t"); // La forme du texte et
+            ligne.append(separ[i+1] + "\t"); // le séparateur qui suit.
+            lforme.clear();
+            bool allong = false;
+            bool elide = false;
+            if (i < separ.length() - 2)
+            {
+                lforme = formeq(separ[i + 2],&nonTr,true,0);
+                if (nonTr)
+                {
+                    if (Ch::consonnes.contains(separ[i + 2].at(0).toLower()))
+                        allong = true;
+                    else elide = true;
+                }
+                else if (Ch::consonnes.contains(lforme[0].at(0).toLower()))
+                    allong = true;
+                else elide = true;
+            }
+            deb_phr = separ[i + 1].contains(Ch::rePonct) || majAut;
+            MapLem mp = _lemCore->lemmatiseM(forme, deb_phr);
+            if (mp.empty())
+            {
+                // La forme n'est pas reconnue
+                QString fq1 = parPos(forme);
+                if (allong) Ch::allonge(&fq1);
+                else if (elide) Ch::elide(&fq1);
+                ligne.append("¿" + fq1 + "?\t¿"); // La forme avec quantités
+                QString PC = Ch::versPC(fq1);
+                ligne.append(PC + "?\t¿");
+                ligne.append(forme + "?\t¿");
+                ligne.append(code(PC, accent) + "?");
+            } // Fin de forme inconnue
+            else
+            {
+                QMap<QString,int> mqFormes;
+                QMap<QString,int> maFormes;
+                bool maj = forme.at(0).isUpper();
+                foreach (Lemme *l, mp.keys())
+                {
+                    foreach (SLem s, mp.value(l))
+                    {
+                        QString fq = Ch::ajoutSuff(s.grq,s.sufq,"",0);
+                        QString fa = Ch::ajoutSuff(s.grq,s.sufq,l->getHyphen(),accent);
+                        if (maj)
+                        {
+                            fq[0] = fq[0].toUpper();
+                            fa[0] = fa[0].toUpper();
+                        }
+                        if (allong) Ch::allonge(&fq);
+                        else if (elide) Ch::elide(&fq);
+                        QString PC = Ch::versPedeCerto(fq);
+                        fq.append("\t" + PC);
+                        QString c = code(PC, accent);
+                        if (!s.sufq.isEmpty() && c.endsWith("PP")) c.chop(1);
+                        // L'enclitique appelle l'accent, d'où paroxyton
+                        fa.append("\t" + c);
+                        int nn = _lemCore->fraction(_lemCore->tag(l,s.morpho)) * l->nbOcc();
+                        mqFormes[fq] += nn;
+                        maFormes[fa] += nn;
+                        // Je compte le nombre d'occurrences de chaque forme.
+                    }
+                }
+                lforme.clear();
+                foreach (QString f, mqFormes.keys())
+                {
+                    int nb = mqFormes[f];
+                    int i = 0;
+                    while (i< lforme.size())
+                    {
+                        if (mqFormes[lforme[i]] > nb) i += 1;
+                        else
+                        {
+                            // Le nombres d'occurrences de la forme courante est supérieur à la forme actuellement en position i.
+                            lforme.insert(i,f); // J'insère la forme courante en i.
+                            i = lforme.size() + 1; // Je sors !
+                        }
+                    }
+                    if (i == lforme.size()) lforme.append(f);
+                    // Je suis arrivé à la fin de la liste sans insérer la forme courante.
+                }
+                if (lforme.size() == 1) ligne.append(lforme[0] + "\t");
+                else
+                {
+                    // Je dois décomposer et recomposer les formes et les métriques
+                    ligne.append(lforme[0].section("\t",0,0) + " (");
+                    lforme[0] = lforme[0].section("\t",1,1);
+                    for (int jj = 1; jj < lforme.size(); jj++)
+                    {
+                        ligne.append(lforme[jj].section("\t",0,0) + " ");
+                        lforme[jj] = lforme[jj].section("\t",1,1);
+                    }
+                    ligne.chop(1);
+                    ligne.append(")\t");
+                    lforme.removeDuplicates();
+                    if (lforme.size() == 1)
+                        ligne.append(lforme[0] + "\t");
+                    else
+                    {
+                        ligne.append(lforme[0] + " (");
+                        for (int jj = 1; jj < lforme.size(); jj++)
+                            ligne.append(lforme[jj] + " ");
+                        ligne.chop(1);
+                        ligne.append(")\t");
+                    }
+                }
+                lforme.clear();
+                foreach (QString f, maFormes.keys())
+                {
+                    int nb = maFormes[f];
+                    int i = 0;
+                    while (i< lforme.size())
+                    {
+                        if (maFormes[lforme[i]] > nb) i += 1;
+                        else
+                        {
+                            // Le nombres d'occurrences de la forme courante est supérieur à la forme actuellement en position i.
+                            lforme.insert(i,f); // J'insère la forme courante en i.
+                            i = lforme.size() + 1; // Je sors !
+                        }
+                    }
+                    if (i == lforme.size()) lforme.append(f);
+                    // Je suis arrivé à la fin de la liste sans insérer la forme courante.
+                }
+                if (lforme.size() == 1) ligne.append(lforme[0]);
+                else
+                {
+                    // Je dois décomposer et recomposer les formes et les métriques
+                    ligne.append(lforme[0].section("\t",0,0) + " (");
+                    lforme[0] = lforme[0].section("\t",1,1);
+                    for (int jj = 1; jj < lforme.size(); jj++)
+                    {
+                        ligne.append(lforme[jj].section("\t",0,0) + " ");
+                        lforme[jj] = lforme[jj].section("\t",1,1);
+                    }
+                    ligne.chop(1);
+                    ligne.append(")\t");
+                    lforme.removeDuplicates();
+                    if (lforme.size() == 1)
+                        ligne.append(lforme[0]);
+                    else
+                    {
+                        ligne.append(lforme[0] + " (");
+                        for (int jj = 1; jj < lforme.size(); jj++)
+                            ligne.append(lforme[jj] + " ");
+                        ligne.chop(1);
+                        ligne.append(")");
+                    }
+                }
+            } // Fin forme trouvée
+            aff.append(ligne);
+        } // Fin de la ligne
+    } // Fin du texte
+    qDebug() << aff.size();
+    return aff.join("\n");
+}
+
+/**
+ * @brief Détermine le nombre de syllabes et la nature (paroxyton ou proparoxyton) du mot
+ * @param PC : Le mot réduit à ses quantités selon le codage de PedeCerto
+ * @param accent : un entier qui détermine le comportement si la pénultième est commune
+ * @return Le code est composé d'un entier (le nombre de syllabes)
+ * et de "p" si le mot est paroxyton ou "pp" s'il est proparoxyton.
+ * Lorsque l'avant-dernière syllabe est **commune**,
+ * la position de l'accent est problématique et le comportement est déterminé
+ * par la variable _accent_ (voir Scandeur::scandeTxt pour les détails).
+ *
+ * Les routines pour réduire un mot à ses quantités sont dans l'espace de nommage Ch.
+ * Les syllabes longues sont notées +, les brèves - et
+ * les voyelles communes ou indéterminées sont notées *.
+ *
+ * En général, un mot est **paroxyton**, c'est à dire accentué sur la pénultième,
+ * si cette syllabe est longue. Si elle est brève, le mot sera **proparoxyton**,
+ * c'est à dire accentué sur l'anté-pénultième (3e syllabe en partant de la fin).
+ *
+ */
+QString Scandeur::code(QString PC, int accent)
+{
+    QString nSyll = "%1";
+    if (PC.size() > 2)
+    {
+        switch (PC[PC.size() - 2].unicode())
+        {
+        case 45: // -
+            return nSyll.arg(PC.size()) + "pp";
+            break;
+        case 43: // +
+            return nSyll.arg(PC.size()) + "p";
+            break;
+        default: // *, càd voyelle commune.
+            if ((accent & 3) == 1)
+                return nSyll.arg(PC.size()) + "p";
+            else if ((accent & 3) == 2)
+                return nSyll.arg(PC.size()) + "pp";
+            else return nSyll.arg(PC.size());
+            break;
+        }
+    }
+    return nSyll.arg(PC.size());
 }

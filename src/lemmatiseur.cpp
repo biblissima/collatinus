@@ -21,6 +21,11 @@
 
 #include "lemmatiseur.h"
 
+/**
+ * \file lemmatiseur.cpp
+ * \brief module de lemmatisation des formes latines
+ */
+
 Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString resDir) : QObject(parent)
 {
     if (l==0)
@@ -47,7 +52,7 @@ Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString res
 }
 
 /**
- * \fn QStringList Lemmat::lemmatiseF (QString f, bool deb)
+ * \fn QStringList Lemmatiseur::lemmatiseF (QString f, bool deb)
  * \brief Lemmatise la chaîne f, sans tenir compte des majuscules
  *        si deb (= début de phrase) est à true, et renvoie le
  *        résultat dans une QStringList.
@@ -63,7 +68,7 @@ QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
 }
 
 /**
- * \fn QStringList Lemmat::frequences (QString txt)
+ * \fn QStringList Lemmatiseur::frequences (QString txt)
  * \brief Lemmatise txt et renvoie le résultat accompagné
  *        d'informations sur la fréquence d'emploi de
  *        chaque lemme.

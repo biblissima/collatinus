@@ -27,6 +27,18 @@
 #include "ch.h"
 #include "lemCore.h"
 
+/**
+ * @brief La classe Scandeur regroupe les fonctions nécessaires
+ * à la scansion et à l'accentuation des formes ou des textes.
+ *
+ * Actuellement, dans Collatinus, elle est appelée par MainWindow
+ * qui gère l'affichage et les lectures/écritures des fichiers.
+ * Elle partage donc le noyau de lemmatisation, LemCore,
+ * avec d'autres classes _intermédiaires_.
+ * Toutefois, cette classe pourrait être autonome, avec une autre interface,
+ * si on voulait, par exemple, n'avoir qu'un programme spécialisé
+ * dans la scansion et l'accentuation.
+ */
 class Scandeur : public QObject
 {
 public:
@@ -34,15 +46,20 @@ public:
     // Pour scander, un texte.
     QString parPos(QString f);
     QString scandeTxt(QString texte, int accent = 0, bool stats = false, bool majAut = false);
+    QString txt2csv(QString texte, int accent = 9, bool majAut = false);
 
 private:
+    /*! Un pointeur vers le noyau de lemmatisation qui peut être partagé. */
     LemCore * _lemCore;
+    /*! Le nom du répertoire contenant les données. */
     QString _resDir;
+    /*! La liste des règles pour déterminer les quantités par position. */
     QList<Reglep> _reglesp;
     void lisParPos();
     QStringList cherchePieds(int nbr, QString ligne, int i, bool pentam);
     QStringList formeq(QString forme, bool *nonTrouve, bool debPhr,
                        int accent = 0);
+    QString code(QString PC, int accent);
 };
 
 #endif // SCANDEUR
