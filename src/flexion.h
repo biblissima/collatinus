@@ -41,7 +41,7 @@ class Flexion : public QObject
 
    private:
     Lemme *_lemme;
-    LemCore *_lemmatiseur;
+    LemCore *_lemCore;
     // constantes de table html :
     QString const static entete;
     QString const static lina;

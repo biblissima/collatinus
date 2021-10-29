@@ -35,7 +35,7 @@
  */
 Flexion::Flexion(QObject *parent) : QObject(parent)
 {
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+    _lemCore = qobject_cast<LemCore *>(parent);
 }
 
 const QString Flexion::entete =
@@ -84,7 +84,7 @@ QString Flexion::forme(int n, bool label)
     QList<Desinence *> ld = m->desinences(n);
     if (ld.empty()) return "-";
     QStringList lres;
-    if (label) lres.append(_lemmatiseur->morpho(n));
+    if (label) lres.append(_lemCore->morpho(n));
     bool excl = false;
     QString firr = _lemme->irreg(n, &excl);
     if (!firr.isEmpty()) lres.append(firr);
@@ -149,7 +149,7 @@ QString Flexion::tableau(Lemme *l)
     if (pos.contains('a')) ret.append(tabAdj());
     if (pos.contains('d')) ret.append(tabAdv());
     if (pos.contains('v')) ret.append(tabV());
-    if (ret.empty()) return l->humain(false,_lemmatiseur->cible());
+    if (ret.empty()) return l->humain(false,_lemCore->cible());
     ret.removeDuplicates();
     return ret.join("");
 }
@@ -171,7 +171,7 @@ QString Flexion::tableaux(MapLem *ml)
     {
         // numéro d'homonymie
         flm << "<a href=\"#" << l->cle() << "\">" << l->grq() << "</a> "
-            << l->humain(false,_lemmatiseur->cible()) << "<br/>";
+            << l->humain(false,_lemCore->cible()) << "<br/>";
     }
     flm << "</h4>";
     fl << menuLem;
@@ -190,9 +190,9 @@ QString Flexion::tabNom()
     QTextStream fl(&ret);
     fl << "<hr/><a name=\"" << _lemme->cle() << "\"></a>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->nombre(0) << linb << _lemmatiseur->nombre(1) << linc;
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->nombre(0) << linb << _lemCore->nombre(1) << linc;
     for (int i = 1; i < 7; ++i)
-        fl << lina << _lemmatiseur->cas(i - 1) << linb << forme(i)
+        fl << lina << _lemCore->cas(i - 1) << linb << forme(i)
             << linb << forme(i + 6) << linc;
     fl << queue;
     return ret;
@@ -207,26 +207,26 @@ QString Flexion::tabPron()
     QString ret;
     QTextStream fl(&ret);
     fl << "<hr/><a name=\"" << _lemme->cle() << "\"></a>";
-    fl << _lemmatiseur->nombre(0) << "<p>";
+    fl << _lemCore->nombre(0) << "<p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb
-        << _lemmatiseur->genre(0) << linb
-        << _lemmatiseur->genre(1) << linb
-        << _lemmatiseur->genre(2) << linc;
+    fl << lina << _lemCore->motsClefs(0) << linb
+        << _lemCore->genre(0) << linb
+        << _lemCore->genre(1) << linb
+        << _lemCore->genre(2) << linc;
     for (int i = 13; i < 19; ++i)
-        fl << lina << _lemmatiseur->cas((i - 13) % 6) << linb
+        fl << lina << _lemCore->cas((i - 13) % 6) << linb
             << forme(i) << linb
             << forme(i + 12) << linb
             << forme(i + 24) << linc;
     fl << queue;
-    fl << "</p>" << _lemmatiseur->nombre(1) << "<p>";
+    fl << "</p>" << _lemCore->nombre(1) << "<p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb
-        << _lemmatiseur->genre(0) << linb
-        << _lemmatiseur->genre(1) << linb
-        << _lemmatiseur->genre(2) << linc;
+    fl << lina << _lemCore->motsClefs(0) << linb
+        << _lemCore->genre(0) << linb
+        << _lemCore->genre(1) << linb
+        << _lemCore->genre(2) << linc;
     for (int i = 19; i < 25; ++i)
-        fl << lina << _lemmatiseur->cas((i - 19) % 6) << linb
+        fl << lina << _lemCore->cas((i - 19) % 6) << linb
             << forme(i) << linb
             << forme(i + 12) << linb
             << forme(i + 24) << linc;
@@ -244,59 +244,59 @@ QString Flexion::tabAdj()
     QTextStream fl(&ret);
     fl << "<a name=\"" << _lemme->cle() << "\"></a>";
     fl << "<p>" << _lemme->grq() << "</p>";
-    fl << "<p>" << _lemmatiseur->genre(0);
+    fl << "<p>" << _lemCore->genre(0);
     fl << entete;
-//    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+//    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 13; i < 19; ++i)
-        fl << lina << _lemmatiseur->cas(i - 13) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 13) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 19; i < 25; ++i)
-        fl << lina << _lemmatiseur->cas(i - 19) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 19) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << queue << "</p>";
 
-    fl << "<p>" << _lemmatiseur->genre(1);
+    fl << "<p>" << _lemCore->genre(1);
     fl << entete;
-//    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+//    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 25; i < 31; ++i)
-        fl << lina << _lemmatiseur->cas(i - 25) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 25) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 31; i < 37; ++i)
-        fl << lina << _lemmatiseur->cas(i - 31) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 31) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << queue << "</p>";
 
-    fl << "<p>" << _lemmatiseur->genre(2);
+    fl << "<p>" << _lemCore->genre(2);
     fl << entete;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 37; i < 43; ++i)
-        fl << lina << _lemmatiseur->cas(i - 37) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 37) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     for (int i = 43; i < 49; ++i)
-        fl << lina << _lemmatiseur->cas(i - 43) << linb << forme(i) << linb << forme(i + 36)
+        fl << lina << _lemCore->cas(i - 43) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << queue << "</p>";
 
@@ -313,8 +313,8 @@ QString Flexion::tabAdv()
     QTextStream fl(&ret);
     fl << "<hr/><a name=\"" << _lemme->cle() << "\"></a>";
     fl << entete;
-    fl << lina << _lemmatiseur->morpho(414) << linb <<
-          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+    fl << lina << _lemCore->morpho(414) << linb <<
+          _lemCore->morpho(411) << linb << _lemCore->morpho(412)
        << linc;
     fl << lina << forme(414) << linb << forme(411) << linb << forme(412)
        << linc;
@@ -332,35 +332,35 @@ QString Flexion::tabV()
     QString menu;
     QTextStream(&menu)
         << "<a name=\"" << _lemme->cle() << "\"></a><br/>"
-        << "<a href=\"#actif\">"<< _lemmatiseur->voix(0) <<"</a><br/>"
-        << "<a href=\"#indactif\">"<< _lemmatiseur->modes(0) <<"</a>&nbsp;"
-        << "<a href=\"#subactif\">"<< _lemmatiseur->modes(1) <<"</a>&nbsp;"
-        << "<a href=\"#impactif\">"<< _lemmatiseur->modes(2) <<" &amp; "<< _lemmatiseur->modes(3) <<"</a>&nbsp;"
-        << "<a href=\"#partpres\">"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(0) <<"</a>&nbsp;"
-        << "<a href=\"#partfut\">"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(2) <<"</a><br/>"
-        << "<a href=\"#indpass\">"<< _lemmatiseur->voix(1) <<"</a><br/>&nbsp;"
-        << "<a href=\"#indpass\">"<< _lemmatiseur->modes(0) <<"</a>&nbsp;"
-        << "<a href=\"#subpass\">"<< _lemmatiseur->modes(1) <<"</a>&nbsp;"
-        << "<a href=\"#imppass\">"<< _lemmatiseur->modes(2) <<" &amp; "<< _lemmatiseur->modes(3) <<"</a>&nbsp;"
-        << "<a href=\"#ppp\">"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(3) <<"</a>&nbsp;"
-        << "<a href=\"#adjv\">"<< _lemmatiseur->modes(5) <<"</a><br/>";
+        << "<a href=\"#actif\">"<< _lemCore->voix(0) <<"</a><br/>"
+        << "<a href=\"#indactif\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
+        << "<a href=\"#subactif\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
+        << "<a href=\"#impactif\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
+        << "<a href=\"#partpres\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(0) <<"</a>&nbsp;"
+        << "<a href=\"#partfut\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(2) <<"</a><br/>"
+        << "<a href=\"#indpass\">"<< _lemCore->voix(1) <<"</a><br/>&nbsp;"
+        << "<a href=\"#indpass\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
+        << "<a href=\"#subpass\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
+        << "<a href=\"#imppass\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
+        << "<a href=\"#ppp\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(3) <<"</a>&nbsp;"
+        << "<a href=\"#adjv\">"<< _lemCore->modes(5) <<"</a><br/>";
 
     QString ret;
     QTextStream fl(&ret);
     fl << "<a name=\"actif\"></a>";
-    fl << "<div>" << _lemme->humain(false,_lemmatiseur->cible()) << "</div>";
-    fl << "<a name=\"indactif\"></a>" << menu << "<h4>"<< _lemmatiseur->voix(0) <<"</h4><p>"
-       << _lemmatiseur->modes(0) << " infectum</p>";
+    fl << "<div>" << _lemme->humain(false,_lemCore->cible()) << "</div>";
+    fl << "<a name=\"indactif\"></a>" << menu << "<h4>"<< _lemCore->voix(0) <<"</h4><p>"
+       << _lemCore->modes(0) << " infectum</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(2) << linc;
+    fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(2) << linc;
     for (int i = 121; i < 127; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
     fl << queue << "<p>";
 
-    fl << _lemmatiseur->modes(0) << " perfectum</p>";
+    fl << _lemCore->modes(0) << " perfectum</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linb << _lemmatiseur->temps(5) << linc;
+    fl << lina << _lemCore->temps(3) << linb << _lemCore->temps(4) << linb << _lemCore->temps(5) << linc;
     for (int i = 139; i < 145; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
@@ -368,10 +368,10 @@ QString Flexion::tabV()
 
     fl << "<a name=\"subactif\"></a>";
     fl << menu;
-    fl << "<p>" << _lemmatiseur->modes(1) << "</p>";
+    fl << "<p>" << _lemCore->modes(1) << "</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(3) << linb
-       << _lemmatiseur->temps(4) << linc;
+    fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(3) << linb
+       << _lemCore->temps(4) << linc;
     for (int i = 157; i < 163; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linb << forme(i + 18) << linc;
@@ -380,69 +380,69 @@ QString Flexion::tabV()
     fl << QString(
         "<a name=\"impactif\"></a>"
         "<p>");
-    fl << _lemmatiseur->modes(2) << "</p>";
+    fl << _lemCore->modes(2) << "</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(1) << linb << _lemmatiseur->nombre(0) << linb << _lemmatiseur->nombre(1)
+    fl << lina << _lemCore->motsClefs(1) << linb << _lemCore->nombre(0) << linb << _lemCore->nombre(1)
        << linc;
-    fl << lina << _lemmatiseur->motsClefs(2) << linb << forme(181) << linb << forme(182)
+    fl << lina << _lemCore->motsClefs(2) << linb << forme(181) << linb << forme(182)
        << linc;
-    fl << lina << _lemmatiseur->motsClefs(3) << linb << forme(183) << linb << forme(185)
+    fl << lina << _lemCore->motsClefs(3) << linb << forme(183) << linb << forme(185)
        << linc;
-    fl << lina << _lemmatiseur->motsClefs(4) << linb << forme(184) << linb << forme(186)
+    fl << lina << _lemCore->motsClefs(4) << linb << forme(184) << linb << forme(186)
        << linc;
     fl << queue;
 
-    fl << "<p>" << _lemmatiseur->morpho(187) << " : " << forme(187)
-       << "<br/>" << _lemmatiseur->morpho(188) <<
+    fl << "<p>" << _lemCore->morpho(187) << " : " << forme(187)
+       << "<br/>" << _lemCore->morpho(188) <<
           //"infinifif futur : "<<forme(415)<<"</br>"
           " : "
        << forme(188) << "</p>";
 
     fl << "<br/><a name=\"partpres\"></a>";
     fl << menu;
-    fl << "<p>"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(0) <<"</p>";
+    fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(0) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->genre(0) << linb << _lemmatiseur->genre(1) << linb
-       << _lemmatiseur->genre(2) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->genre(0) << linb << _lemCore->genre(1) << linb
+       << _lemCore->genre(2) << linc;
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
     for (int i = 189; i < 195; ++i)
-        fl << lina << _lemmatiseur->cas((i - 189) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 189) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
     for (int i = 195; i < 201; ++i)
-        fl << lina << _lemmatiseur->cas((i - 189) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 189) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 
     fl << "<a name=\"partfut\"></a>";
     fl << menu;
-    fl << "<p>"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(2) <<"</p>";
+    fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(2) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->genre(0) << linb << _lemmatiseur->genre(1) << linb
-       << _lemmatiseur->genre(2) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->genre(0) << linb << _lemCore->genre(1) << linb
+       << _lemCore->genre(2) << linc;
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
     for (int i = 225; i < 231; ++i)
-        fl << lina << _lemmatiseur->cas((i - 225) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 225) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
     for (int i = 231; i < 237; ++i)
-        fl << lina << _lemmatiseur->cas((i - 225) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 225) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 
     fl << "<br/>";
-    fl << entete << lina << _lemmatiseur->morpho(261) << linb << forme(261)
-       << linc << lina << _lemmatiseur->morpho(262) << linb
-       << forme(262) << linc << lina << _lemmatiseur->morpho(263) << linb
-       << forme(263) << linc << lina << _lemmatiseur->morpho(264) << linb
-       << forme(264) << linc << lina << _lemmatiseur->morpho(265) << linb << forme(265)
-       << linc << lina << _lemmatiseur->morpho(266) << linb << forme(266) << linc << queue;
+    fl << entete << lina << _lemCore->morpho(261) << linb << forme(261)
+       << linc << lina << _lemCore->morpho(262) << linb
+       << forme(262) << linc << lina << _lemCore->morpho(263) << linb
+       << forme(263) << linc << lina << _lemCore->morpho(264) << linb
+       << forme(264) << linc << lina << _lemCore->morpho(265) << linb << forme(265)
+       << linc << lina << _lemCore->morpho(266) << linb << forme(266) << linc << queue;
 
     fl << menu;
-    fl << "<a name=\"indpass\"></a><h4>"<< _lemmatiseur->voix(1) <<"</h4>";
-    fl << "<p>"<< _lemmatiseur->modes(0) <<"</p>";
+    fl << "<a name=\"indpass\"></a><h4>"<< _lemCore->voix(1) <<"</h4>";
+    fl << "<p>"<< _lemCore->modes(0) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(2) << linc;
+    fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(2) << linc;
     for (int i = 267; i < 273; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
@@ -454,8 +454,8 @@ QString Flexion::tabV()
     QString susp = "&nbsp;\u22EE ";
     fl << fc;
     fl << entete;
-    fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linb
-       << _lemmatiseur->temps(5) << linc;
+    fl << lina << _lemCore->temps(3) << linb << _lemCore->temps(4) << linb
+       << _lemCore->temps(5) << linc;
     fl << lina << ppp << "<i>sum</i>" << linb << ppp << "<i>eram</i>" << linb << ppp << "<i>ero</i>"
            << linc;
     fl << lina << ppp << susp << linb << ppp << susp << linb << ppp << susp
@@ -464,10 +464,10 @@ QString Flexion::tabV()
 
     fl << "<a name=\"subpass\"></a>";
     fl << menu;
-    fl << "<p>"<< _lemmatiseur->modes(1) <<"</p>";
+    fl << "<p>"<< _lemCore->modes(1) <<"</p>";
     fl << entete;
-//    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(3) << linc;
-    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linc;
+//    fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(3) << linc;
+    fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linc;
     for (int i = 285; i < 291; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linc;
 //        fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
@@ -477,7 +477,7 @@ QString Flexion::tabV()
     // Formes composées
     fl << fc;
     fl << entete;
-    fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linc;
+    fl << lina << _lemCore->temps(3) << linb << _lemCore->temps(4) << linc;
     fl << lina << ppp << "<i>sim</i>" << linb << ppp << "<i>essem</i>" << linc;
     fl << lina << ppp << susp << linb << ppp << susp << linc;
     fl << queue;
@@ -486,50 +486,50 @@ QString Flexion::tabV()
     fl << QString(
         "<a name=\"imppass\"></a>"
         "<p>");
-    fl << _lemmatiseur->modes(2) << "</p>";
+    fl << _lemCore->modes(2) << "</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(1) << linb << _lemmatiseur->nombre(0) << linb << _lemmatiseur->nombre(1)
+    fl << lina << _lemCore->motsClefs(1) << linb << _lemCore->nombre(0) << linb << _lemCore->nombre(1)
        << linc;
-    fl << lina << _lemmatiseur->motsClefs(2) << linb << forme(297) << linb << forme(298) << linc;
-    fl << lina << _lemmatiseur->motsClefs(3) << linb << forme(299) << linb << "-" << linc;
-    fl << lina << _lemmatiseur->motsClefs(4) << linb << forme(300) << linb << forme(301) << linc;
+    fl << lina << _lemCore->motsClefs(2) << linb << forme(297) << linb << forme(298) << linc;
+    fl << lina << _lemCore->motsClefs(3) << linb << forme(299) << linb << "-" << linc;
+    fl << lina << _lemCore->motsClefs(4) << linb << forme(300) << linb << forme(301) << linc;
     fl << queue;
 
-    fl << "<p>" << _lemmatiseur->morpho(302) << " : " << forme(302) << "</p><br/>";
+    fl << "<p>" << _lemCore->morpho(302) << " : " << forme(302) << "</p><br/>";
 
     fl << "<a name=\"ppp\"></a>";
     fl << menu;
-    fl << "<p>"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(3) <<"</p>";
+    fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(3) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->genre(0) << linb << _lemmatiseur->genre(1) << linb
-       << _lemmatiseur->genre(2) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->genre(0) << linb << _lemCore->genre(1) << linb
+       << _lemCore->genre(2) << linc;
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
     for (int i = 303; i < 309; ++i)
         // TODO ajouter des colspan pour le nombre
-        fl << lina << _lemmatiseur->cas((i - 303) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 303) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
     for (int i = 309; i < 315; ++i)
         // TODO ajouter des colspan pour le nombre
-        fl << lina << _lemmatiseur->cas((i - 303) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 303) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 
     fl << "<a name=\"adjv\"></a>";
     fl << menu;
-    fl << "<p>"<< _lemmatiseur->modes(5) <<"</p>";
+    fl << "<p>"<< _lemCore->modes(5) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->genre(0) << linb << _lemmatiseur->genre(1) << linb
-       << _lemmatiseur->genre(2) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << lina << _lemCore->motsClefs(0) << linb << _lemCore->genre(0) << linb << _lemCore->genre(1) << linb
+       << _lemCore->genre(2) << linc;
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(0) << "</td></tr>";
     for (int i = 339; i < 345; ++i)
         // TODO ajouter des colspan pour le nombre
-        fl << lina << _lemmatiseur->cas((i - 339) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 339) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemCore->nombre(1) << "</td></tr>";
     for (int i = 345; i < 351; ++i)
         // TODO ajouter des colspan pour le nombre
-        fl << lina << _lemmatiseur->cas((i - 339) % 6) << linb << forme(i) << linb
+        fl << lina << _lemCore->cas((i - 339) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 

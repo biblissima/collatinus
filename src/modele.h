@@ -68,7 +68,7 @@ class Modele : public QObject
     QMap<int, QString> _genRadicaux;
     QString _gr;
     QString _grq;
-    LemCore *_lemmatiseur;
+    LemCore *_lemCore;
     Modele *_pere;
     QChar   _pos;
     QString _suf;

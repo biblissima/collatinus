@@ -821,7 +821,7 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
  * Cette routine est assez proche de Scandeur::scandeTxt.
  * Toutefois, elle s'en distingue car elle donne à la fois la forme scandée
  * et la forme accentuée, ainsi que les séparateurs des mots.
- * Pour cette dernière, les options sont déterminées par le paramètre _accent_
+ * Pour la forme accentuée, les options sont déterminées par le paramètre _accent_
  * qui a les mêmes significations que dans Scandeur::scandeTxt.
  *
  * Le séparateur de champs dans le CSV est la tabulation.
@@ -1081,11 +1081,14 @@ QString Scandeur::txt2csv(QString texte, int accent, bool majAut)
  * @brief Détermine le nombre de syllabes et la nature (paroxyton ou proparoxyton) du mot
  * @param PC : Le mot réduit à ses quantités selon le codage de PedeCerto
  * @param accent : un entier qui détermine le comportement si la pénultième est commune
- * @return Le code est composé d'un entier (le nombre de syllabes)
+ * @return un code qui donne la longueur du mot et la position de l'accent
+ *
+ * Le code est composé d'un entier (le nombre de syllabes)
  * et de "p" si le mot est paroxyton ou "pp" s'il est proparoxyton.
  * Lorsque l'avant-dernière syllabe est **commune**,
  * la position de l'accent est problématique et le comportement est déterminé
- * par la variable _accent_ (voir Scandeur::scandeTxt pour les détails).
+ * par la variable _accent_ (voir Scandeur::scandeTxt pour les détails ;
+ * ici, seuls les deux bits de poids faible sont pris en compte).
  *
  * Les routines pour réduire un mot à ses quantités sont dans l'espace de nommage Ch.
  * Les syllabes longues sont notées +, les brèves - et

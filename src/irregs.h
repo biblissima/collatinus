@@ -44,7 +44,7 @@ class Irreg : public QObject
     bool _exclusif;
     QString _gr;
     QString _grq;
-    LemCore* _lemmat;
+    LemCore* _lemCore;
     Lemme* _lemme;
     QList<int> _morphos;
 

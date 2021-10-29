@@ -22,6 +22,17 @@
 /**
  * \file lemCore.cpp
  * \brief noyau pour la lemmatisation des formes latines
+ *
+ * Ce module est le cœur du programme :
+ * c'est lui qui va organiser les données et lemmatiser les formes.
+ * Il est donc appelé par les modules *intermédiaires*,
+ * Lemmatiseur, Scandeur et Tagueur.
+ *
+ * En lisant les fichiers de données, il va créer les collections
+ * d'objets dont il a besoin : Lemme, Modele, Desinence, Radicaux et Irreg.
+ * Les noms de ces classes sont assez explicites.
+ * Leur fonctionnement est détaillé dans les pages correspondantes.
+ *
  */
 
 #include "lemCore.h"

@@ -78,8 +78,10 @@ void Ch::allonge(QString *f)
 /**
  * \fn Ch::atone(QString a, bool bdc)
  * \brief supprime tous les diacritiques de la chaîne a
- *        si bdc est à true, les diacritiques des majuscules
+ * \param a : le mot à traiter
+ * \param bdc : si bdc est à false (par défaut), les diacritiques des majuscules
  *        sont également supprimés.
+ * \return le mot sans diacritique.
  */
 QString Ch::atone(QString a, bool bdc)
 {
@@ -179,8 +181,12 @@ QString Ch::communes(QString g)
 
 /**
  * \fn Ch::deQuant(QString *c)
- * \brief utilisée en cas d'élision.
- * supprime la quantité de la voyelle finale de la chaine c
+ * \brief supprime la quantité de la voyelle finale
+ * \param c : le mot
+ * \return le mot sans la quantité de la voyelle finale
+ *
+ * Cette fonction est utilisée en cas d'élision.
+ * Elle supprime la quantité de la voyelle finale de la chaine c
  * lorsque cette voyelle est en fin de mot ou suivie d'un "m".
  */
 void Ch::deQuant(QString *c)
@@ -197,7 +203,17 @@ void Ch::deQuant(QString *c)
 
 /**
  * \fn Ch::deAccent(QString *c)
- * \brief Supprime tous les accents d'un texte (acute, macron, breve)
+ * \brief supprime tous les accents d'un texte
+ * \param c : une chaine (mot ou texte)
+ * \return la chaine sans accent
+ *
+ * Cette fonction est utilisée pour enlever les accents, les diacritiques
+ * (acute, macron, breve, tilde etc...) ou les cédilles d'un texte.
+ * En effet, certains textes (récupérés sur internet) contiennent
+ * des accents ou autres signes diacritiques qui peuvent nuire
+ * à la lemmatisation.
+ * Cette fonction utilise la décomposition normalisée des caractères Unicode
+ * et supprime les signes combinants qui ont été séparés du caractère de base.
  */
 QString Ch::deAccent(QString c)
 {

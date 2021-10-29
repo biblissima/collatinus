@@ -131,7 +131,7 @@ void Desinence::setModele(Modele *m)
  */
 Modele::Modele(QStringList ll, LemCore *parent)
 {
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+    _lemCore = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
     QMultiMap<QString, int> msuff;
@@ -142,7 +142,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
         while (re.indexIn(l) > -1)
         {
             QString v = re.cap(2);
-            QString var = _lemmatiseur->variable(v);
+            QString var = _lemCore->variable(v);
             QString pre = re.cap(1);
             if (!pre.isEmpty()) var.replace(";", ";" + pre);
             l.replace(v, var);
@@ -176,7 +176,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                     {
                         Desinence *nd = new Desinence(g, li.at(i), r, this);
                         _desinences.insert(nd->morphoNum(), nd);
-                        _lemmatiseur->ajDesinence(nd);
+                        _lemCore->ajDesinence(nd);
                     }
                 }
                 // si des+, aller chercher les autres désinences chez le père :
@@ -190,7 +190,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                             // cloner la désinece
                             Desinence *dh = clone(dp);
                             _desinences.insert(i, dh);
-                            _lemmatiseur->ajDesinence(dh);
+                            _lemCore->ajDesinence(dh);
                         }
                     }
                 }
@@ -232,7 +232,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                         Desinence *dsuf = new Desinence
                             (nd+_suf, d->morphoNum(), d->numRad(), this);
                         _desinences.insert(dsuf->morphoNum(), dsuf);
-                        _lemmatiseur->ajDesinence(dsuf);
+                        _lemCore->ajDesinence(dsuf);
                     }
                 }
                 break;
@@ -265,7 +265,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                     continue;
                 Desinence *dh = clone(d);
                 _desinences.insert(dh->morphoNum(), dh);
-                _lemmatiseur->ajDesinence(dh);
+                _lemCore->ajDesinence(dh);
             }
         }
         // héritage des radicaux
@@ -302,7 +302,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
     foreach (Desinence *dsuf, ldsuf)
     {
         _desinences.insert(dsuf->morphoNum(), dsuf);
-        _lemmatiseur->ajDesinence(dsuf);
+        _lemCore->ajDesinence(dsuf);
     }
 }
 
