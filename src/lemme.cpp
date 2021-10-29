@@ -19,6 +19,14 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file lemme.cpp
+ * \brief définit les classes Radical et Lemme
+ *
+ * Ces classes font partie des couches profondes utilisées par
+ * le noyau de lemmatisation, LemCore.
+ */
+
 #include "lemme.h"
 
 /////////////

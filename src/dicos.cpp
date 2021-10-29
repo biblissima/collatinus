@@ -19,6 +19,11 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file dicos.cpp
+ * \brief définit la classe Dictionnaire
+ */
+
 #include "dicos.h"
 
 #include <QDebug>

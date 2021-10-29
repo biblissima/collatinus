@@ -3,6 +3,7 @@ bin/collatinusd
 C*.app
 .*
 bin/dicos
+src/*.md
 
 bin/data/*.bak
 moc

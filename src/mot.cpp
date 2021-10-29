@@ -19,6 +19,13 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file mot.cpp
+ * \brief définit la classe Mot
+ *
+ * Cette classe est utilisée par le tagueur, Tagueur
+ */
+
 #include "mot.h"
 
 Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)

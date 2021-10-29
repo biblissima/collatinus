@@ -19,6 +19,12 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file maj.cpp
+ * \brief permet de mettre à jour ou ajouter des dictionnaires ou des lexiques
+ *
+ */
+
 #include "maj.h"
 
 Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)

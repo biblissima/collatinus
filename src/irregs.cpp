@@ -25,6 +25,14 @@
 // génération des irréguliers
 //
 
+/**
+ * \file irregs.cpp
+ * \brief définit la classe Irreg
+ *
+ * Cette classe fait partie des couches profondes utilisées par
+ * le noyau de lemmatisation, LemCore.
+ */
+
 #include "irregs.h"
 
 /**

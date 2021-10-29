@@ -19,6 +19,14 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file modele.cpp
+ * \brief définit les classes Desinence et Modele
+ *
+ * Ces classes font partie des couches profondes utilisées par
+ * le noyau de lemmatisation, LemCore.
+ */
+
 #include "modele.h"
 
 ///////////////
