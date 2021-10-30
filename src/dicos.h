@@ -34,7 +34,7 @@
  */
 typedef struct
 {
-    QString article; /*!< le lemme */
+    QString article; /*!< l'entrée du dictionnaire (souvent le lemme) */
     qint64 pos; /*!< la position de l'article dans le fichier */
     qint64 taille; /*!< la taille de l'article compressé */
 } llew;

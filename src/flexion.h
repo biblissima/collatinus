@@ -35,6 +35,9 @@
 #define OMIS 1
 #define PARENTH 3
 
+/**
+ * @brief La classe Flexion construit les tableaux de flexion d'un lemme.
+ */
 class Flexion : public QObject
 {
     Q_OBJECT

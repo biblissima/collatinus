@@ -26,7 +26,14 @@
 #include "lemme.h"
 #include "ch.h"
 
-
+/**
+ * @brief La classe Lasla introduit des fonctions pour la première version
+ * du tagueur LASLA-Tagger.
+ *
+ * Probablement inutile depuis que la deuxième version de ce tagueur
+ * intègre cette partie de Collatinus.
+ * Ces fonctions étaient appelées exclusivement par le serveur MainWindow::exec.
+ */
 class Lasla : public QObject
 {
 //    Q_OBJECT

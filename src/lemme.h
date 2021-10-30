@@ -38,6 +38,9 @@ class LemCore;
 class Lemme;
 class Modele;
 
+/**
+ * @brief La classe Radical décrit les radicaux associés aux lemmes
+ */
 class Radical : public QObject
 {
    private:
@@ -55,6 +58,9 @@ class Radical : public QObject
     int numRad();
 };
 
+/**
+ * @brief La classe Lemme décrit les lemmes.
+ */
 class Lemme : public QObject
 {
     Q_OBJECT

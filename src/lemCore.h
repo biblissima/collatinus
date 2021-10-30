@@ -42,17 +42,45 @@ class Lemme;
 class Radical;
 class Desinence;
 
+/**
+ * @brief structure pour stocker le résultat d'une lemmatisation
+ *
+ * Cette structure groupe la forme avec quantités, un éventuel suffixe
+ * et l'analyse morphologique associée.
+ */
 typedef struct
 {
-    QString grq;
-    int morpho;
-    QString sufq;
+    QString grq; /*!< la forme avec quantités */
+    int morpho; /*!< l'analyse morphologique (entier) */
+    QString sufq; /*!< l'éventuel suffixe avec quantités */
 } SLem;
 
+/**
+ * @brief Une MapLem regroupe par lemme les résultats d'une lemmatisation
+ *
+ * Il s'agit d'une QMap qui associe le pointeur (clef) vers un objet Lemme
+ * à une liste (valeur) de SLem qui contiennent chacun un résultat de
+ * lemmatisation et d'analyse.
+ * C'est donc un moyen simple de regrouper, par lemme,
+ * les différentes analyses possibles d'une forme.
+ */
 typedef QMap<Lemme*, QList<SLem> > MapLem;
 
+/**
+ * @brief Une Reglep regroupe une expression rationnelle et la chaine de remplacement
+ *
+ * Une liste de telles Reglep permet de faire des remplacements à la chaine.
+ * Utilisée dans LemCore::transfMed et Scandeur::parPos
+ */
 typedef QPair<QRegExp, QString> Reglep;
 
+/**
+ * @brief La classe LemCore est le noyau de lemmatisation
+ *
+ * C'est le cœur du programme !
+ * Elle est utilisée par les classes _intermédiaires_ (Lemmatiseur, Scandeur etc...)
+ * et gère les couches _profondes_ (Lemme, Modele etc...).
+ */
 class LemCore : public QObject
 {
     Q_OBJECT

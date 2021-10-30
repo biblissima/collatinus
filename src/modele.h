@@ -36,6 +36,9 @@
 class LemCore;
 class Modele;
 
+/**
+ * @brief La classe Desinence décrit les désinences associées aux modèles
+ */
 class Desinence : public QObject
 {
     Q_OBJECT
@@ -58,6 +61,9 @@ class Desinence : public QObject
     void    setModele(Modele *m);
 };
 
+/**
+ * @brief La classe Modele contient les désinences associées aux paradigmes de flexion
+ */
 class Modele : public QObject
 {
     Q_OBJECT

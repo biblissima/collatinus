@@ -37,6 +37,9 @@
 
 #include <QDebug>
 
+/**
+ * @brief La classe Maj permet de faire les mises à jour des lexiques et des dictionnaires
+ */
 class Maj : public QDialog
 {
     Q_OBJECT

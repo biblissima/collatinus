@@ -31,6 +31,15 @@
 #include "lemme.h"
 #include "ch.h"
 
+/**
+ * @brief La classe Mot contient le mot et ses analyses possibles
+ *
+ * Cette classe est utilisée par le Tagueur pour y stocker les résultats
+ * de l'analyse d'une forme ainsi que le tag associé.
+ * Le Tagueur évalue des probabilités et en déduit la séquence de tags
+ * la plus probable pour la phrase. Il revient ensuite aux mots
+ * pour associer un lemme à ce tag.
+ */
 class Mot : public QObject
 {
     Q_OBJECT

@@ -36,6 +36,10 @@
 class LemCore;
 class Lemme;
 
+/**
+ * @brief La classe Irreg décrit les formes irrégulières
+ * dans la flexion d'un lemme
+ */
 class Irreg : public QObject
 {
     Q_OBJECT

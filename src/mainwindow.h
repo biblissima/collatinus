@@ -51,7 +51,8 @@ class MainWindow;
 /**
  * @brief La classe EditLatin est dérivée de
  * QTextEdit afin de pouvoir redéfinir l'action
- * connectée au clic de souris sur un mot ou après
+ * connectée au survol d'un mot par la souris
+ * et au clic de souris sur un mot ou après
  * sélection d'une portion de texte.
  */
 class EditLatin : public QTextEdit
@@ -69,6 +70,9 @@ class EditLatin : public QTextEdit
     bool event(QEvent *event);
 };
 
+/**
+ * @brief La classe MainWindow crée l'interface graphique de l'application
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

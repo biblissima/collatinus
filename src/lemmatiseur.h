@@ -30,6 +30,18 @@
 #include "ch.h"
 #include "lemCore.h"
 
+/**
+ * @brief La classe Lemmatiseur regroupe les fonctions nécessaires
+ * à la lemmatisation et à l'analyse morphologique des formes ou des textes.
+ *
+ * Actuellement, dans Collatinus, elle est appelée par MainWindow
+ * qui gère l'affichage et les lectures/écritures des fichiers.
+ * Elle partage donc le noyau de lemmatisation, LemCore,
+ * avec d'autres classes _intermédiaires_.
+ * Toutefois, cette classe pourrait être autonome, avec une autre interface,
+ * si on voulait, par exemple, n'avoir qu'un programme spécialisé
+ * dans la lemmatisation et l'analyse morphologique.
+ */
 class Lemmatiseur : public QObject
 {
     Q_OBJECT

@@ -117,10 +117,10 @@ bool EditLatin::event(QEvent *event)
  * dans l'onglet actif. Selon les cas :
  * * ajout des lemmatisations et analyses morpho dans
  *        le dock correspondant.
- * * lemmatisation et consultation du dictionnaire
+ * * lemmatisation et consultation du dictionnaire (un seul mot)
  * * scansion ou accentuation du mot ou du passage
- * * flexion du (ou des) lemme(s) associé(s) à la forme
- * * taguage de la phrase contenant le mot cliqué.
+ * * flexion du (ou des) lemme(s) associé(s) à la forme (un seul mot)
+ * * taguage de la phrase contenant le mot cliqué (un seul mot).
  */
 void EditLatin::mouseReleaseEvent(QMouseEvent *e)
 {

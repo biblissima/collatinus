@@ -28,7 +28,7 @@
 
 #include "mot.h"
 
-Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
+Mot::Mot(QString forme, int rang, bool debVers, QObject *parent) : QObject(parent)
 {
 //    qDebug() << forme;
     _forme = forme;
