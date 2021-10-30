@@ -54,6 +54,10 @@
  */
 LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
 {
+    Lemme::setLemCore(this);
+    // J'ai défini _lemCore comme variable statique dans Lemme (lemme.h).
+    // Initialement, je lui ai donné la valeur NULL (dans lemme.cpp).
+    // Maintenant que j'ai créé le vrai LemCore, je fixe la bonne valeur.
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;

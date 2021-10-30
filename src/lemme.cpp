@@ -29,6 +29,11 @@
 
 #include "lemme.h"
 
+LemCore* Lemme::_lemCore = NULL;
+// J'ai défini _lemCore comme variable statique dans Lemme (lemme.h).
+// Initialement, je lui donne la valeur NULL (ici, dans lemme.cpp).
+// Quand j'aurai créé le vrai LemCore, je fixerai la bonne valeur (dans LemCore::LemCore).
+
 /////////////
 // RADICAL //
 /////////////
@@ -90,11 +95,11 @@ int Radical::numRad() { return _numero; }
  * \brief Constructeur de la classe Lemme à partir de la
  *        ligne linea. *parent est le noyau de lemmatisation (classe LemCore).
  */
-Lemme::Lemme(const QString linea, const int origin, QObject *parent)
+Lemme::Lemme(const QString linea, const int origin, QObject *parent) : QObject(parent)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
     //   0 | 1  | 2   | 3 |     4                | 5
-    _lemCore = qobject_cast<LemCore *>(parent);
+//    _lemCore = qobject_cast<LemCore *>(parent);
     QStringList eclats = linea.split('|');
     QStringList lg = eclats.at(0).split('=');
     _nh = 1;
@@ -184,6 +189,13 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
 //        _genre.append(" neutre");
     _genre = _genre.trimmed();
 */
+}
+
+void Lemme::setLemCore(LemCore * l)
+{
+    if (_lemCore == NULL) _lemCore = l;
+    // Je n'autorise qu'une seule mise à jour de _lemCore :
+    // quand le vrai LemCore est créé.
 }
 
 /**
@@ -287,7 +299,7 @@ QList<int> Lemme::clesR()
  * \param nm : numéro de morpho
  * \brief Renvoie vrai si la forme irrégulière
  *        avec le n° nm remplace celle construite
- *        sur le radical , faux si la
+ *        sur le radical, faux si la
  *        forme régulière existe aussi.
  */
 bool Lemme::estIrregExcl(int nm)

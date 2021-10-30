@@ -61,7 +61,8 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
     _gr = Ch::atone(_grq);
     _morpho = morph;
     _numR = nr;
-    _modele = qobject_cast<Modele *>(parent);
+    _modele = parent;
+//    _modele = qobject_cast<Modele *>(parent);
 }
 
 /**
@@ -129,9 +130,10 @@ void Desinence::setModele(Modele *m)
  *        fichier data/modeles.la, consulter la documentation
  *        utilisateur.
  */
-Modele::Modele(QStringList ll, LemCore *parent)
+Modele::Modele(QStringList ll, LemCore *parent) : QObject(parent)
 {
-    _lemCore = qobject_cast<LemCore *>(parent);
+    _lemCore = parent;
+//    _lemCore = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
     QMultiMap<QString, int> msuff;

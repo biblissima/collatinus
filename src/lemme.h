@@ -65,6 +65,7 @@ class Lemme : public QObject
 {
     Q_OBJECT
    private:
+    static    LemCore*          _lemCore;
     QString                     _cle;
     QString                     _gr;
     QString                     _grd;
@@ -75,7 +76,6 @@ class Lemme : public QObject
     QList<Irreg*>               _irregs;
     Modele*                     _modele;
     int                         _nh;
-    LemCore*                     _lemCore;
     QList<int>                  _morphosIrrExcl;
     int                         _nbOcc; // Nombre d'occurrences du lemme dans les textes du LASLA
     int                         _origin; // lemmes ou lem_ext
@@ -86,6 +86,7 @@ class Lemme : public QObject
 
    public:
     Lemme(const QString linea, const int origin, QObject* parent);
+    static    void      setLemCore(LemCore* l);
     void                ajIrreg(Irreg* irr);
     void                ajNombre(int n);
     void                ajRadical(int i, Radical* r);
