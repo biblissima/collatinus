@@ -57,10 +57,16 @@
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
- * \brief Créateur de la classe EditLatin, dérivée de
- * QTextEdit afin de pouvoir redéfinir l'action
- * connectée au clic de souris sur un mot ou après
+ * \brief Créateur de la classe EditLatin, dérivée de QTextEdit.
+ *
+ * Cette classe est faite pour afficher le texte latin.
+ * Elle est dérivée QTextEdit (fenêtre d'édition de texte)
+ * et elle permet de redéfinir l'action
+ * liée au clic de souris sur un mot ou après
  * sélection d'une portion de texte.
+ *
+ * Elle renvoie éventuellement à son parent, MainWindow,
+ * un résultat à afficher dans l'onglet actif.
  */
 EditLatin::EditLatin(QWidget *parent) : QTextEdit(parent)
 {
@@ -105,9 +111,16 @@ bool EditLatin::event(QEvent *event)
 
 /**
  * \fn void EditLatin::mouseReleaseEvent (QMouseEvent *e)
- * \brief Captation de la fin du clic de souris : ajout
- *        des lemmatisations et analyses morpho dans
+ * \brief Captation de la fin du clic de souris
+ *
+ * Cette fonction envoie à MainWindow un résultat à afficher
+ * dans l'onglet actif. Selon les cas :
+ * * ajout des lemmatisations et analyses morpho dans
  *        le dock correspondant.
+ * * lemmatisation et consultation du dictionnaire
+ * * scansion ou accentuation du mot ou du passage
+ * * flexion du (ou des) lemme(s) associé(s) à la forme
+ * * taguage de la phrase contenant le mot cliqué.
  */
 void EditLatin::mouseReleaseEvent(QMouseEvent *e)
 {
@@ -174,9 +187,12 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
 
 /**
  * \fn MainWindow::MainWindow()
- * \brief Créateur de la fenêtre de l'appli.
- *        Les différentes tâches sont regrouppées
- *        et confiées à des fonctions spécialisées.
+ * \brief Créateur de la fenêtre de l'application.
+ *
+ *        Les différentes tâches sont regroupées
+ *        et confiées à des classes _intermédiaires_ spécialisées.
+ * Toutes feront appel au noyau de lemmatisation, LemCore,
+ * qui est le moteur du programme.
  */
 MainWindow::MainWindow()
 {

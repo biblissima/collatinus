@@ -124,7 +124,7 @@ QString Ch::atone(QString a, bool bdc)
 }
 
 /**
- * @brief Ch::breve
+ * @brief retourne la voyelle brève
  * @param c : une voyelle sans quantité en minuscule
  * @return la fonction retourne la voyelle brève correspondant à c.
  * Si c n'est pas une voyelle (aeiouy), la fonction retourne c.
@@ -202,7 +202,6 @@ void Ch::deQuant(QString *c)
 }
 
 /**
- * \fn Ch::deAccent(QString *c)
  * \brief supprime tous les accents d'un texte
  * \param c : une chaine (mot ou texte)
  * \return la chaine sans accent
@@ -234,8 +233,7 @@ QString Ch::deAccent(QString c)
  * \fn QString Ch::deramise(QString r)
  * \brief retourne une graphie non-ramiste
  *        de r, càd dont tous les j deviennent i,
- *        et tous les v deviennent u. Les V majuscules
- *        sont ignorés.
+ *        et tous les v deviennent u.
  */
 QString Ch::deramise(QString r)
 {
@@ -282,6 +280,14 @@ void Ch::elide(QString *mp)
     //if (debog) qDebug() << *mp;
 }
 
+/**
+ * @brief sépare la chaine d'entrée en lettres et nombre
+ * @param s : la chaine à découper
+ * @param ch : une chaine passée par adresse qui reçoit les lettres précédant un chiffre
+ * @param n : un entier passée par adresse qui reçoit la valeur numérique finale
+ *
+ * @deprecated Cette fonction semble inusitée...
+ */
 void Ch::genStrNum(const QString s, QString *ch, int *n)
 {
     ch->clear();
@@ -319,7 +325,7 @@ bool Ch::inv_sort_i(const QString &a, const QString &b)
 
 /**
  * \fn Ch::versPC(QString k)
- * \brief Comme versPedeCerto, mais ici le mot n'a pas été trouvé.
+ * \brief Comme Ch::versPedeCerto, mais ici le mot n'a pas été trouvé.
  *        Les voyelles ne sont pas marquées sauf par position...
  */
 QString Ch::versPC(QString k)
@@ -345,8 +351,8 @@ QString Ch::versPC(QString k)
 
 /**
  * \fn Ch::versPedeCerto(QString k)
- * \brief remplace les longues de k par +, les brèves par - et les communes par
- * *
+ * \brief remplace les longues de k par +, les brèves par - et les communes par *
+ *
  */
 QString Ch::versPedeCerto(QString k)
 {
@@ -386,6 +392,17 @@ QString Ch::versPedeCerto(QString k)
     return k;
 }
 
+/**
+ * @brief transforme les quantités en + et - en conservant les voyelles
+ * @param k : la chaine à transformer
+ * @return la chaine transformée
+ *
+ * Cette fonction transforme les quantités indiquées avec macron ou breve
+ * par les signes + et -, tout en conservant la voyelle.
+ * Une "*" pour les voyelles communes.
+ * Elle est utilisée pour accentuer un mot, dans Ch::ajoutSuff.
+ *
+ */
 QString Ch::transforme(QString k)
 {
     k.replace("āe", "æ+");
@@ -427,6 +444,15 @@ QString Ch::transforme(QString k)
     return k;
 }
 
+/**
+ * @brief accentue la voyelle
+ * @param l : une voyelle ou une diphtongue
+ * @return la voyelle ou la diphtongue accentuée
+ *
+ * Cette fonction place un accent aigu sur la voyelle donnée en argument.
+ * Si l'argument n'est pas une voyelle, il ne se passe rien.
+ * Cette fonction est utilisée pour accentuer un mot, dans Ch::ajoutSuff.
+ */
 QString Ch::accentue(QString l)
 {
     if ((l == "œ") || (l == "Œ")) return l + "\u0301";
@@ -466,6 +492,37 @@ QString Ch::accentue(QString l)
     }
 }
 
+/**
+ * @brief ajoute le suffixe à la forme
+ * @param fq : la forme avec ses quantités
+ * @param suffixe : le suffixe avec ses quantités
+ * @param l_etym : l'information étymologique
+ * @param accent : un entier qui dit s'il faut scander ou accentuer
+ * @return la forme avec son suffixe, scandée ou accentuée
+ *
+ * Lors de la lemmatisation, un éventuel enclitique a été séparée de la forme.
+ * Il faut donc le recoller à la fin.
+ * Toutefois, si la forme se termine par une consonne, on se retrouve avec
+ * deux consonnes de suite et la syllabe devient nécessairement longue.
+ * @note uirumque devient transitoirement vĭrŭm + quĕ, ce qui donne vĭrūmquĕ.
+ *
+ * Si le paramètre _accent_ est nul, on procède à une scansion.
+ * Sinon, l'ensemble sera accentué et _accent_ spécifie le comportement
+ * dans le cas des voyelles communes (voir Scandeur::scandeTxt pour les détails).
+ *
+ * Ce même paramètre _accent_ permet de séparer les syllabes.
+ * Il faut alors faire attention aux éventuels préfixes
+ * qui conduisent à des exceptions dans le découpage.
+ * Ces exceptions sont indiquées dans *l_etym*.
+ * voir LemCore::lireHyphen pour quelques détails.
+ *
+ * @note L'enclitique attire l'accent.
+ * Le mot _rosaque_ sera paroxyton, _rosáque_ même au nominatif (où le _a_ est bref).
+ *
+ * @bug Il semblerait qu'il y ait un bug lorsque deux "suffixes" ont été ajoutés.
+ * Un exemple serait modoquest. À corriger !
+ *
+ */
 QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)
 {
     bool illius = false;

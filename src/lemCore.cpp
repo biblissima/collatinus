@@ -730,7 +730,7 @@ QString LemCore::cible()
  * a priori sous la forme de deux caractères "fr", "en", "de" etc.
  * C'est la langue dans laquelle seront données les traductions.
  * Lorsque la langue cible n'est ni l'anglais, ni le français,
- * on doit indiquer une seconde langue de substitution parmi ces deux dernières.
+ * il est prudent d'indiquer une seconde langue de substitution parmi ces deux dernières.
  * En effet, l'extension du lexique ne donne ses traductions que dans ces deux langues.
  * De plus, la langue de substitution sera utilisée pour donner
  * les indications morphologiques si ces dernières n'ont pas été traduites.

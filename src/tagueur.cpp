@@ -29,7 +29,7 @@
 /**
  * @brief
  * \if French
- * Créateur de la classe Tagueur pour désambiguïser des textes.
+ * Créateur de la classe Tagueur pour lemmatiser et désambiguïser des textes.
  * \else
  * Constructs a Tagueur to tag sentences.
  * \endif
@@ -70,18 +70,21 @@
  * intermédiaires (tagueur, scandeur...),
  * il vaut mieux créer un seul moteur commun.
  *
- * Lors de la création de cette classe, on peut choisir
+ * Lors de la création de cette classe (si on n'a pas créé le moteur), on peut choisir
  * la langue cible dans laquelle seront données les traductions et analyses.
  * Il s'agit d'une chaine de caractères contenant au moins deux lettres
  * (fr : français ; en : anglais ; etc...) et au plus huit
  * (jusqu'à trois groupes de deux lettres séparés par un espace).
  * Le fait de spécifier plusieurs langues précise l'ordre dans lequel
  * seront cherchées les traductions si on ne dispose pas de la traduction
- * dans la première langue choisie. Ainsi "it fr en" conduire le
- * programme a cherché la traduction en italien. Si la traduction
+ * dans la première langue choisie. Ainsi "it fr en" va conduire le
+ * programme à chercher la traduction en italien. Si la traduction
  * n'existe pas en italien, elle sera d'abord cherchée dans le lexique
  * français et en désespoir de cause en anglais.
  * Par défaut, elle vaut "fr en es", valeur définie dans LemCore.
+ * \attention la langue cible peut être changée dans LemCore,
+ * mais à l'heure actuelle le Tagueur ne prévoit pas l'accès
+ * à la fonction LemCore::setCible qui est sollicitée par MainWindow.
  *
  * Le paramètre optionnel resDir donne
  * le chemin complet du dossier contenant les fichiers de donnée.

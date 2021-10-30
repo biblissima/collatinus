@@ -76,6 +76,19 @@
  * resources directory. If empty, the resources are assumed to be
  * in a folder "data" placed in the same dir as the exe.
  * \endif
+ *
+ * \attention
+ * \if French
+ * Il s'agit ici de _scander_ un texte :
+ * on marquera donc la _quantité des syllabes_ et pas la _longueur des voyelles_.
+ * Pour les syllabes _ouvertes_, les deux se confondent, mais pas pour
+ * les syllabes _fermées_ (qui se terminent avec une consonne).
+ * On peut avoir une voyelle brève dans une syllabe longue !
+ * \else
+ * This module _scans_ a text:
+ * it marks the _quantity of the syllables_, not the _length of the vowels_.
+ * \endif
+ *
  */
 Scandeur::Scandeur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
 {
@@ -519,7 +532,11 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
  * et les autres seront données entre parenthèses.
  * Pour la scansion, les règles usuelles d'allongement et d'élision
  * sont appliquées. Les voyelles élidées sont conservées pour que le texte reste
- * lisible, mais elles sont placées entre crochets droits [ ].
+ * lisible, mais elles sont placées entre crochets droits [ ], sans quantité.
+ * \note Une inexactitude subsiste dans l'élision :
+ * le _e_ de l'auxiliaire _est_ est plus faible que les autres voyelles
+ * et c'est lui qu'il faudrait élider.
+ * Il faudrait écrire _dōctā [e]st_ plutôt que _dōct[a] ēst_.
  */
 QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
 {
@@ -821,6 +838,11 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
  * Cette routine est assez proche de Scandeur::scandeTxt.
  * Toutefois, elle s'en distingue car elle donne à la fois la forme scandée
  * et la forme accentuée, ainsi que les séparateurs des mots.
+ * À partir du fichier CSV, on peut donc reconstruire le texte d'origine,
+ * le texte scandé et le texte accentué,
+ * en choisissant la forme appropriée dans chaque ligne
+ * que l'on fait suivre par les séparateurs trouvés sur cette même ligne.
+ *
  * Pour la forme accentuée, les options sont déterminées par le paramètre _accent_
  * qui a les mêmes significations que dans Scandeur::scandeTxt.
  *

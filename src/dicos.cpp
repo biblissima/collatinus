@@ -21,7 +21,7 @@
 
 /**
  * \file dicos.cpp
- * \brief définit la classe Dictionnaire
+ * \brief définit les classes Dictionnaire et ListeDic
  */
 
 #include "dicos.h"
@@ -33,8 +33,6 @@
  ****************/
 
 /**
- * \fn Dictionnaire::Dictionnaire (QString cfg, QObject *parent):
- * QObject(parent)
  * \brief Initialise le dictionnaire avec les données trouvées dans le fichier
  * cfg
  * \param cfg : nom du fichier de configuration
@@ -125,6 +123,11 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
  * @param s2 la deuxième chaine
  * @return Un entier >0 si (s2 > s1) en tenant compte de l'ordre alphabétique
  * donné par la variable alphabet.
+ *
+ * Cette variable _alphabet_ a été introduite pour traiter le cas du Tchèque
+ * où le digraphe "ch" est rangé entre le h et le i.
+ * Elle permet aussi de traiter des cas où plusieurs lettres occupent
+ * le même rang, par exemple si le "ph" se confond avec le "f".
  */
 int Dictionnaire::compChaines(QString s1, QString s2)
 {
@@ -162,8 +165,10 @@ int Dictionnaire::compChaines(QString s1, QString s2)
 }
 
 /**
- * \fn Dictionnaire::nom
  * \return le nom du dictionnaire
+ *
+ * Le nom _réel_ du dictionnaire est allongé par une indication de version.
+ * On la coupe ici pour avoir un nom facile à afficher.
  */
 QString Dictionnaire::nom()
 {
@@ -172,7 +177,7 @@ QString Dictionnaire::nom()
     return nomCourt;
 }
 /**
- * \fn Dictionnaire::chopNum (const QString c)
+ * \fn Dictionnaire::chopNum(const QString c)
  * \brief Renvoie une copie de c tronquée de tous les caractères
  *        numériques qui la terminent.
  */
@@ -184,9 +189,7 @@ QString Dictionnaire::chopNum(const QString c)
 }
 
 /**
- * \fn Dictionnaire::entree_pos
- *
- * \brief Lit l'article du dictionnaire qui débute à la position pos
+ * \brief Lit l'article du dictionnaire spécifié par pos et taille
  * \param pos : entier 64 bits avec la position du début de l'article dans le fichier
  * \param taille : entier 64 bits avec la taille de l'article dans le fichier
  * \return Le texte de l'article en HTML
@@ -212,26 +215,31 @@ QString Dictionnaire::entree_pos(qint64 pos, qint64 taille)
 
 /**
  * \fn Dictionnaire::vide_index
- * \brief * Efface l'index du dictionnaire djvu.
- *          Cf. lis_index_djvu ()
+ * \brief Efface l'index du dictionnaire djvu.
+ *
+ * Cette fonction vide la liste Dictionnaire::idxDjvu
+ * qui contient le premier mot de chaque page du dictionnaire.
+ *          Cf. Dictionnaire::lis_index_djvu ()
  */
 void Dictionnaire::vide_index() { idxDjvu.clear(); }
+
 /**
  * \fn Dictionnaire::vide_ligneLiens
  *
- * Efface la ligne de liens vers les divers articles qui s'affichent dans une
+ * \brief Efface la ligne de liens vers les divers articles qui s'affichent dans une
  * page xml
  *
- * Jamais utilisée.
  */
 void Dictionnaire::vide_ligneLiens() { ligneLiens.clear(); }
+
 /**
  * \fn Dictionnaire::lis_index_djvu
- *
- * Lit le fichier d'index du dico en djvu
- *
- * Cf. vide_index ()
+ * \brief Lit le fichier d'index du dico en djvu
  * @return false si la lecture échoue
+ *
+ * Cette fonction peuple la liste Dictionnaire::idxDjvu
+ * qui contient le premier mot de chaque page du dictionnaire.
+ * Cf. Dictionnaire::vide_index ()
  */
 bool Dictionnaire::lis_index_djvu()
 {
@@ -253,6 +261,16 @@ bool Dictionnaire::lis_index_djvu()
  * qui sera affichée dans le navigateur.
  * \param p : numéro de la page du dictionnaire à afficher
  * \return le texte HTML pour afficher la page de dictionnaire
+ *
+ * Ici, on connaît le numéro de la page souhaitée.
+ * On va donc convertir la page correspondante dans le djvu
+ * au format TIF et la stocker à un endroit convenu.
+ * Le nom de ce fichier est repris comme source pour
+ * l'image affichée dans la page HTML.
+ *
+ * \attention Cette fonction est particulièrement délicate car
+ * la syntaxe à employer pour les différentes plateformes
+ * est différente.
  */
 QString Dictionnaire::pageDjvu(int p)
 {
@@ -317,15 +335,22 @@ QString Dictionnaire::pageDjvu(int p)
 /**
  * \fn Dictionnaire::pageDjvu(QStringList req, int no)
  *
- * \brief Crée la ligne de liens correspondants aux différents lemmes présents dans la
- * requête, req.
- * Convertit la page contenant l'item n° no dans la liste req en TIF.
- * Retourne le texte HTML complet.
- *
- * Appelle pageDjvu (int p)
+ * \brief Affiche une page d'un dictionnaire en djvu
  * @param req : QStringList contenant le résultat de la lemmatisation
- * @param no : numéro de l'item affiché
+ * @param no : numéro de l'item que l'on souhaite afficher
  * @return le texte HTML qui affiche l'image de la page du dictionnaire djvu
+ *
+ * Ici, on part de la liste des mots qui peuvent nous intéresser
+ * (liste obtenue par la lemmatisation d'une forme)
+ * et on souhaite afficher la page contenant l'item n° no dans cette liste.
+ *
+ * On va donc :
+ * * Créer la ligne de liens correspondants aux différents lemmes présents dans la
+ * requête, req.
+ * * Convertir la page contenant l'item n° no dans la liste req en TIF
+ * en appellant Dictionnaire::pageDjvu(int p)
+ * * Retourner le texte HTML complet.
+ *
  */
 QString Dictionnaire::pageDjvu(QStringList req, int no)
 {
@@ -559,41 +584,48 @@ QString Dictionnaire::page(QStringList req, int no)
  *        format xml, faux dans le cas contraire.
  */
 bool Dictionnaire::estXml() { return xml; }
+
 /**
  * \fn QString Dictionnaire::pgPrec ()
  * \brief Fonction de navigation, page précédente.
  */
 QString Dictionnaire::pgPrec() { return prec; }
+
 /**
  * \fn QString Dictionnaire::pgSuiv ()
  * \brief Fonction de navigation, page suivante.
  */
 QString Dictionnaire::pgSuiv() { return suiv; }
+
 /**
  * \fn int Dictionnaire::noPageDjvu ()
  * \brief Renvoie le numéro de la dernière page de
  *        dictionnaire djvu consultée.
  */
 int Dictionnaire::noPageDjvu() { return pdj; }
+
 /**
  * \fn QString Dictionnaire::indexJv ()
- * \brief Renvoie le nom du fichier du dictionnaire
+ * \brief Renvoie le nom du fichier contenant l'index du dictionnaire
  *        djvu courant.
  */
 QString Dictionnaire::indexJv() { return idxJv; }
+
 /**
  * \fn QStringList Dictionnaire::liens ()
  * \brief Renvoie le code html des liens de la page de
  *        dictionnaire affichée.
  */
 QStringList Dictionnaire::liens() { return _liens; }
+
 /****************
 *    ListeDic   *
 *****************/
 
 /**
  * \fn Dictionnaire * ListeDic::dictionnaire_par_nom (QString nom)
- * \brief Renvoie L'objet Dictionnaire dont le nom
+ * \brief trouve le dictionnaire dans la liste.
+ * \return Un pointeur sur l'objet Dictionnaire dont le nom
  *        correpond à la chaîne nom.
  */
 Dictionnaire *ListeDic::dictionnaire_par_nom(QString nom)

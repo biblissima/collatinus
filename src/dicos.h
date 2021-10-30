@@ -24,15 +24,26 @@
 
 #include <QtCore>
 
-typedef QPair<QString, qint64> pairL;
+//typedef QPair<QString, qint64> pairL;
+
+/**
+ * @brief groupe le lemme de l'article, sa position dans le fichier et sa taille
+ *
+ * Cette structure sera utilisée pour afficher les articles des dictionnaires
+ * en XML/HTML.
+ */
 typedef struct
 {
-    QString article;
-    qint64 pos;
-    qint64 taille;
+    QString article; /*!< le lemme */
+    qint64 pos; /*!< la position de l'article dans le fichier */
+    qint64 taille; /*!< la taille de l'article compressé */
 } llew;
 // typedef QList <pairL> llew;
 
+/**
+ * @brief La classe Dictionnaire contient l'information relative à un dictionnaire
+ *
+ */
 class Dictionnaire : public QObject
 {
     Q_OBJECT
@@ -81,7 +92,7 @@ class Dictionnaire : public QObject
     Dictionnaire(QString cfg, QObject *parent = 0);
     QString entree_pos(qint64 pos, qint64 taille);
     bool estXml();
-    QString indexIu();
+//    QString indexIu(); // N'est pas définie dans dicos.cpp ?
     QString indexJv();
     bool lis_index_djvu();
     QStringList liens();  // renvoie liens
@@ -100,13 +111,40 @@ class Dictionnaire : public QObject
     void vide_ligneLiens();
 };
 
+/**
+ * @brief La classe ListeDic gère l'ensemble des dictionnaires présents
+ *
+ * Cette classe est un peu étrange. En particulier, les dictionnaires
+ * courants y sont stockés, alors qu'a priori ils sont liés à la GUI,
+ * donc à MainWindow. Je me demande si je ne devrais pas réorganiser
+ * tout ça en remettant la QMap liste et les dictionnaires courants
+ * directement dans MainWindow. C'est d'autant plus vrai que
+ * MainWindow::createDicos crée les dicos deux fois, pour peupler
+ * les deux comboBox, et maintient une liste des noms des dicos.
+ *
+ * La seule fonction "utile" dans cette classe serait
+ * ListeDic::dictionnaire_par_nom
+ * mais elle serait avantageusement remplacée par une ligne du genre
+ * if (_listeDicos.contains(nom)) courant = _listeDicos.value(nom);
+ * D'autre part, on peut récupérer l'indice entier de l'élément choisi
+ * dans la comboBox, donc il n'y a rien à chercher...
+ *
+ * @bug Pourquoi liste est-elle une QMultiMap ?
+ * Comme la recherche se fait par nom (donc par la clef) et
+ * qu'on ne retient que la première réponse, plusieurs
+ * occurrences d'une même clef sont inutiles.
+ * Autant utiliser une QMap.
+ */
 class ListeDic : public QObject
 {
     Q_OBJECT
 
    private:
+    /*! QMap associant le nom du dictionnaire avec un pointeur vers l'objet */
     QMultiMap<QString, Dictionnaire *> liste;
+    /*! pointeur vers le dictionnaire courant */
     Dictionnaire *currens = NULL;
+    /*! pointeur vers le dictionnaire de la 2e fenêtre */
     Dictionnaire *currens2 = NULL;
 
    public:

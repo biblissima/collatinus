@@ -27,6 +27,17 @@
 
 #include "maj.h"
 
+/**
+ * @brief Créateur de la classe de mise à jour
+ * @param dic : booléen pour mettre à jour des dictionnaires(true)
+ * ou des lexiques (false)
+ * @param parent : un pointeur vers le parent
+ *
+ * On crée une fenêtre de dialogue qui indique les dictionnaires
+ * ou les lexiques déjà installés et qui permet de choisir et
+ * d'installer les dictionnaires/lexiques téléchargés au préalable.
+ *
+ */
 Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
 {
     _dico = dic;
@@ -124,6 +135,20 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
     connect(cloreButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
+/**
+ * @brief installe le fichier *.col
+ * @param nfcol : le nom du fichier à installer (chemin complet)
+ * @return un booléen qui dit si la création s'est bien passée.
+ *
+ * Cette fonction permet d'installer le (ou les) fichier(s) qu'il faut
+ * là où il faut. Il peut s'agir de dictionnaires, pour lesquels
+ * trois ou quatre fichiers distincts seront placés dans data/dicos,
+ * ou de lexiques qui seront placés dans data.
+ *
+ * Les fichiers *.col ont été comprimés pour voyager plus aisément.
+ * Ils doivent donc être décompressés lors de l'installation.
+ *
+ */
 bool Maj::installe(QString nfcol)
 {
     // ouverture
@@ -223,6 +248,13 @@ bool Maj::installe(QString nfcol)
     return true;
 }
 
+/**
+ * @brief sélectionne un fichier .col préalablement téléchargé.
+ *
+ * On ouvre une fenêtre de dialogue pour ouvrir un (ou plusieurs) fichier(s).
+ * Si la sélection est vide, on abandonne.
+ * Sinon, on installe chacun des fichiers sélectionnés. Voir Maj::installe
+ */
 void Maj::selectionne()
 {
     if (_dico)
@@ -275,12 +307,16 @@ void Maj::selectionne()
 */
 }
 
+/**
+ * @brief définit la police pour la fenêtre
+ * @param font : la police choisie
+ */
 void Maj::setFont(QFont font) { label->setFont(font); }
 
 /**
- * @brief Maj::djvu2col
- * @param nfdjvu
- * @return
+ * @brief crée un fichier .col avec des fichiers .djvu, .idx et .cfg existants
+ * @param nfdjvu : nom du fichier djvu
+ * @return un booléen qui dit si la création s'est bien passée.
  *
  * Fonction provisoire pour créer un fichier .col à partir
  * des fichiers djvu, idx et cfg présents dans /data/dicos.
@@ -345,15 +381,15 @@ bool Maj::djvu2col(QString nfdjvu)
 }
 
 /**
- * @brief Maj::lem2col
- * @param nfLem
- * @return
+ * @brief crée un fichier .col à partir des lexiques existants
+ * @param nfLem : nom du lexique
+ * @return un booléen qui dit si la création s'est bien passée.
  *
  * Fonction provisoire pour créer un fichier .col à partir
- * des fichiers djvu, idx et cfg présents dans /data/dicos.
+ * des fichiers lemmes.* ou lem_ext.* présents dans /data/dicos.
  * C'est une fonction que je suis seul à utiliser, une seule fois.
  * Les utilisateurs utiliseront la fonction "installe" qui fait le contraire,
- * i.e. installer les fichiers djvu, idx et cfg dans /data/dicos
+ * i.e. installer les fichiers lemmes.* ou lem_ext.* dans /data/dicos
  * à partir d'un .col placé ailleurs.
  *
  */

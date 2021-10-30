@@ -48,12 +48,18 @@ QT_END_NAMESPACE
 
 class MainWindow;
 
+/**
+ * @brief La classe EditLatin est dérivée de
+ * QTextEdit afin de pouvoir redéfinir l'action
+ * connectée au clic de souris sur un mot ou après
+ * sélection d'une portion de texte.
+ */
 class EditLatin : public QTextEdit
 {
     Q_OBJECT
 
    private:
-    MainWindow *mainwindow;
+    MainWindow *mainwindow; /*!< un pointeur vers la GUI pour lui envoyer les informations à afficher */
 
    protected:
     void mouseReleaseEvent(QMouseEvent *e);
