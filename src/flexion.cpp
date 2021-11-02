@@ -156,8 +156,8 @@ QString Flexion::tableau(Lemme *l)
 
 /**
  * \fn QString Flexion::tableaux (MapLem *ml)
- * \brief Calcule les tableau de chaque lemme
- *        de la MapLem ml (cf. la classe Lemmat),
+ * \brief Calcule les tableaux de chaque lemme
+ *        de la MapLem ml (cf. lemCore.h),
  *        et renvoie leur concaténation.
  */
 QString Flexion::tableaux(MapLem *ml)
@@ -330,6 +330,16 @@ QString Flexion::tabV()
 {
     // menu
     QString menu;
+    // Ce menu est destiné à faciliter la navigation dans les
+    // tableaux de conjugaison, qui sont un peu long.
+    // Toutefois, il y a un problème si la forme demandée
+    // a plusieurs verbes à son actif, par exemple lego :
+    // les <a name=...> sont tous en double et les liens <a href=...>
+    // mènent toujours au premier verbe...
+    // Il faudrait dédoublonner les noms en ajoutant la cle.
+    // Par exemple "<a href=\"#actif\">"<< _lemCore->voix(0) <<"</a><br/>"
+    // deviendrait "<a href=\"#actif" << _lemme->cle() << "\">"<< _lemCore->voix(0) <<"</a><br/>"
+    // Mais il faudrait faire de même pour tous les name !!!
     QTextStream(&menu)
         << "<a name=\"" << _lemme->cle() << "\"></a><br/>"
         << "<a href=\"#actif\">"<< _lemCore->voix(0) <<"</a><br/>"

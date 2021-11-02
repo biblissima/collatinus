@@ -43,19 +43,19 @@ class Flexion : public QObject
     Q_OBJECT
 
    private:
-    Lemme *_lemme;
-    LemCore *_lemCore;
+    Lemme *_lemme; /*!< pointeur de la classe Lemme pour le lemme dont on construit les tableaux de flexion */
+    LemCore *_lemCore; /*!< pointeur vers le noyau de lemmatisation, LemCore */
     // constantes de table html :
-    QString const static entete;
-    QString const static lina;
-    QString const static linb;
-    QString const static linc;
-    QString const static queue;
+    QString const static entete; /*!< HTML pour le début du tableau */
+    QString const static lina; /*!< HTML pour le début de ligne */
+    QString const static linb; /*!< HTML pour séparer les cellules */
+    QString const static linc; /*!< HTML pour la fin de ligne */
+    QString const static queue; /*!< HTML pour la fin du tableau */
     // constantes d'affichage désinence
-    int const static omis = OMIS;
-    int const static parenth = PARENTH;
+    int const static omis = OMIS; /*!< seuil de rareté pour que la forme n'apparaisse pas */
+    int const static parenth = PARENTH; /*!< seuil de rareté pour que la forme soit entre parenthèses */
     // menu
-    QString menuLem;
+    QString menuLem; /*!< liste des lemmes présents dans la page  */
     // construction des tableaux par pos
     QString tabNom();
     QString tabPron();
@@ -67,17 +67,17 @@ class Flexion : public QObject
     Flexion(QObject *parent = 0);
 //    QStringList const static cas;
     QString           static entreParenth(QString e);
-    QStringList const static genres;
-    QStringList const static nombres;
-    QStringList const static temps;
+//    QStringList const static genres;
+//    QStringList const static nombres;
+//    QStringList const static temps;
     QString                  forme(int m, bool label = false);
     QString           static gras(QString g);
-    QStringList              menu();
+//    QStringList              menu();
     void                     setLemme(Lemme *l);
-    void                     setMenu(QStringList m);
+//    void                     setMenu(QStringList m);
     QString                  tableau(Lemme *l);
     QString                  tableaux(MapLem *ml);
-    QString                  tableaux(MapLem ml);
+//    QString                  tableaux(MapLem ml);
 };
 
 #endif
