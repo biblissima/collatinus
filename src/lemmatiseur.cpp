@@ -26,6 +26,58 @@
  * \brief module de lemmatisation des formes latines
  */
 
+/**
+ * @brief Constructeur de la classe Lemmatiseur
+ * @param parent :
+ * \if French
+ * Un pointeur vers l'objet qui crée cette classe.
+ * \else
+ * The owner of this class.
+ * \endif
+ * @param l :
+ * \if French
+ * Un pointeur vers un moteur de lemmatisation (LemCore).
+ * \else
+ * A pointeur to the lemmatization core (LemCore).
+ * \endif
+ * @param cible :
+ * \if French
+ * La (ou les) langue(s) cible(s) pour donner les traductions.
+ * \else
+ * The language for the translations.
+ * \endif
+ * @param resDir :
+ * \if French
+ * Le chemin complet du dossier contenant les fichiers de donnée.
+ * \else
+ * The absolute path for the resources directory.
+ * \endif
+ *
+ * \if French
+ * La classe Lemmatiseur propose les outils nécessaires pour lemmatiser un texte.
+ * Elle utilise le moteur de lemmatisation de Collatinus (LemCore)
+ * qui lui est passé en paramètre. Si ce moteur ne lui est pas donné,
+ * elle le crée ici.
+ * Si l'application envisagée utilise plusieurs modules
+ * intermédiaires (Tagueur, Scandeur...),
+ * il vaut mieux créer un seul moteur commun.
+ *
+ * Le paramètre optionnel resDir donne
+ * le chemin complet du dossier contenant les fichiers de donnée.
+ * Par défaut, il s'agit du fichier "data" placé à côté de l'exécutable.
+ * \else
+ * The Lemmatiseur class is meant to lemmatize texts.
+ * As part of Collatinus, it uses its lemmatization core (LemCore).
+ * If this core has been created elsewhere, a pointer is given to this creator.
+ * If the pointer l is empty, then the lemmatization core is created here.
+ * When the developped application uses different modules as this one
+ * (e.g. Scandeur, Tagueur), it is recommended to create a shared core.
+ *
+ * The optional parameter resDir gives the absolute path to the
+ * resources directory. If empty, the resources are assumed to be
+ * in a folder "data" placed in the same dir as the exe.
+ * \endif
+ */
 Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString resDir) : QObject(parent)
 {
     if (l==0)
@@ -69,7 +121,7 @@ QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
 
 /**
  * \fn QStringList Lemmatiseur::frequences (QString txt)
- * \brief Lemmatise txt et renvoie le résultat accompagné
+ * \brief Lemmatise le texte txt et renvoie le résultat accompagné
  *        d'informations sur la fréquence d'emploi de
  *        chaque lemme.
  */
@@ -216,37 +268,33 @@ QStringList Lemmatiseur::frequences(QString txt)
     return sortie;
 }
 
-
 /**
- * \fn QString Lemmatiseur::lemmatiseT (QString &t,
- *  						   bool alpha,
- *  						   bool cumVocibus,
- *  						   bool cumMorpho,
- *  						   bool nreconnu)
- * \brief Renvoie sous forme de chaîne la lemmatisation
+ * @brief Lemmatise un texte
+ * @param t : une chaine avec le texte (passée par adresse)
+ * @param alpha : option pour l'ordre alphabétique
+ * @param cumVocibus : option pour les formes du texte
+ * @param cumMorpho : option pour indiquer l'analyse
+ * @param nreconnu : option pour regrouper les formes non reconnues
+ * @return Renvoie sous forme de chaîne la lemmatisation
  *        et la morphologie de chaque mot du texte t.
+ *
  *        Les paramètres permettent de classer la sortie
  *        par ordre alphabétique ; de reproduire la
  *        forme du texte au début de chaque lemmatisation ;
  *        de donner les morphologies de chaque forme ; ou
  *        de rejeter les échecs en fin de liste. D'autres
- *        paramètres, comme le format de sortie txt ou html,
+ *        paramètres, comme le format de sortie (txt ou html)
+ *        et la pertinence de la majuscule,
  *        sont donnés par des variables de classe.
- *	      Les paramètres et options true outrepassent les false,
- *        _majPert et _html sont dans les options de la classe.
  *
  *        Par effet de bord, la fonction modifie le texte
  *        t, passé par adresse dans le paramètre &t, en
  *        tenant compte de la liste des mots connus définie
  *        par l'utilisateur via l'option
  *        Fichier/Lire une liste de mots connus.
+ * Voir Lemmatiseur::verbaCognita
  *
  */
-QString Lemmatiseur::lemmatiseT(QString &t)
-{
-    return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
-}
-
 QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
@@ -620,14 +668,26 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
 }
 
 /**
- * \fn QString Lemmatiseur::lemmatiseFichier (QString f,
- *								  bool alpha,
- *								  bool cumVocibus,
- *								  bool cumMorpho,
- *								  bool nreconnu)
+ * \brief lemmatise un texte en prenant les options de la classe
+ * \return La lemmatisation
+ *        et la morphologie de chaque mot du texte t, sous forme de chaîne de caractères.
+ *
+ * Les options sont ici prises dans les paramètres de la classe.
+ *
+ * Voir aussi Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
+ *                           bool cumMorpho, bool nreconnu)
+ */
+QString Lemmatiseur::lemmatiseT(QString &t)
+{
+    return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
+}
+
+/**
  * \brief Applique lemmatiseT sur le contenu du fichier
  *        f et renvoie le résultat. Les paramètres sont
  *        les mêmes que ceux de lemmatiseT.
+ *
+ * \obsolete Cette fonction ne semble pas être utilisée
  */
 QString Lemmatiseur::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
                                  bool cumMorpho, bool nreconnu)
@@ -642,6 +702,45 @@ QString Lemmatiseur::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
     return lemmatiseT(texte, alpha, cumVocibus, cumMorpho, nreconnu);
 }
 
+/**
+ * @brief Lire une liste de mots connus
+ * @param fichier : nom du fichier avec la liste des mots connus
+ * @param vb : booléen pour activer/désactiver le TextiColor
+ *
+ * Activation/désactivation de la fonction TextiColor.
+ * Reçoit de MainWindow::verbaCognita le nom du fichier
+ * contenant une liste de mots connus.
+ * Les mots de cette liste sont lemmatisés et **toutes les formes**
+ * des lemmes correspondants seront supposées connues.
+ * Voir aussi Lemmatiseur::verbaOut.
+ *
+ * Le fichier de mots connus peut contenir les couleurs utilisées.
+ * Les trois couleurs seront sur trois lignes successives
+ * sous la forme d'un dièse suivi de six chiffres hexadécimaux #RrVvBb.
+ * \attention Le dièse doit être le premier caractère de la ligne
+ * qui comptera 7 caractères exactement.
+ * \attention #FFFFFF est le _blanc_ qui ne se verra pas.
+ * \attention #FF0000 est un _rouge vif_ pas nécessairement des plus lisibles.
+ *
+ * Par défaut, elles sont :
+ *      * _vert_ pour les mots que l'élève est censé connaître
+ *      * _noir_ pour les mots que Collatinus reconnaît
+ *      * _rouge_ pour les mots inconnus
+ *
+ * Ce qui correspond à :
+ * \code
+ * #00A000
+ * #000000
+ * #A00000
+ * \endcode
+
+ * Si le nom est vide (aucun fichier sélectionné),
+ * Collatinus n'utilisera que les deux couleurs standards :
+ *     * _noir_ pour les mots que Collatinus reconnaît.
+ *     * _rouge_ pour les mots inconnus
+ *
+ * Sans fichier, le TextiColor peut servir à repérer les fautes d'OCR.
+ */
 void Lemmatiseur::verbaCognita(QString fichier,bool vb)
 {
     _hLem.clear();
@@ -688,6 +787,15 @@ void Lemmatiseur::verbaCognita(QString fichier,bool vb)
     }
 }
 
+/**
+ * @brief Sauvegarder le taux d'utilisation des mots connus
+ * @param fichier : nom du fichier à créer
+ *
+ * Cette fonction s'utilise en relation avec Lemmatiseur::verbaCognita.
+ * Quand une liste de mots connus a été chargée, on peut connaître
+ * le nombre de fois que chacun de ces lemmes ont été rencontrés
+ * dans le ou les textes traités.
+ */
 void Lemmatiseur::verbaOut(QString fichier)
 {
     if (_hLem.isEmpty()) return; // Rien à sauver !
@@ -702,21 +810,21 @@ void Lemmatiseur::verbaOut(QString fichier)
 
 /**
  * \fn bool Lemmatiseur::optAlpha()
- * \brief Accesseur de l'option alpha, qui
+ * \brief Accesseur de l'option Lemmatiseur::_alpha, qui
  *        permet de fournir par défaut des résultats dans
  *        l'ordre alphabétique.
  */
 bool Lemmatiseur::optAlpha() { return _alpha; }
 /**
  * \fn bool Lemmatiseur::optHtml()
- * \brief Accesseur de l'option html, qui
+ * \brief Accesseur de l'option Lemmatiseur::_html, qui
  *        permet de renvoyer les résultats au format html.
  */
 bool Lemmatiseur::optHtml() { return _html; }
 
 /**
  * \fn bool Lemmatiseur::optFormeT()
- * \brief Accesseur de l'option formeT,
+ * \brief Accesseur de l'option Lemmatiseur::_formeT,
  *        qui donne en tête de lemmatisation
  *        la forme qui a été analysée.
  */
@@ -724,14 +832,14 @@ bool Lemmatiseur::optFormeT() { return _formeT; }
 
 /**
  * \fn bool Lemmatiseur::optMajPert()
- * \brief Accesseur de l'option majPert,
+ * \brief Accesseur de l'option Lemmatiseur::_majPert,
  *        qui permet de tenir compte des majuscules
  *        dans la lemmatisation.
  */
 bool Lemmatiseur::optMajPert() { return _majPert; }
 /**
  * \fn bool Lemmatiseur::optMorpho()
- * \brief Accesseur de l'option morpho,
+ * \brief Accesseur de l'option Lemmatiseur::_morpho,
  *        qui donne l'analyse morphologique
  *        des formes lemmatisées.
  */
@@ -740,6 +848,10 @@ bool Lemmatiseur::optMorpho()
     return _morpho;
 }
 
+/**
+ * @brief Accesseur de l'option Lemmatiseur::_nonRec
+ * pour regrouper les formes non reconnues à la fin de la liste
+ */
 bool Lemmatiseur::optNonRec()
 {
     return _nonRec;
@@ -762,12 +874,12 @@ QString Lemmat::transfMed(QString f, bool rad)
     return f;
 }
 */
-/**
- * \fn void Lemmatiseur::setAlpha (bool a)
- * \brief Modificateur de l'option alpha.
- */
 // modificateurs d'options
 
+/**
+ * \fn void Lemmatiseur::setAlpha (bool a)
+ * \brief Modificateur de l'option Lemmatiseur::_alpha.
+ */
 void Lemmatiseur::setAlpha(bool a) { _alpha = a; }
 /**
  * \fn void Lemmatiseur::setCible(QString c)
@@ -780,24 +892,28 @@ void Lemmatiseur::setCible(QString c)
 }
 /**
  * \fn void Lemmatiseur::setHtml (bool h)
- * \brief Modificateur de l'option html.
+ * \brief Modificateur de l'option Lemmatiseur::_html.
  */
 void Lemmatiseur::setHtml(bool h) { _html = h; }
 /**
  * \fn void Lemmatiseur::setFormeT (bool f)
- * \brief Modificateur de l'option formeT.
+ * \brief Modificateur de l'option Lemmatiseur::_formeT.
  */
 void Lemmatiseur::setFormeT(bool f) { _formeT = f; }
 /**
  * \fn void Lemmatiseur::setMajPert (bool mp)
- * \brief Modificateur de l'option majpert.
+ * \brief Modificateur de l'option Lemmatiseur::_majPert.
  */
 void Lemmatiseur::setMajPert(bool mp) { _majPert = mp; }
 /**
  * \fn void Lemmatiseur::setMorpho (bool m)
- * \brief Modificateur de l'option morpho.
+ * \brief Modificateur de l'option Lemmatiseur::_morpho.
  */
 void Lemmatiseur::setMorpho(bool m) { _morpho = m; }
+/**
+ * @brief Modificateur de l'option Lemmatiseur::_nonRec
+ * @param n : booléen
+ */
 void Lemmatiseur::setNonRec(bool n) { _nonRec = n; }
 
 /**

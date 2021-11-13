@@ -80,21 +80,21 @@ class MainWindow : public QMainWindow
    public:
     MainWindow();
     // docks
-    QDockWidget *dockLem;
-    QDockWidget *dockDic;
-    QDockWidget *dockScand;
-    QDockWidget *dockFlex;
-    QDockWidget *dockTag;
+    QDockWidget *dockLem; /*!< pour l'onglet de lemmatisation */
+    QDockWidget *dockDic; /*!< pour l'onglet de consultation des dictionnaires */
+    QDockWidget *dockScand; /*!< pour l'onglet de scansion */
+    QDockWidget *dockFlex; /*!< pour l'onglet de flexion */
+    QDockWidget *dockTag; /*!< pour l'onglet du tagueur */
     // et second dictionnaire
-    QWidget *wDic;
+    QWidget *wDic; /*!< fenêtre pour le dictionnaire supplémentaire */
     // cœur
-    LemCore *_lemCore;
-    Flexion *flechisseur;
+    LemCore *_lemCore; /*!< pointeur vers le noyau de lemmatisation */
+    Flexion *_flechisseur; /*!< pointeur vers le module de flexion */
     // modules divers
-    Lasla *lasla;
-    Tagueur *tagueur;
-    Scandeur *scandeur;
-    Lemmatiseur *_lemmatiseur;
+    Lasla *lasla; /*!< pointeur vers le module LASLA */
+    Tagueur *_tagueur; /*!< pointeur vers le module avec le tagueur */
+    Scandeur *_scandeur; /*!< pointeur vers le module de scansion */
+    Lemmatiseur *_lemmatiseur; /*!< pointeur vers le module de lemmatisation */
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;

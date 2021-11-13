@@ -57,7 +57,7 @@ du lemme correspondant à une variante orthographique
 (médiévale, par exemple) permettrait également de
 reconnaître toutes ses formes fléchies.
 
-A partir du lemme et des désinences qui lui sont
+À partir du lemme et des désinences qui lui sont
 associées, Collatinus peut aussi donner des tableaux de
 flexion qui peuvent être utiles lors de l'apprentissage
 du latin.

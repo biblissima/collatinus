@@ -22,7 +22,7 @@
 #include "lasla.h"
 
 /**
- * @brief Lasla::Lasla
+ * @brief Créateur de la classe Lasla.
  * @param parent : pointeur vers le parent.
  * @param l : pointeur vers un lemmatiseur.
  * @param resDir : chemin complet du répertoire de données.
@@ -66,8 +66,15 @@ Lasla::Lasla(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
     lisCat();
 }
 
-// Lecture des correspondances entre les modèles de Collatinus
-// et les catégories et sous-catégories du LASLA.
+/**
+ * @brief Lecture des correspondances Collatinus-LASLA
+ *
+ * Lecture des correspondances entre les modèles de Collatinus
+ * et les catégories et sous-catégories du LASLA.
+ * Les correspondances sont listées dans le fichier CatLASLA.txt
+ * qu'il faut lire et sont rangées dans la QMap Lasla::_catLasla.
+ *
+ */
 void Lasla::lisCat()
 {
     QStringList lignes = _lemCore->lignesFichier(_resDir + "CatLASLA.txt");
@@ -78,7 +85,7 @@ void Lasla::lisCat()
 }
 
 /**
- * @brief Lasla::k9
+ * @brief Lemmatisation avec le code LASLA
  * @param m : une forme
  * @return le résultat de la lemmatisation avec le code en 9.
  *

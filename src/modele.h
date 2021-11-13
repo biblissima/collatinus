@@ -43,12 +43,12 @@ class Desinence : public QObject
 {
     Q_OBJECT
    private:
-    QString _gr;
-    QString _grq;
-    int     _morpho;
-    Modele *_modele;
-    int     _numR;
-    int     _rarete;
+    QString _gr; /*!< voir Desinence::gr */
+    QString _grq; /*!< voir Desinence::grq */
+    int     _morpho; /*!< voir Desinence::morphoNum */
+    Modele *_modele; /*!< voir Desinence::modele */
+    int     _numR; /*!< voir Desinence::numRad */
+    int     _rarete; /*!< voir Desinence::rarete */
 
    public:
     Desinence(QString d, int morph, int nr, Modele *parent = 0);
@@ -69,11 +69,11 @@ class Modele : public QObject
     Q_OBJECT
    private:
     QList<int> _absents;
-    QStringList static const cles;
+    QStringList static const cles; /*!<  ensemble des clefs utilisées dans la descriptions des modèles */
     QMultiMap<int, Desinence *> _desinences;
     QMap<int, QString> _genRadicaux;
     QString _gr;
-    QString _grq;
+//    QString _grq;
     LemCore *_lemCore;
     Modele *_pere;
     QChar   _pos;

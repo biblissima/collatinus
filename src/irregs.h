@@ -45,12 +45,12 @@ class Irreg : public QObject
     Q_OBJECT
 
    private:
-    bool _exclusif;
-    QString _gr;
-    QString _grq;
-    LemCore* _lemCore;
-    Lemme* _lemme;
-    QList<int> _morphos;
+    bool _exclusif; /*!<  booléen qui signale que cette forme remplace la forme régulière */
+    QString _gr; /*!< forme irrégulière sans quantité */
+    QString _grq; /*!< forme irrégulière avec ses quantités */
+    LemCore* _lemCore; /*!< pointeur vers le noyau de lemmatisation */
+    Lemme* _lemme; /*!< pointeur vers le lemme */
+    QList<int> _morphos; /*!< liste des morphos (entiers) pour cette forme et ce lemme*/
 
    public:
     Irreg(QString l, QObject* parent = 0);

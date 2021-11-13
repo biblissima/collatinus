@@ -45,11 +45,12 @@ public:
     // Code en 9 pour le LASLA
 
 private:
+    /*! Un pointeur vers le noyau de lemmatisation qui peut être partagé. */
     LemCore * _lemCore;
+    /*! Le nom du répertoire contenant les données. */
     QString _resDir;
     QMap<QString,QString> _catLasla;
-    // Les correspondances entre les modèles de Collatinus
-    // et les catégories du LASLA
+    /*!< QMap avec les correspondances entre les modèles de Collatinus et les catégories du LASLA */
     void lisCat();
     // Pour la lecture du fichier.
 };

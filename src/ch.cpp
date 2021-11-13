@@ -213,6 +213,9 @@ void Ch::deQuant(QString *c)
  * à la lemmatisation.
  * Cette fonction utilise la décomposition normalisée des caractères Unicode
  * et supprime les signes combinants qui ont été séparés du caractère de base.
+ *
+ * @bug Cette fonction n'est pas utilisée.
+ * Une fonction très similaire existe ailleurs : MainWindow::oteDiacritiques
  */
 QString Ch::deAccent(QString c)
 {
@@ -518,9 +521,6 @@ QString Ch::accentue(QString l)
  *
  * @note L'enclitique attire l'accent.
  * Le mot _rosaque_ sera paroxyton, _rosáque_ même au nominatif (où le _a_ est bref).
- *
- * @bug Il semblerait qu'il y ait un bug lorsque deux "suffixes" ont été ajoutés.
- * Un exemple serait modoquest. À corriger !
  *
  */
 QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)

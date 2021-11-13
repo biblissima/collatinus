@@ -37,10 +37,17 @@
 
 /**
  * \fn Irreg::Irreg (QString l, QObject *parent)
- * \brief Constructeur de la classe Irreg. l est la
- *        clé du lemme dans la map des lemmes du
- *        lemmatiseur (classe Lemmat) représenté par
+ * \brief Constructeur de la classe Irreg.
+ * \param l : la ligne qui décrit la forme irrégulière
+ * \param parent : un pointeur vers le LemCore qui gère ces irréguliers
+ *
+ * Une ligne dans le fichier des irréguliers est formée de trois champs
+ * séparés par un ":".
+ * Vient d'abord la forme iirégulière avec ses quantités.
+ * Puis, la clé du lemme dans la map des lemmes du
+ * noyau de lemmatisation (classe LemCore) représenté par
  *        le paramètre *parent.
+ * Et enfin, la (ou les) morpho associée(s).
  */
 Irreg::Irreg(QString l, QObject* parent)
 {

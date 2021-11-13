@@ -155,7 +155,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
         int accent = mainwindow->lireOptionsAccent();
         st.replace(QChar::ParagraphSeparator,"\n");
         mainwindow->textEditScand->append(
-            mainwindow->scandeur->scandeTxt(st, accent, false, ! mainwindow->majPertAct->isChecked()));
+            mainwindow->_scandeur->scandeTxt(st, accent, false, ! mainwindow->majPertAct->isChecked()));
     }
     if (unSeulMot)
     {
@@ -166,7 +166,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             {
                 mainwindow->textBrowserFlex->clear();
                 mainwindow->textBrowserFlex->append(
-                    mainwindow->flechisseur->tableaux(&ml));
+                    mainwindow->_flechisseur->tableaux(&ml));
                 mainwindow->textBrowserFlex->moveCursor(QTextCursor::Start);
             }
         }
@@ -206,10 +206,10 @@ MainWindow::MainWindow()
 
     _lemCore = new LemCore(this);
     _lemmatiseur = new Lemmatiseur(this,_lemCore);
-    flechisseur = new Flexion(_lemCore);
+    _flechisseur = new Flexion(_lemCore);
     lasla = new Lasla(this,_lemCore,"");
-    tagueur = new Tagueur(this,_lemCore);
-    scandeur = new Scandeur(this,_lemCore);
+    _tagueur = new Tagueur(this,_lemCore);
+    _scandeur = new Scandeur(this,_lemCore);
 
     setLangue();
 
@@ -236,10 +236,14 @@ MainWindow::MainWindow()
 
 /**
  * \fn void MainWindow::afficheLemsDic (bool litt, bool prim)
- * \brief Surcharge. Récupère le contenu de la ligne de saisie du
- *        dock des dictionnaires si prim est à true,
+ * \brief affiche la page du dictionnaire
+ * \param litt : booléen pour lemmatiser ou pas
+ * \param prim : booléen pour déterminer quel fenêtre utiliser
+ *
+ * Surcharge. Récupère le contenu de la ligne de saisie du
+ *        dock des dictionnaires si \a prim est à true,
  *        sinon la ligne de saisie de la fenêtre
- *        supplémentaire. Ce contenu est lemmatisé si litt
+ *        supplémentaire. Ce contenu est lemmatisé si \a litt
  *        est à false, puis la ou les pages/entrées
  *        correspondantes sont affichées, soit dans le
  *        dock, soit dans la fenêtre supplémentaire.
@@ -496,8 +500,12 @@ void MainWindow::changeGlossariumW(QString nomDic)
 
 /**
  * \fn void MainWindow::changePageDjvu (int p, bool prim)
- * \brief Change la page d'un dictionnaire au format
- *        djvu, pour le dock dictionnaire si prim est à
+ * \brief Change la page d'un dictionnaire au format djvu
+ * \param p : numéro de la page à afficher
+ * \param prim : booléen pour déterminer la fenêtre de dictionnaire à modifier
+ *
+ * Affiche la page demandée d'un dictionnaire en
+ *        djvu, pour le dock dictionnaire si \a prim est à
  *        true, sinon pour le dictionnaire
  *        supplémentaire.
  */
@@ -526,8 +534,9 @@ void MainWindow::changePageDjvu(int p, bool prim)
 
 /**
  * \fn void MainWindow::charger (QString f)
- * \brief Charge le fichier nommé f dans l'éditeur
+ * \brief Charge le fichier dans l'éditeur
  *        de texte latin.
+ * \param f : le nom du fichier à charger.
  */
 void MainWindow::charger(QString f)
 {
@@ -650,8 +659,8 @@ void MainWindow::clicPostW()
 
 /**
  * \fn void MainWindow::closeEvent(QCloseEvent *event)
- * \brief Enregistre certains paramètres le la session
- *        avant fermeture de l'application.
+ * \brief Enregistre certains paramètres de la session
+ *        avant la fermeture de l'application.
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
@@ -705,6 +714,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
+/**
+ * @brief copie dans le presse-papier les éléments sélectionnés.
+ *
+ * Ce @c slot est appelé par le bouton de validation
+ * de la boîte de dialogue dédiée à la copie.
+ * Voir MainWindow::dialogueCopie.
+ */
 void MainWindow::copie()
 {
     QClipboard *clipboard = QApplication::clipboard();
@@ -1010,6 +1026,8 @@ void MainWindow::createConnections()
  * \fn void MainWindow::createDicos(bool prim)
  * \brief Chargement des index et des fichiers de
  *        configuration des dictionnaires.
+ *
+ * @bug À revoir, car on charge deux fois les dicos ?
  */
 void MainWindow::createDicos(bool prim)
 {
@@ -1153,10 +1171,14 @@ void MainWindow::createToolBars()
 
 /**
  * \fn void MainWindow::createStatusBar()
- * \brief Initialisation de la barre d'état. À compléter.
+ * \brief Initialisation de la barre d'état.
+ *
+ * À compléter. Pour l'instant, elle est vide.
+ * Mais elle est appelée à l'initialisation.
  *
  */
 void MainWindow::createStatusBar() {}
+
 /**
  * \fn void MainWindow::createDockWindows()
  * \brief Initialisation des différents docks.
@@ -1420,7 +1442,7 @@ void MainWindow::createDicWindow()
 
 /**
  * \fn void MainWindow::dialogueCopie()
- * \brief Ouvre une boite de dialogue qui permet de
+ * \brief Ouvre une boîte de dialogue qui permet de
  *        sélectionner les parties à copier, et
  *        les place dans le presse-papier du système
  */
@@ -1485,7 +1507,7 @@ bool MainWindow::dockVisible(QDockWidget *d)
 
 /**
  * \fn void MainWindow::effaceRes()
- * \brief Efface le contenu des docs visibles.
+ * \brief Efface le contenu des docks visibles.
  */
 void MainWindow::effaceRes()
 {
@@ -1528,14 +1550,15 @@ void MainWindow::exportPdf()
  * \brief Fonction qui permet d'exporter au format CSV
  *
  * En fonction de l'onglet affiché, le comportement sera différent.
- * Dans le Lemmatiseur, cette fonction exporte l'ensemble des résultats affichés.
- * Dans le Scandeur ou le Tagueur, cette fonction traite le texte présent dans EditLatin
+ * * Dans le Lemmatiseur, cette fonction exporte l'ensemble des résultats affichés.
+ * * Dans le Scandeur ou le Tagueur, cette fonction traite le texte présent dans EditLatin
  * et procède à l'export du résultat.
  *
- * La raison de ces comportements différenciés est que le Tagueur ou le Scandeur
+ * @note La raison de ces comportements différenciés est que le Tagueur ou le Scandeur
  * concerne, en général, l'ensemble du texte. Dans le Lemmatiseur, l'utilisateur
  * peut faire le choix des mots à analyser et n'exporter que les résultats obtenus.
  *
+ * Voir aussi MainWindow::txt2csv
  */
 void MainWindow::exportCsv()
 {
@@ -1621,7 +1644,7 @@ void MainWindow::exportCsv()
             f.open(QFile::WriteOnly | QFile::Text);
             QTextStream flux(&f);
             flux.setCodec("UTF-8"); // Pour windôze !
-            flux << tagueur->tagTexte(editLatin->toPlainText(),
+            flux << _tagueur->tagTexte(editLatin->toPlainText(),
                         -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
             f.close();
         }
@@ -1631,7 +1654,7 @@ void MainWindow::exportCsv()
             f.open(QFile::WriteOnly | QFile::Text);
             QTextStream flux(&f);
             flux.setCodec("UTF-8"); // Pour windôze !
-            flux << scandeur->txt2csv(editLatin->toPlainText(), lireOptionsAccent(true),
+            flux << _scandeur->txt2csv(editLatin->toPlainText(), lireOptionsAccent(true),
                                       !majPertAct->isChecked());
             f.close();
         }
@@ -1649,12 +1672,21 @@ void MainWindow::exportCsv()
  *
  * \brief Fonction relais pour transformer un fichier TXT en CSV
  *
+ * Cette fonction ouvre une boîte de dialogue pour ouvrir un fichier *.txt.
  * En fonction de l'onglet ouvert, cette routine va lemmatiser, scander ou taguer
  * le texte du fichier d'entrée. Ce fichier doit être en ".txt".
  * Le fichier en sortie est nommé automatiquement d'après le nom du fichier d'entrée.
  * "_lem.csv", "_tag.csv" ou "_scan.csv" remplaceront l'extension ".txt" d'origine.
  *
+ * Si l'onglet de lemmatisation est ouvert et qu'une liste de mots connus
+ * a été chargée (voir MainWindow::verbaCognita),
+ * le texte colorisé sera sauvé au format HTML.
+ * L'extension ".txt" sera alors remplacée par "_lem.html".
+ * L'utilisateur pourra l'ouvrir avec Libre Office, par exemple,
+ * et l'exporter ensuite dans le format de son choix.
  *
+ * Appelle selon le cas, MainWindow::lem2csv,
+ * Scandeur::txt2csv ou Tagueur::tagTexte avec les bonnes options.
  */
 void MainWindow::txt2csv()
 {
@@ -1708,7 +1740,7 @@ void MainWindow::txt2csv()
         f.open(QFile::WriteOnly | QFile::Text);
         QTextStream flux(&f);
         flux.setCodec("UTF-8"); // Pour windôze !
-        flux << tagueur->tagTexte(txt,
+        flux << _tagueur->tagTexte(txt,
                     -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
         f.close();
     }
@@ -1719,7 +1751,7 @@ void MainWindow::txt2csv()
         f.open(QFile::WriteOnly | QFile::Text);
         QTextStream flux(&f);
         flux.setCodec("UTF-8"); // Pour windôze !
-        flux << scandeur->txt2csv(txt, lireOptionsAccent(true),
+        flux << _scandeur->txt2csv(txt, lireOptionsAccent(true),
                                   !majPertAct->isChecked());
         f.close();
     }
@@ -1731,7 +1763,20 @@ void MainWindow::txt2csv()
            "<b>Then</b> open it in Excel.\n"));
 }
 
-
+/**
+ * @brief convertit en CSV les résultats de la lemmatisation
+ * @param texte : le contenu de la fenêtre de lemmatisation en mode texte
+ * @return une chaine avec le futur contenu du fichier CSV.
+ *
+ * Cette fonction met au format csv (avec la tabulation comme séparateur)
+ * son argument \a texte qui est censé représenter le contenu
+ * de la fenêtre de lemmatisation en mode texte.
+ * Elle est appelée par MainWindow::txt2csv et par MainWindow::exportCsv.
+ * Dans le premier cas, le texte du fichier est lemmatisé virtuellement.
+ * Dans le second cas, c'est le contenu réel de la fenêtre de lemmatisation
+ * qui est passé comme argument. Si l'affichage était en HTML,
+ * il est converti en mode texte par l'appelant.
+ */
 QString MainWindow::lem2csv(QString texte)
 {
     QString res;
@@ -1850,9 +1895,9 @@ void MainWindow::flechisLigne()
     if (!ml.empty())
     {
         textBrowserFlex->clear();
-        textBrowserFlex->append(flechisseur->tableaux(&ml));
+        textBrowserFlex->append(_flechisseur->tableaux(&ml));
         // foreach (Lemme *l, ml.keys())
-        //	textBrowserFlex->append (flechisseur->tableau(l));
+        //	textBrowserFlex->append (_flechisseur->tableau(l));
     }
 }
 
@@ -1862,9 +1907,10 @@ void MainWindow::flechisLigne()
  *        est armée.
  */
 bool MainWindow::html() { return htmlAct->isChecked(); }
+
 /**
  * \fn void MainWindow::lancer()
- * \brief Lance la lemmatisation et la scansion si
+ * \brief Lance la lemmatisation, la scansion ou le tagueur si
  *        les docks correspondants sont visibles.
  */
 void MainWindow::lancer()
@@ -1876,7 +1922,7 @@ void MainWindow::lancer()
 
 /**
  * \fn void MainWindow::lemmatiseLigne()
- * \brief Lance la lemmatisation des formes *
+ * \brief Lance la lemmatisation des formes
  *        présentes dans la ligne de saisie du dock
  *        lemmatisation.
  */
@@ -1921,7 +1967,6 @@ void MainWindow::lemmatiseTxt()
  * \brief Lance le dialogue de mise à jour des
  *        lexiques et dictionnaires.
  */
-
 void MainWindow::majDic()
 {
     Maj *majDial = new Maj(true);
@@ -1936,7 +1981,6 @@ void MainWindow::majDic()
  * \brief Lance le dialogue de mise à jour des
  *        lexiques et dictionnaires.
  */
-
 void MainWindow::majLex()
 {
     Maj *majDial = new Maj(false);
@@ -1961,7 +2005,7 @@ void MainWindow::montreWDic(bool visible)
 /**
  * \fn void MainWindow::nouveau()
  * \brief Après confirmation efface le texte et les résultats,
- *        permettant à l'utilisateur de recommencer /ab initio/
+ *        permettant à l'utilisateur de recommencer _ab initio_
  */
 void MainWindow::nouveau()
 {
@@ -1973,7 +2017,12 @@ void MainWindow::nouveau()
 
 /**
  * \fn void MainWindow::ouvrir()
- * \brief Affiche le dialogue d'ouverture de fichier.
+ * \brief ouvre un fichier dans la fenêtre supérieure EditLatin
+ *
+ * Ouvre une boîte de dialogue d'ouverture de fichier.
+ * Si un fichier est choisi, il est lu et affiché
+ * dans la partie supérieure de la fenêtre EditLatin.
+ * Voir MainWindow::charger.
  */
 void MainWindow::ouvrir()
 {
@@ -1987,6 +2036,14 @@ void MainWindow::ouvrir()
 //    nfAd.prepend("coll-");
 }
 
+/**
+ * @brief change la police dans toutes les fenêtres
+ *
+ * Cette routine ouvre la boîte de dialogue standard pour choisir
+ * la police de caractères et sa taille.
+ * Elle applique le choix fait (sauf si on a annulé l'opération)
+ * à toutes les fenêtres d'édition.
+ */
 void MainWindow::police()
 {
     bool ok;
@@ -2027,9 +2084,13 @@ bool MainWindow::precaution()
 
 /**
  * \fn void MainWindow::readSettings()
- * \brief Appelée à l'initialisation de l'application,
+ * \brief lecture des paramètres de la dernière session
+ *
+ * Cette fonction est appelée à l'initialisation de l'application,
  *        pour retrouver les paramètres importants de
  *        la dernière session.
+ *
+ * Voir aussi MainWindow::closeEvent
  */
 void MainWindow::readSettings()
 {
@@ -2185,8 +2246,8 @@ void MainWindow::rechercheBis()
 }
 
 /**
- * @brief MainWindow::editeurRes
- * @return QTextEdit* qui est dans le dock actif
+ * @brief cherche la fenêtre d'édition active
+ * @return le pointeur QTextEdit* qui est dans le dock actif
  *
  * Pour pouvoir mener une recherche dans n'importe quelle fenêtre,
  * je cherche laquelle est la première visible.
@@ -2236,7 +2297,7 @@ void MainWindow::scandeLigne()
 {
     int accent = lireOptionsAccent();
     textEditScand->setHtml(
-        scandeur->scandeTxt(lineEditScand->text(), accent, false, !majPertAct->isChecked()));
+        _scandeur->scandeTxt(lineEditScand->text(), accent, false, !majPertAct->isChecked()));
 }
 
 /**
@@ -2248,7 +2309,7 @@ void MainWindow::scandeTxt()
 {
     int accent = lireOptionsAccent();
     textEditScand->setHtml(
-        scandeur->scandeTxt(editLatin->toPlainText(), accent, false, !majPertAct->isChecked()));
+        _scandeur->scandeTxt(editLatin->toPlainText(), accent, false, !majPertAct->isChecked()));
 }
 
 /**
@@ -2310,9 +2371,17 @@ void MainWindow::setLangue()
 }
 
 /**
- * \fn void MainWindow::stat()
  * \brief Affiche les statistiques de lemmatisation et
  *        de scansion si le dock correspondant est visible.
+ *
+ * Dans l'onglet de lemmatisation, les statistiques se limitent
+ * à essayer de compter les occurrences de chaque lemme.
+ * Voir Lemmatiseur::frequences
+ *
+ * Dans l'onglet de scansion, on va chercher s'il y a un schéma métrique récurrent
+ * et également si on voit des hexamètres ou des pentamètres (vers dactyliques)
+ * cachés dans la prose. Pour l'instant, cette fonction procède toujours à la scansion
+ * même si l'accentuation est demandée. Elle appelle Scandeur::scandeTxt.
  */
 void MainWindow::stat()
 {
@@ -2323,7 +2392,7 @@ void MainWindow::stat()
     }
     if (dockVisible(dockScand))
         textEditScand->setHtml(
-            scandeur->scandeTxt(editLatin->toPlainText(), 0, true, !majPertAct->isChecked()));
+            _scandeur->scandeTxt(editLatin->toPlainText(), 0, true, !majPertAct->isChecked()));
 }
 
 /**
@@ -2355,6 +2424,15 @@ void MainWindow::syncWD()
     afficheLemsDic();
 }
 
+/**
+ * @brief validation des options d'accentuation
+ * @param b : booléen qui valide les options d'accentuation
+ *
+ * Lorsque le booléen est faux, on est en mode de scansion
+ * et les options d'accentuation sont inopérantes.
+ * Lorsque le booléen est vrai, on veut accentuer les formes
+ * et les options d'accentuations sont nécessaires et peuvent être modifiées.
+ */
 void MainWindow::setAccent(bool b)
 {
     optionsAccent->setEnabled(b);
@@ -2362,6 +2440,22 @@ void MainWindow::setAccent(bool b)
     hyphenAct->setEnabled(b);
 }
 
+/**
+ * @brief lecture des options d'accentuation
+ * @param force : booléen pour forcer la lecture
+ * @return un entier entre 0 et 15
+ *
+ * L'entier retourné, écrit en binaire, contient sur chaque bit
+ * l'état des options d'accentuation. Elles sont explicitées dans
+ * Scandeur::scandeTxt.
+ *
+ * Initialement, la lecture des options d'accentuation était
+ * conditionnée par la bascule entre scansion et accentuation.
+ * Toutefois, dans la fonction Scandeur::txt2csv, je veux
+ * sauver à la fois la forme scandée et la forme accentuée.
+ * J'ai donc besoin de pouvoir forcer la lecture des options d'accentuation
+ * même si celles-ci ne sont pas actives.
+ */
 int MainWindow::lireOptionsAccent(bool force)
 {
     // J'ajoute un paramètre pour forcer la lecture des boutons.
@@ -2377,6 +2471,13 @@ int MainWindow::lireOptionsAccent(bool force)
     return retour;
 }
 
+/**
+ * @brief fonction relais pour lire le Fichier Hyphen
+ *
+ * Cette fonction ouvre une boîte de dialogue pour ouvrir un fichier,
+ * et passe le nom du fichier à LemCore::lireHyphen.
+ * Voir cette fonction pour plus de détails.
+ */
 void MainWindow::lireFichierHyphen()
 {
     ficHyphen = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
@@ -2385,21 +2486,45 @@ void MainWindow::lireFichierHyphen()
     // Si le nom de fichier est vide, ça efface les données précédentes.
 }
 
+/**
+ * @brief ôte les signes diacritiques du texte étudié
+ *
+ * Cette fonction est utilisée pour enlever les accents, les diacritiques
+ * (acute, macron, breve, tilde etc...) ou les cédilles du texte
+ * affiché dans la fenêtre supérieure EditLatin.
+ * En effet, certains textes (récupérés sur internet) contiennent
+ * des accents ou autres signes diacritiques qui peuvent nuire
+ * à la lemmatisation.
+ * Cette fonction utilise la décomposition normalisée des caractères Unicode
+ * et supprime les signes combinants qui ont été séparés du caractère de base.
+ *
+ * @bug Fait double emploi avec Ch::deAccent ?
+ * Pas tout à fait, mais il faudrait revoir les deux.
+ */
 void MainWindow::oteDiacritiques()
 {
     QString texte = editLatin->toPlainText();
-    texte.replace("ç","s");
+    texte.replace("ç","s"); // Le c-cédille remplace souvent le s.
     texte.replace("Ç","S");
     texte = texte.normalized(QString::NormalizationForm_D, QChar::currentUnicodeVersion());
-    texte.remove("\u0300");
-    texte.remove("\u0301");
-    texte.remove("\u0302");
-    texte.remove("\u0304");
-    texte.remove("\u0306");
-    texte.remove("\u0308");
+    texte.remove("\u0300"); // Accent grave
+    texte.remove("\u0301"); // Accent aigu
+    texte.remove("\u0302"); // Accent circonflexe
+    texte.remove("\u0303"); // Tilde
+    texte.remove("\u0304"); // macron
+    texte.remove("\u0306"); // breve
+    texte.remove("\u0308"); // Trémas
+    texte.remove("\u0327"); // Cédille
+    texte.remove("\u0328"); // Ogonek
     editLatin->setText(texte);
 }
 
+/**
+ * @brief fonction relais pour lancer ou arrêter le serveur
+ * @param run : booléen pour lancer (vrai) ou arrêter (faux) le serveur.
+ *
+ * Voir aussi MainWindow::startServer et MainWindow::stopServer
+ */
 void MainWindow::lancerServeur(bool run)
 {
     if (run)
@@ -2416,12 +2541,29 @@ void MainWindow::lancerServeur(bool run)
     }
 }
 
+/**
+ * @brief crée une connexion avec le serveur
+ *
+ * Voir aussi MainWindow::startServer et MainWindow::exec
+ */
 void MainWindow::connexion ()
 {
     soquette = serveur->nextPendingConnection ();
     connect (soquette, SIGNAL (readyRead ()), this, SLOT (exec ()));
 }
 
+/**
+ * @brief reçoit, gère les requêtes et y répond.
+ *
+ * Les requêtes ont un format proche de celui d'une ligne de commande UNIX.
+ * Il est détaillé dans la page d'aide aux utilisateurs “server.html”.
+ * Cette routine interprête cette requête et appelle la fonction voulue
+ * (lemmatisation, scansion ou tagueur) ou fait les réglages demandés.
+ * Le résultat est copié dans le presse-papier (au cas où on voudrait
+ * s'en servir avec un Ctrl-V) et, également, renvoyé sur le port interne.
+ *
+ * Voir aussi MainWindow::startServer et MainWindow::stopServer
+ */
 void MainWindow::exec ()
 {
     QByteArray octets = soquette->readAll ();
@@ -2479,7 +2621,7 @@ void MainWindow::exec ()
         case 's':
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue() & 7;
-            rep = scandeur->scandeTxt(texte,0,optAcc==1, requete[1].isLower());
+            rep = _scandeur->scandeTxt(texte,0,optAcc==1, requete[1].isLower());
             if (optAcc==1) nonHTML = false;
             break;
         case 'A':
@@ -2491,7 +2633,7 @@ void MainWindow::exec ()
                 if ((options.size() > 3) && (options[3].isDigit()))
                     optAcc = 10 * optAcc + options[3].digitValue();
             }
-            rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
+            rep = _scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
             break;
         case 'H':
         case 'h':
@@ -2526,7 +2668,7 @@ void MainWindow::exec ()
             // optAcc = 1;
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue();
-            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
+            rep = _tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
             // Par défaut, je tague tout le texte.
             nonHTML = false;
             // Le résultat est en html : je veux conserver les <br/>.
@@ -2592,8 +2734,8 @@ void MainWindow::exec ()
         if ((a != 'C') && (a != 'c'))
             _lemmatiseur->setMajPert(MP);
     }
-    else if (texte != "") rep= scandeur->scandeTxt(texte);
-    else rep= scandeur->scandeTxt(requete);
+    else if (texte != "") rep= _scandeur->scandeTxt(texte);
+    else rep= _scandeur->scandeTxt(requete);
     }
     if (nonHTML)
     {
@@ -2621,6 +2763,17 @@ void MainWindow::exec ()
     soquette->write(ba);
 }
 
+/**
+ * @brief Démarre le serveur
+ * @return un message d'échec ou de succès
+ *
+ * On associe à Collatinus le port TCP/IP 5555 et,
+ * s'il est libre, on va guetter les requêtes.
+ * Si ce port est déjà occupé, la connexion échouera
+ * et le message d'erreur le signale.
+ *
+ * Voir aussi MainWindow::stopServer et MainWindow::exec
+ */
 QString MainWindow::startServer()
 {
     serveur = new QTcpServer (this);
@@ -2635,6 +2788,13 @@ QString MainWindow::startServer()
               "Vous pouvez également utiliser le Client_C11 en console.");
 }
 
+/**
+ * @brief arrête le serveur
+ * @return un message banal
+ *
+ * Ferme la connexion interne et éteint le serveur.
+ * Voir aussi MainWindow::startServer et MainWindow::exec
+ */
 QString MainWindow::stopServer()
 {
     serveur->close();
@@ -2642,6 +2802,15 @@ QString MainWindow::stopServer()
     return tr("Le serveur est éteint.");
 }
 
+/**
+ * @brief remet tous les Docks dans la fenêtre principale.
+ *
+ * Les Docks et la barre d'outils peuvent être sortis de la fenêtre principale
+ * et placés n'importe où sur l'écran.
+ * Il peut aussi arriver qu'on les perde ou les ferme accidentellement.
+ * Cette fonction permet de les remettre à leur place dans
+ * la fenêtre principale et les ouvre à nouveau (si jamais ils avaient été fermés).
+ */
 void MainWindow::dockRestore()
 {
     toolBar->setFloatable(false);
@@ -2659,6 +2828,15 @@ void MainWindow::dockRestore()
     dockTag->show();
 }
 
+/**
+ * @brief appelle le tagueur et affiche le résultat dans le Dock correspondant
+ * @param t : le texte
+ * @param p : la position dans ce texte où commencer
+ *
+ * Cette fonction procède à quelques vérifications et appelle la fonction
+ * Tagueur::tagTexte avec les bons paramètres. Le résultat renvoyé
+ * est affiché dans le Dock correspondant.
+ */
 void MainWindow::tagger(QString t, int p)
 {
     if (t.length() > 2)
@@ -2666,11 +2844,27 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        textBrowserTag->setHtml(tagueur->tagTexte(
+        textBrowserTag->setHtml(_tagueur->tagTexte(
                                     t, p, affToutAct->isChecked(), majPertAct->isChecked()));
     }
 }
 
+/**
+ * @brief Activation/désactivation de la fonction TextiColor
+ * @param vb : booléen de bascule
+ *
+ * Active (\a vb vrai) et désactive (\a vb faux) la fonction TextiColor.
+ * Ouvre une fenêtre de dialogue pour ouvrir un fichier
+ * contenant une liste de mots connus.
+ *
+ * Si aucun fichier n'est sélectionné, Collatinus n'utilisera
+ * que les deux couleurs standards :
+ *     * _noir_ pour les mots que Collatinus reconnaît.
+ *     * _rouge_ pour les mots inconnus
+ *
+ * Cette fonction passe le nom de fichier et le booléen vb
+ * à Lemmatiseur::verbaCognita
+ */
 void MainWindow::verbaCognita(bool vb)
 {
     QString fichier;
@@ -2679,6 +2873,26 @@ void MainWindow::verbaCognita(bool vb)
     _lemmatiseur->verbaCognita(fichier,vb);
 }
 
+/**
+ * @brief Bascule les résultats de lemmatisation d'HTML en TXT
+ * @param h : booléen, si vrai passe de txt en html, sinon l'inverse
+ *
+ * Cette fonction passe son paramètre à la variable Lemmatiseur::_html.
+ * Toutefois, si des résultats de lemmatisation sont déjà affichés,
+ * on voudrait les conserver.
+ *
+ * En HTML, les résultats de la lemmatisation sont mis en forme
+ * avec des listes &lt;ul&gt; ... &lt;/ul&gt; et des éléments &lt;li&gt; ... &lt;/li&gt;
+ * pouvant contenir des listes imbriquées.
+ *
+ * En texte, les mêmes résultats sont indentés pour reproduire
+ * les listes imbriquées.
+ *
+ * Lors du passage en HTML, on conserve les premières lemmatisations en texte
+ * et la suite sera affichée en HTML. Lors du passage inverse,
+ * les choses se compliquent et nous devons basculer tout ce qui précède
+ * d'HTML en texte.
+ */
 void MainWindow::setHtml(bool h)
 {
     // Passer en html ne pose pas de problème
@@ -2748,6 +2962,10 @@ void MainWindow::setHtml(bool h)
     else htmlAct->setChecked(true);
 }
 
+/**
+ * @brief Ouvre une boîte de dialogue pour confirmer l'action
+ * @return un booléen, vrai si on continue, faux si on annule.
+ */
 bool MainWindow::alerte()
 {
     QMessageBox attention(QMessageBox::Warning,tr("Alerte !"),
@@ -2762,12 +2980,17 @@ bool MainWindow::alerte()
     return true;
 }
 
-
+/**
+ * @brief Ouvre les pages d'aide dans le navigateur par défaut
+ */
 void MainWindow::auxilium()
 {
     QDesktopServices::openUrl(QUrl("file:" + qApp->applicationDirPath() + "/doc/index.html"));
 }
 
+/**
+ * @brief Pour sauver un fichier avec l'utilisation des mots connus.
+ */
 void MainWindow::verbaOut()
 {
     // Pour sauver un fichier avec l'utilisation des mots connus.

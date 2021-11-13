@@ -55,9 +55,9 @@ public:
                              bool cumVocibus = false, bool cumMorpho = false,
                              bool nreconnu = true);
     // lemmatiseT lemmatise un texte
-    QString lemmatiseT(QString &t);
     QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,
                        bool cumMorpho = false, bool nreconnu = false);
+    QString lemmatiseT(QString &t);
 
     void verbaOut(QString fichier); // Connaître l'usage des mots connus
     void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
@@ -82,18 +82,20 @@ public slots :
     void setNonRec(bool n);
 
 private:
+    /*! Un pointeur vers le noyau de lemmatisation qui peut être partagé. */
     LemCore * _lemCore;
+    /*! Le nom du répertoire contenant les données. */
     QString _resDir;
-    QHash<QString,int> _hLem;
-    QStringList _couleurs;
+    QHash<QString,int> _hLem; /*!< Liste des lemmes connus. Voir Lemmatiseur::verbaCognita */
+    QStringList _couleurs; /*!< Les couleurs pour le TextiColor. Voir Lemmatiseur::verbaCognita */
     // options
-    bool _alpha;
-    bool _formeT;
-    bool _html;
-    bool _majPert;
-    bool _morpho;
-    bool _nonRec;
-    QString _cible;  // langue courante, 2 caractères ou plus
+    bool _alpha; /*!< Option pour que les résultats soient présentés en ordre alphabétique. */
+    bool _formeT; /*!< Option pour que la lemmatisation soit précédée par la forme du texte. */
+    bool _html; /*!< Option pour que les résultats soient présentés en HTML. */
+    bool _majPert; /*!< Option pour que la majuscule soit considérée comme pertinente. */
+    bool _morpho; /*!< Option pour que la lemmatisation soit suivie par l'analyse morphologique. */
+    bool _nonRec; /*!< Option pour que les formes inconnues soient regroupées à la fin des résultats. */
+    QString _cible;  /*!< langue courante, 2 caractères ou plus */
 
 };
 

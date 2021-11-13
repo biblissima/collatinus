@@ -340,26 +340,29 @@ QString Flexion::tabV()
     // Par exemple "<a href=\"#actif\">"<< _lemCore->voix(0) <<"</a><br/>"
     // deviendrait "<a href=\"#actif" << _lemme->cle() << "\">"<< _lemCore->voix(0) <<"</a><br/>"
     // Mais il faudrait faire de même pour tous les name !!!
+    //
+    // FAIT 2/10/21
+    //
     QTextStream(&menu)
-        << "<a name=\"" << _lemme->cle() << "\"></a><br/>"
-        << "<a href=\"#actif\">"<< _lemCore->voix(0) <<"</a><br/>"
-        << "<a href=\"#indactif\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
-        << "<a href=\"#subactif\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
-        << "<a href=\"#impactif\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
-        << "<a href=\"#partpres\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(0) <<"</a>&nbsp;"
-        << "<a href=\"#partfut\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(2) <<"</a><br/>"
-        << "<a href=\"#indpass\">"<< _lemCore->voix(1) <<"</a><br/>&nbsp;"
-        << "<a href=\"#indpass\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
-        << "<a href=\"#subpass\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
-        << "<a href=\"#imppass\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
-        << "<a href=\"#ppp\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(3) <<"</a>&nbsp;"
-        << "<a href=\"#adjv\">"<< _lemCore->modes(5) <<"</a><br/>";
+        << "<a href=\"#actif" << _lemme->cle() << "\">"<< _lemCore->voix(0) <<"</a><br/>"
+        << "<a href=\"#indactif" << _lemme->cle() << "\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
+        << "<a href=\"#subactif" << _lemme->cle() << "\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
+        << "<a href=\"#impactif" << _lemme->cle() << "\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
+        << "<a href=\"#partpres" << _lemme->cle() << "\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(0) <<"</a>&nbsp;"
+        << "<a href=\"#partfut" << _lemme->cle() << "\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(2) <<"</a><br/>"
+        << "<a href=\"#indpass" << _lemme->cle() << "\">"<< _lemCore->voix(1) <<"</a><br/>"
+        << "<a href=\"#indpass" << _lemme->cle() << "\">"<< _lemCore->modes(0) <<"</a>&nbsp;"
+        << "<a href=\"#subpass" << _lemme->cle() << "\">"<< _lemCore->modes(1) <<"</a>&nbsp;"
+        << "<a href=\"#imppass" << _lemme->cle() << "\">"<< _lemCore->modes(2) <<" &amp; "<< _lemCore->modes(3) <<"</a>&nbsp;"
+        << "<a href=\"#ppp" << _lemme->cle() << "\">"<< _lemCore->modes(4) <<" "<< _lemCore->temps(3) <<"</a>&nbsp;"
+        << "<a href=\"#adjv" << _lemme->cle() << "\">"<< _lemCore->modes(5) <<"</a><br/>";
 
     QString ret;
     QTextStream fl(&ret);
-    fl << "<a name=\"actif\"></a>";
-    fl << "<div>" << _lemme->humain(false,_lemCore->cible()) << "</div>";
-    fl << "<a name=\"indactif\"></a>" << menu << "<h4>"<< _lemCore->voix(0) <<"</h4><p>"
+    fl << "<a name=\"" << _lemme->cle() << "\"></a><br/>";
+    fl << "<a name=\"actif" << _lemme->cle() << "\"></a>";
+    fl << "<div><p>" << _lemme->humain(false,_lemCore->cible()) << "</p></div>";
+    fl << "<a name=\"indactif" << _lemme->cle() << "\"></a><br/>" << menu << "<h4>"<< _lemCore->voix(0) <<"</h4><p>"
        << _lemCore->modes(0) << " infectum</p>";
     fl << entete;
     fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(2) << linc;
@@ -376,7 +379,7 @@ QString Flexion::tabV()
            << linc;
     fl << queue;
 
-    fl << "<a name=\"subactif\"></a>";
+    fl << "<a name=\"subactif" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>" << _lemCore->modes(1) << "</p>";
     fl << entete;
@@ -387,10 +390,8 @@ QString Flexion::tabV()
            << linb << forme(i + 18) << linc;
     fl << queue;
 
-    fl << QString(
-        "<a name=\"impactif\"></a>"
-        "<p>");
-    fl << _lemCore->modes(2) << "</p>";
+    fl << "<a name=\"impactif" << _lemme->cle() << "\"></a>";
+    fl << "<p>"<< _lemCore->modes(2) << "</p>";
     fl << entete;
     fl << lina << _lemCore->motsClefs(1) << linb << _lemCore->nombre(0) << linb << _lemCore->nombre(1)
        << linc;
@@ -408,7 +409,7 @@ QString Flexion::tabV()
           " : "
        << forme(188) << "</p>";
 
-    fl << "<br/><a name=\"partpres\"></a>";
+    fl << "<br/><a name=\"partpres" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(0) <<"</p>";
     fl << entete;
@@ -424,7 +425,7 @@ QString Flexion::tabV()
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 
-    fl << "<a name=\"partfut\"></a>";
+    fl << "<a name=\"partfut" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(2) <<"</p>";
     fl << entete;
@@ -449,7 +450,7 @@ QString Flexion::tabV()
        << linc << lina << _lemCore->morpho(266) << linb << forme(266) << linc << queue;
 
     fl << menu;
-    fl << "<a name=\"indpass\"></a><h4>"<< _lemCore->voix(1) <<"</h4>";
+    fl << "<a name=\"indpass" << _lemme->cle() << "\"></a><h4>"<< _lemCore->voix(1) <<"</h4>";
     fl << "<p>"<< _lemCore->modes(0) <<"</p>";
     fl << entete;
     fl << lina << _lemCore->temps(0) << linb << _lemCore->temps(1) << linb << _lemCore->temps(2) << linc;
@@ -472,7 +473,7 @@ QString Flexion::tabV()
            << linc;
     fl << queue;
 
-    fl << "<a name=\"subpass\"></a>";
+    fl << "<a name=\"subpass" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>"<< _lemCore->modes(1) <<"</p>";
     fl << entete;
@@ -493,10 +494,8 @@ QString Flexion::tabV()
     fl << queue;
 
     // impératif passif
-    fl << QString(
-        "<a name=\"imppass\"></a>"
-        "<p>");
-    fl << _lemCore->modes(2) << "</p>";
+    fl << "<a name=\"imppass" << _lemme->cle() << "\"></a>";
+    fl << "<p>" << _lemCore->modes(2) << "</p>";
     fl << entete;
     fl << lina << _lemCore->motsClefs(1) << linb << _lemCore->nombre(0) << linb << _lemCore->nombre(1)
        << linc;
@@ -507,7 +506,7 @@ QString Flexion::tabV()
 
     fl << "<p>" << _lemCore->morpho(302) << " : " << forme(302) << "</p><br/>";
 
-    fl << "<a name=\"ppp\"></a>";
+    fl << "<a name=\"ppp" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>"<< _lemCore->modes(4) <<" "<< _lemCore->temps(3) <<"</p>";
     fl << entete;
@@ -525,7 +524,7 @@ QString Flexion::tabV()
            << forme(i + 12) << linb << forme(i + 24) << linc;
     fl << queue;
 
-    fl << "<a name=\"adjv\"></a>";
+    fl << "<a name=\"adjv" << _lemme->cle() << "\"></a>";
     fl << menu;
     fl << "<p>"<< _lemCore->modes(5) <<"</p>";
     fl << entete;
