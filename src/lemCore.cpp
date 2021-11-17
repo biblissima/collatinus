@@ -45,7 +45,7 @@
 
 /**
  * \fn LemCore::LemCore (QObject *parent)
- * \brief Constructeur de la classe Lemmat.
+ * \brief Constructeur de la classe LemCore.
  *
  * Il définit quelques constantes, initialise
  * les options à false, et appelle les fonctions
