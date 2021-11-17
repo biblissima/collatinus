@@ -221,7 +221,7 @@ MainWindow::MainWindow()
     createToolBars();
     createConnections();
     createDicos();
-    createDicos(false);
+//    createDicos(false);
     createCibles();
 
     setWindowTitle(tr("Collatinus 11"));
@@ -467,7 +467,7 @@ void MainWindow::changeGlossarium(QString nomDic)
         labelLewis->setText("↔");  // "\u2194"
     else
     {
-        listeD.courant()->vide_index();
+//        listeD.courant()->vide_index();
         labelLewis->clear();
     }
     if (!lemsDic.empty())
@@ -489,7 +489,7 @@ void MainWindow::changeGlossariumW(QString nomDic)
         labelLewisW->setText("↔");  // "\u2194"
     else
     {
-        listeD.courant2()->vide_index();
+//        listeD.courant2()->vide_index();
         labelLewisW->clear();
     }
     if (!lemsDic.empty())
@@ -1023,20 +1023,18 @@ void MainWindow::createConnections()
 }
 
 /**
- * \fn void MainWindow::createDicos(bool prim)
  * \brief Chargement des index et des fichiers de
  *        configuration des dictionnaires.
  *
- * @bug À revoir, car on charge deux fois les dicos ?
  */
-void MainWindow::createDicos(bool prim)
+void MainWindow::createDicos()
 {
-    QComboBox *combo = 0;
+/*    QComboBox *combo = 0;
     if (prim)
         combo = comboGlossaria;
     else
         combo = comboGlossariaW;
-    combo->clear();
+        */
     QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
     QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
     ldic.clear();
@@ -1046,7 +1044,10 @@ void MainWindow::createDicos(bool prim)
         listeD.ajoute(d);
         ldic << d->nom();
     }
-    combo->insertItems(0, ldic);
+    comboGlossaria->clear();
+    comboGlossaria->insertItems(0, ldic);
+    comboGlossariaW->clear();
+    comboGlossariaW->insertItems(0, ldic);
 }
 
 /**
@@ -1973,7 +1974,7 @@ void MainWindow::majDic()
     majDial->setFont(editLatin->font());
     majDial->exec();
     createDicos();
-    createDicos(false);
+//    createDicos(false);
 }
 
 /**

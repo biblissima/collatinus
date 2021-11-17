@@ -220,6 +220,15 @@ QString Dictionnaire::entree_pos(qint64 pos, qint64 taille)
  * Cette fonction vide la liste Dictionnaire::idxDjvu
  * qui contient le premier mot de chaque page du dictionnaire.
  *          Cf. Dictionnaire::lis_index_djvu ()
+ *
+ * \deprecated Je ne vois pas pourquoi effacer l'index du dico.
+ * Probablement, Yves effaçait l'index pour des questions de mémoire.
+ * Toutefois, l'index du dico est une liste dans l'objet Dictionnaire
+ * lui-même. Je ne vois pas bien quel sera le gain que l'on a à effacer
+ * l'index : l'objet va-t-il maigrir quand on fait ça ?
+ * Surtout qu'à la prochaine utilisation, on va repeupler
+ * cette liste avec exactement le même contenu.
+ * Je vais commenter ces purges (inutiles ?)...
  */
 void Dictionnaire::vide_index() { idxDjvu.clear(); }
 

@@ -206,7 +206,7 @@ class MainWindow : public QMainWindow
     void createActions();
     void createCibles();  // menu des langues cibles
     void createConnections();
-    void createDicos(bool prim = true);
+    void createDicos();
     void createMenus();
     void createToolBars();
     void createStatusBar();

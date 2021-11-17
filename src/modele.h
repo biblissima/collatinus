@@ -68,16 +68,16 @@ class Modele : public QObject
 {
     Q_OBJECT
    private:
-    QList<int> _absents;
+    QList<int> _absents; /*!< Liste des morphos absentes du modèle. */
     QStringList static const cles; /*!<  ensemble des clefs utilisées dans la descriptions des modèles */
-    QMultiMap<int, Desinence *> _desinences;
-    QMap<int, QString> _genRadicaux;
-    QString _gr;
+    QMultiMap<int, Desinence *> _desinences; /*!< Liste des désinences du modèle. */
+    QMap<int, QString> _genRadicaux; /*!< Générateurs des radicaux du modèle. */
+    QString _gr; /*!< Nom du modèle. */
 //    QString _grq;
-    LemCore *_lemCore;
-    Modele *_pere;
-    QChar   _pos;
-    QString _suf;
+    LemCore *_lemCore; /*!< Un pointeur vers le noyau de lemmatisation. */
+    Modele *_pere; /*!< Un pointeur vers le père du modèle. */
+    QChar   _pos; /*!< POS associé au modèle. */
+    QString _suf; /*!< Suffixe à ajouter aux désinences du père. */
 
    public:
     Modele(QStringList ll, LemCore *parent = 0);
@@ -91,7 +91,7 @@ class Modele : public QObject
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();
-    QString            grq();
+//    QString            grq();
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();

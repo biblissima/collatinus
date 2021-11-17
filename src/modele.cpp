@@ -161,8 +161,8 @@ void Desinence::setModele(Modele *m)
  * \param parent : pointeur vers le noyau de lemmatisation, LemCore
  *
  * Chaque item
- *        de la liste ll est constitué de champs séparés par
- *        le caractère ':'. Le premier champ est un mot clé
+ *        de la liste \a ll est constitué de champs séparés par
+ *        le caractère <tt>':'</tt>. Le premier champ est un mot clé
  * (voir Modele::cles).
  * Pour le format du
  *        fichier <tt>data/modeles.la</tt>, consulter la documentation
@@ -433,9 +433,10 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
 
 /**
  * \fn QString Modele::genRadical (int r)
- * \brief Chaîne permettant de calculer un radical à partir
- *        de la forme canonique d'un lemme. r est le numéro
- *        du radical.
+ * \brief générateur d'un radical
+ * \param r est le numéro du radical.
+ * \return une chaîne permettant de calculer un radical à partir
+ *        de la forme canonique d'un lemme.
  */
 QString Modele::genRadical(int r)
 {
