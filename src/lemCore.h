@@ -77,9 +77,43 @@ typedef QPair<QRegExp, QString> Reglep;
 /**
  * @brief La classe LemCore est le noyau de lemmatisation
  *
- * C'est le cœur du programme !
- * Elle est utilisée par les classes _intermédiaires_ (Lemmatiseur, Scandeur etc...)
- * et gère les couches _profondes_ (Lemme, Modele etc...).
+ * Ce module est le cœur du programme :
+ * c'est lui qui va organiser les données et lemmatiser les formes.
+ * Il est donc appelé par les modules *intermédiaires*,
+ * Lemmatiseur, Scandeur et Tagueur.
+ * A priori, c'est plutôt aux classes *intermédiaires*
+ * que l'on s'adressera pour ré-utiliser ce code.
+ *
+ * En lisant les fichiers de données, il va créer les collections
+ * d'objets dont il a besoin : Lemme, Modele, Desinence, Radical et Irreg.
+ * Les noms de ces classes sont assez explicites.
+ * Leur fonctionnement est détaillé dans les pages correspondantes.
+ *
+ * La fonction importante dans cette classe est surtout
+ * LemCore::lemmatiseM qui lemmatise un mot en cherchant
+ * les diverses transformations qu'il a pu subir.
+ * Elle appelle LemCore::lemmatise qui lemmatise la forme
+ * sans transformation.
+ *
+ * \todo Il manque un lexique personnel dans Collatinus 11.
+ * C'est en principe résolu (en grand) avec Collatinus 12.
+ *
+ * \todo La gestion des formes non-reconnues est aussi un peu sommaire.
+ * Dans la lemmatisation d'un texte, les formes non-reconnues
+ * sont juste groupées à la fin de la liste (si l'option
+ * correspondante est validée).
+ * Dans la scansion, on marque la quantité des syllabes
+ * lorsqu'elle est déterminable par position.
+ * Dans le tagueur, les mots non-reconnus sont ignorés...
+ * Je ne sais pas au juste comment gérer ça.
+ * En particulier, on ne peut pas le faire sur une forme isolée.
+ * Dans un texte, si plusieurs mots ne sont pas reconnus
+ * qui commencent avec un même potentiel radical,
+ * on peut avoir une piste intéressante pour déterminer
+ * un paradigme et voir si toutes ces formes peuvent
+ * conduire à un lemme plausible (difficile pour la 3e déclinaison).
+ * Commencer par se faire une idée de la fréquence d'utilisation
+ * des diverses désinences ?
  */
 class LemCore : public QObject
 {

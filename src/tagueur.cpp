@@ -86,7 +86,7 @@
  * mais à l'heure actuelle le Tagueur ne prévoit pas l'accès
  * à la fonction LemCore::setCible qui est sollicitée par MainWindow.
  *
- * Le paramètre optionnel resDir donne
+ * Le paramètre optionnel @a resDir donne
  * le chemin complet du dossier contenant les fichiers de donnée.
  * Par défaut, il s'agit du fichier "data" placé à côté de l'exécutable.
  * \else
@@ -106,7 +106,7 @@
  * the English one will be searched for. French would be the last trial.
  * The default value is "fr en es" as defined in LemCore.
  *
- * The optional parameter resDir gives the absolute path to the
+ * The optional parameter @a resDir gives the absolute path to the
  * resources directory. If empty, the resources are assumed to be
  * in a folder "data" placed in the same dir as the exe.
  * \endif

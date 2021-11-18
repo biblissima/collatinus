@@ -41,6 +41,16 @@
  * Toutefois, cette classe pourrait être autonome, avec une autre interface,
  * si on voulait, par exemple, n'avoir qu'un programme spécialisé
  * dans la lemmatisation et l'analyse morphologique.
+ *
+ * Ce module utilise le noyau de lemmatisation LemCore.
+ * A priori, la fonction importante est Lemmatiseur::lemmatiseT
+ * qui va lemmatiser un texte entier et donner le résultat
+ * mis en forme en tenant compte des options.
+ * Une autre fonction intéressante serait Lemmatiseur::frequences
+ * qui ajoute à la lemmatisation du texte une tentative
+ * de dénombrement des occurrences des divers lemmes.
+ * Il y a évidemment un problème avec les formes ambiguës
+ * qui peuvent être attribuées à plusieurs lemmes différents.
  */
 class Lemmatiseur : public QObject
 {

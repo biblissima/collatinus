@@ -58,21 +58,21 @@
  * qui lui est passé en paramètre. Si ce moteur ne lui est pas donné,
  * elle le crée ici.
  * Si l'application envisagée utilise plusieurs modules
- * intermédiaires (tagueur, lemmatiseur...),
+ * intermédiaires (Tagueur, Lemmatiseur...),
  * il vaut mieux créer un seul moteur commun.
  *
- * Le paramètre optionnel resDir donne
+ * Le paramètre optionnel @a resDir donne
  * le chemin complet du dossier contenant les fichiers de donnée.
  * Par défaut, il s'agit du fichier "data" placé à côté de l'exécutable.
  * \else
  * The Scandeur class is meant to scan texts.
  * As part of Collatinus, it uses its lemmatization core (LemCore).
  * If this core has been created elsewhere, a pointer is given to this creator.
- * If the pointer l is empty, then the lemmatization core is created here.
+ * If the pointer @a l is empty, then the lemmatization core is created here.
  * When the developped application uses different modules as this one
  * (e.g. Lemmatiseur, Tagueur), it is recommended to create a shared core.
  *
- * The optional parameter resDir gives the absolute path to the
+ * The optional parameter @a resDir gives the absolute path to the
  * resources directory. If empty, the resources are assumed to be
  * in a folder "data" placed in the same dir as the exe.
  * \endif

@@ -38,6 +38,13 @@
  * Toutefois, cette classe pourrait être autonome, avec une autre interface,
  * si on voulait, par exemple, n'avoir qu'un programme spécialisé
  * dans la scansion et l'accentuation.
+ *
+ * Les points d'entrée sont les deux fonctions publiques
+ * Scandeur::scandeTxt et Scandeur::txt2csv.
+ * Elles prennent toutes les deux un texte en entrée
+ * et elles le préparent respectivement pour l'affichage
+ * à l'écran (scandé **ou** accentué) et pour la sauvegarde
+ * dans un fichier de type CSV (scandé **et** accentué).
  */
 class Scandeur : public QObject
 {

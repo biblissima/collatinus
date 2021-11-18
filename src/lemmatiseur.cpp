@@ -62,9 +62,9 @@
  * intermédiaires (Tagueur, Scandeur...),
  * il vaut mieux créer un seul moteur commun.
  *
- * Le paramètre optionnel resDir donne
+ * Le paramètre optionnel @a resDir donne
  * le chemin complet du dossier contenant les fichiers de donnée.
- * Par défaut, il s'agit du fichier "data" placé à côté de l'exécutable.
+ * Par défaut, il s'agit du dossier "data" placé à côté de l'exécutable.
  * \else
  * The Lemmatiseur class is meant to lemmatize texts.
  * As part of Collatinus, it uses its lemmatization core (LemCore).
@@ -73,7 +73,7 @@
  * When the developped application uses different modules as this one
  * (e.g. Scandeur, Tagueur), it is recommended to create a shared core.
  *
- * The optional parameter resDir gives the absolute path to the
+ * The optional parameter @a resDir gives the absolute path to the
  * resources directory. If empty, the resources are assumed to be
  * in a folder "data" placed in the same dir as the exe.
  * \endif

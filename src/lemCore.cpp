@@ -23,16 +23,9 @@
  * \file lemCore.cpp
  * \brief noyau pour la lemmatisation des formes latines
  *
- * Ce module est le cœur du programme :
- * c'est lui qui va organiser les données et lemmatiser les formes.
- * Il est donc appelé par les modules *intermédiaires*,
- * Lemmatiseur, Scandeur et Tagueur.
- *
- * En lisant les fichiers de données, il va créer les collections
- * d'objets dont il a besoin : Lemme, Modele, Desinence, Radicaux et Irreg.
- * Les noms de ces classes sont assez explicites.
- * Leur fonctionnement est détaillé dans les pages correspondantes.
- *
+ * C'est le cœur du programme !
+ * Cette classe est utilisée par les classes _intermédiaires_ (Lemmatiseur, Scandeur etc...)
+ * et gère les couches _profondes_ (Lemme, Modele etc...).
  */
 
 #include "lemCore.h"
@@ -248,8 +241,8 @@ void LemCore::lisTags(bool tout)
  * @return le tag pour Collatinus
  *
  * Cette routine calcule le tag correspondant
- * à l'analyse morphologique donnée, m,
- * pour le lemme, l.
+ * à l'analyse morphologique donnée, @a m,
+ * pour le lemme, @a l.
  * Ce tag est toujours sur trois caractères.
  *
  * Ce tag est obtenu avec le POS du lemme,
@@ -815,12 +808,39 @@ QString LemCore::desassimq(QString a)
 /**
  * \fn MapLem LemCore::lemmatise (QString f)
  * \brief Le cœur du lemmatiseur
+ * \param f : la forme à lemmatiser
+ * \return une MapLem avec toutes les analyses possibles
  *
- *  renvoie une QMap<Lemme*,QStringlist> contenant
- *  - la liste de tous les lemmes pouvant donner
- *    la forme f;
- *  - pour chacun de ces lemmes la QStringList des morphologies
- *    correspondant à la forme.
+ * Cette fonction cherche à décomposer la forme
+ * en radical + désinence, de toutes les façons possibles
+ * en vérifiant évidemment que tout deux correspondent au
+ * même paradigme (Modele).
+ * Le radical (de la classe Radical) permet de remonter au lemme (dans la classe Lemme) et
+ * la désinence (de la classe Desinence) donne la morpho.
+ *
+ * \note Yves a fait remarquer que la recherche de la désinence
+ * dans la liste générale de toutes les désinences était inutile.
+ * Ça pourrait éliminer la nécessité de conserver une telle liste.
+ * Mais ce n'est pas sûr car une telle liste pourrait servir
+ * à "deviner" la lemmatisation des formes inconnues.
+ * C'est une extension à laquelle je réfléchis,
+ * mais qui n'a pas encore vu le jour.
+ * Cela dit, la suppression de la double recherche est a priori
+ * indépendante de la conservation ou non de la liste.
+ * Il ne faut pas oublier la contraction de ii en ī
+ * qui nécessite d'élargir la recherche.
+ *
+ * \note La MapLem permet de regrouper les différentes analyses
+ * pour un même lemme. Cela simplifie la lecture des résultats.
+ *
+ * \bug Je fais le test de l'extension du lexique ici,
+ * alors qu'il serait plus logique de le faire à la fin de LemCore::lemmatiseM.
+ * En effet, lorsque l'extension du lexique est chargée mais désactivée,
+ * je ne veux afficher les solutions qui en viennent que si
+ * **toutes les solutions** en viennent.
+ * Or **toutes** veut dire a priori que je dois tenir compte
+ * des assimilations, contractions ou enclitique.
+ * Ce qui est du ressort de LemCore::lemmatiseM.
  */
 MapLem LemCore::lemmatise(QString f)
 {
@@ -1385,8 +1405,17 @@ Modele *LemCore::modele(QString m) { return _modeles[m]; }
 
 /**
  * \fn QString LemCore::morpho (int m)
- * \brief Renvoie la chaîne de rang m dans la liste des morphologies
- *        donnée par le fichier data/morphos.la dans la langue choisie
+ * \brief explicite la morphologie dans la langue choisie
+ * \param m : le rang dans la liste des morphologies
+ * \return Renvoie la chaîne de rang m dans la liste des morphologies
+ *
+ * La morphologie est donnée en interne par un entier (entre 0 et 416).
+ * Pour communiquer avec l'utilisateur, il faut donc l'expliciter
+ * dans la langue choisie.
+ * Les listes de morphologies sont données pour chaque langue
+ * par un fichier @c data/morphos.xx où @c xx est le code
+ * en deux caractères pour la langue.
+ *
  * (voir LemCore::_cible et LemCore::setCible).
  */
 QString LemCore::morpho(int m)
