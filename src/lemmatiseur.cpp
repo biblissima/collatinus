@@ -213,7 +213,7 @@ QStringList Lemmatiseur::frequences(QString txt)
             sortie << format.arg (numero).arg(nUnic).arg(nAmb).arg (lemme).arg(n);
         }
     }
-    qSort(sortie.begin(), sortie.end(), Ch::inv_sort_i);
+    std::sort(sortie.begin(), sortie.end(), Ch::inv_sort_i);
     // déformatage des nombres
     int cs = sortie.count();
     for (int i = 0; i < cs; ++i)
@@ -511,7 +511,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     if (alpha)
     {
         lsv.removeDuplicates();
-        qSort(lsv.begin(), lsv.end(), Ch::sort_i);
+        std::sort(lsv.begin(), lsv.end(), Ch::sort_i);
     }
     // peupler lRet avec les résultats
     QStringList lRet = lsv;
@@ -535,7 +535,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         nonReconnus.removeDuplicates();
         QString nl;
         if (_html) nl = "<br/>";
-        if (alpha) qSort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
+        if (alpha) std::sort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
         QString titreNR;
         int tot = (lm.count() - 1) / 2;
         QTextStream(&titreNR) << "--- " << nonReconnus.count() << "/"
@@ -639,9 +639,11 @@ void Lemmatiseur::verbaOut(QString fichier)
     QString format = "%1\t%2\n";
     QFile file(fichier);
     if (file.open(QFile::WriteOnly | QFile::Text))
-        foreach (QString lem, _hLem.keys())
     {
+        foreach (QString lem, _hLem.keys())
+        {
             file.write(format.arg(lem).arg(_hLem[lem]).toUtf8());
+        }
     }
 }
 
