@@ -14,6 +14,9 @@ Philippe Verkerk, Yves Ouvrard, Margherita Fantoli et Dominique Longrée ;
 _Studi e Saggi Linguistici_ Vol **58**, No 1 (2020)
 disponible aussi sur https://hal.archives-ouvertes.fr/hal-02399878
 
+1. [Le corpus hagiographique bourguignon lemmatisé avec Collatinus 12](http://journals.openedition.org/cem/18482). Communication présentée lors de la journée d'études CBMA - Hagiographie bourguignonne 2.0 – corpus électronique et nouvelles recherches - 6 décembre 2021. Yves Ouvrard ; 
+_Bulletin du centre d’études médiévales d’Auxerre | BUCEMA [Online], Collection CBMA, Les outils_ [ISSN 1954-3093], 2021
+
 1. [Collatinus & Eulexis : Latin & Greek Dictionaries in the Digital Ages.](https://hal.archives-ouvertes.fr/hal-02385036)
 Yves Ouvrard et Philippe Verkerk ;
 _Classics@,_ Center for Hellenic Studies/Harvard University, In press.
