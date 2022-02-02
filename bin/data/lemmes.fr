@@ -1,6 +1,6 @@
 !               lemmes.fr
 Français
-! Version 1 : 2017/04/04
+! Version 2 : 2022/02/02
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
@@ -16,7 +16,7 @@ Français
 !You should have received a copy of the GNU General Public License
 !along with COLLATINUS; if not, write to the Free Software
 !Foundation, Inc., 59 Temple Place, Suite 3inv, Boston, MA  02111-1307  USA
-!© Yves Ouvrard, 2011 - 2017
+!© Yves Ouvrard, 2011 - 2022
 !
 a3:Ah (interjection, exprime la douleur, la joie, l'étonnement, la colère)
 abactus2:détournement (des troupeaux), enlèvement (du butin)
@@ -11925,7 +11925,7 @@ Labicanus:de Labicum (entre Tusculum et Préneste)
 Labici:les habitants de Lacinum
 Labienianus:de Labienus
 Labienus:Labienus
-labo:chanceler, vaciller, glisser, couler
+labo:chanceler, vaciller ; [fig.] menacer ruine, être ébranlé
 labor2:peine, souffrance, travail pénible
 laboriose:avec peine, laborieusement
 laboriosus:qui demande du travail, qui se donne au travail, actif, laborieux
@@ -22455,7 +22455,7 @@ trapetes:meule de pressoir à olives, pressoir
 trapetum:meule de pressoir à olives, pressoir
 trapetus:meule de pressoir à olives, pressoir
 Trapezus:Trapézonte (ville du Pont)
-Trasumennus:le Trasimène (lac)
+Trasumenus:le Trasimène (lac)
 Traulus:Traulus (nom d'homme)
 Trausius:Trausius (nom d'homme)
 traversarius:placé en travers, transversal

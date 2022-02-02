@@ -1,6 +1,6 @@
 !               lemmes.la
 !Latin
-! Version 1 : 2017/04/04
+! Version 2 : 2022/02/02
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
@@ -16,7 +16,7 @@
 !You should have received a copy of the GNU General Public License
 !along with COLLATINUS; if not, write to the Free Software
 !Foundation, Inc., 59 Temple Place, Suite 3inv, Boston, MA  02111-1307  USA
-!© Yves Ouvrard, 2011 - 2017
+!© Yves Ouvrard, 2011 - 2022
 !
 ā=ā,ăb,ābs|inv|||prép. + abl.|5874
 ā3|inv|||interj.|91
@@ -12062,7 +12062,7 @@ lăbo|amo|||as, are|62
 lăbor2=lăbŏr,lăbōs|miles|lăbōr||oris, m.|950
 lăbōrĭōsē|adve|||adv.|6
 lăbōrĭōsus|doctus|||a, um|30
-lăbor=lăbŏr|sequor||lāps|eris, i, lapsus sum|244
+lābor=lābŏr|sequor||lāps|eris, i, lapsus sum|244
 lăbōro|amo|||as, are|287
 Lăbos2|miles|Lăbōr||ōris, m.|2
 labrum=lā̆brŭm|templum|||i, n.|1
@@ -22669,7 +22669,7 @@ trăpētes|opes|trăpēt||um, m.|2
 trăpētum|templum|||i, n.|2
 trăpētus|lupus|||i, m.|16
 Trăpēzūs|ciuis|Trăpēzūnt||untis, f.|3
-Trăsŭmennus=Trăsŭmēnnus|lupus|||i, m.|3
+Trăsŭmenus=Trăsŭmēnus,Trăsŭmēnnus,Trăsĭmēnus,Trăsўmēnus|lupus|||i, m.|3
 Traulus=Trāulus|lupus|||i, m.|3
 Trausĭus=Trāusĭus|filius|||ii, m.|2
 trāversārĭus=trāvērsārĭus|aureus|||a, um|2

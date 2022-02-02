@@ -1,6 +1,6 @@
 !               lem_ext.la
 !Latin
-! Version 1 : 2017/04/04
+! Version 2 : 2022/02/02
 !
 !This file is part of COLLATINVS.
 !COLLATINVS is free software; you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 !You should have received a copy of the GNU General Public License
 !along with COLLATINVS; if not, write to the Free Software
 !Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-! (c) © Yves Ouvrard, 2011 - 2017
+! (c) © Yves Ouvrard, 2011 - 2022
 !
 !	Extension du lexique obtenue par collation
 !	des dicos numériques
@@ -15081,16 +15081,16 @@ Tŏlētāni|liberi|||orum, m.|1
 Tŏlētānus|doctus|||a, um|1
 Tŏlētum|templum|||i, n.|1
 Tolĭandossus=Tolĭāndōssus|lupus|||i, m.|1
-Tolistobogi=Tolīstobogi|liberi|||orum, m.|1
-Tolistobogii=Tolīstobogĭi|liberi|||orum, m.|1
-Tolistoboii=Tolīstobŏĭi|liberi|||orum, m.|1
+!Tolistobogi=Tolīstobogi|liberi|||orum, m.|1
+Tolistobogii=Tolīstobogĭi,Tolōstobogĭī,Tolōstobogi,Tolīstobogi|liberi|||orum, m.|1
+!Tolistoboii=Tolīstobŏĭi|liberi|||orum, m.|1
 Tollē=Tōllē,Tōlē|cybele|||es, f.|1
 Tŏlōsāni|liberi|||orum, m.|1
 Tŏlōsānus|doctus|||a, um|1
 Tŏlōsās|diues|Tŏlōsāt||ātis|1
 Tŏlōsensis=Tŏlōsēnsĭs|fortis|Tŏlōsēns||e|1
-Tolostobogi=Tolōstobogi|liberi|||orum, m.|1
-Tolostobogiī=Tolōstobogĭī|liberi|||orum, m.|1
+!Tolostobogi=Tolōstobogi|liberi|||orum, m.|1
+!Tolostobogiī=Tolōstobogĭī|liberi|||orum, m.|1
 !Tolpĭacum=Tōlpĭacum|templum|||i, n.|1
 Tomabei=Tomabĕi|liberi|||orum, m.|1
 !Tŏmărus|doctus|||a, um|1
@@ -15163,8 +15163,8 @@ Transalpīni=Trānsālpīni|liberi|||orum, m.|1
 Transbĕnĕventānus=Trānsbĕnĕvēntānus|doctus|||a, um|1
 Transcudāni=Trānscudāni|liberi|||orum, m.|1
 Transdānŭbĭāni=Trānsdānŭbĭāni|liberi|||orum, m.|1
-Transdānŭbĭānus=Trānsdānŭbĭānus|doctus|||a, um|1
-Transdānŭvĭānus=Trānsdānŭvĭānus|doctus|||a, um|1
+Transdānŭbĭānus=Trānsdānŭbĭānus,Trānsdānŭvĭānus|doctus|||a, um|1
+!Transdānŭvĭānus=Trānsdānŭvĭānus|doctus|||a, um|1
 Trānspădānĕus|aureus|||a, um|1
 Trānspădum|templum|||i, n.|1
 Transthēbăītānus=Trānsthēbăītānus|doctus|||a, um|1
@@ -15173,10 +15173,10 @@ Transtī̆grītānus=Trānstī̆grītānus|doctus|||a, um|1
 Trăpēza|roma|||ae, f.|1
 Trăpēzŏpŏlītae=Trăpēzŏpŏlītāe|epulae|||arum, m.|1
 Trăsĭmēnĭcus|doctus|||a, um|1
-Trăsĭmēnus|lupus|||i, m.|1
-Trăsŭmēnus|doctus|||a, um|1
-Trăsŭmēnus2|lupus|||i, m.|1
-Trăsўmēnus|lupus|||i, m.|1
+!Trăsĭmēnus=Trăsĭmēnus,Trăsŭmēnus,Trăsўmēnus|lupus|||i, m.|1
+Trăsŭmēnus2|doctus|||a, um|1
+!Trăsŭmēnus2=Trăsŭmēnus,Trăsĭmēnus,Trăsўmēnus|lupus|||i, m.|1
+!Trăsўmēnus|lupus|||i, m.|1
 Trausi=Trāusi|liberi|||orum, m.|1
 Treba|roma|||ae, f.|1
 Trebāni|liberi|||orum, m.|1

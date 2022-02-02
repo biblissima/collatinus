@@ -1,6 +1,6 @@
 !   lemmes.en
 English
-! Version 2 : 2018/06/07
+! Version 2.1 : 2022/02/02
 !
 ! J'ai récupéré 11 750 traductions qui s'étaient perdues.
 !
@@ -18,7 +18,7 @@ English
 !You should have received a copy of the GNU General Public License
 !along with COLLATINUS; if not, write to the Free Software
 !Foundation, Inc., 59 Temple Place, Suite 3inv, Boston, MA  02111-1307  USA
-! (c) © Yves Ouvrard, 2011 - 2018
+! (c) © Yves Ouvrard, 2011 - 2022
 !
 a:by (agent), from (departure, cause, remote origin/time); after (reference);
 a3:ah! alas! ha! ah me!
@@ -10793,7 +10793,7 @@ Labicanus:of Labicum
 Labici:the inhabitants of Labicum, Labicans
 Labienianus:an uncle of the former, an adherent of Saturninus
 Labienus:Labienus
-labo:to slip, slip and fall; to slide, glide, drop; to perish, go wrong;
+labo:to totter, be ready to fall; to begin to sink; to give way; to waver, decline, sink; to err;
 labor:to move gently along a smooth surface, to fall, slide; to slide, slip, or glide down, to fall down, to sink (as the beginning of a fall)
 labor2:- labor/toil/exertion/effort/work; task/undertaking; production; childbirth; wear+tear;
 laboriose:laboriously, with fatigue, it goes hard with
@@ -18063,7 +18063,7 @@ secedo:to withdraw; to rebel; to secede;
 secessio:revolt, secession;
 secessus:withdrawal; secluded place;
 secludo:to shut off, shut in a separate place, to shut up, seclude
-seco:to follow; to escort/attend/accompany; to aim at/reach after/strive for/make for/seek; to attain;
+seco:to cut, sever; to decide; to divide in two/halve/split; to slice/chop/cut up/carve; to detach;
 secrete:med.
 secreto:separately; secretly, in private;
 secretum:secret, mystic rite, haunt;
@@ -18305,7 +18305,7 @@ Sequanus:of or belonging to the Sequani
 sequax:following, seeking after, pursuing, sequacious
 sequester2:a depositary, trustee
 sequestro:to give up for safekeeping, to surrender.
-sequor:to follow; to escort/attend/accompany; to aim at/reach after/strive for/make for/seek
+sequor:to follow; to escort/attend/accompany; to aim at/reach after/strive for/make for/seek; to attain;
 sera:bar (for fastening doors); rail of post and rail fence; lock (Cal);
 sera4:late at night
 Serapion2:The name of an Egyptian ambassador to Rome
@@ -20351,10 +20351,11 @@ trapetes:an olivemill, oil-mill
 trapetum:an olivemill, oil-mill
 trapetus:an olivemill, oil-mill
 Trapezus:a city in Pontus, Trebizond
+Trasumenus:a lake in Etruria, near Perusia, celebrated for Hannibal's victory over the Romans, Lago Trasimeno, Lago di Perugia
 Trausius:the name of a man
 traversus:transverse, oblique, athwart;
 Trebatius:a lawyer, a friend of Cicero, to whom the latter dedicated the Topica
-Trebellenus:Trebellenus
+Trebellenus:Trebellenus (name of a man)
 Trebellius:the name of a Roman gens
 Trebius:Trebius
 Trebonius:the name of a Roman gens
