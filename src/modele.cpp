@@ -287,7 +287,7 @@ Modele::Modele(QStringList ll, LemCore *parent) : QObject(parent)
             {
                 _nbr = eclats.at(1).toInt();
                 // C'est le nombre d'occurrences du modèle dans le corpus du LASLA.
-                qDebug() << _gr << _nbr;
+                // qDebug() << _gr << _nbr;
                 break;
             }
             default:

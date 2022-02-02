@@ -328,7 +328,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         return "";
         // Ça peut arriver que le texte ne contienne qu'une ponctuation
     }
-    int i = 1;
+/*    int i = 1;
     QMap<QString,int> occCode;
     while (i < lm.length())
     {
@@ -403,7 +403,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     foreach (QString code, occCode.keys())
         qDebug() << code << occCode[code];
     // Pour l'instant, juste la liste des codes rencontrés
-
+*/
     QString debMorph = "\n    . ";
     QString sepMorph = "\n    . ";
     QString finMorph = "";
@@ -426,7 +426,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         if (f.toInt() != 0) continue;
         // nettoyage et identification des débuts de phrase
         QString sep = lm.at(i - 1);
-        bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
+        bool debPhr = ((i == 1) || sep.contains(Ch::rePonct));
         // lemmatisation de la forme
         MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
         // échecs

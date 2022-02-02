@@ -573,6 +573,31 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
         // la ligne d'origine est la concaténation de separ[i]
         // Les termes pairs sont les séparateurs.
         // Les termes impairs sont les mots.
+        int i = separ.size() - 2; // C'est le dernier mot
+        while (i > 0)
+        {
+            // Je veux éliminer les "mots" qui sont des chiffres.
+            QString mot = separ[i];
+            while ((mot.size()>0) && mot[0].isDigit())
+            {
+                separ[i-1].append(mot[0]);
+                mot = mot.mid(1);
+            }
+            while ((mot.size()>0) && mot[mot.size() - 1].isDigit())
+            {
+                separ[i+1].prepend(mot[mot.size() - 1]);
+                mot.chop(1);
+            }
+            if (mot.size() == 0)
+            {
+                // Ce "mot" n'était que des chiffres
+                separ[i-1].append(separ[i + 1]);
+                separ.removeAt(i);
+                separ.removeAt(i);
+            }
+            else separ[i] = mot;
+            i -= 2;
+        }
         // J'ai toujours un dernier séparateur, éventuellement vide.
         // La scansion peut commencer !
         decalage = aff.count();
