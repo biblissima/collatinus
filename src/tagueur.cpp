@@ -113,6 +113,10 @@
  */
 Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : QObject(parent)
 {
+    if (resDir == "")
+        _resDir = qApp->applicationDirPath() + "/data/";
+    else if (resDir.endsWith("/")) _resDir = resDir;
+    else _resDir = resDir + "/";
     if (l==0)
     {
         _lemCore = new LemCore(this, resDir);
@@ -121,10 +125,6 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
         // ... et charge l'extension du lexique.
     }
     else _lemCore = l;
-    if (resDir == "")
-        _resDir = qApp->applicationDirPath() + "/data/";
-    else if (resDir.endsWith("/")) _resDir = resDir;
-    else _resDir = resDir + "/";
     if (cible != "") _lemCore->setCible(cible);
 }
 
@@ -272,7 +272,46 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
         // Si j'ai cliqué sur une ponctuation, je traite la phrase qui précède.
         // régression au début de la phrase
         while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
-        if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
+        if (t.mid(dph,2) == "\n\n") dph += 2; // J'élimine la marque de fin de paragraphe.
+        else if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
+    }
+
+    if (tout)
+    {
+        // Si je dois traiter tout le texte, je commence par faire
+        // la collecte des formes inconnues.
+        // Une question qui peut se poser est de savoir si effacer la
+        // QMap _radMod que je vais remplir. Pour l'instant, je ne le fais pas.
+        QStringList lm = t.split(QRegExp("\\b"));
+        for (int i = 1; i < lm.length(); i += 2)
+        {
+            QString f = lm.at(i);
+            // nettoyage et identification des débuts de phrase
+            QString sep = lm.at(i - 1);
+            bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct)
+                           || sep.contains("\n")); // Pour un début de vers...
+            // lemmatisation de la forme. C'est un peu bête, je vais le faire deux fois.
+            MapLem map = _lemCore->lemmatiseM(f, !majPert || debPhr);
+            // échecs
+            if (map.empty() && !_nonReconnus.contains(f))
+            {
+                // Cette forme n'a pas été reconnue et pas encore rencontrée.
+                _nonReconnus.append(f);
+                ModLem ml = _lemCore->inconnue(f);
+                if (!ml.isEmpty())
+                foreach (Modele *m, ml.keys())
+                {
+                    foreach (SLem sl, ml.value(m))
+                    {
+                        QString toto = sl.grq + " : " + m->gr();
+                        if (!_radMod[toto].contains(f))
+                            _radMod[toto].append(f);
+                        // Je n'ajoute la forme que si elle n'y est pas encore.
+                    }
+                }
+            }
+        } // Fin de la première lemmatisation (identification des formes inconnues).
+        qDebug() << _nonReconnus.size() << _radMod.size();
     }
 
     // conteneur pour les résultats
@@ -282,6 +321,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
     while (fph < tl)
     {
         while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
+        bool point = (t.at(fph) == '.');
         QString phr = t.mid(dph, fph - dph).trimmed();
         // Si le texte se termine sans ponctuation, je perds le dernier caractère.
 //        qDebug() << tl << fph << t.at(tl);
@@ -294,11 +334,17 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
         {
             // Il y a au moins un mot...
 //            while (Ch::abrev.contains(lm[lm.size()-2]))
-            while (_lemCore->estAbr(lm[lm.size()-2]))
+            while (_lemCore->estAbr(lm[lm.size()-2]) && point)
             {
+//                qDebug() << lm[lm.size()-2] << lm[lm.size()-1];
+                // Le mot est suivi d'un point et il est dans ma liste d'abréviation.
                 // Ma phrase se terminait par une abréviation : je continue.
                 fph++;
-                while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+                while ((fph < tl) && !pp.contains(t.at(fph))) ++fph;
+                if (fph < tl) point = (t.at(fph) == '.');
+                else point = false;
+                // Certains mots peuvent être des abréviations sans l'être nécessairement.
+                // S'ils ne sont pas suivis d'un point, je considère qu'ils n'en sont pas.
                 phr = t.mid(dph, fph - dph).trimmed();
                 if ((fph == tl) && !pp.contains(t.at(tl)) && (t.mid(tl,1) != "\n"))
                     phr.append(t[tl]);
@@ -310,15 +356,23 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             for (int i = 1; i < lm.length(); i += 2)
             {
                 bool debVers = !majPert || lm[i-1].contains("\n");
-                Mot * mot = new Mot(lm[i],(i-1)/2, debVers, _lemCore); // TODO : Vérifier si on a des vers avec majuscule...
+//                Mot * mot = new Mot(lm[i],(i-1)/2, debVers, this);
+                // Il y a un problème avec les mots comme "Post" qui peuvent être des abréviations.
+                Mot* mot;
+                if (_lemCore->estAbr(lm[i]) && lm[i + 1].startsWith("."))
+                    mot = new Mot(lm[i] + ".",(i-1)/2, debVers, this);
+                else mot = new Mot(lm[i],(i-1)/2, debVers, this);
+                // TODO : Vérifier si on a des vers avec majuscule...
                 mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",mots.size(),true, _lemCore); // Fin de phrase
+            Mot * mot = new Mot("",mots.size(),true, this); // Fin de phrase
             mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
 //            qDebug() << mots.size();
 
             QStringList sequences;
             QList<double> probabilites;
+            QStringList seqPart;
+            QList<double> probPart;
             sequences.append("snt");
             probabilites.append(1.0);
             double branches = 1.0; // Pour savoir combien de branches a l'arbre.
@@ -360,26 +414,80 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         // Si j'avais gardé toutes les séquences, ce serait une vraie probabilité (normalisée à 1)
                     }
                 }
+                // J'ai toutes les sequences et leur proba.
+                // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
+                // En faisant ce tri, je fais une sélection sur le tag i-2 (attention aux mots avec enclitique).
+                // Si je veux garder une info sur l'ordre des tags du mot i-2, c'est maintenant !
+/* Le 31 janvier 2022
+ * En retravaillant sur les points fixes, j'ai trouvé que je traitais mal le cas des enclitiques.
+ *
+ * En sélectionnant, pour chaque bigramme terminal, la séquence la plus probable,
+ * j'élimine certains tags qui sont en troisième position à partir de la fin.
+ * Dans le cas général, il s'agit du mot i-2, sauf s'il y a des enclitiques.
+ * J'ai déplacé l'ajout de l'enclitique du mot courant pour clarifier la situation.
+ *
+ * Lors de l'ajout de l'enclitique du mot courant (que je fais un peu plus loin),
+ * j'ajoute un deuxième tag après celui du mot courant.
+ * Le troisième tag en partant de la fin est donc celui du mot i-1,
+ * sauf si celui-ci porte aussi un enclitique :
+ * c'est un cas particulier auquel il faudra réfléchir.
+ * Dans le cas général, quand j'ajoute l'enclitique du mot i,
+ * je dois établir les bestOf du mot i-1.
+ *
+ * Ici, je viens d'ajouter LE tag du mot courant, i (qu'il y ait ou pas d'enclitique).
+ * Le troisième tag en partant de la fin peut être :
+ * - celui du mot i-2, si et seulement si ni i-1, ni i-2 n'ont d'enclitique
+ * - celui de l'enclitique du mot i-2, si i-1 n'a pas d'enclitique et i-2 en a un
+ * - celui du mot i-1, si celui-ci a un enclitique.
+ * Ce dernier cas est simple : il doit être introduit par
+ * if ((i > 0) && !mots[i-1]->tagEncl().isEmpty())
+ * et j'établis les bestOf du mot i-1.
+ * Le premier cas est simple à traiter ensuite : il est introduit par
+ * else if ((i > 1) && mots[i-2]->tagEncl().isEmpty())
+ * et j'établis les bestOf du mot i-2.
+ * En effet, j'arrive au "else" si i==0 auquel cas je ne fais rien
+ * ou si le mot i-1 n'a pas d'enclitique.
+ * Le cas intermédiaire a été traité en tant que dernier cas
+ * lorsque je me suis occupé du mot i-1.
+ *
+ * Le cas particulier évoqué pour l'ajout de l'enclitique du mot i
+ * est donc également traité en tant que dernier cas avant cet ajout.
+ *
+ * Contrairement à ce que je faisais avant, je ne remonte plus dans la séquence.
+ * Je ne devrais donc plus avoir de problème avec le découpage aux points fixes.
+ * Je repars avec LE bigramme terminal correspondant au point fixe
+ * et j'aurai toujours le 3e tag en partant de la fin dans le brin en cours.
+ * */
+                int debut = nvlSeq[0].size() - 11;
+                if ((i > 0) && !mots[i-1]->tagEncl().isEmpty())
+                {
+                    // Si le mot i-1 avait un enclitique, j'ai déjà traité le n-2 (voir ci-dessous).
+                    // Mais je dois traiter le n-1 !
+                    for (int j = 0; j < nvlSeq.size(); j++) mots[i-1]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                }
+                else if ((i > 1) && mots[i-2]->tagEncl().isEmpty())
+                {
+                    // Le mot i-2 existe et il n'avait pas d'enclitique !
+                    // S'il en avait un, il a déjà été traité.
+                    // Le tag du mot i-2 est nvlSeq[j].mid(debut, 3);
+                    for (int j = 0; j < nvlSeq.size(); j++) mots[i-2]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                }
                 // Ajouter les enclitiques.
                 if (!mot->tagEncl().isEmpty())
                 {
                     QString ajout = " " + mot->tagEncl();
                     for (int j = 0; j < nvlSeq.size(); j++) nvlSeq[j].append(ajout);
                     // Comme toutes les formes à tag unique, l'enclitique ne change pas les probabilités.
-                }
-                // J'ai toutes les sequences et leur proba.
-                // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
-                // En faisant ce tri, je fais une sélection sur le tag i-2 (attention aux mots avec enclitique).
-                // Si je veux garder une info sur l'ordre des tags du mot i-2, c'est maintenant !
-                if (i > 1)
-                {
-                    // Le mot i-2 existe !
-                    int debut = nvlSeq[0].size() - 11;
-                    if (!mot->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
-                    if (!mots[i-1]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
-                    if (!mots[i-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
-                    // Le tag du mot i-2 est nvlSeq[j].mid(debut, 3);
-                    for (int j = 0; j < nvlSeq.size(); j++) mots[i-2]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                    // Avec un mot à enclitique, j'ajoute deux tags d'un coup et
+                    // je vais perdre de l'info sur le mot qui précède, i.e. le n-1.
+                    if ((i > 0) && mots[i-1]->tagEncl().isEmpty())
+                    {
+                        // Si le mot i-1 avait un enclitique, il a été traité juste avant.
+                        debut = nvlSeq[0].size() - 11;
+                        // Le tag du mot i-1 est nvlSeq[j].mid(debut, 3);
+                        for (int j = 0; j < nvlSeq.size(); j++)
+                            mots[i-1]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                    }
                 }
                 sequences.clear();
                 probabilites.clear();
@@ -425,20 +533,43 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         probabilites << val2;
                     }
                 }
+/* J'ai retenu les deux meilleures séquences pour chaque bigramme terminal.
+ * Si (sequences.size() < 3), cela signifie probablement que je suis arrivé
+ * à un "point fixe" (sauf pathologie) : un seul bigramme terminal.
+ * La suite de la phrase est indépendante de ce qui précède,
+ * puisque je considère les probabilités des trigrammes.
+ * Pour bien faire, je devrais couper ma phrase ici en conservant ces deux séquences.
+ * Et recommencer avec un bigramme unique associé à la probabilité 1.
+*/
         //        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
                 if (sequences.size() == 0) break;
+                if ((sequences.size() == 2) && (sequences[0].right(7) == sequences[1].right(7)) &&
+                        !sequences[0].endsWith("snt") && (sequences[0].size() > 11))
+                {
+                    // Inutile de le faire en fin de phrase ou si on a un trigramme.
+                    seqPart << sequences[0];
+                    probPart << probabilites[0];
+                    seqPart << sequences[1];
+                    probPart << probabilites[1];
+                    QString bigr = sequences[0].right(7);
+                    sequences.clear();
+                    probabilites.clear();
+                    sequences << bigr;
+                    probabilites << 1.0;
+                }
             } // fin de la phrase.
 
             // Les probas associées aux tags du dernier vrai mot.
-            if (mots.length() > 1)
+            if ((mots.length() > 1) && mots[mots.length()-2]->tagEncl().isEmpty())
             {
                 // Le mot mots.length()-2 existe !
+                // Si ce mot portait un enclitique, il a déjà été traité
+                // (cf. le commentaire du 31 janvier 2022, ci-dessus).
                 int debut = sequences[0].size() - 7;
-                if (!mots[mots.length()-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
-                // Le tag du mot mots.length()-2 est sequences[j].mid(debut, 3);
                 for (int j = 0; j < sequences.size(); j++)
                     mots[mots.length()-2]->setBestOf(sequences[j].mid(debut, 3), probabilites[j]);
             }
+
             // Le tri final !
             QString seq = "";
             double val = -1;
@@ -460,6 +591,26 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         seq2 = sequences[i];
                     }
                 }
+            if (!seqPart.isEmpty())
+            {
+                // J'ai rencontré des points fixes.
+                seqPart << seq;
+                probPart << val;
+                seqPart << seq2;
+                probPart << val2;
+                // J'ai mis tous les brins dans seqPart.
+                seq = seqPart[0];
+                val = probPart[0];
+                for (int ii = 2; ii < seqPart.size(); ii += 2)
+                {
+                    if (seq.right(7) != seqPart[ii].left(7))
+                        qDebug() << "Alerte " << ii << seqPart[ii-2] << seqPart[ii];
+                    seq.chop(7);
+                    seq.append(seqPart[ii]);
+                    val *= probPart[ii];
+                }
+                // J'ai recomposé dans seq la séquence la plus probable.
+            }
 
             if (affHTML)
             {
@@ -467,8 +618,21 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             lsv.append(prob.arg(numPhr) + phr + "<br/><br/>\n");
             prob = "<br/>\n avec la proba : %1 pour %2 branches.<br/>";
             lsv.append(seq + prob.arg(val).arg(branches));
-            if (val2 > 0)
+            if (!seqPart.isEmpty())
             {
+                // Je donne ici tous les brins avec leur proba
+                QString brin = "Brin n° %1<br/>";
+                prob = "%1 : %2<br/>";
+                for (int ii = 0; ii < seqPart.size(); ii += 2)
+                {
+                    lsv.append(brin.arg(ii/2 + 1));
+                    lsv.append(prob.arg(seqPart[ii]).arg(probPart[ii]));
+                    lsv.append(prob.arg(seqPart[ii+1]).arg(probPart[ii+1]));
+                }
+            }
+            else if (val2 > 0)
+            {
+                // S'il n'y a qu'un seul brin, je fais comme d'habitude.
                 prob = "Deuxième choix avec la proba : %1 <br/>\n %2<br/>";
                 lsv.append(prob.arg(val2).arg(seq2));
             }
@@ -498,8 +662,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                     {
 //                        qDebug() << "mot" << i << mots[i]->forme();
                         numMot += 1;
-                        QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout);
-//                        qDebug() << "fin du choix";
+                        QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout, false);
+/*                        qDebug() << "fin du choix";
                         // C'est une ligne en HTML : je dois remplacer les délimiteurs par des tabulations...
                         QString entete = blabla.mid(0,blabla.indexOf("<br"));
                         if (entete.contains("<ul>")) entete = entete.mid(0,entete.indexOf("<span"));
@@ -564,6 +728,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             }
                         }
 //                        lsv.append(entete + blabla);
+*/
+                        lsv.append(blabla.arg(debut.arg(numMot).arg(numPhr+1).arg(i+1)));
                          // Si enclitique mid(8)
                         if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
                         else seq = seq.mid(5 + mots[i]->tagEncl().size());
@@ -595,3 +761,47 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
     return lsv.join("\n") + "\n";
 }
 
+/**
+ * @brief Accesseur à la taille de la liste de formes de Tagueur::_radMod.
+ * @param rm : une chaine obtenue par concaténation du radical et du modèle (avec un ":" entre les deux)
+ * @return Le nombre de formes associées à la paire radical + modèle
+ *
+ * Lorsque je dois taguer un texte, je le parcours d'abord à la recherche des formes inconnues.
+ * J'essaie alors de les identifier et je regroupe les différentes formes qui peuvent
+ * être associées à une même paire radical + modèle.
+ * Ensuite, lors du traitement d'une phrase, cette fonction va être appelée
+ * par le créateur d'un Mot, pour savoir s'il faut privilégier une solution particulière.
+ *
+ * @note Pour l'instant, je n'efface pas la QMap Tagueur::_radMod
+ * si bien que lorsque je traite plusieurs textes, les formes inconnues
+ * vont s'ajouter les unes aux autres.
+ */
+int Tagueur::radMod(QString rm)
+{
+    if (_radMod.contains(rm))
+        return _radMod[rm].size();
+    return 0;
+}
+
+LemCore* Tagueur::lemCore()
+{
+    return _lemCore;
+}
+
+void Tagueur::effaceRadMod()
+{
+    _radMod.clear();
+}
+
+QString Tagueur::listRadMod()
+{
+    QMap<int,QString> temp;
+    foreach (QString toto, _radMod.keys())
+        temp[-_radMod[toto].size()].append(toto + "|");
+    // J'ordonne les solutions en fonction du nombre de formes expliquées.
+    QStringList res;
+    foreach (QString list, temp.values())
+        foreach (QString toto, list.split("|", QString::SkipEmptyParts))
+            res.append(toto + " —> " + _radMod.value(toto).join(", "));
+    return res.join("\n");
+}

@@ -3000,6 +3000,16 @@ void MainWindow::verbaOut()
     if (!fichier.isEmpty())
     {
         repVerba = QFileInfo (fichier).absolutePath ();
-        _lemmatiseur->verbaOut(fichier);
+        if (dockVisible(dockTag))
+        {
+            QString liste = _tagueur->listRadMod();
+            QFile file(fichier);
+            if (file.open(QFile::WriteOnly | QFile::Text))
+            {
+                file.write(liste.toUtf8());
+                file.close();
+            }
+        }
+        else _lemmatiseur->verbaOut(fichier);
     }
 }

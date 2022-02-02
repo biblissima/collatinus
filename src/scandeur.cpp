@@ -58,7 +58,7 @@
  * qui lui est passé en paramètre. Si ce moteur ne lui est pas donné,
  * elle le crée ici.
  * Si l'application envisagée utilise plusieurs modules
- * intermédiaires (Tagueur, Lemmatiseur...),
+ * _intermédiaires_ (Tagueur, Lemmatiseur...),
  * il vaut mieux créer un seul moteur commun.
  *
  * Le paramètre optionnel @a resDir donne
@@ -403,6 +403,13 @@ QStringList Scandeur::cherchePieds(int nbr, QString ligne, int i, bool pentam)
  * est commune : 1, 5, 9 et 13 la considère comme longue,
  * 2, 6, 10 et 14 comme brève (sauf pour illius avec les valeurs 10 et 14),
  * 3, 7, 11 et 15 ne place pas l'accent car la pénultième est ambiguë.
+ *
+ * \todo Lorsque l'on cherche à accentuer une forme qui n'a pas été reconnue,
+ * je retourne la forme telle qu'elle est.
+ * Or si la avant-dernière syllabe est fermée (double consonne), je sais que le mot
+ * est paroxyton. Il est souvent proparoxyton si les deux dernières voyelles
+ * se suivent. Le nom propre María est une exception (pas la seule ?).
+ * Pas sûr que ça vaille le coup...
  */
 QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
                            int accent)

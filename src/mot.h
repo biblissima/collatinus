@@ -28,8 +28,12 @@
 #include <QtCore/QCoreApplication>
 
 #include "lemCore.h"
+#include "tagueur.h"
 #include "lemme.h"
 #include "ch.h"
+
+class Tagueur;
+// La classe "Mot" est inclue dans "tagueur.h" et elle est créée avant la classe "Tagueur".
 
 /**
  * @brief La classe Mot contient le mot et ses analyses possibles
@@ -44,8 +48,8 @@ class Mot : public QObject
 {
     Q_OBJECT
 public:
-    Mot(QString forme, int rang, bool debVers, QObject *parent = 0);
-    QString choisir(QString t = "", int np = 0, bool tout = true);
+    Mot(QString forme, int rang, bool debVers, Tagueur *parent = 0);
+    QString choisir(QString t = "", int np = 0, bool tout = true, bool html = true);
     long proba(QString t);
     QStringList tags();
     QString forme();
@@ -56,8 +60,12 @@ public:
 
 private:
     LemCore* _lemCore;
+    Tagueur* _tagueur;
     QString _forme;
     int _rang;
+    bool _debVers;
+    bool _inconnue; // Si la forme n'est pas reconnue, j'essaie de l'identifier quand même.
+    bool _abr; // Si c'est une abréviation, je passe la forme avec un "." après.
     QString _tagEncl;
     MapLem _mapLem;
     QStringList _lemmes;
@@ -67,6 +75,7 @@ private:
     QMap<QString,long> _probas;
     QString _maxProb;
     QMap<QString,double> _bestOf;
+    QString ligneCSV(QString lemmeHumain);
 };
 
 #endif // MOT_H

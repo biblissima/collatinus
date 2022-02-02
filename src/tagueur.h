@@ -62,12 +62,21 @@ public:
     Tagueur(QObject *parent = 0, LemCore *l=0, QString cible = "", QString resDir="");
     // Pour le tagger
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
+    int radMod(QString rm);
+    LemCore* lemCore();
+    void effaceRadMod();
+    QString listRadMod();
 
 private:
     /*! Un pointeur vers le noyau de lemmatisation qui peut être partagé. */
     LemCore * _lemCore;
     /*! Le nom du répertoire contenant les données. */
     QString _resDir;
+    /*! Pour garder l'info sur les formes (valeur) associées à la paire radical+modèle. */
+    QMap<QString,QStringList> _radMod;
+    /*! Pour garder les formes non reconnues déjà rencontrées. */
+    QStringList _nonReconnus;
+
 };
 
 #endif // TAGUEUR_H

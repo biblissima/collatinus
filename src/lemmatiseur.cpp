@@ -326,7 +326,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     {
 //        qDebug() << t << lm.size() << lm;
         return "";
-        // Ça peut arriver que le texte ne contienne qu"une ponctuation
+        // Ça peut arriver que le texte ne contienne qu'une ponctuation
     }
     int i = 1;
     QMap<QString,int> occCode;
@@ -403,6 +403,23 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     foreach (QString code, occCode.keys())
         qDebug() << code << occCode[code];
     // Pour l'instant, juste la liste des codes rencontrés
+
+    QString debMorph = "\n    . ";
+    QString sepMorph = "\n    . ";
+    QString finMorph = "";
+    QString debLem = "  - ";
+    QString finLem = "\n";
+    // Je définis les chaines de début et fin d'entités
+    if (_html)
+    {
+        // et les modifient si l'affichage est en html.
+        debMorph = "<ul><li>";
+        sepMorph = "</li><li>";
+        finMorph = "</li></ul>";
+        debLem = "<li>";
+        finLem = "</li>";
+    }
+
     for (int i = 1; i < lm.length(); i += 2)
     {
         QString f = lm.at(i);
@@ -416,7 +433,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         if (map.empty())
         {
             if (nreconnu)
-                nonReconnus.append(f + "\n");
+                nonReconnus.append(f);
             else
             {
                 if (_html)
@@ -496,21 +513,6 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 // Je reprends tout le passage qui ordonne les solutions
                 // pour que ça se fasse pour tous les modes d'affichage.
                 // Jusqu'à présent, ça ne marchait qu'en html avec les formes.
-                QString debMorph = "\n    . ";
-                QString sepMorph = "\n    . ";
-                QString finMorph = "";
-                QString debLem = "  - ";
-                QString finLem = "\n";
-                // Je définis les chaines de début et fin d'entités
-                if (_html)
-                {
-                    // et les modifient si l'affichage est en html.
-                    debMorph = "<ul><li>";
-                    sepMorph = "</li><li>";
-                    finMorph = "</li></ul>";
-                    debLem = "<li>";
-                    finLem = "</li>";
-                }
                 QMultiMap<int,QString> listeLem;
                 // Je construis un QMultiMap avec un nombre d'occurrences en clef.
                 foreach (Lemme *l, map.keys())
@@ -636,19 +638,153 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // est armée
     if (nreconnu && !nonReconnus.empty())
     {
+        int nbr = nonReconnus.count();
         nonReconnus.removeDuplicates();
-        QString nl;
-        if (_html) nl = "<br/>";
+        QString nl = "\n";
+        if (_html) nl = "<br/>\n";
         if (alpha) qSort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
         QString titreNR;
         int tot = (lm.count() - 1) / 2;
-        QTextStream(&titreNR) << "--- " << nonReconnus.count() << "/"
-                              << tot << " ("
-                              << (((nonReconnus.count() * 200 + tot) / tot) / 2)
-                              << " %) FORMES NON RECONNUES ---" << nl << "\n";
+        // On comparait le nombre de formes non-reconnues dédoublonnées
+        // au nombre de mots du texte : ce n'est pas logique.
+        QTextStream(&titreNR) << nl << "--- "
+                              << nonReconnus.count() << " FORMES NON RECONNUES. "
+                              << nbr << "/" << tot << " ("
+                              << (((nbr * 200 + tot) / tot) / 2)
+                              << " %) ---" << nl;
         lRet.append(titreNR + nl);
         foreach (QString nr, nonReconnus)
             lRet.append(nr + nl);
+
+        /* Le 31 janvier 2022
+         * J'ai développé une partie d'identification des formes inconnues.
+         * mais je pense que la présentation des résultats est trop compliquée
+         * pour être utile à un utilisateur non-averti.
+         * J'ai donc décidé de la commenter (environ 120 lignes).
+         * Une alternative serait de mettre une option, accessible seulement par un menu.
+         *
+         * Dans le Scandeur, son apport serait très marginal,
+         * et je ne m'y suis pas appliqué.
+         * Il donnerait la quantité de la pénultième pour quelques désinences
+         * de deux syllabes ou plus, comme -orum ou -ibus, mais guère plus.
+         *
+         * En revanche, je l'ai utilisée dans le Tagueur où elle sert vraiment.
+         * En effet, les formes inconnues étaient purement et simplement ignorées.
+         * Maintenant, un certains nombres de tags raisonnables sont proposés.
+         *
+        // Je voudrais maintenant essayer d'identifier ces formes non reconnues.
+        if (!alpha) qSort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
+        // Je les trie, si ce n'est pas encore fait, pour avoir côte à côte les formes similaires.
+        titreNR = "--- Tentative d'identification ---";
+        lRet.append(nl + titreNR + nl);
+        QList<ModLem> inconnues;
+        QMap<QString,QStringList> radMod;
+        // Dans un premier temps, je regarde si plusieurs formes différentes
+        // peuvent correspondre au même radical avec le même modèle.
+        QString nn = " (%1)"; // Pour convertir un entier en QString...
+        QString nr;
+        for (int i=0 ; i < nonReconnus.size() ; i++)
+        {
+            nr = nonReconnus[i];
+            ModLem ml = _lemCore->inconnue(nr);
+            inconnues.append(ml);
+            if (!ml.isEmpty())
+            foreach (Modele *m, ml.keys())
+            {
+                foreach (SLem sl, ml.value(m))
+                {
+                    QString toto = sl.grq + " : " + m->gr();
+                    if (!radMod[toto].contains(nr))
+                        radMod[toto].append(nr);
+                    // Je n'ajoute la forme que si elle n'y est pas encore.
+                }
+            }
+        }
+        QMultiMap<int,QString> mapRM;
+        foreach (QString toto, radMod.keys()) {
+            mapRM.insert(-radMod[toto].size(), toto + " (" + radMod[toto].join(" ") + ")");
+        }
+        QStringList bla = mapRM.values();
+        for (int i = 0 ; i < bla.size() ; i++)
+        qDebug() << bla[i];
+        // Je dois maintenant recommencer pour ordonner les solutions.
+        if (_html) lRet.append("<ul>");
+        for (int i=0 ; i < nonReconnus.size() ; i++)
+        {
+            nr = nonReconnus[i];
+            ModLem ml = inconnues[i];
+            if (!ml.isEmpty())
+            {
+                QMultiMap<int,QString> listeMod;
+                foreach (Modele *m, ml.keys())
+                {
+                    int frMax = 0;
+                    QMultiMap<int,QString> listeMorph;
+                    foreach (SLem sl, ml.value(m))
+                    {
+                        int fr = _lemCore->fraction(_lemCore->tag(QString(m->pos()),sl.morpho));
+                        QString toto = sl.grq + " : " + m->gr();
+                        // radMod[toto] est une liste de formes qui pourraient comme
+                        // radical et modèle "toto".
+                        // Plus cette liste est longue, plus il faut la privilégier !
+                        // Comment ? Linéaire : 1, 2, 3 etc...
+                        // Quadratique : 1, 4, 9 etc...
+                        // Affine : 1, 3, 5 etc... ou 1, 4, 7 etc...
+                        fr *= (2 * radMod[toto].size() - 1);
+                        if (sl.sufq.isEmpty() || (sl.sufq == "quĕ"))
+                        {
+                            // La désinence vide convient à toutes les formes.
+                            // Il faut la rétrograder !
+                            // Il y a deux fois plus de "miles" que de "uita", "templum" ou "lupus".
+                            if (fr > 9) fr = fr / 5;
+                            else fr = 1;
+                        }
+                        if (fr > frMax) frMax = fr;
+                        if (sl.sufq.isEmpty())
+                            listeMorph.insert(-fr,sl.grq.section(" ",0,0)
+                                              + " " + _lemCore->morpho(sl.morpho)
+                                              + nn.arg(fr * m->nbr()));
+                        // La fréquence est négative pour inverser l'ordre.
+                        else
+                            listeMorph.insert(-fr,sl.grq.section(" ",0,0)
+                                              + " + " + sl.sufq + " "
+                                              + _lemCore->morpho(sl.morpho)
+                                              + nn.arg(fr * m->nbr()));
+                    }
+                    QString elem = debLem + m->gr() + nn.arg(frMax * m->nbr());
+                    elem.append(debMorph);
+                    QStringList lMorph = listeMorph.values();
+                    // Liste des morphos ordonnée en ordre croissant des clefs.
+                    // Comme la clef est -fr, la plus fréquente vient d'abord.
+                    elem.append(lMorph.join(sepMorph));
+                    // Je joins les différentes morphos.
+                    elem.append(finMorph);
+                    // J'ai encapsulé les morphos et les ai ajoutées au lemme.
+                    if (frMax == 0) frMax = 1024;
+                    elem.append(finLem);
+                    // Je finis d'encapsuler le lemme
+                    listeMod.insert(-frMax * m->nbr(),elem);
+                    // et lui associe la plus grande fréquence observée pour les morphos.
+                }
+                QStringList lLem = listeMod.values();
+                // Les valeurs sont en ordre croissant
+                // Comme les fréquences sont négatives, la plus fréquente vient d'abord.
+                QString lin = lLem.join("");
+                // L'ensemble des solutions forme un tout que j'encapsule
+                if (_html)
+                {
+                    lin.prepend("<li><h4>" + nr + "</h4><ul>");
+                    lin.append("</ul></li>\n");
+                }
+                else
+                {
+                    lin.prepend("* " + nr + "\n");
+                }
+                lRet.append(lin);
+            }
+        } // Fin du traitement des formes inconnues
+        */
+        if (_html) lRet.append("</ul>\n");
     }
     if (cumColoribus)
     {
@@ -802,9 +938,12 @@ void Lemmatiseur::verbaOut(QString fichier)
     QString format = "%1\t%2\n";
     QFile file(fichier);
     if (file.open(QFile::WriteOnly | QFile::Text))
-        foreach (QString lem, _hLem.keys())
     {
+        foreach (QString lem, _hLem.keys())
+        {
             file.write(format.arg(lem).arg(_hLem[lem]).toUtf8());
+        }
+        file.close();
     }
 }
 

@@ -28,18 +28,41 @@
 
 #include "mot.h"
 
-Mot::Mot(QString forme, int rang, bool debVers, QObject *parent) : QObject(parent)
+Mot::Mot(QString forme, int rang, bool debVers, Tagueur *parent) : QObject(parent)
 {
 //    qDebug() << forme;
+    _abr = forme.endsWith(".");
+    if (_abr)  forme.chop(1);
     _forme = forme;
     _rang = rang;
-    _lemCore = qobject_cast<LemCore *>(parent);
+//    _lemCore = qobject_cast<LemCore *>(parent);
+    _tagueur = parent;
+    _lemCore = _tagueur->lemCore();
+    _debVers = debVers;
     _probas.clear();
     _tagEncl = "";
+    _inconnue = false;
     if (forme.isEmpty())
     {
         _tags << "snt";
         _probas["snt"] = 1;
+    }
+    else if (_abr)
+    {
+        // C'est un nom à n'importe quel cas !
+//        qDebug() << forme << "abr ?";
+        QString pseudo = "n%1";
+        if (forme.startsWith("K")) pseudo = "n%2";
+        // K, Kal ou Kalen seraient plutôt au pluriel
+        for (int i = 1; i < 7; i++)
+        {
+            QString t = pseudo.arg(i)+"1";
+            _tags.append(t);
+            _morphos.append(_lemCore->morpho(i));
+            _lemmes.append("<strong>Abreviation</strong>, <em>" + forme + "</em> : ?");
+            _nbOcc.append(_lemCore->tagOcc(t));
+            _probas[t] = _lemCore->tagOcc(t);
+        }
     }
     else
     {
@@ -48,8 +71,81 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent) : QObject(paren
         // échecs
         if (_mapLem.empty())
         {
-            // Je ne sais pas encore quoi faire.
-        }
+            _inconnue = true;
+            /* Je ne sais pas encore quoi faire.
+             * En décembre 2021, j'ai mis en place une tentative d'identification
+             * des formes inconnues qui retourne les radicaux et modèles possibles.
+             * Quand on travaille sur tout le texte, on peut privilégier les paires
+             * radical+modèle qui expliquent plusieurs formes.
+             * Mais, ici, je n'ai que le mot et je traite une phrase à la fois...
+             *
+             * Faire une pré-lemmatisation dans le Tagueur et introduire une
+             * fonction qui retourne le nombre de formes associées au radical+modèle.
+             * Ça ne semble pas très rationnel car je fais alors une première lemmatisation
+             * dont je ne garde aucune trace.
+             * C'est ce que je fais pour le moment (janvier 2022).
+             *
+             * Une alternative possible serait de construire la liste de mots
+             * de l'ensemble du texte en collectant l'informations sur les formes inconnues
+             * et en revenant dans un second temps sur les formes inconnues.
+             */
+            ModLem ml = _lemCore->inconnue(forme);
+            // ml n'est jamais vide car j'ai des modèles validés qui ont une désinence vide.
+            foreach (Modele *m, ml.keys())
+            {
+//                int frMax = 0;
+                int nb = m->nbr();
+//                QMultiMap<int,QString> listeMorph;
+                foreach (SLem sl, ml.value(m))
+                {
+                    QString t = _lemCore->tag(QString(m->pos()),sl.morpho).mid(0,3);
+                    // t est le tag de cette solution.
+                    long fr = nb * _lemCore->fraction(t);
+                    QString morph = sl.grq.section(" ",0,0); // c'est le radical
+                    QString toto = sl.grq + " : " + m->gr();
+                    // radMod[toto] est une liste de formes qui pourraient comme
+                    // radical et modèle "toto".
+                    // Plus cette liste est longue, plus il faut la privilégier !
+                    // Comment ? Linéaire : 1, 2, 3 etc...
+                    // Quadratique : 1, 4, 9 etc...
+                    // Affine : 1, 3, 5 etc... ou 1, 4, 7 etc...
+                    fr *= (2 * _tagueur->radMod(toto) - 1);
+                    if (sl.sufq.isEmpty() || (sl.sufq == "quĕ"))
+                    {
+                        // La désinence vide convient à toutes les formes.
+                        // Il faut la rétrograder !
+                        // Il y a deux fois plus de "miles" que de "uita", "templum" ou "lupus".
+                        if (fr > 9) fr = fr / 5;
+                        else fr = 1;
+                        if (sl.sufq == "quĕ") enclitique = "quĕ";
+                    }
+                    else
+                    {
+                        // J'ai une désinence dans sl.sufq
+                        morph.append(" + " + sl.sufq);
+                        if (sl.sufq.endsWith("quĕ"))
+                        {
+                            morph.chop(3);
+                            enclitique = "quĕ";
+                        }
+                    }
+//                    if (fr > frMax) frMax = fr;
+                    if (sl.morpho != 414) morph.append(" " + _lemCore->morpho(sl.morpho));
+                    _lemmes.append("<strong>unknown</strong>, <em>" + m->gr() + " " +
+                                   sl.grq.section(" ",1,1) + "</em> : ?");
+                    // C'est l'info que j'ai : le modèle et le n° du radical.
+                    // Je la mets au format de Lemme::humain
+                    _morphos.append(morph);
+                    // C'est le radical suivi de la désinence et de l'analyse associée.
+                    _tags.append(t);
+                    _nbOcc.append(fr);
+                    _probas[t] += fr;
+                } // Fin de la boucle sur les analyses possibles.
+            } // Fin de la boucle sur les modèles possibles.
+
+            if (!enclitique.isEmpty()) _tagEncl = "ce ";
+            // Pour les formes non reconnues, le seul enclitique recherché est "quĕ".
+        } // Fin de l'identification des formes inconnues.
         else foreach (Lemme *l, _mapLem.keys())
         {
             QString lem = l->humain(true, _lemCore->cible(), true);
@@ -84,44 +180,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent) : QObject(paren
                 }
             }
         }
-//        if (Ch::abrev.contains(forme))
-        if (_lemCore->estAbr(forme))
-        {
-            // C'est un nom à n'importe quel cas !
-            _probas.clear();
-//            _tags.clear();
-            QString pseudo = "n%1";
-            for (int i = 1; i < 7; i++)
-            {
-                QString t = pseudo.arg(i)+"1";
-//                _tags.append(t);
-                _probas[t] = _lemCore->tagOcc(t);
-            }
-        }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
-        // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
-        long total = 0;
-        foreach (QString t, _probas.keys()) total += _probas[t];
-        if (total == 0)
-        {
-            total = 1;
-            //qDebug() << forme << " : toutes les probas sont nulles !";
-        }
-        _maxProb = "";
-        long prMax = -1;
-        foreach (QString t, _probas.keys())
-        {
-            _bestOf[t] = 0.; // Je prépare une liste des tags
-//            qDebug() << t << _probas[t];
-            long pr = _probas[t] * 1024 /total;
-            if (prMax < pr)
-            {
-                prMax = pr;
-                _maxProb = t;
-            }
-            if (pr == 0) pr++;
-            _probas[t] = pr;
-        }
 
         if ((enclitique == "quĕ") || (enclitique == "vĕ")) _tagEncl = "ce ";
         else if (enclitique == "nĕ") _tagEncl = "de ";
@@ -156,57 +215,187 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent) : QObject(paren
             }
         }
     }
-//    qDebug() << forme << _tags.size() << _tags;
+    // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
+    long total = 0;
+    foreach (QString t, _probas.keys()) total += _probas[t];
+    if (total == 0)
+    {
+        total = 1;
+        //qDebug() << forme << " : toutes les probas sont nulles !";
+    }
+    _maxProb = "";
+    long prMax = -1;
+    foreach (QString t, _probas.keys())
+    {
+        _bestOf[t] = 0.;
+        // Je prépare une QMap qui associe les tags à la meilleure probabilité
+        // trouvée pour une séquence (établie quand le tag risque de disparaître,
+        // c'est à dire quand j'ai traité les deux mots qui suivent celui-ci).
+//            qDebug() << t << _probas[t];
+        long pr = (_probas[t] * 1024 + total/2) /total;
+        if (prMax < pr)
+        {
+            prMax = pr;
+            _maxProb = t;
+        }
+        if (pr == 0) pr = 1;
+        _probas[t] = pr;
+    }
+//    if ((forme == "Post") || (forme == "post"))
+//    qDebug() << forme << _tags.size() << _tags << _probas.keys();
 }
 
-QString Mot::choisir(QString t, int np, bool tout)
+QString Mot::choisir(QString t, int np, bool tout, bool html)
 {
 //    qDebug() << _forme << t << np << tout << _tags.isEmpty() << _tags.size();
     QString choix = "";
     int valeur = -1;
-    for (int i=0; i < _tags.size(); i++)
-        if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
-        {
-            // _tags peut être une liste de tags, alors que t est un tag.
-            choix = _lemmes[i] + " — " + _morphos[i];
-            valeur = _nbOcc[i];
-        }
-    if (!choix.isEmpty())
+    if (html)
     {
-        choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
-        choix.append("</span>\n");
-    }
-    if (tout || choix.isEmpty())
-    {
-        choix.append("<span style='color:#777777'><ul>\n");
+        // Pour une sortie en html, je laisse comme c'était.
         for (int i=0; i < _tags.size(); i++)
-        {
-            QString format = "%1 : %2 ; ";
-            QString lg = "<li>" + _lemmes[i] + " — " + _morphos[i] + " (";
-            QString lt = _tags[i];
-//            qDebug() << lg << lt;
-            if (lt.size() > 2)
+            if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
             {
-                while (lt.size() > 2)
-                {
-                    QString t = lt.mid(0,3);
-                    lt = lt.mid(4);
-                    lg.append(format.arg(t).arg(_bestOf[t]));
-                }
-                lg.chop(3);
-                lg.append(")</li>\n");
+                // _tags peut être une liste de tags, alors que t est un tag.
+                choix = _lemmes[i] + " — " + _morphos[i];
+                valeur = _nbOcc[i];
             }
-            else lg.append(" ? )</li>\n");
-            choix.append(lg);
+        if (!choix.isEmpty())
+        {
+            choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
+            choix.append("</span>\n");
         }
-        choix.append("</ul></span>\n");
+        if (tout || choix.isEmpty())
+        {
+            choix.append("<span style='color:#777777'><ul>\n");
+            QString format = "%1 : %2 ; ";
+            for (int i=0; i < _tags.size(); i++)
+            {
+                QString lg = "<li>" + _lemmes[i] + " — " + _morphos[i] + " (";
+                QString lt = _tags[i];
+                //            qDebug() << lg << lt;
+                if (lt.size() > 2)
+                {
+                    while (lt.size() > 2)
+                    {
+                        QString t1 = lt.mid(0,3);
+                        lt = lt.mid(4);
+                        lg.append(format.arg(t1).arg(_bestOf[t1]));
+                    }
+                    lg.chop(3);
+                    lg.append(")</li>\n");
+                }
+                else lg.append(" ? )</li>\n");
+                choix.append(lg);
+            }
+            choix.append("</ul></span>\n");
+        }
+        QString ajout;
+        if (t == _maxProb) ajout = t;
+        else ajout = t + " (" + _maxProb + ")";
+        QString debut = "<li id='S_%1_W_%2'><strong>";
+        choix.prepend(debut.arg(np).arg(_rang) + _forme + "</strong> " + ajout);
+        choix.append("</li>");
     }
-    QString ajout;
-    if (t == _maxProb) ajout = t;
-    else ajout = t + " (" + _maxProb + ")";
-    QString debut = "<li id='S_%1_W_%2'><strong>";
-    choix.prepend(debut.arg(np).arg(_rang) + _forme + "</strong> " + ajout);
-    choix.append("</li>");
+    else
+    {
+        // Pour une sortie en csv
+        int iCh = -1;
+        for (int i=0; i < _tags.size(); i++)
+            if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
+            {
+                // _tags peut être une liste de tags, alors que t est un tag.
+                iCh = i;
+                valeur = _nbOcc[i];
+                // je retiens l'item qui a le bon tag et qui a le plus d'occurrences.
+            }
+        QString debut = "\t%1"; // Pour ajouter plus tard, les numéros de mot et de phrase...
+        debut.append(_forme + "\t" + t);
+        if (iCh == -1) debut.append(" ?"); // Si je n'ai pas retrouvé le tag, je le signale.
+        if (t == _maxProb) debut.append("\t");
+        else debut.append(" (" + _maxProb + ")\t");
+        // Si le tag choisi par le tagueur n'est pas le plus probable
+        // (sans tenir compte du contexte), j'indique ce dernier entre parenthèses.
+        // Ce début de ligne sera répété autant de fois que nécessaire.
+
+        if (iCh != -1)
+        {
+            // Le tag existe bien.
+            choix = ">" + debut + ligneCSV(_lemmes[iCh]) + _morphos[iCh] + "\t\n";
+            // Le ">" dans la première colonne indique que c'est la choix du tagueur.
+        }
+        if (tout || (iCh == -1))
+        {
+            // Dans ces deux cas, je donne toutes les solutions possibles.
+            // Je voudrais les ordonner...
+            QString format = "%1 : %2 ; ";
+            QMap<double, QStringList> b;
+            foreach (QString tt, _bestOf.keys())
+                for (int i=0; i < _tags.size(); i++)
+                    if (_tags[i].contains(tt))
+                        b[-_bestOf[tt]].append(format.arg(tt).arg(i));
+            // J'ai associé à la proba -_bestOf[tt] la liste des indices qui correspondent au tag tt
+//            qDebug() << b.size();
+            foreach (double p, b.keys())
+                if (b[p].size() == 1)
+                {
+                    // Je n'en ai qu'un.
+                    QString bla = b[p].at(0);
+                    bla.chop(3);
+                    int ii = bla.mid(6).toInt();
+                    QString tt = bla.mid(0,3);
+                    choix.append(debut + ligneCSV(_lemmes[ii]) + _morphos[ii] + "\t");
+                    choix.append(format.arg(tt).arg(_bestOf[tt]));
+                    choix.chop(3);
+                    choix.append("\n");
+                }
+                else
+                {
+                    QMap<int,QStringList> bi;
+                    QStringList li = b[p];
+                    for (int i = 0; i < li.size(); i++)
+                    {
+                        QString bla = li.at(i);
+                        bla.chop(3);
+                        int ii = bla.mid(6).toInt();
+                        bi[-_nbOcc[ii]].append(bla);
+                    }
+                    foreach (int i, bi.keys()) {
+                        li = bi[i];
+                        for (int i = 0; i < li.size(); i++)
+                        {
+                            QString bla = li.at(i);
+                            int ii = bla.mid(6).toInt();
+                            QString tt = bla.mid(0,3);
+                            choix.append(debut + ligneCSV(_lemmes[ii]) + _morphos[ii] + "\t");
+                            choix.append(format.arg(tt).arg(_bestOf[tt]));
+                            choix.chop(3);
+                            choix.append("\n");
+                        }
+                    }
+                }
+/*          // Ci-dessous la première version sans classement
+            for (int i=0; i < _tags.size(); i++)
+            {
+                choix.append(debut + ligneCSV(_lemmes[i]) + _morphos[i] + "\t");
+                QString lt = _tags[i];
+                if (lt.size() > 2)
+                {
+                    while (lt.size() > 2)
+                    {
+                        QString t1 = lt.mid(0,3);
+                        lt = lt.mid(4);
+                        choix.append(format.arg(t1).arg(_bestOf[t1]));
+                    }
+                    choix.chop(3);
+                    choix.append("\n");
+                }
+                else choix.append("?\n");
+            }
+            */
+        }
+    }
+    choix.chop(1); // Je dois supprimer le dernier \n
     return choix;
 }
 
@@ -217,6 +406,7 @@ QString Mot::tagEncl()
 
 bool Mot::inconnu()
 {
+//    return _inconnue;
     return _tags.isEmpty();
 }
 
@@ -247,4 +437,30 @@ void Mot::setBestOf(QString t, double pr)
     }
     else qDebug() << "tag non trouvé pour" << _forme << t << pr;
         // _bestOf[t] = pr;
+}
+
+QString Mot::ligneCSV(QString lemmeHumain)
+{
+    // Il s'agit de convertir la sortie de Lemme::humain en une ligne CSV.
+    lemmeHumain.replace("<sup>","_");
+    lemmeHumain.remove("</sup>");
+    QString lem = Ch::atone(lemmeHumain.mid(0,lemmeHumain.indexOf("</str")));
+    lem.remove("<strong>");
+    QString indic = lemmeHumain.section(":",0,0);
+    indic.remove("<strong>");
+    indic.replace("</strong>, <em>",", ");
+    if (indic.contains("<small>("))
+    {
+        indic.replace("</em> <small>(","\t");
+        indic.replace(")</small> ","\t");
+    }
+    else indic.replace("</em> ","\t\t");
+    // indic contient le lemme avec quantités et indications.
+    // S'il y avait un nombre d'occurrences, il est dans une colonne séparée.
+    lem.append("\t");
+    lem.append(indic);
+    indic = lemmeHumain.section(":",1); // La traduction
+    indic.replace("\t", " ");
+    indic.append("\t");
+    return lem + indic;
 }

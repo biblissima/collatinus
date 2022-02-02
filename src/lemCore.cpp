@@ -236,16 +236,16 @@ void LemCore::lisTags(bool tout)
 
 /**
  * @brief Calcule le tag
- * @param l : le pointeur vers le lemme
+ * @param lp : POS ou liste de POS
  * @param m : entier représentant l'analyse morphologique
  * @return le tag pour Collatinus
  *
  * Cette routine calcule le tag correspondant
  * à l'analyse morphologique donnée, @a m,
- * pour le lemme, @a l.
+ * pour le POS, @a lp.
  * Ce tag est toujours sur trois caractères.
  *
- * Ce tag est obtenu avec le POS du lemme,
+ * Ce tag est obtenu avec le POS,
  * suivi des cas (1-6 ou 7) et nombre (1, 2) pour les formes déclinées.
  * Pour les verbes conjugués, on donne le mode (1-4)
  * et un 1 si c'est un présent ou un espace sinon.
@@ -253,11 +253,12 @@ void LemCore::lisTags(bool tout)
  * Les formes verbales déclinées ont un "w" en tête (à la place du "v" pour verbe).
  * Pour les invariables, le POS est complété avec deux espaces.
  *
+ * S'il y a plusieurs POS, le résultat est une liste de tags séparés par une virgule.
  */
-QString LemCore::tag(Lemme *l, int m)
+QString LemCore::tag(QString lp, int m)
 {
     // Il faut encore traiter le cas des pos multiples
-    QString lp = l->pos();
+//    QString lp = l->pos();
     if ((lp.size() > 0) && !lp[0].isLetter()) lp = "";
 //    qDebug() << lp << lp.size();
     QString lTags = "";
@@ -307,6 +308,33 @@ QString LemCore::tag(Lemme *l, int m)
 }
 
 /**
+ * @brief Calcule le tag, surcharge.
+ * @param l : le pointeur vers le lemme
+ * @param m : entier représentant l'analyse morphologique
+ * @return le tag pour Collatinus
+ *
+ * Cette routine calcule le tag correspondant
+ * à l'analyse morphologique donnée, @a m,
+ * pour le lemme, @a l.
+ * Ce tag est toujours sur trois caractères.
+ *
+ * Ce tag est obtenu avec le POS du lemme,
+ * suivi des cas (1-6 ou 7) et nombre (1, 2) pour les formes déclinées.
+ * Pour les verbes conjugués, on donne le mode (1-4)
+ * et un 1 si c'est un présent ou un espace sinon.
+ * Les supins ont été joints aux impératifs autres que le présent (groupes trop peu nombreux).
+ * Les formes verbales déclinées ont un "w" en tête (à la place du "v" pour verbe).
+ * Pour les invariables, le POS est complété avec deux espaces.
+ * @note J'ai conservé cette version pour des raisons "historiques".
+ * Elle se contente d'appeler la nouvelle fonction LemCore::tag(QString lp, int m)
+ * en lui passant comme argument le POS du lemme @a l.
+ */
+QString LemCore::tag(Lemme *l, int m)
+{
+    return tag(l->pos(), m);
+}
+
+/**
  * @brief Évalue la probabilité conditionnelle de l'analyse connaissant le POS
  * @param listTags : le tag ou une liste de tag
  * @return Cette probabilité est un entier, exprimé en 1/1024e
@@ -334,9 +362,9 @@ int LemCore::fraction(QString listTags)
             if ((t[0] == 'a') || (t[0] == 'p') || (t[0] == 'w')) // Adj. ou pron. sans genre !
                 fr = _tagOcc[t] * 341 / _tagTot[t.mid(0,1)];
             else if ((t[0] == 'v') && (t[2] == '1')) // verbe au présent
-                fr = _tagOcc[t] * 512 / _tagTot[t.mid(0,1)];
-            else if ((t[0] == 'v') && (t[2] == ' ')) // verbe à un autre temps
                 fr = _tagOcc[t] * 256 / _tagTot[t.mid(0,1)];
+            else if ((t[0] == 'v') && (t[2] == ' ')) // verbe à un autre temps
+                fr = _tagOcc[t] * 128 / _tagTot[t.mid(0,1)];
             else if (t[0] == 'n') // Nom
                 fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
             else fr = 1024;
@@ -806,6 +834,84 @@ QString LemCore::desassimq(QString a)
 }
 
 /**
+ * @brief Tentative d'identification des formes inconnues.
+ * @param f : la forme inconnue
+ * @return Une série de solutions possibles, rangées par modèle.
+ *
+ * Lors de la lemmatisation "normale", je n'ai pas trouvé de paire
+ * radical + désinence qui aille ensemble.
+ * Je m'arrête donc à la désinence, proposant ainsi beaucoup
+ * de radicaux potentiels.
+ * L'existence de la désinence nulle dans divers modèles fait
+ * que j'aurai toujours des solutions : la forme elle-même.
+ *
+ * @note : Je me limite à l'enclitique "que".
+ * Et, dans le cas d'une forme se terminant par "que",
+ * je suppose que c'est l'enclitique qui finit le mot.
+ */
+ModLem LemCore::inconnue(QString f)
+{
+    // Tentative d'identification des formes inconnues.
+    ModLem result;
+    if (f.isEmpty()) return result;
+    bool que = (f.size() > 3) && (f.endsWith("que"));
+    if (que) f.chop(3);
+    f = Ch::deramise(f);
+    if (_medieval)
+    {
+        f = transfMed(f);
+        if (f.isEmpty()) return result;
+    }
+    QString nn = " (%1)";
+    QString ppp = "tsxu"; // Les fins courantes des radicaux des participes passés.
+    // J'ai déjà tenté de décomposer la forme en radical + désinence
+    // mais ça a échoué. Je recommence avec la seule désinence.
+    for (int i = 1; i <= f.length(); ++i)
+    {
+        // Un radical vide est peu probable. On en avait pour "eo" et "sum".
+        QString r = f.left(i);
+        QString d = f.mid(i);
+        QList<Desinence *> ldes = _desinences.values(d);
+        if (_medieval && _desMed.contains(d)) ldes.append(_desinences.values(_desMed[d]));
+        if (ldes.empty()) continue;
+        // J'ai une liste de désinences associées à un supposé radical r.
+        foreach (Desinence *des, ldes)
+            if (des->modele()->nbr() > 0) // J'ignore certains modèles.
+            {
+                // Faire des tests de cohérence ?
+                int nm = des->morphoNum();
+                bool OK = true;
+                if ((nm > 84) && (nm < 121)) // Superlatif
+                    if (!r.endsWith("im") && !d.contains("im")) OK = false;
+                // Selon les modèles, le "issim" (ou autre) est attaché
+                // au radical (doctus) ou à la désinence (fortis).
+                if ((nm > 48) && (nm < 85)) // Comparatif
+                    if (!r.endsWith("i") && !d.startsWith("i")) OK = false;
+                if ((nm > 302) && (nm < 339)) // Participe passé
+                    if (!ppp.contains(r.right(1))) OK = false;
+                if (OK)
+                {
+                    QString r1 = r + nn.arg(des->numRad());
+                    if (que)
+                    {
+                        SLem sl = {r1, nm, des->grq() + "quĕ"};
+                        result[des->modele()].prepend(sl);
+                    }
+                    else
+                    {
+                        SLem sl = {r1, nm, des->grq()};
+                        // Je réutilise la structure "SLem" mais je mets
+                        // le supposé radical à la place de la forme et
+                        // la désinence comme suffixe.
+                        result[des->modele()].prepend(sl);
+                    }
+                }
+            }
+    }
+    return result;
+}
+
+/**
  * \fn MapLem LemCore::lemmatise (QString f)
  * \brief Le cœur du lemmatiseur
  * \param f : la forme à lemmatiser
@@ -1039,7 +1145,9 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     {
         mm = lemmatise(f);
 //        qDebug() << f << etape;
-        if (debPhr && f.at(0).isUpper())
+        // Si ma forme est toute en majuscule (dans un titre, par exemple),
+        // je fais une exception à la majuscule pertinente, sauf pour les nombres.
+        if ((debPhr && f.at(0).isUpper()) || (mm.isEmpty() && (f == f.toUpper())))
         {
             QString nf = f.toLower();
             MapLem nmm = lemmatiseM(nf);

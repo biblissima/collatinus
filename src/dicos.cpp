@@ -370,6 +370,8 @@ QString Dictionnaire::pageDjvu(QStringList req, int no)
     {
         lis_index_djvu();
     }
+    if (!cond_jv.isEmpty() && cond_jv.contains('i')) leLem.replace('j','i');
+    if (!cond_jv.isEmpty() && cond_jv.contains('u')) leLem.replace('v','u');
     int i = 0;
     if (!alphabet.isEmpty())
     {

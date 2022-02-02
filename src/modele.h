@@ -78,6 +78,7 @@ class Modele : public QObject
     Modele *_pere; /*!< Un pointeur vers le père du modèle. */
     QChar   _pos; /*!< POS associé au modèle. */
     QString _suf; /*!< Suffixe à ajouter aux désinences du père. */
+    int _nbr; /*!< Le nombre d'occurrences du modèle dans le corpus du LASLA. */
 
    public:
     Modele(QStringList ll, LemCore *parent = 0);
@@ -95,6 +96,7 @@ class Modele : public QObject
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();
+    int                nbr();
 };
 
 #endif

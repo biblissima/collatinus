@@ -67,6 +67,20 @@ typedef struct
 typedef QMap<Lemme*, QList<SLem> > MapLem;
 
 /**
+ * @brief ModLem est une variante de MapLem pour l'identification des formes inconnues.
+ *
+ * Pour l'identification des formes inconnues, je dois garder
+ * le modèle, le supposé radical et la morpho.
+ * Je réutilise le SLem pour ces deux derniers et je les
+ * ordonne en fonction du modèle.
+ * Si je fais cette tentative d'identification sur l'ensemble
+ * des formes non-reconnues d'un texte, je peux privilégier
+ * les identifications liées au même modèle de formes différentes
+ * avec le même supposé radical.
+ */
+typedef QMap<Modele*, QList<SLem> > ModLem;
+
+/**
  * @brief Une Reglep regroupe une expression rationnelle et la chaine de remplacement
  *
  * Une liste de telles Reglep permet de faire des remplacements à la chaine.
@@ -223,6 +237,7 @@ class LemCore : public QObject
     static bool estRomain(QString f);
     bool inv(Lemme *l, const MapLem ml);
     MapLem lemmatise(QString f);  // lemmatise une forme
+    ModLem inconnue(QString f);  // tente d'identifier une forme inconnue.
     // lemmatiseM lemmatise une forme en contexte
     //MapLem lemmatiseM(QString f, bool debPhr = true);
     MapLem lemmatiseM(QString f, bool debPhr = true, int etape  =0);
@@ -256,6 +271,7 @@ class LemCore : public QObject
 
 
 //    QString tagPhrase(QString phr);
+    QString tag(QString lp, int m);
     QString tag(Lemme *l, int m);
     int fraction(QString listTags);
     int tagOcc(QString t);

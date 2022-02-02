@@ -174,6 +174,7 @@ Modele::Modele(QStringList ll, LemCore *parent) : QObject(parent)
 //    _lemCore = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
+    _nbr = 0; // Initialisé à 0, je souhaite ignorer certains modèles.
     QMultiMap<QString, int> msuff;
     QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)
@@ -280,6 +281,13 @@ Modele::Modele(QStringList ll, LemCore *parent) : QObject(parent)
             case 9: // POS
             {
                 _pos = eclats.at(1).at(0);
+                break;
+            }
+            case 10: // nbr : introduit le 19 décembre 2021
+            {
+                _nbr = eclats.at(1).toInt();
+                // C'est le nombre d'occurrences du modèle dans le corpus du LASLA.
+                qDebug() << _gr << _nbr;
                 break;
             }
             default:
@@ -429,7 +437,8 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "suf"     // 6
                                                << "sufd"    // 7
                                                << "abs+"    // 8
-                                               << "pos";    // 9
+                                               << "pos"     // 9
+                                               << "nbr";    // 10
 
 /**
  * \fn QString Modele::genRadical (int r)
@@ -504,4 +513,13 @@ QChar Modele::pos()
     if (estUn("amo") || estUn("imitor")) return 'v';
     return 'd';
     */
+}
+
+/**
+ * @brief Accesseur du nombre d'occurrences du modèle dans le corpus du LASLA.
+ * @return la valeur de Modele::_nbr
+ */
+int Modele::nbr()
+{
+    return _nbr;
 }

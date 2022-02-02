@@ -72,6 +72,10 @@ class EditLatin : public QTextEdit
 
 /**
  * @brief La classe MainWindow crée l'interface graphique de l'application
+ *
+ * Beaucoup de variables ne sont pas commentées ici, car elles correspondent
+ * à des boutons ou des items de menu ou aux actions qui leur sont associés.
+ * Les noms essaient d'être explicites.
  */
 class MainWindow : public QMainWindow
 {
@@ -96,13 +100,13 @@ class MainWindow : public QMainWindow
     Scandeur *_scandeur; /*!< pointeur vers le module de scansion */
     Lemmatiseur *_lemmatiseur; /*!< pointeur vers le module de lemmatisation */
     // widgets d'édition et d'affichage
-    EditLatin *editLatin;
-    QTextEdit *textEditLem;
-    QTextEdit *textEditScand;
-    QTextBrowser *textBrowserDic;
-    QTextBrowser *textBrowserW;
-    QTextBrowser *textBrowserFlex;
-    QTextBrowser *textBrowserTag;
+    EditLatin *editLatin; /*!< Fenêtre d'édition pour le texte latin*/
+    QTextEdit *textEditLem; /*!< Fenêtre d'édition pour la lemmatisation*/
+    QTextEdit *textEditScand; /*!< Fenêtre d'édition pour la scansion*/
+    QTextBrowser *textBrowserDic; /*!< Fenêtre principale pour la consultation*/
+    QTextBrowser *textBrowserW; /*!< Fenêtre secondaire pour le texte latin*/
+    QTextBrowser *textBrowserFlex; /*!< Fenêtre d'édition pour la flexion*/
+    QTextBrowser *textBrowserTag; /*!< Fenêtre d'édition pour le tagueur*/
     QTextEdit *editeurRes();
     QLineEdit *lineEditLem;
     QLineEdit *lineEditDic;
