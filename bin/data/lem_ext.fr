@@ -180,12 +180,12 @@ Acherontia:ville d'Apulie
 Acheronticus:de l'Achéron
 Acherontini:les Achérontins (peuple du Brutium).
 Acherontius:de l'Achéron
-Acheros:Acheron §3
+Acheros:fleuve du Bruttium
 Acherunticus:de l'Achéron
 Acheruntini:riverains de l'Achéron (Bruttium)
 Acherusia:Achérusie / marais d'Épire / lac de Campanie / caverne de Bithynie, entrée des enfers
-Acherusis:comme Acherusia 3
-Achilla:ville d'Afrique, près de Thapsus
+Acherusis: Achérusie caverne de Bithynie, entrée des enfers
+!Achilla:ville d'Afrique, près de Thapsus
 Achillea2:Achilléa (île de la mer Egée).
 Achilleis:Achilléide [poème de Stace]
 Achilliacus:d'Achille.
@@ -195,7 +195,7 @@ Achisarmi:les Achisarmes (peuple d'Ethiopie).
 Achitophel:Achitophel (conseiller de David).
 Achne:île près de Rhodes
 Achoali:les Achoales (peuple de l'Arabie Heureuse).
-Acholla:ville d'Afrique, près de Thapsus
+!Acholla:ville d'Afrique, près de Thapsus
 Achoreus:nom d'un Égyptien
 Achyro:villa près de Nicomédie
 Acidalius:Acidalia, surnom de Vénus / [d'où le sens] relatif à Vénus, de Vénus
@@ -963,7 +963,7 @@ Ampyx:un des Lapithes / guerrier pétrifié par Persée
 Amsanctus:lac d'Italie [très dangereux par ses émanations pestilentielles]
 Amtorgis:ville de Bétique
 Amudis:ville de Mésopotamie
-Amunclae:v. Amyclae § 2.
+Amunclae:ville du Latium détruite par des serpents
 Amyclanus:d'Amycles [Latium]
 Amyclas:nom d'homme
 Amyclides:fils d'Amyclas [Hyacinthe]
@@ -4913,12 +4913,12 @@ Decelia:Décélie [bourg de l'Attique]
 Decemprimi:les dix premiers décurions d'une ville municipale
 Decennouium:les marais Pontins [dont l'étendue est de 19 000 pieds]
 Decentiaci:soldats de Décentius
-Decentiacus:pertaining to Decentius.&mdash;Subst.
+Decentiacus:pertaining to Decentius
 Decentius:gouverneur des Gaules, qui fut nommé César
 Deciani:peuple d'Apulie ou de Calabrie
 Decianus2:de Décius
 Deciatum:ville de la Narbonnaise
-Decima:déesse présidant aux accouchements [dixième mois]
+!Decima:déesse présidant aux accouchements [dixième mois]
 Decimianus:de Décimus
 Decius2:de P. Décius Mus
 Decrianus:architecte de l'empereur Hadrien
@@ -4941,7 +4941,7 @@ Delfi:v. Delphi.
 Delgouitia:ville de Bretagne
 Deliadae:Apollon et Diane, nés à Délos
 Deliades:statuaire grec
-Delmatae:les Dalmates.
+!Delmatae:les Dalmates.
 Delmatensis:Dalmatian
 Delmaticatus:clothed in such a garment
 Delminium:ville de Dalmatie
@@ -5430,7 +5430,7 @@ Edessenus:d'Édesse [les deux villes de ce nom]
 Edeta:ville de la Tarraconnaise
 Edetani:Édétains, habitants d'Édéta [autrefois nommée Liria]
 Edom:ind., surnom d'Ésaü // f. surnom de l'Idumée
-Edomino:to control absolutely; pass., no.
+edomino:tr., s’efforcer de dompter
 Edon:montagne de Thrace
 Edones:peuple de la Scythie Asiatique
 Edonius:des Edoniens; de Thrace.
@@ -6229,7 +6229,7 @@ Fuffetia:nom d'une vestale
 Fufidianus:de Fufidius
 Fulfulae:ville du Samnium
 Fulgentius:Fulgence (nom d'homme).
-Fulginates:the inhabitants of Fulginia, Fulginians;, no.
+!Fulginates:the inhabitants of Fulginia, Fulginians;, no.
 Fulginia:ville d'Ombrie [auj. Foligno] / déesse honorée à Fulginie
 Fulginiates:habitants de Fulginie
 Fulgora:déesse qui présidait aux éclairs
@@ -13553,7 +13553,7 @@ Sintice:contrée de la Macédoine
 Sinticus:de la Sintique
 Sintii:habitants de la Sintique
 Sintula:nom d'homme
-Sinuessuanus:of or belonging to Sinuessa, Absol.
+Sinuessuanus:of or belonging to Sinuessa
 Sion2:ind., montagne de Jérusalem / Jérusalem
 Siphae:ville de Béotie
 Siphnius:de Siphnus
@@ -15062,7 +15062,7 @@ Titurnius2:nom d'homme
 Titurtium:ville de la Gaule [Tournus]
 Tityus:fleuve d'Illyrie
 Tium:ville maritime de la Bithynie
-Tmarus:montagne d'Épire
+!Tmarus:montagne d'Épire
 Tmolites:habitant du Tmole
 Tmolites2:habitant du Tmole / vin du Tmole
 Tmolius2:(sc. mons), Mount Tmolus
@@ -15070,7 +15070,7 @@ Tobias:Tobie, personnage biblique
 Tocolosida:ville de la Mauritanie Tingitane
 Togienses:peuple d'Istrie
 Togisonus:rivière de la Vénétie
-Tole:v. Tolle.
+!Tole:v. Tolle.
 Tolentinatinus:de Tolentinum
 Tolentinensis:de Tolentinum
 Tolenus:rivière du Latium
@@ -15089,9 +15089,9 @@ Tolosas:adj., de Tolosa
 Tolosensis:de Tolosa
 Tolostobogi:v. Tolistobogi
 Tolostobogii:a people of Galatia, whose precise home is unknown
-Tolpiacum:Tolbiac [ville de la Belgique]
+!Tolpiacum:Tolbiac [ville de la Belgique]
 Tomabei:v. Tonabei.
-Tomarus:le Tomarus ou Tmarus [montagne de l'Épire]
+!Tomarus:le Tomarus ou Tmarus [montagne de l'Épire]
 Tomi:Tomes [ville à l'embouchure de l'Ister, où Ovide mourut exilé]
 Tomis:c. Tomi
 Tomitae:habitants de Tomes
@@ -17820,7 +17820,7 @@ alazon:a braggart, boaster
 alba2:vêtement blanc / perle blanche
 albamen:partie blanche, blanc
 albamentum:c. albamen
-albaris:a worker in stucco, a plasterer, absol.
+albaris:a worker in stucco, a plasterer
 albarium:crépissure, stuc
 albarius:relatif au crépi / subst. m. crépisseur
 albarius2:crépisseur
@@ -17997,7 +17997,7 @@ alsiosus:frileux, qui craint le froid. forme postér. algiosus.
 alsito:fréq. de algeo
 altanus:vent qui souffle de la mer
 altaria:autel où l'on sacrifie
-altarium:c. altare
+!altarium:c. altare
 altegradius:qui marche la tête haute
 alter2:v. halter.
 alteratio:changement, différence
@@ -18183,9 +18183,9 @@ ambustio:action de brûler
 ambustulatus:dim. de ambustus, qq peu rôti
 ambustum:brûlure
 ambustus:part. de amburo.
-amecus:friendly, kind, amicable, favorable, inclined to, liking;, Comp., Sup., comp., sup., a greater friend, the greatest friend
-amella:
-amen:], ainsi soit-il
+amecus:friendly, kind, amicable, favorable, inclined to, liking;
+!amella:
+amen:ainsi soit-il
 amentatio:action de lancer un trait; [plur.] les traits lancés (fig.)
 amentatus:javelines en état, prêtes à être lancées (décochées)
 amento:n'avoir pas sa raison
@@ -19528,14 +19528,14 @@ armator:celui qui équipe
 armatrix:celle qui arme
 armenta:v. armentum.
 armentarius:de bétail
-armenticius:c. armentalis §1
+!armenticius:de gros bétail
 armentitius:- 1 - relatif au gros bétail, du bétail. - 2 - qui soigne le bétail.
 armentiuus:de troupeau
 armentosus:riche en bestiaux
 armicustos:gardien des armes
 armidoctor:celui qui montre l'exercice des armes
 armifactor:armurier
-armifactorium:
+armifactorium:l’usine d’armes, la forge d’armes
 armifactura:manufacture d'armes
 armigera:oiseau [aigle] qui porte les armes de Jupiter [la foudre] / satellite
 armilausa:espèce de blouse ouverte en avant et en arrière, fermée seulement sur les épaules
@@ -19890,7 +19890,7 @@ astrion:sorte de saphir
 astrios:sorte de saphir
 astriotes:pierre précieuse inconnue, employée en magie
 astrisonus:qui fait résonner, retentir les astres
-astrites:c. asterites §2
+astrites:astérie ou girasol [pierre précieuse]
 astrobolos:oeil-de-chat, calcédoine [pierre précieuse]
 astroites:astroïte (pierre magique).
 astrolapsum:astrolabe
@@ -20027,23 +20027,23 @@ attueor:regarder
 atturatio:action de brûler de l'encens en sacrifice
 atubus:c. atypus
 atypus:qui n'articule pas distinctement
-aua:c. avia § 1
+aua:grand-mère [paternelle ou maternelle]
 auaritas:c. avaritia
 aububulcus:
-auca:[en part.] oie
-aucella:roi des cailles, râle
-aucellus:c. le préc.
+auca:oiseau / [en part.] oie
+aucella:petit oiseau [ortolan, caille, râle]
+aucellus:moineau
 auceo:- tr. - observer attentivement.
 auceptor:oiseleur
-aucilla:roi des cailles, râle
+!aucilla:roi des cailles, râle
 auctarium:surplus, ce qui fait la bonne mesure
 auctifer:fécond
-auctifico:tr.  augmenter / honorer par des sacrifices
+auctifico:tr. augmenter / honorer par des sacrifices
 auctionalia:affiches de vente
 auctionalis:of or pertaining to an auction;
 auctionator:qui vend à l'encan
-auctiuncula:dim. de auctio), petite vente à l'encan
-auctius:see aucte.
+auctiuncula:(dim. de auctio), petite vente à l'encan
+!auctius:see aucte.
 auctiusculus:un peu grand, un peu haut
 auctiuus:propre à augmenter
 auctorabilis:répondant
@@ -20453,15 +20453,15 @@ baripe:c. baroptenus
 barippe:an unknown precious stone of a black color, with white and red spots
 baritus:v. barritus.
 baroptenus:pierre noire tachetée de rouge et de blanc
-barosus:c. baro § 1
+barosus:balourd, lourdaud
 barrinus:d'éléphant
 barrio:int., barrir [crier comme l'éléphant]
 barritus:barrissement [cri de l'éléphant] / v. barditus
 barycephalae:maisons à toit plat et large, qui sont basses et comme écrasées, aplaties
-barycephalus:
+!barycephalus:
 barycus:adj, top-heavy, with low walls and broad roofs
 barypicron:absinthe [herbe]
-barypicros:
+barypicros:très amer
 barython:herbe aussi appelée sabine
 barytonos:not accented on the last syllable
 barytonus:baryton [qui a l'accent sur l'avant-dernière syllabe]
@@ -20471,20 +20471,20 @@ bascanus:fascinum
 basella:dim. de basis, petite base
 basiator:baiseur, qui aime à donner des baisers
 basiatus:part. de basio
-basicula:c. basella
+!basicula:c. basella
 basilea:regina
 basileum:diadème royal / onguent / plante
 basilicaris:qui a trait à une basilique
 basilicarius:qui prend soin des basiliques, bedeau / désoeuvré, fainéant
 basilice:espèce d'emplâtre noir
-basiliciarius:c. basilicarius.
-basilicola:a small church, a little chapel
+!basiliciarius:c. basilicarius.
+!basilicola:a small church, a little chapel
 basilicon:espèce de collyre ou d'emplâtre / espèce de noix
 basilicula:chapelle, petite église
 basilicus2:le coup du roi [le coup de dés le plus heureux]
 basilisca:basilic [plante]
 basilium:diadème royal / onguent / plante
-basioballum:
+!basioballum:
 bassus:qui a de l'embonpoint
 bastaga:action ou obligation de transporter ce qui appartient aux princes, à l'État, à l'armée
 bastagarius:celui qui préside aux transports publics
@@ -20605,7 +20605,7 @@ beneuolens2:a well-wisher, friend
 beneuolenter:avec bienveillance, affectueusement
 beneuolenties:c. benevolentia
 benificium:A benefaction, kindness, favor, benefit, service
-benificus:comp., sup., generous, liberal, beneficent, obliging, favorable, Adv.
+benificus:generous, liberal, beneficent, obliging, favorable
 benigniter:c. benigne, avec bonté
 benignor:int., se réjouir
 beniuolens:qui veut du bien, favorable, alicui, à qqn
@@ -20613,11 +20613,11 @@ benna:espèce de voiture
 bennarius:conducteur d'une benna
 benus:c. bonus.
 bepedalium:
-berillus:A precious stone of a sea-green color, coming from India, beryl
+!berillus:A precious stone of a sea-green color, coming from India, beryl
 berna:v. verna.
 berula:berle [plante]
-berullos:the beryl, &lt;*&gt;u.&mdash;A ring with a beryl, Pr.
-berullus:v. beryllus.
+!berullos:the beryl, &lt;*&gt;u.&mdash;A ring with a beryl, Pr.
+!berullus:v. beryllus.
 bessalis:renfermant le nombre 8 ; longueur de 8 pouces / poids de 8 onces
 bestialis:de bête
 bestialiter:en bête, comme une bête
@@ -20627,7 +20627,7 @@ beta:bette, poirée [plante]
 beta2:bêta [deuxième lettre de l'alphabet grec] / [fig.] le second partout
 beta3:bêta [deuxième lettre de l'alphabet grec] / [fig.] le second partout
 betaceum:betterave.
-betaceus:de bette, de poirée / subst. m., bette
+!betaceus:de bette, de poirée / subst. m., bette
 betacium:betterave.
 betacius:de bette, de poirée / subst. m., bette
 betacius2:bette
@@ -22970,7 +22970,7 @@ chryselectrum:ambre jaune
 !chryselectrus:a dark-yellow precious stone, amber-colored hyacinth
 chrysendeta:plats ornés de ciselures en or
 !chrysendetos:
-!chrysendetus:set in gold, inlaid with gold, absol.
+!chrysendetus:set in gold, inlaid with gold
 !chryseos:basilic jaune [plante]
 !chryseus:basilic jaune [plante]
 chrysia:objets en or
@@ -24239,7 +24239,7 @@ combustus:part. de comburo.
 come:barbe de bouc [plante]
 comedo2:mangeur, dissipateur
 comedus:c. comedo 2.
-comesor:to hold a festive procession, to revel, make merry;, Absol.
+comesor:to hold a festive procession, to revel, make merry;
 comesor2:mangeur, consommateur
 comessabundus:holding a riotous procession, revelling, banqueting, carousing, decorated, crowned, for a procession
 comessaliter:as in revelling processions, wantonly, jovially
@@ -24330,7 +24330,7 @@ commendabilis:recommandable, aliqua re, par qqch
 commendatitius:c. commendaticius.
 commendatiuus:le datif
 commendatorius:c. commendaticius
-commensor:to hold a festive procession, to revel, make merry;, Absol.
+commensor:to hold a festive procession, to revel, make merry;
 commensurabilis:de mesure égale
 commensuratio:égalité de mesure
 commensuratus:c. commensurabilis.
@@ -24353,7 +24353,7 @@ commerciarius:associé pour un achat
 commercior:int., faire du commerce
 commereor:tr., mériter [en mauvaise part] / se rendre coupable de
 commergo:plonger ensemble
-commessor:to hold a festive procession, to revel, make merry;, Absol.
+commessor:to hold a festive procession, to revel, make merry;
 commetacula:rods carried by the flamens
 commetior:mesurer / mesurer ensemble, confronter
 commeto2:to measure thoroughly;
@@ -24385,10 +24385,10 @@ commiseratio:action d'exciter la pitié ; pathétique / [rhét.] partie du plaid
 commiseresco:tr., avoir pitié aliquem, de qqn
 commisero:c. commiseror.
 commisero2:compagnon d'infortune
-commisor:to hold a festive procession, to revel, make merry;, Absol.
+commisor:to hold a festive procession, to revel, make merry;
 commissor2:coupable
 commissoria:pacte commissoire [jurisp.]
-commissorius:a clause in the condition of a sale, of a contract, absol.
+commissorius:a clause in the condition of a sale, of a contract
 commissuralis:où il y a des jointures
 commistim:pêle-mêle.
 commistus:
@@ -24472,7 +24472,7 @@ commutatus:part. de commuto.
 comoedice:comme dans la comédie
 comoedicus:qui appartient à la comédie
 comoediographus:poète comique
-comoinis:that is common to several, to all, common, general, universal, public, cum, inter se, absol.
+comoinis:that is common to several, to all, common, general, universal, public
 comopolis:ville comme un village, ville champêtre
 comosus:chevelu, qui a de longs cheveux / chevelu, feuillu [en parl. des plantes]
 comotria:v. commotria.
@@ -25158,7 +25158,7 @@ confractum:[t. de peinture] présentation de profil [opp. à aequum]
 confractura:fracture, brèche.
 confractus:part. de confringo.
 confractus2:c. confractio
-confraga:a rough place, thicket, Comp., sup.
+confraga:a rough place, thicket
 confragosa:raboteux, inégal / embarrassant
 confragose:avec des aspérités
 confragositas:âpreté
@@ -25635,7 +25635,7 @@ contactus2:part. de contingo.
 contagiosus:contagieux
 contamen:contact qui souille, souillure
 contaminabilis:susceptible de souillure
-contaminata:adulterated things, Comp.
+contaminata:adulterated things
 contaminate:avec opprobre [fig.]
 contaminati:abandoned youths
 contaminatio:souillure / mal, maladie
@@ -26780,7 +26780,7 @@ cyaneus:bleu foncé, bleu azuré
 cyanos:bluet, bleuet, barbeau (plante à fleurs bleues).
 !cyanus:bluet, barbeau [plante]
 cyathisso:verser à boire
-cybaeus:pertaining to a kind of merchantship, Absol.
+cybaeus:pertaining to a kind of merchantship
 cybiarius:a dealer in salt fish
 cybicus:cubique.
 cybindis:autour nocturne
@@ -27094,7 +27094,7 @@ decibilis:convenable
 decibiliter:décemment, convenablement
 decidiuus:qui doit tomber
 deciformis:qui a dix formes
-decima2:dîme offerte aux dieux / le tribut de la dîme / au sing. et au pl., libéralité faite au peuple en argent ou en nature / pl., le dixième d'un héritage / [s.-ent. hora] la dixième heure
+!decima2:dîme offerte aux dieux / le tribut de la dîme / au sing. et au pl., libéralité faite au peuple en argent ou en nature / pl., le dixième d'un héritage / [s.-ent. hora] la dixième heure
 decimana:femme d'un percepteur de la dîme
 decimanus:donné en payement de la dîme / sujet à la dîme / appartenant à la dixième légion
 decimaria:décision touchant (fixant) la dîme
@@ -27129,7 +27129,7 @@ decliuius:plus en pente
 decliuus:c. declivis
 decoco:réduire par la cuisson, aliquid, qqch / séparer par fusion / [fig.] séparer, retrancher / [abst] se réduire, se volatiliser / [fig.] ruiner / celui-ci est réduit (ruiné) par les dés ; [abst] dissiper sa fortune, se ruiner, faire banqueroute / faire cuire entièrement / mûrir entièrement / digérer
 decoctio:action de faire bouillir [usage médical] / [sens concret] décoction / [fig.] déconfiture, banqueroute
-decoctius:comp. n. de decoctus.
+!decoctius:comp. n. de decoctus.
 decoctum:décoction
 decoctus2:décoction
 decollatio:décollation, décapitation
@@ -27156,7 +27156,7 @@ decorator:celui qui décore
 decoratus:orné au plus haut point
 decoriatorius:propre à enlever la peau
 decorio:tr., enlever la peau
-decoris:ornamented, adorned, elegant, beautiful, dedecor, indecoris, Adv.
+decoris:ornamented, adorned, elegant, beautiful, dedecor, indecoris
 decorosus:beau, brillant
 decorticatio:décortication, action d'enlever l'écorce
 decortico:tr., enlever l'écorce, écorcer
@@ -29077,7 +29077,7 @@ diuulgatio:action de répandre (divulguer, publier)
 diuulgator:celui qui divulgue, propagateur
 diuulgatus:adjt, commun, banal, vulgarisé
 diuulsus:part. de divello.
-do2:acc. = domum
+do2:(δῶ) acc. grec = domum
 docentia:
 dochlea:c. chamaepitys
 dochmiacus:dochmiaque
@@ -29313,7 +29313,7 @@ ductio:action de conduire, de tirer
 ductrix:celle qui conduit, qui commande
 ductus2:part. de duco.
 duella:le tiers de l'once
-duellicosus:warlike, martial, valorous, Comp., Adv.
+duellicosus:warlike, martial, valorous
 duellio:rebelle
 duellis:ennemi armé
 duellium:tyrannie
@@ -29803,7 +29803,7 @@ electuarium:électuaire [préparation pharmaceutique]
 eleemosyna:aumône
 eleemosynae:aumône, aumônes
 eleemosynarius:donné à titre d'aumône
-elegantes:Comp., sup.
+!elegantes:Comp., sup.
 elegatus:sorte de poisson
 elegeia:élégie [genre de poème] / espèce de roseau
 elegeion:inscription elégiaque
@@ -30424,7 +30424,7 @@ epulosus:où il y a beaucoup de mets, [repas] splendide
 equaria:haras
 equarius:de cheval
 equarius2:palefrenier
-equifer:
+equifer:cheval sauvage
 equiferus:cheval sauvage
 equimentum:prix pour la saillie d'une jument
 equimulga:qui trait les cavales, qui vit de leur lait (cf. caprimulgus)
@@ -30432,13 +30432,13 @@ equinus2:étalon
 equio:int., être en chaleur [en parl. d'une jument]
 equiria:équiries, courses de chevaux instituées par Romulus en l'honneur de Mars
 equirine:interj., par Quirinus = Romulus [formule de serment]
-equisaetis:
-equisaetum:the, plant horse-tail
+!equisaetis:
+!equisaetum:the, plant horse-tail
 equiseta:hippuris ou prêle des bois [plante]
 equisetis:hippuris ou prêle des bois [plante]
 equisetum:hippuris ou prêle des bois [plante]
 equiso:celui qui dresse les chevaux, écuyer
-equistrator:
+equistrator:cavalier
 equitalis:de cavalerie
 equitatio:l'équitation
 equitiarius:intendant des haras
@@ -31737,7 +31737,7 @@ facto:fréq. de facio
 factorium:pressoir à huile
 factrix:créatrice, plastique [en parl. des arts]
 factura:façon, fabrication / oeuvre
-factus:il ne fait en rien du mieux fait, il perd sa peine
+factus:fait, effectué, exécuté / rendu, devenu / fait pour, né pour
 facul:facilement
 facularius:porteur de torche
 facultaticula:faibles moyens
@@ -32987,7 +32987,7 @@ funicula:c. funiculus
 funirepus:danseur de corde
 funitortor:
 furacitas:disposition au vol
-furaciter:thievishly;, sup.
+furaciter:thievishly;
 furans:part. pris subst, voleur
 furanter:c. furaciter
 furatim:Plaut. comme des voleurs.
@@ -33075,7 +33075,7 @@ gabbarae:momies
 gabbares:momies
 gabbarus:sot, imbécile
 gabernatrix:
-gacius:of or belonging to domestic fowls, poultry, absol.
+gacius:of or belonging to domestic fowls, poultry
 gaesa:gèses, javelots de fer [en usage chez les peuples Alpins et chez les Gaulois] / [sing. rare]
 gaesati:soldats armés de gèses
 gaesi:[mot gaulois], hommes courageux
@@ -33535,7 +33535,7 @@ gluttus2:le gosier / absorption
 glutus:agglutiné, adhérent
 glutus2:le gosier / absorption
 glycymaris:sorte d'huîtres
-glycymeris:a kind of shell-fish, med.
+glycymeris:a kind of shell-fish
 glycyrrhiza:réglisse [racine sucrée]
 glycyrrhizon:
 glycyrriza:
@@ -33845,7 +33845,7 @@ haematites:hématite, sanguine, mine de fer d'un rouge brun
 haematopus:oiseau aux pattes rouges.
 haemesis:an inflammatory disease of the eye
 haemophthisicus:celui qui a le sang corrompu.
-haemoptoicus:one who spits blood, med.
+haemoptoicus:one who spits blood
 haemoptois:crachement de sang
 haemoptyicus:celui qui crache le sang
 haemoptysis:crachement de sang, hémoptysie.
@@ -34231,7 +34231,7 @@ hexahedrum:hexaèdre
 hexameter:qui a six pieds, hexamètre
 hexaphori:six porteurs [du même fardeau]
 hexaphoron:litière à six porteurs
-hexaphoros:one of six who carry a load together, med.
+hexaphoros:one of six who carry a load together
 hexaphorum:litière à six porteurs
 hexaptota:noms qui ont les six cas
 hexaptotos:qui a les six cas
@@ -34582,7 +34582,7 @@ humano:tr., (passif) s'incarner
 humatio:action d'ensevelir, inhumation
 humator:celui qui ensevelit
 humatus:part. de humo
-humecatio:a moistening, watering, moisture, Absol.
+humecatio:a moistening, watering, moisture
 humectatio:action d'humecter
 humecto:tr., humecter, mouiller, baigner / int., se mouiller
 humectus:humecté, humide
@@ -35241,7 +35241,7 @@ imparticipabilis:qui n'a point part à
 imparticipatus:non partagé
 impartilis:indivisible
 impartio:tr., faire part de, partager, communiquer / alicui aliquid / consacrer, accorder, impartir / aliquem aliqua re, faire participer qqn de qqch / recevoir l'enseignement de sciences. formes dépon. impertiri, etc.
-impasco:
+!impasco:
 impascor:int., paître dans [av. dat.]
 impassibilis:qui ne sent pas, sans passions
 impassibilitas:impassibilité
@@ -35339,7 +35339,7 @@ impinguesco:int., s'engraisser
 impinguis:gras
 impinguo:tr., engraisser / int., devenir gras
 implacabilitas:inflexibilité
-implacabiliter:implacably, comp.
+implacabiliter:implacably
 implagium:petit filet
 implago:tr., prendre dans des filets
 implanator:trompeur
@@ -35659,7 +35659,7 @@ incerto2:c. incerte
 incespitator:v. caespitator.
 incessabilis:incessant
 incessabiliter:incessamment
-incessans:incessant, Adv.
+incessans:incessant
 incessanter:incessamment
 incesta:an incestuous woman, paramour
 incestator:qui souille par un inceste
@@ -35736,12 +35736,12 @@ incoctus:(in priv.), non cuit, cru
 incoencenatus:that has not dined, eaten, dinnerless, hungry, fasting
 incoencenis:that has not dined, dinnerless
 incoenceno:to dine there, to dine in, at a place
-incoeptus:
+incoeptus:sans début
 incoercitus:sans frein, indompté
 incogitabilis:inimaginable, incroyable / irréfléchi
 incogitans:(in priv.), irréfléchi, inconsidéré
 incogitantia:irréflexion, étourderie
-incogitate:
+incogitate:sans réflechir
 incognitio:méconnaissance
 incognoscibilis:incompréhensible
 incognosco:tr., reconnaître
@@ -35751,7 +35751,7 @@ incohate:incipiently, incompletely
 incohatio:a beginning
 incohatiuus:beginning, denoting a beginning, inchoative;
 incohator:a beginner
-incohatus:Neutr., to begin, commence, take a beginning.
+incohatus:juste commencé, imparfait, incomplet
 incohibilis:difficile à mettre au pas / qu'on ne peut arrêter
 incoibilis:difficile à rassembler.
 incoinquinabilis:incorruptible
@@ -35801,8 +35801,8 @@ incomprehensibiliter:d'une manière incompréhensible
 incomprehensus:non saisi, insaisissable
 incomprensus:non saisi, insaisissable
 incompte:grossièrement, sans art
-incomte:
-incomtus:non peigné / sans art, sans apprêt, sans ornement, négligé [en parl. du style]
+!incomte:
+!incomtus:non peigné / sans art, sans apprêt, sans ornement, négligé [en parl. du style]
 inconcessibilis:impardonnable
 inconciliatus:non concilié
 inconcinne:maladroitement
@@ -35811,8 +35811,8 @@ inconcinniter:maladroitement, sans art
 inconcretus:incorporel
 inconculcabilis:qui ne peut être foulé aux pieds
 inconcusse:fermement
-inconexio:the omission of a copulative particle, asyndeton
-inconexus:not joined together, disconnected
+!inconexio:the omission of a copulative particle, asyndeton
+!inconexus:not joined together, disconnected
 inconfectus:(in priv.), inachevé
 inconfidens:sans confiance
 inconfuse:sans confusion
@@ -35823,7 +35823,7 @@ incongressibilis:qu'on ne peut aborder
 incongrue:d'une manière qui ne convient pas
 incongruenter:d'une manière inconvenante
 incongruentia:inconvenance
-incongruitas:] proposition où le verbe est impersonnel
+incongruitas:proposition où le verbe est impersonnel
 incongruus:c. incongruens
 inconiuens:that does not close the eyes
 inconiugus:impersonnel
@@ -35833,15 +35833,15 @@ inconnconexus:not joined together, disconnected
 inconnexio:asyndète [rhét.]
 inconnexus:non lié, non adhérent / [métrique] asynartète ??
 inconniuens:qui ne ferme pas les yeux, ayant les yeux ouverts
-inconniuus:c. inconnivens / qui ne se ferment pas [en parlant des yeux]
-inconruptela:imperishableness, incorruptibility
-inconruptibilis:imperishable, incorruptible, Adv.
-inconruptibilitas:imperishableness, incorruptibility
-inconruptibiliter:
-inconruptio:imperishableness, incorruptibility
-inconruptiuus:imperishable
-inconruptorius:imperishable
-inconruptus:unspoiled, uninjured, uncorrupted
+inconniuus:qui ne ferme pas les yeux, ayant les yeux ouverts / qui ne se ferment pas [en parlant des yeux]
+!inconruptela:imperishableness, incorruptibility
+!inconruptibilis:imperishable, incorruptible
+!inconruptibilitas:imperishableness, incorruptibility
+!inconruptibiliter:
+!inconruptio:imperishableness, incorruptibility
+!inconruptiuus:imperishable
+!inconruptorius:imperishable
+!inconruptus:unspoiled, uninjured, uncorrupted
 inconscientia:ignorance [d'une chose]
 inconscius:qui n'a pas connaissance de [gén.] / [abst]
 inconscriptus:confus, mal disposé
@@ -36349,7 +36349,7 @@ infalso:tr., falsifier, altérer
 infamatio:diffamation
 infamator:celui qui diffame, qui décrie
 infamatus:part. de infamo
-infamiter:infamously;, sup.
+infamiter:infamously;
 infamium:c. infamia
 infamus:c. infamis
 infantaria:a woman fond of infants
@@ -36436,7 +36436,7 @@ infinibilis:infini
 infinitas:immensité, étendue infinie
 infinite:sans fin, sans limite, à l'infini / d'une manière indéfinie, en général
 infinitio:c. infinitas
-infinitiuus:unlimited, indefinite, absol.
+infinitiuus:unlimited, indefinite
 infinitiuus2:[avec ou sans modus], m., l'infinitif
 infinito:à l'infini, infiniment
 infinitum:seul, l'infinitif / [expr. avec le n. pris, substt]
@@ -36718,7 +36718,7 @@ innotitia:ignorance
 innoto:tr., marquer, noter
 innouatio:renouvellement
 innouator:celui qui renouvelle
-innouatus:renewed, med.
+innouatus:renewed
 innuba:qui n'est pas mariée
 innubilo:tr., obscurcir / [fig.] assombrir
 innubo:int., entrer [dans une famille] par mariage, en s'unissant à un époux / [fig.] passer ailleurs
@@ -36741,7 +36741,7 @@ inoblector:pass., se réjouir de qqch
 inobliterabilis:ineffaçable
 inobliteratus:non effacé
 inoblitus:qui n'oublie pas
-inoboediens:disobedient, Adv.
+inoboediens:disobedient
 inoboedienter:sans obéir
 inoboedientia:désobéissance
 inoboedio:int., désobéir
@@ -38022,7 +38022,7 @@ iuli:chatons [du coudrier]
 iulis2:poisson inconnu
 iulis3:a kind of rockfish
 iulus2:v. iuli.
-ium:an idol-temple, med.
+ium:an idol-temple
 iumentalis:c. jumentarius
 iumentarius:de bêtes de somme; Subst. m. éleveur
 iumentarius2:éleveur
@@ -39002,7 +39002,7 @@ lingulatus:c. ligulatus,
 lingulus:querelleur
 linguositas:loquacity
 linia:fil de lin, cordon, ficelle / fils [qui forment les ouvertures dans les filets] ; [d'où] filet / ligne de pêche / cordeau [pour aligner] / [d'où] alignement perpendiculaire / ligne, trait [fait avec une plume, un pinceau, etc.] / [sens divers] / ] / ligne de séparation des places au cirque / traits du visage, c. lineamenta / ligne de parenté
-liniaris:of or belonging to lines, consisting of lines, linear, Adv.
+liniaris:of or belonging to lines, consisting of lines, linear
 liniatura:action d'oindre
 linifer:qui porte du lin
 linificium:travail du lin
@@ -39627,7 +39627,7 @@ maesto:attrister, affliger
 mafors:tis, n., voile de femme, capeline / petit manteau
 maforte:voile de femme, capeline / petit manteau
 maganum:v. magganum.
-magdalia:cylindrical figures, med.
+magdalia:cylindrical figures
 magdalides:
 magdalis:magdaléon [pharm.]
 magdalium:magdaléon [pharm.]
@@ -40371,7 +40371,7 @@ mentitio:a lying, deception
 mentitus:v. mentior
 mento:celui dont le menton est saillant
 mentor2:inventeur
-mentulatus:having a, Comp.
+mentulatus:having a mentula
 mephiticus:méphitique
 merace:(inus. au positif), sans mélange, purement
 meracius:
@@ -42241,7 +42241,7 @@ nummosus:c. nummatus
 nummularius:de changeur, de banquier / subst. m., changeur, banquier / vérificateur des monnaies
 numosus:well furnished with money, wealthy, rich
 numqui:adv., est-ce que en qq façon ?
-numulariolus:a money-changer, med.
+numulariolus:a money-changer
 numularius:of or belonging to moneychanging;
 numulus:some money, money
 numus:argent monnayé, monnaie, argent / ] / petite somme, liard, sou, centime / drachme [monnaie grecque]
@@ -42534,7 +42534,7 @@ obscaenitas:Unfavorableness, inauspiciousness
 obscenus2:a lewd person
 obscoene:
 obscoenitas:Unfavorableness, inauspiciousness
-obscoenus:of adverse, unfavorable, evil omen; ill-boding, inauspicious, ominous, portentous, birds of illomen, owls, the fatal ship, Sup.
+obscoenus:of adverse, unfavorable, evil omen; ill-boding, inauspicious, ominous, portentous, birds of illomen, owls, the fatal ship
 obscuratus:part. passé de obscuro.
 obscurefacio:tr., obscurcir
 obscuridicus:qui tient des propos obscurs
@@ -44009,7 +44009,7 @@ pariatoria:règlement définitif ; [fig.] suppression complète
 pariatus:part. p. de pario 1
 parichrus:sorte de pierre précieuse blanche comme le marbre de Paros
 paricida:étym. douteuse), parricide / meurtrier d'un de ses parents / meurtrier d'un concitoyen, assassin / celui qui fait la guerre à sa patrie, traître / sacrilège
-paricidialis:pertaining to, producing the crime of parricide, parricidal, murderous, Adv.
+paricidialis:pertaining to, producing the crime of parricide, parricidal, murderous
 pariens:part. de pario 2
 parientia:Cass. obéissance.
 parietalis:de mur
@@ -44452,7 +44452,7 @@ penita:the inmost parts
 penitus2:muni d'une queue
 penitus3:qui est au fond, intérieur, profond, enfoncé / pl. n., parties profondes, reculées
 pennarium:étui à plumes
-pennata:winged creatures, birds, Comp.
+pennata:winged creatures, birds
 pennatulus:qui a de petites ailes
 pennesco:int., se couvrir de plumes (métaph.)
 pennifer:emplumé, empenné
@@ -46370,7 +46370,7 @@ porrecte:plus loin, au-delà
 porrectio:allongement / ligne droite
 porrectum:
 porri:poireau [plante potagère]
-porriciae:the parts of the victim consecrated to the gods, sacrificial pieces, med.
+porriciae:the parts of the victim consecrated to the gods, sacrificial pieces
 porricio:tr., [jeter en avant] offrir en sacrifice
 porrigibilis:extensible
 porriginosus:dartreux, teigneux
@@ -46952,9 +46952,9 @@ praenotio:notion anticipée, idée innée.
 praenoto:marquer en avant, faire une marque à, noter / marquer en tête, intituler / désigner d'avance, prédire / noter, prendre note
 praenubo:tr., voiler par devant / int., se marier d'avance
 praenum:séran / un instrument de torture
-praenunciatio:a prediction
-praenuncio:v. praenuntio, etc.
-praenuncius:v. praenuntio, etc.
+!praenunciatio:a prediction
+!praenuncio:v. praenuntio, etc.
+!praenuncius:v. praenuntio, etc.
 praenuncupatus:nommé d'avance.
 praenuncupo:tr., nommer d'avance
 praenuntiatio:prédiction
@@ -47761,10 +47761,10 @@ pronubans:faisant l'office de pronuba
 pronubo:
 pronubus2:paranymphe, jeune garçon qui assiste le marié
 pronumero:tr., solder par avance, payer d'abord [qqn]
-pronunciabilis:declarative, enunciative, med.
+pronunciabilis:declarative, enunciative
 pronunciatio:A public declaration, publication, proclamation, decision, proclamation
 pronunciatiue:
-pronunciatiuus:of or belonging to declaration, declarative, enunciative;, Adv.
+pronunciatiuus:of or belonging to declaration, declarative, enunciative;
 pronunciator:One who delivers any thing, a reciter
 pronunciatum:
 pronunciatus:abl. sing., pronunciation
@@ -48610,7 +48610,7 @@ quadrigatus:qui porte l'empreinte d'un quadrige / subst. m. [s.-ent. nummus], mo
 quadrigatus2:[s.-ent. nummus], monnaie marquée d'un quadrige
 quadrigeminus:quadruple
 quadrigona:carré
-quadrigonus:having four angles, med.
+quadrigonus:having four angles
 quadrigula:petit quadrige
 quadrigulae:petit quadrige
 quadrigularius:peintre de quadriges
@@ -50481,7 +50481,7 @@ saepia:- 1 - seiche (mollusque qui secrète un liquide noirâtre). - 2 - encre.
 saepicula:petite haie
 saepimen:clôture
 saepimentum:clôture
-saepis:gén. de saepes.
+saepis:(inusité au positif) fréquent.
 saepiuscule:assez souvent
 saeptatus:entouré d'une clôture
 saeptio:clôture
@@ -50834,7 +50834,7 @@ sartio:a hoeing, weeding
 sartitector:charpentier
 sartrix:raccommodeuse
 sataccipio:c. satis accipio.
-satagito:même sens
+satagito:avoir assez à faire avec qqch.
 satanaria:c. peucedanum
 satellitium:garde, escorte / [fig.] appui
 satiabilis:qui peut être rassasié [fig.]
@@ -50954,10 +50954,10 @@ scalpratus:having a sharp, cutting edge
 scalptorium:instrument pour se gratter
 scalptura:action de graver, glyptique, gravure / [sens concret] gravure, sculpture
 scalpturatus:(Lebaigue P. 1127 et P. 1128) Plin. gravé avec le ciseau, ciselé, sculpté.
-scalpturigo:a scratching, med.
+scalpturigo:a scratching
 scalpturio:to scratch, claw
 scalptus:part. p. de scalpo.
-scalpurigo:a scratching, med.
+scalpurigo:a scratching
 scalpurio:to scratch, claw
 scalpurrigo:action de gratter
 scalticus:qui a des dartres, dartreux
@@ -51809,7 +51809,7 @@ serapion:c. serapias
 seratus:part. passé sero, serare; fermé à clé.
 serenans:part. prés. de sereno; serein.
 serenatus:part. p. de sereno.
-serene:clearly, brightly;, comp.
+serene:clearly, brightly;
 serenifer:qui amène la sérénité]
 serenificus:serein
 sereniger:c. serenifer
@@ -51938,7 +51938,7 @@ sesquiopera:c. sesquiopus
 sesquipedaneus:d'un pied et demi
 sesquipedis:d'un pied et demi
 sesquiplaris:soldat qui reçoit une ration et demie
-sesquiplarius:a soldier who received a ration and a half, med.
+sesquiplarius:a soldier who received a ration and a half
 sesquiplex:qui contient une fois et demie
 sesquiplicarius:c. sesquiplaris
 sesquiplus:v. sescuplus.
@@ -52238,7 +52238,7 @@ sipharum:c. supparum, petite voile de perroquet.
 sipharus:A linen garment worn by women
 siphon:c. sipho
 siphonarius:pompier
-siphunculus:petit tuyau
+!siphunculus:petit tuyau
 sipo:tr., jeter
 sipo2:c. sipho.
 sipolindrum:sorte d'aromate
@@ -52248,9 +52248,9 @@ sipparus:A linen garment worn by women
 siptace:Plin. perroquet.
 siptachora:a tree in India that yields amber;
 siptachoras:nom d'un arbre de l'Inde qui produit une résine odoriférante
-siqua2:v. quā, adv.
+siqua2:v. quā
 siquando:v. quando.
-siquo:v. quo, adv.
+siquo:v. quo
 siraeum:vin cuit
 sirbenus:qui bredouille
 sircitula:sorte de raisin
@@ -52375,7 +52375,7 @@ solicanus:soliste, qui chante seul
 solicatio:] :
 solicismus:a grammatical fault in the construction of a sentence, a solecism
 solicitatio:Vexation, anxiety
-solicitator:a tempter, seducer, med.
+solicitator:a tempter, seducer
 solicito:to disturb, stir, agitate, move; to distress, harass, make uneasy, vex, solicit, tempt, seduce, attract, induce.
 solicitudo:uneasiness of mind, care, disquiet, anxiety, solicitude
 solicitus:thoroughly moved, agitated, disturbed.
@@ -52459,7 +52459,7 @@ soniger:bruyant, sonore
 sonipes:au pied bruyant
 sonito:c. sono
 sonore:d'une manière sonore
-sonoris:noisy, loud, sounding, resounding, sonorous, Adv.
+sonoris:noisy, loud, sounding, resounding, sonorous
 sonoritas:sonorité
 sonupes:with sounding feet, noisy-footed, subst., noisy-foot, a horse, a prancer, steed
 sonupes2:noisy-foot, a horse, a prancer, steed
@@ -52675,7 +52675,7 @@ spiratus:a breathing, breath
 spiritalitas:spiritualité, immatérialité
 spiritaliter:spirituellement, immatériellement
 spiritualis:etc.
-spiritualitas:spirituality, med.
+spiritualitas:spirituality
 spiritum:v. spiritus
 spirula:tore [t. d'arch.]
 spissatio:compression
@@ -52976,9 +52976,9 @@ stirsozila:petite centaurée
 stiuarius:garçon de charrue
 stlata:navire marchand, [puis] brigantin
 stlataris:v. stlatarius
-stlatarius:stlata), apporté par bateau, c.-à-dire cher / étoffes précieuses
+stlatarius:(stlata), apporté par bateau, c.-à-dire cher / étoffes précieuses
 stlatta:navire marchand, [puis] brigantin
-stlattlatarius:of or belonging to a ship, brought by ship, costly, deceitful
+!stlattlatarius:of or belonging to a ship, brought by ship, costly, deceitful
 stlembus:lent, qui va lentement
 stlis:arch. = lis
 stlocus:locus
@@ -53234,7 +53234,7 @@ subaquilinus:un peu aquilin
 subaquilus:un peu brun [de couleur d'aigle]
 subarator:celui qui fouit la terre en dessous
 subaratus:v. subaro.
-subarescens:growing somewhat dry, med.
+subarescens:growing somewhat dry
 subaresco:int., se dessécher quelque peu
 subargutulus:assez fin (spirituel)
 subarmalis:tunique qui ne recouvre pas les bras
@@ -53489,7 +53489,7 @@ subluuies:boue, vase
 subluuium:suppuration
 submaestus:un peu triste
 submagister:vice-président
-submanans:flowing beneath, med.
+submanans:flowing beneath
 submedius:qui tient à peu près le milieu
 submeio:uriner sous (soi).
 submeio2:tr., uriner sous soi
@@ -53630,10 +53630,10 @@ subsero:- tr. - planter à la place de, renouveler (un plant).
 subsero2:tr., insérer, introduire / [fig.] insérer en plus, ajouter // tr., planter à la place de, rajeunir [un plant]
 subsertus:part. de subsero 1
 subseruio:int., servir, être aux ordres de [avec dat.]
-subsesquialter:[nombre] contenu dans un autre une fois 1/2, une fois 1/3, une fois 1/4, une fois 1/5
-subsesquiquartus:[nombre] contenu dans un autre une fois 1/2, une fois 1/3, une fois 1/4, une fois 1/5
-subsesquiquintus:[nombre] contenu dans un autre une fois 1/2, une fois 1/3, une fois 1/4, une fois 1/5
-subsesquitertius:[nombre] contenu dans un autre une fois 1/2, une fois 1/3, une fois 1/4, une fois 1/5
+subsesquialter:[nombre] contenu dans un autre une fois 1/2
+subsesquiquartus:[nombre] contenu dans un autre une fois 1/4
+subsesquiquintus:[nombre] contenu dans un autre une fois 1/5
+subsesquitertius:[nombre] contenu dans un autre une fois 1/3
 subsessa:embuscade
 subsicco:tr., sécher un peu
 subsiciuum:portion de terre qui est en sus de la mesure, parcelle
@@ -53735,7 +53735,7 @@ subteruaco:
 subteruolo:int., voler sous [avec l'acc.]
 subteruoluo:tr., faire rouler sous
 subtextus:part. de subtexo
-subtilia:fine goods, stuffs, Comp., Sup.
+subtilia:fine goods, stuffs
 subtililoquentia:langage subtil
 subtililoquus:qui discourt avec subtilité, subtil
 subtilio:tr., amincir, affaiblir
@@ -53987,7 +53987,7 @@ sulphuraria:a sulphur pit, mine
 sulphuratio:a vein of sulphur
 sulphuratus:impregnated with sulphur, sulphurated.
 sulphureus:de soufre, du soufre / qui contient du soufre, sulfureux
-sulphurosus:full of sulphur, sulphureous, med.
+sulphurosus:full of sulphur, sulphureous
 sumbola:a contribution, a share, scot, shot
 suminatus:de tétine de truie
 summalis:total, complet
@@ -54214,7 +54214,7 @@ superingero:tr., entasser par-dessus, mettre sur
 superingestus:
 superingredior:tr., traverser, franchir
 superiniectus:
-superiniicio:tr., jeter par-dessus / mettre sur
+!superiniicio:tr., jeter par-dessus / mettre sur
 superinlino:- tr. - 1 - Cels. oindre de, enduire de. - 2 - Cels. étendre sur.
 superinpono:to put, place, lay upon
 superinspicio:tr., inspecter, surveiller
@@ -54340,7 +54340,7 @@ supersorbeo:tr., boire en outre
 superspargo:tr., répandre sur / parsemé de [av. abl.]
 superspergo:tr., répandre sur / parsemé de [av. abl.]
 superspero:int., espérer surtout en
-superspersus:strewn, sprinkled over, med., med.
+superspersus:strewn, sprinkled over
 superspicio:int., regarder au delà
 superstatumino:tr., établir comme lit (comme base)
 supersterno:tr., étendre sur / couvrir de
@@ -54520,7 +54520,7 @@ surrectrix:celui, celle qui se lève
 surrectus:part. de subrigo.
 surrefectus:Vell. un peu remis, un peu soulagé.
 surregulus:Amm. petit prince, vassal.
-surremaneo:to remain behind, med.
+surremaneo:to remain behind
 surremigo:- intr. - 1 - Virg. ramer sous l'eau, ramer silencieusement. - 2 - tr. - Calp. pousser, exciter.
 surrenalis:Veg. qui est sous les reins.
 surrepente:rather suddenly
@@ -54536,7 +54536,7 @@ surriguus:watered
 surringor:v. subringor.
 surrogo:tr., faire choisir qqn à la place d'un autre, élire en remplacement ou en plus
 surrostrani:people who hang about the forum near the rostra, loungers, idlers
-surrotatus:mounted on wheels, med.
+surrotatus:mounted on wheels
 surrotundus:somewhat round, roundish
 surrubeo:to be somewhat red, reddish, to blush
 surruber:somewhat red, reddish
@@ -54549,7 +54549,7 @@ surrumus:under the udder, sucking, suckling
 surrunciuus:that is grubbed up
 surruo:abattre par la base, renverser, saper les fondements
 surrustice:somewhat clownishly
-surrusticus:somewhat clownish, rustic, Adv.
+surrusticus:somewhat clownish, rustic
 surrutilo:to glow slightly, to glimmer forth
 surrutilus:somewhat reddish, ruddy
 surrutus:
@@ -54614,7 +54614,7 @@ susurrium:chuchotement, bavardages, médisance
 susurro2:chuchoteur, médisant
 suta:objets cousus ; [d'où] assemblage
 sutoricius:c. sutorius
-sutoritius:of or belonging to a shoemaker, shoemakers, blacking, med.
+sutoritius:of or belonging to a shoemaker, shoemakers, blacking
 sutorius:de cordonnier / subst. m., ex-cordonnier
 sutorius2:ex-cordonnier
 sutriballus:savetier
@@ -55367,7 +55367,7 @@ theopnoe:romarin [plante]
 theorema:théorème, proposition
 theoremation:petit théorème.
 theorematium:dim. de theorema
-theoretica:c. theoretice
+!theoretica:c. theoretice
 theoretice:la théorétique (science de la spéculation, de la recherche spéculative)
 theoreticus:spéculatif [opp. practicus]
 theoria:la spéculation, la recherche spéculative
@@ -55377,7 +55377,7 @@ theostasis:niche d'une divinité
 theotocos:mère de Dieu [la vierge Marie]
 therapeutica:traités de médecine
 therebinthos:térébinthe (arbre résineux).
-theriaca:thériaque [spécifique contre les morsures venimeuses]
+!theriaca:thériaque [spécifique contre les morsures venimeuses]
 theriace:thériaque [spécifique contre les morsures venimeuses]
 theriacus:qui a des propriétés spécifiques contre les morsures venimeuses
 theribethron:sorte d'herbe, c. thorybethron
@@ -55417,15 +55417,15 @@ thiasitas:confrérie de Bacchus
 thiaso:un chant ayant toute l'ardeur d'un thiase
 thieldones:sorte de chevaux
 thius:oncle
-thladias:eunuque
+!thladias:eunuque
 thlasias:eunuque
-thlibias:eunuque
+!thlibias:eunuque
 thlibomeni:les éprouvés
 thocum:sorte de siège
 thocus:sorte de siège
-thomex:a cord, string, line, thread
+!thomex:a cord, string, line, thread
 thomix:corde de jonc
-thoraca:c. thorace
+!thoraca:c. thorace
 thoracatus:cuirassé, couvert d'une cuirasse
 thorace:buste
 thoraciculus:petit buste
@@ -55602,39 +55602,39 @@ tius:oncle
 tmesis:tmèse [gram.]
 tocites:sorte de plante
 tocuilio:
-toculio:Cic. usurier.
+toculio:usurier.
 tocullio:usurier
 todi:
 todus:sorte d'oiseau très petit
 toecharchus:chef des rameurs
 toechobates:celui qui marche sur un mur, v. tichobates
 tofaceus:de tuf
-tofacius:de tuf
-toficius:c. tofaceus
-tofineus:de tuf
+!tofacius:de tuf
+!toficius:c. tofaceus
+!tofineus:de tuf
 tofinus:de tuf
 tofosus:spongieux comme le tuf
 togatarius:acteur de fabula togata
 togatus2:a man of humble station, a client
-tolae:c. tollae
+!tolae:c. tollae
 toleranter:patiemment, avec résignation / d'une façon tolérable
 toleratio:capacité de supporter
 tolerator:one who endures
-toleratus:mieux supporté, plus supportable
+toleratus:supporté, supportable
 toleratus2:le fait d'endurer
-toleror:- tr. - Prisc. c. tolero.
+toleror:- tr. - c. tolero.
 toles:gonflement des amygdales
 tolleno:machine à puiser de l'eau, à l'aide d'une bascule / machine de guerre pour enlever des objets lourds
-tolles:v. toles.
+!tolles:v. toles.
 tolutaris:qui va au trot [fig.]
 tolutilis:trot
 tolutiloquentia:volubilité de langue
 tomacina:cervelas, saucisson
 tomacularius:marchand de cervelas, de saucissons
 tome:césure
-tomex:v. tomix.
+!tomex:v. tomix.
 tomicla:dim. de tomix
-tomix:corde de jonc ou de chanvre
+!tomix:corde de jonc ou de chanvre
 tomus:morceau, pièce / livre, fascicule
 tonaeus:tendu [en parl. du son]
 tonanter:au bruit du tonnerre, avec des coups de tonnerre
@@ -55712,7 +55712,7 @@ torporo:tr., engourdir
 torques:collier / collier d'attelage pour les boeufs / collier formé par des plumes autour du cou des oiseaux / guirlande, feston
 torrefacio:tr., torréfier, dessécher
 torrenter:avec plus d'impétuosité
-torres:a brand, firebrand, med.
+torres:a brand, firebrand
 torrido:tr., dessécher, brûler
 torror:action desséchante, brûlante / exposition à la chaleur du soleil
 torrus:torridus, aridus
@@ -55962,7 +55962,7 @@ transpunctorius:qui perce, perçant
 transpungo:percer en piquant
 transscendo:monter en passant par-delà / passer d'un endroit à un autre, [et au fig.] d'une chose à une autre / franchir, escalader / surpasser / devancer
 transscido:
-transspicio:to look, see through, med.
+transspicio:to look, see through
 transsulto:sauter (passer en sautant) [d'un cheval sur un autre]
 transsumo:prendre ou recevoir d'un autre
 transsuo:percer avec une aiguille, coudre
@@ -56355,7 +56355,7 @@ tructa:truite [poisson]
 tructus:truite [poisson]
 truculens:c. truculentus
 truculenta:fierce conduct, language
-truculente:savagely, fiercely, ferociously, Comp., Sup.
+truculente:savagely, fiercely, ferociously
 truella:v. trulla
 trugonus:sorte de poisson
 trulleum:cuvette
@@ -56556,7 +56556,7 @@ tyrannopolita:sujet d'un tyran
 tyrianthinus:qui est pourpre-violet
 tyro2:v. tiro.
 tyropatina:sorte de gâteau de lait, oeufs et miel
-tyrotarichos:a dish of salt-fish prepared with cheese, Adj., med.
+tyrotarichos:a dish of salt-fish prepared with cheese
 tyrotarichum:que c'était un plat rustique]
 tzanga:sorte de chaussure des Parthes
 uacans:v. vaco.
@@ -57291,7 +57291,7 @@ uirgulatus:rayé, strié
 uirgultosus:c. virgultus
 uirgultus:couvert de broussailles
 uiria:c. viriola
-uiriae:a kind of ornament for the arm, armlets, bracelets, med.
+uiriae:a kind of ornament for the arm, armlets, bracelets
 uiriatus:orné de bracelets
 uiriculae:maigres ressources
 uiriculum:touret, burin
@@ -57468,7 +57468,7 @@ umbratio:projection de l'ombre, ombre projetée
 umbratus:part. p. de umbro
 umbrella:
 umbresco:int., devenir une ombre
-umectatio:a moistening, watering, moisture, Absol.
+umectatio:a moistening, watering, moisture
 umefacio:tr., rendre humide
 umens:part. de humeo
 umerale:cape, pèlerine
@@ -57548,7 +57548,7 @@ undula:petite onde, légère ondulation
 undulatus:ondé, ondulé
 unedo:arbousier [arbre] / arbouse, fruit de l'arbousier
 unesco:s'unir / avec qqn
-ungella:a little claw, talon, med.
+ungella:a little claw, talon
 ungellula:
 unguella:pied de cochon [cuit]
 unguellula:dim. de unguella

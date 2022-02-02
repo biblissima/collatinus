@@ -3409,7 +3409,7 @@ Caralitani:Caralitains (les habitants de Caralis)
 Caranus:Caranus (premier roi de Macédoine)
 Caratacus:Caratacus (roi des Silures)
 carbaseus:de lin fin, de toile très fine
-carbasus:carbasa, orum)
+carbasus: espèce de lin très fin, voile tendu dans les théâtres (pluriel carbasa, orum)
 Carbo2:Carbon (surnom des Papirius)
 carbo:charbon
 carbonarius2:charbonnier
@@ -3675,7 +3675,7 @@ Cecropis:descendante de Cécrops, d'Athènes
 Cecropius:de Cécrops
 Cecrops:Cécrops, [premier roi d'Athènes]
 cedo:aller, marcher ; s'en aller, se retirer ; aller, arriver ; céder, concéder
-cedo2:[sing.] donne, montre, indique; [plur.] allons, voyons
+cedo2:[sing. cĕdŏ] donne, montre, indique; [plur. cēttĕ] allons, voyons
 cedrus:cèdre,  bois de cèdre, huile de cèdre
 Celadus:Celadus (rivière de la Tarraconnaise)
 Celaenae:Celaenae (ville de Phrygie)
@@ -4044,7 +4044,7 @@ Circensis:du cirque
 circinus:compas[fig.] sorte d'herpès [maladie]
 circiter:environ
 circito:faire tourner autour, agiter
-circueo:entourer, faire le tour de
+!circueo:entourer, faire le tour de
 circuitus:circuit, tour
 circulator:charlatan, badaud
 circulor:former groupe, faire le colporteur
@@ -5274,7 +5274,7 @@ convecto:charrier, transporter [en masse, en bloc]
 convector:compagnon de route
 conveho:charrier, apporter, rentrer [la récolte]
 convello:arracher complètement
-convena:étrangers, fugitifs
+convena:(adj.) qui se rencontre, qui se réunit (subst. pl. convenae, arum) étrangers, fugitifs
 conveniens:convenable, bienséant
 convenienter:conformément
 convenientia:accord parfait, harmonie, sympathie
@@ -5922,7 +5922,7 @@ Daedalus:Dédale
 Dahae:les Dahes (peuple scythe)
 Dalmatae:Dalmates
 Dalmatia:Dalmatie
-Dalmaticus:de Dalmatie
+Dalmaticus:de Dalmatie, Dalmatien, [surnom de L. Metellus]
 Dama2:Dama (nom d'esclave)
 Damalis:Damalis (nom de femme)
 Damascus:de Damas
@@ -5958,7 +5958,7 @@ Dardania:Dardanie, troie
 Dardani:Dardaniens
 Dardanides:descendant de Dardanus, Troyen
 Dardanis:Dardanis (Troyenne)
-Dardanius:dardanien, troyen
+!Dardanius:dardanien, troyen
 Dardanus2:Dardanus (fondateur de Troie, magicien, philosophe stoïcien)
 Dardanus:dardanien (Troyen)
 Dares:Dares (nom d'un athlète troyen)
@@ -6238,7 +6238,7 @@ delitesco:se tenir caché, se cacher
 delitigo:gourmander, s'emporter
 Delium:Delium (ville de Béotie)
 Delius:de Délos
-Delmaticus:Dalmatien, [surnom de L. Metellus]
+!Delmaticus:Dalmatien, [surnom de L. Metellus]
 Delos:Délos [île de la mer Égée]
 Delphicus:delphique
 Delphi:Delphes
@@ -6734,7 +6734,7 @@ diota:amphore (à deux anses)
 Dioxippus:Dioxippe (athlète de la suite d'Alexandre)
 Diphilus:Diphile [poète comique d'Athènes, autres du même nom]
 diploma:pièce officielle (lettres de grâce, sauf-conduit, permis officiel)
-dipundius:somme de deux as
+!dipundius:somme de deux as
 dirae2:mauvais présages, exécrations, imprécations
 Dirae:les Furies
 dira:présages funestes
@@ -7202,7 +7202,7 @@ Eburones:les Eburons
 Eburovices:Eburovices (peuple de la Gaule)
 ecastor:par Castor
 Ecbatana:Ecbatane [capitale de la Médie]
-ecbibo:boire
+!ecbibo:boire
 eccere:voilà, c'est cela
 ecce:voici, voici que
 ecclesia:assemblée [du peuple, des chrétiens];  l'Église, église (édifice)
@@ -8235,7 +8235,7 @@ extrico:débarrasser, démêler, défricher, débrouiller, déchiffrer, chasser
 extrilidus:très pâle
 extrinsecus:du dehors, de l'extérieur
 extrudo:pousser dehors avec violence, chasser de, mettre à la porte
-extruo:accumuler, construire, élever
+!extruo:accumuler, construire, élever
 extundo:faire sortir, obtenir avec effort
 exturbo:faire sortir de force, chasser, expulser
 exubero:regorger, déborder, abonder, rendre abondant, dépasser [en nombre]
@@ -14747,8 +14747,8 @@ Nyctelius:de Nyctelius (Bacchus)
 Nycteus:Nycteus (fils de Neptune et père d'Antiope)
 Nyctimene:Nyctimene (fille d'Épope, changée en chouette)
 Nymphaeum:Nymphaeum (cap et port d'Illyrie)
-nympha:nymphe
-nymphe:nymphe (forme grecque)
+!nympha:nymphe
+nymphe:nymphe
 Nymphidius:Nymphidius (préfet du prétoire sous Néron)
 Nymphius:Nymphius (nom d'homme)
 Nymphodorus:Nymphodorus (nom d'homme)
@@ -18089,7 +18089,7 @@ prudenter:avec sagacité, avec prudence, avec clairvoyance
 prudentia:prévoyance, prévision
 pruina:gelée blanche, neige
 pruinosus:couvert de givre, glacé, glacial
-pruna:prune
+pruna:charbon ardent, braise
 prunum:prune, prunelle
 prunus:prunier
 prurigo:démangeaison
@@ -20478,7 +20478,7 @@ siparum:petite voile de perroquet
 Siphnus:Siphnus (une Cyclade)
 sipho:pompe à incendie, petit tube, jet [d'un liquide]
 Sipontinus:de Siponte
-sipunculus:petit tuyau
+siphunculus:petit tuyau
 Sipylus:mont Sipyle (en Lydie)
 siquidem:si vraiment, puisque
 siqui:= si qui
@@ -22359,11 +22359,11 @@ tragula:tragule (javelot muni d'une courroie), herse, filet
 tragus:odeur des aisselles, sorte de poisson
 trahea:herse
 traho:tirer ; solliciter, attirer ; traîner ; extraire ; allonger, prolonger ; différer, retarder
-traicio:traverser
+traicio:lancer au-delà, faire passer, faire traverser; traverser
 Trajanus2:de Trajan
 Trajanus:Trajan
 trajectus2:traversée, lieu d'embarquement
-trajicio:faire traverser
+!trajicio:faire traverser
 tralaticius:traditionnel, consacré, ordinaire, commun, métaphorique
 tralatus:transport, exhibition
 Tralliani:habitants de Tralles
@@ -22406,12 +22406,12 @@ transfusio:transvasement, apport [étranger], mélange [de peuplades], transfert
 transgredior:passer de l'autre côté, traverser, franchir
 transgressio:passage [de l'autre côté], hyperbate, transition, infraction
 transgressus2:action de franchir, traversée
-transicio:jeter, placer au-delà, lancer au-delà, transporter au-delà, traverser
+!transicio:jeter, placer au-delà, lancer au-delà, transporter au-delà, traverser
 transigo:pousser à travers ou jusqu'au bout ; régler, trancher, arranger
 transilio:traverser, sauter au-dessus de
 transitio:passage, défection, contagion, transition, flexion (dans les décl. et conjug.)
 transitus:passage, traversée
-transjicio:lancer au-delà, faire passer, faire traverser, traverser, transpercer
+!transjicio:lancer au-delà, faire passer, faire traverser, traverser, transpercer
 translaticius:traditionnel, consacré, ordinaire, commun, métaphorique
 translatio:transplantation; l'action de rejeter sur un autre; la traduction
 translator:traducteur, copiste
