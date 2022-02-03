@@ -1793,7 +1793,7 @@ void LemCore::lireHyphen(QString fichierHyphen)
             if (l!=NULL)
                 l->setHyphen(ecl[1]);
 #ifdef DEBOG
-            else qDebug () << linea << "erreur lireHyphen";
+            else qDebug () << linea << "erreur lireHyphen : clé non-trouvée";
 #endif
         }
     }

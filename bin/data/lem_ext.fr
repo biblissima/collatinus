@@ -1975,7 +1975,7 @@ Atur:c. Aturrus.
 Aturenses:habitants d'Atura [Aire sur l'Adour]
 Aturres:c. Aturenses
 Aturricus:de l'Adour
-Aturrus:l'Adour [fleuve]
+!Aturrus:l'Adour [fleuve]
 Aturus:l'Adour [fleuve]
 Atussa:ville de Bithynie
 Auantici:les Avantices (peuple de la Narbonnaise).
@@ -6330,6 +6330,7 @@ Gandari:peuple asiatique
 Gangaude:ville d'Éthiopie sur le Nil
 Gangre:ville de Paphlagonie
 Ganos:ville de Thrace
+Ganymedes:Ganymède
 Ganymedeus:de Ganymède
 Garamantica:a sort of precious stone
 Garamanticus:des Garamantes
@@ -6706,7 +6707,6 @@ Halicarnassenses:habitants d'Halicarnasse
 Halicarnasseus:d'Halicarnasse
 Halicarnassii:habitants d'Halicarnasse
 !Halicarnassos:Halicarnasse [capitale de la Carie]
-!Halicarnassusos:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
 Halicyae:ville de Sicile [auj. Salemi]
 Halieutica:pl. n., halieutiques [traité de pêche, titre d'un ouvrage d'Ovide]
 Halisarna:ville d'Étolie
@@ -13424,7 +13424,7 @@ Sicambria:pays des Sicambres
 Sicandrus:lac de Thessalie
 Sicanis:de Sicile
 Sicanus:de Sicile
-Sicanus2:de Sicile
+!Sicanus2:de Sicile
 Sicca:ville de Numidie
 Sicca2:nom d'h.
 Siccanas:fleuve du golfe Persique
@@ -20330,33 +20330,33 @@ baetuli:
 baetulus:bétyle [pierre fabuleuse]
 baetylus:bétyle [pierre fabuleuse]
 bafa:sauce
-baiolus:c. bajulus, baiulus
-baionola:lit portatif
+!baiolus:c. bajulus, baiulus
+!baionola:lit portatif
 baionula:lit portatif
 baiulatio:port d'un fardeau
 baiulator:portefaix
 baiulatorius:que l'on porte, portatif
 baiulo:tr., porter sur le dos
-baiulo2:tr., porter sur le dos
+!baiulo2:tr., porter sur le dos
 baiulus:porteur, portefaix / messager / celui qui porte les morts
-baiulus2:porteur, portefaix / messager / celui qui porte les morts
+!baiulus2:porteur, portefaix / messager / celui qui porte les morts
 balabundus:bêlant
-balaena:baleine (cétacé)
-balaenaceus:de baleine
-balaenacius:of whalebone
+!balaena:baleine (cétacé)
+!balaenaceus:de baleine
+!balaenacius:of whalebone
 balaninus:qui vient du balanus
 balanites:pierre précieuse en forme de gland
 balanitis:qui a la forme d'un gland
 balans:brebis
 balastrum:bain
-balatio:v. ballātio.
+!balatio:v. ballātio.
 balaustium:fleur du grenadier sauvage
 balbo:bégayer
 balbuttio:bégayer, balbutier, articuler mal / parler obscurément / gazouiller / tr., dire en balbutiant
-balena:c. bālaena.
-balenacius:of whalebone
-balinearius:of or pertaining to a bath
-balineator:c. balneator
+!balena:c. bālaena.
+!balenacius:of whalebone
+!balinearius:of or pertaining to a bath
+!balineator:c. balneator
 baliolus:tacheté, moucheté, tigré
 balistarium:the place where the ballista is worked
 balistarius:-I. he that shoots with a ballista -II. A maker of ballistœ
@@ -20370,13 +20370,13 @@ ballistarium:baliste
 ballistarius:de baliste
 ballistarius2:soldat qui sert la baliste / constructeur de baliste
 ballistia:chants accompagnant la danse
-ballistra:c. ballista
+!ballistra:c. ballista
 ballistrarius:A maker of ballistœ
 ballo:int., danser
 ballote:marrube noir [plante]
 balluca:sable d'or
 ballux:sable d'or
-balnea:g
+!balnea:g
 balnearia:ustensiles de bain
 balnearia2:bains, local de bains
 balnearis:de bain, relatif au bain
@@ -34388,7 +34388,7 @@ hittus:murmure du chien quand il chasse
 hiulcatio:hiatus
 hiulcatus:part. de hiulco
 hiulce:avoir une prononciation coupée d'hiatus, heurtée, une parole hésitante
-ho!:ho! (pour marquer l'étonnement).
+ho:ho! (pour marquer l'étonnement).
 hocedie:hodie
 hodieque:encore aujourd'hui
 hodoedocos:voleur de grand chemin
@@ -38022,7 +38022,7 @@ iuli:chatons [du coudrier]
 iulis2:poisson inconnu
 iulis3:a kind of rockfish
 iulus2:v. iuli.
-ium:an idol-temple
+!ium:an idol-temple
 iumentalis:c. jumentarius
 iumentarius:de bêtes de somme; Subst. m. éleveur
 iumentarius2:éleveur
@@ -54179,8 +54179,8 @@ superiectus2:action de jeter sur / acte de saillir, saillie
 superilligo:tr., attacher par-dessus, lier en dessus
 superillinitus:c. superillitus
 superillino:tr., oindre de [à la surface] / répandre au-dessus
-superillitus:
-superimineo:
+superillitus:part. de superillino
+!superimineo:
 superimmitto:tr., mettre par-dessus
 superimpendens:suspendu au-dessus, surplombant, menaçant
 superimpendo:tr., dépenser au-delà (fig.) / pass.) se dépenser à profusion
@@ -58248,7 +58248,7 @@ Ozias:personnage biblique
 Parmenas:personnage biblique
 parvipendo:faire peu de cas, dédaigner
 Phanuel:personnage biblique
-Phatures=Phathures:nome de la Haute-Égypte
+Phatures:nome de la Haute-Égypte
 Phetrusim:nom d'un peuple dans la bible
 Phihahiroth:lieu du passage de la Mer Rouge par les Hébreux
 Phinees:personnage biblique

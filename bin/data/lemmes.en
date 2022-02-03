@@ -54,7 +54,7 @@ abitus:departure, removal; going away; way out, exit, outlet, passage out, egres
 abjecte:Dispiritedly, despondingly
 abjectio:A throwing away, rejecting
 abjectus:low, crouching, dying, low, common, without elevation, low, common, mean, Cast down, dispirited, despondent, as a gift to Brutus in his distress, Contemptible, vile, low
-abjicio:to throw/cast away/down/aside; to abandon; to slight; to humble; to debase; to sell too cheaply;
+!abjicio:to throw/cast away/down/aside; to abandon; to slight; to humble; to debase; to sell too cheaply;
 abjudico:to deprive, of, by judicial sentence, to declare that, does not belong to, to abjudicate, aliquid, aliquem ab aliquo, alicui, abdĭco;
 abjungo:to unyoke
 abjuro:to repudiate (obligation or duty); to deny on oath (falsely); to abjure; to perjure;
@@ -397,7 +397,7 @@ aditus:approach, access; attack; entrance; chance, opportunity, means, way; begi
 adjaceo:to lie near to, to lie beside; to be adjacent/contiguous to, to neighbor on; to live near;
 adjectio:addition; act of adding, infliction in addition; repetition; price increase;
 adjectus2:an adding, applying to, addition
-adjicio:to add, increase, raise; to add to (DAT/ad+ACC); to suggest; to hurl (weapon); to throw to/at;
+!adjicio:to add, increase, raise; to add to (DAT/ad+ACC); to suggest; to hurl (weapon); to throw to/at;
 adjudico:to adjudge, impute, attribute, ascribe (to); to award (as a judge), to assign (to);
 adjumentum:help, assistance, support, means of aid;
 adjunctio:union, association; admixture, combination; (limiting) addition, qualification;
@@ -1252,11 +1252,11 @@ Androgeoneus:pertaining to Androgeon
 Androgeus:son of the Cretan king Minos, whom the Athenians and Megarians slew; on account of which the enraged father made war upon them
 androgynes:a man-woman, hermaphrodite
 Andromache:a daughter of king E&euml;tion, and wife of Hector.
-Andromeda:Andromeda
-Andromede:a daughter of the Ethiopian king Cepheus and Cassiope.
+!Andromeda:Andromeda
+Andromede:Andromeda, a daughter of the Ethiopian king Cepheus and Cassiope.
 andron:the part of the house in which the men resided, the men's apartment;
-Andronicus:name of a man in the Bible
-Andronicus:the cognomen of several Romans, among whom the most distinguished, the first dramatic and epic poet of the Romans, lived in the middle of the third century
+!Andronicus:name of a man in the Bible
+Andronicus:the cognomen of several Romans, among whom the most distinguished, the first dramatic and epic poet of the Romans, lived in the middle of the third century B.C.; name of a man in the Bible
 Andros:one of the largest of the Cyclades, in the Ægean Sea, south-east of Eubœa, Andro
 anellus:a little ring
 Anemuriensis:of or pertaining
@@ -2168,7 +2168,7 @@ avocatio:process of diverting the attention; distraction, diversion;
 avoco:to call/summon away; to dissuade, divert, distract; to remove, take away (property);
 avolo:to fly/rush away/off; to hasten away, flee, vanish; to fly away (missile);
 avorto:to turn, away from a place, to avert, turn off, remove
-avos:a grandfather, grandsire.
+!avos:a grandfather, grandsire.
 avunculus:maternal uncle, mother's brother, mother's sister's husband; great uncle;
 avus:grandfather; forefather, ancestor;
 axiculus:small axle; small plank, slat; small beam/pole, pin (L+S);
@@ -2226,8 +2226,9 @@ balbutio:to stammer, stutter; to lisp; to speak obscurely/indistinctly; to babbl
 Baleares:the Balearic Islands, Majorca and Minorca, in the Mediterranean Sea, whose inhabitants were famous slingers
 Balearicus:Balearic
 balineum:bath; bathroom, (public) bath place/rooms (esp. pl.); bathtub; act of bathing;
-balista2:-I. a ballista furnished with a bow; -II. a lārge military engine, resembling a bow, stretched with cords and thongs, by which masses of stone and other missiles were thrown to a great distance; a machine for projectiles, the ballista, throwing stones of a hundred pounds weight
-ballaena:.
+balista2:-I. a ballista furnished with a bow; -II. a large military engine, resembling a bow, stretched with cords and thongs, by which masses of stone and other missiles were thrown to a great distance; a machine for projectiles, the ballista, throwing stones of a hundred pounds weight
+balaena:a whale
+balaenaceus:of whalebone
 Ballio:the name of a worthless pimp in the Pseudolus of Plautus; any worthless man
 ballista:ballista, large military engine for throwing stones and missiles;
 balneae:baths
@@ -2805,7 +2806,7 @@ calvities:baldness
 calvus:bald, bald-headed; having head shaved; smooth (nuts); bare/stripped (things)
 Calvus2:a cognomen of several persons, especially of the poet and orator C. Licinius;
 calx:- heel; spur; pad (dog); forefeet; kick (Roman toe was unprotected); butt (beam); - limestone, lime; chalk, goal, goal-line (chalk mark), end of life; game piece;
-Calydon:a very ancient town in Ætolia, Kurt-aga, on, the river Evenus, built by a hero of the same name, the residence of Œneus, father of Meleager and Deianira, and grandfather of Diomedes, ace.
+Calydon:a very ancient town in Ætolia, Kurt-aga, on the river Evenus, built by a hero of the same name, the residence of Œneus, father of Meleager and Deianira, and grandfather of Diomedes, ace.
 Calydonius:Calydonian, the kingdom of Diomedes, in Lower Italy
 Calymne:an island in the Ægean Sea, not far from Rhodes, distinguished for its honey, Kalimno
 Calypso:Calypso
@@ -3196,8 +3197,7 @@ cavillator:jester, banterer; quibbler, caviler, sophist, captious critic;
 cavillor:to practise jeering, mocking; act., to censure, criticise; to satirize, to jest
 cavo:to hollow out, make concave/hollow; to excavate; to cut/pierce through; to carve in relief;
 cavus:- hollow, excavated, hollowed out; concave; (of waning moon); enveloping; - sunken; deep, having deep channel; tubular; having cavity inside
-Caycus:A river of Greater Mysia, which takes its rise on Mt. Teuthras, passes near Pergamus, and flows into the sea opposite Lesbos; Bakhir Tchai
-Caystrus:a river in Lydia, which rises in Mount Tmolus, and falls into the sea at Ephesus, Kara - Su
+Caicus:A river of Greater Mysia, which takes its rise on Mt. Teuthras, passes near Pergamus, and flows into the sea opposite Lesbos (Bakhir Tchai); One of the companions of Æneas
 Caystrus:a river in Lydia, which rises in Mount Tmolus, and falls into the sea at Ephesus, Kara - Su
 Cea:one of the most important of the Cyclades, over against the promontory Sunium, Zia
 Cebenna:-I. a mountain in Gallia, Cevennes -II. a chain of mountains in Gaul, the Cevennes
@@ -3535,7 +3535,7 @@ Circensis:of the Circus
 circinus:a pair of compasses
 circiter:about, around, near (space/time/numeral); towards;
 circito:to frequent, make busy
-circueo:to encircle, surround; to border; to skirt; to circulate/wander through; to go/measure round;
+!circueo:to encircle, surround; to border; to skirt; to circulate/wander through; to go/measure round;
 circuitus:- going round; patrol/circuit; way/path round; circumference; outer surface/ - revolution, spinning, rotation; (recurring) cycle; period; circumlocution;
 circulator:A pedler
 circulor:To form a circle, about one's self, to gather in a company, circle for conversation
@@ -3596,10 +3596,10 @@ circumscriptor:cheat; defrauder, deceiver; he who makes void/annuls;
 circumscriptus:rounded into periods, periodic.
 circumseco:to cut, pare around, to saw around
 circumsecus:round about, around, round; in parts/region around; on every side;
-circumsedeo:to besiege/invest/blockade; to surround, mob (person), beset; to sit/live/settle round;
+circumsedeo:to sit around a person or thing, to surround; to besiege/invest/blockade; to surround, mob (person), beset; to sit/live/settle round;
 circumsessio:a hoslile encompassing, a besieging
-circumsideo:to sit around a person or thing, to surround.
-circumsido:to besiege/invest/blockade; to surround, mob (person), beset; to sit/live/settle round;
+!circumsideo:to sit around a person or thing, to surround.
+circumsido:to set or place one's self around in a hostile manner, to besiege
 circumsilio:to leap/spring/hop round;
 circumsisto:to stand/gather/crowd/take a stand around; to surround, beset; to be on either side;
 circumsono:to resound on every side; to echo round; to surround/be filled (with noise/sound);
@@ -4396,7 +4396,7 @@ Congrio:the name of a cook in
 congruens:- agreeing, according, consistent; harmonious, in unison/keeping; at same time;
 congruentia:agreement, harmony, congruity, symmetry
 congruo:- to agree, coincide, correspond, be consistent; to be suited, be adapted; to fit in;
-conicio:To throw or bring together, to unite
+conicio:- to throw/put/pile together; to conclude, infer/guess; to assign, make go; to classify - to throw/cast/fling (into area); to devote/pour (money); to thrust, involve; to insert;
 conifer:bearing fruit of a conical form
 coniger:bearing fruit of a conical form
 conitor:to put forth all one's strength, strive, struggle, endeavor
@@ -4407,7 +4407,7 @@ conjecto:- to conjecture, think, imagine, infer, guess, conclude; to judge, draw
 conjector2:he who interprets, explains, divines something, an interpreter
 conjectura:conjecture/guess/inference/reasoning/interpretation/comparison/prophecy/
 conjectus:- throwing/crowding (together/into area), collection; joining battle (w/ - throw/shot (distance); act of throwing (missile); glance/directing one's
-conjicio:- to throw/put/pile together; to conclude, infer/guess; to assign, make go; to classify - to throw/cast/fling (into area); to devote/pour (money); to thrust, involve; to insert;
+!conjicio:- to throw/put/pile together; to conclude, infer/guess; to assign, make go; to classify - to throw/cast/fling (into area); to devote/pour (money); to thrust, involve; to insert;
 conjuga:wife; spouse; consort (L+S);
 conjugalis:- marital, conjugal, of/proper to marriage; faithful; belonging to husband/ - species of myrtle?;
 conjugator:one who joins, unites, the uniter
@@ -5417,7 +5417,7 @@ decumanus:of the tenth (legion); huge/outsize; of tithe; [w/porta => rear gate o
 decumanus2:a farmer of tithes, tithe-gatherer
 decumates:belonging to tithes, tithe-, subject to tithes, tribute, tithe-land
 decumbo:to get down (from a bed); to lie away from/out of (one's bed) (L+S);
-decumus:the tenth
+!decumus:the tenth
 decuria:group/division of ten; class, social club; gang; cavalry squad; ten judges/
 decuriatio:a dividing into decuriae
 decurio:- decurion, officer commanding a decuria (calavry squad); (also naval); - member of municipal senate/governing committee of decuria; councillor;
@@ -5881,7 +5881,7 @@ dexter:right, on/to the right hand/side; skillful/dexterous/handy;
 dextere:dexterously, skilfully
 dextra:on the right of; on the right-hand side of;
 dextrorsum:towards the right side, to the right
-dextrorsus:towards the right side, to the right
+!dextrorsus:towards the right side, to the right
 Dia:The old name of the island of Naxos
 diabathrarius:the maker of a sort of slipper, a shoemaker
 Diablintes:a people in, near the present Mayenne, in the Department de la Sarthe
@@ -6020,7 +6020,7 @@ Dionysia:a noted dancer
 Dionysia2:the festival of Bacchus
 Dionysius:Dionysius (long y); (of Syracuse); Dennis (Ecc); St Dennis of Paris;
 Dionysos:the Greek name of Bacchus
-Dionysus:the Greek name of Bacchus
+!Dionysus:the Greek name of Bacchus
 diota:two-handled (wine) jar/vessel; wine-jar (L+S);
 Diphilus:A celebrated Greek comic writer of Sinope, imitated by Plautus
 diploma:a letter folded double
@@ -6149,7 +6149,7 @@ dissero:to examine, argue, discuss; to speak, discourse, treat of (a thing);
 dissero3:to scatter seed, to sow here and there, to sow
 disserpo:to creep about, to spread imperceptibly
 disserto:to discuss, argue, debate, to dispute, converse, treat.
-dissicio:to throw asunder; to drive asunder; to scatter, disperse
+!dissicio:to throw asunder; to drive asunder; to scatter, disperse
 dissico:to cut apart; to cut in pieces; to dismember, dissect;
 dissideo:to disagree, be at variance; to be separated;
 dissignator:one that arranges, a supervisor;
@@ -6230,7 +6230,7 @@ dives:rich/wealthy; costly; fertile/productive (land); talented, well endowed;
 divexo:to pull, rend asunder, to destroy
 Diviciacus:Diviciacus; an Aeduan Gaul chief in Caesar; a Suessiones king;
 Divico:a distinguished Helvetian, a general in the war against Cassius, and ambassador to Caesar
-dividia:division;
+dividia:division; Dissension, discord; Care, trouble, disquiet, vexation
 divido:to divide; to separate, break up; to share, distribute; to distinguish;
 dividuus:Divisible
 divina:a prophetess
@@ -6438,7 +6438,7 @@ Dyrrachini:the inhabitants of Dyrrachium
 Dyrrachium:a famous sea-coast town of Grecian Illyria, the landing-place of those coming from Italy, Durazzo, fin., Its inhabitants
 dyspepsia:indigestion, dyspepsia
 e:out of, from; by reason of; according to; because of, as a result of;
-eadem:-I. By the same way -II. masc.
+eadem:By the same way
 eatenus:so far, quatenus, qua, quoad, ut, to such a degree, to that extent, ne
 ebibo:to drink up, drain; to absorb; to squander;
 eblandior:to obtain by flattery, coaxing
@@ -6456,7 +6456,7 @@ eburnus:made of ivory; decorated with/made partially out of ivory; white as ivor
 Eburones:Eburones, tribe of north Gaul - Caesar;
 ecastor:by Castor (interjection used by women);
 Ecbatana:the principal city of Media, now Hamadan
-ecbibo:to drink up, drain; to absorb; to squander
+!ecbibo:to drink up, drain; to absorb; to squander
 ecce:behold! see! look! there! here! [ecce eum => here he is];
 eccere:there!
 ecclesia:an assembly of the (Greek) people.
@@ -7406,7 +7406,7 @@ extrico:dep., to disentangle, extricate, to clear, free
 extrilidus:unterrified, dauntless
 extrinsecus:from without/outside; externally; from extraneous source; w/no inside
 extrudo:to thrust out; to draw out;
-extruo:to pile up; to build up, raise;
+!extruo:to pile up; to build up, raise;
 extundo:to beat or strike out produce with effort;
 exturbo:to drive away, put away a wife;
 exubero:to grow luxuriantly, be abundant, abound, overflow, revels
@@ -7962,7 +7962,7 @@ fortis:strong, powerful, mighty, vigorous, firm, steadfast, courageous, brave, b
 fortiter:strongly; bravely; boldly;
 fortitudo:strength, courage, valor; firmness;
 fortuito:by chance, accidentally, fortuitously, casually
-fortuitu:by chance, accidentally, fortuitously, casually
+!fortuitu:by chance, accidentally, fortuitously, casually
 fortuna:chance, luck, fate; prosperity; condition, wealth, property;
 Fortuna2:good luck, ill luck
 fortunate:fortunately;
@@ -8262,7 +8262,6 @@ Ganges:the river Ganges, in India
 Gangeticus:of or belonging to the Ganges, found in the Ganges
 gannio:to whimper, snarl (of dogs); to snarl (people), speak in ill natured/hostile manner;
 gannitus:a yelping, barking of dogs.
-Ganymedes:Ganymede, a son of Laomedon
 Garamantes:a powerful tribe of the interior of Africa, beyond the Gœtulians, Fezzan
 Garamantis:of the Garamantes
 Garganus:a mountain ridge in Apulia on which storms are frequent, Monte Gargano
@@ -8340,7 +8339,7 @@ genitaliter:in a fertilizing manner, fruitfully
 genitor:father; creator; originator;
 genitrix:she that has borne, produced, a mother
 genius:genius;
-geno:to beget, bear, bring forth, produce; pass., to be born, to spring, arise, proceed;
+!geno:to beget, bear, bring forth, produce; pass., to be born, to spring, arise, proceed;
 gens:tribe, clan; nation, people; Gentiles;
 genticus:of or belonging to a nation, national
 gentilicius:of/proper or belonging to a particular Roman gens; tribal, national;
@@ -8392,7 +8391,7 @@ gibber:crook-backed, hunch-backed, hump-backed.
 gibbus:bulging, protuberant;
 Giganteus:of or belonging to the giants, at Cumœ, in Campania
 Gigas:a giant;
-gigno:to give birth to, bring forth, bear; to beget; to be born (PASSIVE);
+gigno:to beget, bear, bring forth, produce; pass., to be born, to spring, arise, proceed;
 Gillo2:the name of a legacyhunter
 gilvus:pale yellow
 gingiva:a gum
@@ -8652,10 +8651,8 @@ Halaesinus:of or belonging to Halesa
 Halaesus:Son of Agamemnon and Clytemnestra, Brisēis, the founder of Falisci
 halcyoneus:pertaining to Alcyone, alcyon
 Haliacmon:a stream forming the boundary between Macedonia and Thessaly, Vistritza
-Halicarnasos:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
-Halicarnassos:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
 Halicarnassus:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
-Halicarnasus:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
+!Halicarnasus:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
 Halicyenses:the inhabitants of Halicyœ, Halicyœans
 Halicyensis:of or belonging to the city Halicyœ, in Sicily, Salemi, Halicyœan
 halitus:breath, exhalation, steam, vapor.
@@ -9098,7 +9095,7 @@ Iarba:a king of Mauritania
 Iarbas:a king of Mauritania
 Iasides:a male descendant of Iasius, Adrastus
 Iasius3:Son of Jupiter and Electra, beloved of Ceres
-Iason:Jason, a famous Grecian hero, son of Æson, king of Thessaly, the leader of the Argonauts
+Iaso:Jason, a famous Grecian hero, son of Æson, king of Thessaly, the leader of the Argonauts; Also, the name of a poem by Varro Atacinus; A ruler of Pherœ, in Thessaly
 ibi:there, in that place; thereupon;
 ibidem:in that very place; at that very instant;
 Ibycus:A Greek lyric poet of Rhegium, celebrated on account of the cranes which he called upon as witnesses of his murder
@@ -9964,7 +9961,7 @@ inhumaniter:uncivilly, discourteously
 inhumanus:rude, discourteous, churlish; unfeeling, inhuman; uncultured; superhuman;
 inhumatus:unburied;
 inibi:therein, there.
-inicio:to hurl/throw/strike in/into; to inject; to put on; to inspire, instill (feeling, etc);
+!inicio:to hurl/throw/strike in/into; to inject; to put on; to inspire, instill (feeling, etc);
 inimice:in an unfriendly manner, hostilely, inimically
 inimicitia:unfriendliness, enmity, hostility;
 inimico:to make enemies, to set at variance.
@@ -10305,7 +10302,7 @@ interitio:destruction, ruin
 interitus:ruin; violent/untimely death, extinction; destruction, dissolution;
 interius:-I. farther inland, farther from the sea -II. in the inner part, on the inside, within
 interjaceo:to lie between;
-interjacio:to put/throw between; to interpose; to insert; to introduce;
+!interjacio:to put/throw between; to interpose; to insert; to introduce;
 interjectus2:a throwing, placing between, interposition; a coming between, intervention
 interlino:to smear between, smear, spread between, lay at intervals.
 interloquor:to speak between, interrupt in speaking.
@@ -10643,7 +10640,7 @@ jajunitas:a fasting, emptiness of stomach
 jam:now, already, by/even now; besides; [non ~ => no longer; ~ pridem => long ago];
 jamdiu:long since, long before, a long time ago
 jamdudum:long ago/before/since; a long time ago; this long time; immediately, at once;
-jamjam:already, now
+!jamjam:already, now
 jampridem:long ago/since; well before now/then; for a long time now/past;
 Janalis:of or belonging to Janus
 Janiculum:one of the hills of Rome, on which Janus was said to have built a citadel
@@ -10725,12 +10722,12 @@ Juno:Juno; (Roman goddess, wife of Jupiter);
 Junonalis:of Juno
 Junonicola:a worshipper of Juno
 Junonius:of or belonging to Juno, Junonian
-Jupiter:Jupiter, Jove, a son of Saturn, brother and husband of Juno, the chief god among the Romans
-Juppiter:Jupiter; (Roman chief/sky god); (supreme being); heavens/sky (poetic);
+Juppiter:Jupiter, Jove, a son of Saturn, brother and husband of Juno, the chief god among the Romans; heavens/sky (poetic)
+!Juppiter:Jupiter; (Roman chief/sky god); (supreme being); heavens/sky (poetic);
 Jura:a chain of mountains extending from the Rhine to the Rhone
-juratio:a swearing, an oath
+!juratio:a swearing, an oath
 jurator:a swearer
-juratus:Pass.
+juratus:Pass. Called upon or taken to witness in an oath; Under an oath, bound by an oath; Act., having sworn, that has sworn
 jure:by right, rightly, with justice; justly, deservedly;
 jurgiosus:quarrelsome
 jurgium:quarrel/dispute/strife; abuse/vituperation/invective; separation (man+wife);
@@ -11447,13 +11444,13 @@ locutio:a speaking
 lodicula:a small coverlet, blanket
 lodix:a coverlet, blanket, counterpane
 logos:a word
-logus:a word
+!logus:a word
 lolium:darnel, cockle, tares
 Lollia:Lollia
 Lollianus:of or belonging to a Lollius, Lollian
 lolligo:a cuttle-fish
 Lollius:name of a Roman, governor of Galatia and afterwards of Gaul, a favorite of Augustus
-lomentum:soap; (Cal);
+lomentum:a mixture of bean-meal and rice kneaded together, used by the Roman ladies for preserving the smoothness of their skin; a wash, cosmetic, soap;
 Londinium:a city in Britain, London
 longaevus:of great age, aged, ancient
 longe:far (off), distant, a long way; by far; for a long while, far (in future/past);
@@ -11505,7 +11502,7 @@ lucifuga:lightfleeing, light-shunning
 lucifugus:avoiding the light of day;
 Lucilius:Lucilius
 Lucina:Lucina, goddess of childbirth; childbirth;
-lucisco:to begin to shine
+!lucisco:to begin to shine
 Lucius:Lucius (Roman praenomen); (abb. L.);
 Lucretia:Lucretia
 Lucretilis:a mountain in the Sabine territory, Monte Genaro
@@ -12311,7 +12308,7 @@ metor:to measure, mete; to measure off, mark out
 metreta:Greek liquid measure;
 Metrodorus:an Epicurean
 Metropolitae:the inhabitants of Metropolis
-metrum:a measure; a poetical measure, metre; a verse
+metron:a measure; a poetical measure, metre; a verse
 Mettius:-I. an Italian proper name -II. a Sabine prænomen, the title of a magistracy among the Albans
 Mettus:Mettus
 metuens:fearing, afraid, fearful, timid, apprehensive, anxious, anxiously, more god-fearing
@@ -12820,7 +12817,7 @@ myrtus:myrtle, myrtle-tree;
 Mys2:a famous artist in embossed work
 Mysi:the inhabitants of Mysia, the Mysians
 Mysia:a country of Asia Minor, divided into Lesser Mysia, on the Hellespont, and Greater Mysia, on the Ægean Sea
-mysta:a priest of the secret rites of divine worship, a priest of the mysteries
+!mysta:a priest of the secret rites of divine worship, a priest of the mysteries
 mystagogus:one who conducts a person through secret and sacred places as a guide, initiator, a mystagogue
 mysterium:a secret service, secret rites, secret worship, divine mystery
 mysticus:of or belonging to secret rites, mysteries, mystic, mystical
@@ -13349,7 +13346,7 @@ Nyctelius:an epithet of Bacchus
 Nyctelius2:a surname of Bacchus
 Nycteus:a son of Hyrieus and the nymph Clonia, and father of Antiopa
 Nyctimene:the daughter of Epopeus, king of Lesbos, who unknowingly
-nympha:nymph; (semi-divine female nature/water spirit); water; bride; young maiden;
+!nympha:nymph; (semi-divine female nature/water spirit); water; bride; young maiden;
 Nymphaeum:a promontory and seaport in Illyria, on the borders of Macedonia, Capo di Redeni
 nymphe:nymph; (semi-divine female nature/water spirit); water; bride; young maiden;
 Nymphidius:a Roman surname
@@ -13389,7 +13386,7 @@ objaceo:to lie before, over against
 objectatio:a reproach
 objecto:to expose/throw (to); to throw/put in the way; to lay to one's charge, put before;
 objectus2:a casting before, a putting against, in the way, opposite, an opposing; neutr., a lying before, opposite, the opposing of the shield
-objicio:to throw before/to, cast; to object, oppose; to upbraid; to throw in one's teeth; to present;
+!objicio:to throw before/to, cast; to object, oppose; to upbraid; to throw in one's teeth; to present;
 objurgatio:a chiding, reproving, reproof, rebuke, reprehension
 objurgator:a chider, rebuker, blamer
 objurgatorius:reproachful, scolding;
@@ -13844,14 +13841,14 @@ optatio:a wishing, a wish
 optato:according to one's wish
 optatum:a wish, desire
 optatus:wished, desired, longed for, agreeable, pleasing, pleasant, dear.
-optempero:to obey; to comply with the demands of; to be submissive to; (w/DAT);
-optero:To bruise, crush, or break to pieces
+!optempero:to obey; to comply with the demands of; to be submissive to; (w/DAT);
+!optero:To bruise, crush, or break to pieces
 optimas2:an adherent of the nobility, aristocrat, partisan of the patricians
 optimates:of or belonging to the best or noblest, aristocratic
-optime:well, better, best, agreeably, prosperously, dear, cheaply, in good style, most opportunely, thoroughly, advise well, your news is good, aright, accurately, there was better generalship, successfully, well endowed, educated, patriotic, with good intentions, favorable, your good intentions, to plan well, have served you, correctly, with honor, honorable acquisitions, faithfully, I am glad, very well, I am satisfied, are well off, that you are better, I enjoyed a meal upon, it is well, to praise, eulogy, cheers nor imprecations, you are right, to treat well, do you good, many thanks, but, I am glad of it, I am glad that, favors, good deeds, well administered, a chance of success, have done me excellent service, to be useful to the state, turn out well, bring out well, did well to intrust to him, it will be better for us to perish, very, quite, very intimately, widely, exceedingly, some time, very early, entirely, heartily
+optime:well, better, best, agreeably, prosperously, dear
 optimum:a good, goods, a moral good, a blessing
-optineo:to get hold of; to maintain; to obtain; to hold fast, occupy; to prevail;
-optingo:to befall, occur (to advantage/disadvantage); to fall to as one's lot;
+!optineo:to get hold of; to maintain; to obtain; to hold fast, occupy; to prevail;
+!optingo:to befall, occur (to advantage/disadvantage); to fall to as one's lot;
 optio:option, (free) choice; power/act of choosing; right of hero to pick reward;
 optionatus:an adjutancy
 optivus:chosen
@@ -13894,7 +13891,7 @@ orchestopolarius:a juggler, tumbler, dancer
 orchestra:area in front of stage; (Greek, held chorus; Roman, seats for senators/VIPs);
 orchita:oblong olive
 orchitis:a kind of olive of an oblong shape
-Orchomenos:The son of Athamas and Themisto ; A city in Bœotia, Thessaly or Arcadia
+!Orchomenos:The son of Athamas and Themisto ; A city in Bœotia, Thessaly or Arcadia
 Orchomenus:The son of Athamas and Themisto ; A city in Bœotia, Thessaly or Arcadia
 Orcinianus:of, belonging to Orcus, to the dead
 Orcinus:of, belonging to the realms of the dead
@@ -14242,7 +14239,7 @@ Parius:Parian
 parma:small round shield;
 Parma2:the city of Parma, in, between Cremona and Placentia, famed for its breed of sheep
 Parmenides:a celebrated Grecian philosopher, a native of Elea, who, with Zeno, was at the head of the Eleatic school
-Parmenio:general and adviser of Philip of Macedon and of Alexander the Great.
+Parmenion:general and adviser of Philip of Macedon and of Alexander the Great.
 Parmenses:the inhabitants of Parma, the Parmans
 Parmensis:of or belonging to Parma, Parman
 parmula:a little, round shield, a small target.
@@ -14756,7 +14753,7 @@ perlinio:to smear all over
 perlitteratus:very learned
 perlonginquus:lasting very long
 perlongus:very long.
-perlubet:it is very pleasing, agreeable, I should very much like
+!perlubet:it is very pleasing, agreeable, I should very much like
 perluceo:to shine through, shine forth, be visible; to be seen through, to be transparent, pellucid
 perlucidulus:bright, shining, glittering
 perlucidus:transparent, pellucid;
@@ -15443,7 +15440,7 @@ poenio:to punish (person/offense), inflict punishment; to avenge, extract retrib
 Poenus:Carthaginian, Punic; of/associated w/Carthage; Phoenician; scarlet, bright red;
 Poenus2:Punic, Carthaginian
 poeta:poet;
-poetica:the poetic art, poetry, poesy
+!poetica:the poetic art, poetry, poesy
 poetice:the poetic art, poetry, poesy
 poetice2:after the manner of poets, poetically
 poeticus:poetic, poetical.
@@ -16330,15 +16327,15 @@ propugno:to fight (on the defensive);
 propulsatio:a driving back, a keeping, warding off, a repelling, repulse
 propulso:to repulse, drive back/off; to ward off, repel, avert; to pound, batter;
 propylaeon:a gateway, entrance; the Propylœum
-propylaeum:a gateway, entrance; the Propylœum
+!propylaeum:a gateway, entrance; the Propylœum
 prora:prow;
 prorepo:to crawl or creep forth;
 proripio:to drag or snatch away; to rush or burst forth;
 prorito:To provoke, cause, produce by irritation
 prorogo:to prolong, keep going; to put off, defer;
 Prorsa:the goddess presiding over births with the head foremost
-prorsum:forwards, right onward; absolutely, entirely, utterly, by all means; in short;
-prorsus:forwards, right onward; absolutely, entirely, utterly, by all means; in short;
+prorsum:forwards; Straight on, right onwards, directly; straightforwards, without ceremony
+prorsus:forwards; Straight on, right onwards, directly; absolutely, entirely, utterly, by all means; in short;
 prorumpo:to rush forth, break out;
 proruo:to rush forward; to tumble down; to overthrow; to hurl forward;
 prosa:prose;
@@ -16789,14 +16786,14 @@ quietus:at rest; quiet, tranquil, calm, peaceful; orderly; neutral; still; idle;
 quilibet:any one who will, any one without distinction, whom you will, no matter who, the first that comes, any, all
 quin:so that not, without; that not; but that; that; quin etiam = moreover
 quinam:which, what, pray, which of two?
-Quinctianus:of or belonging to a Quintius, Quintian, commanded by
+Quinctianus:of or belonging to a Quintius, Quintian, commanded by L. Quintius Cincinnatus
 Quinctius:Quinctian; of Quinctius gens;
 quincunx:fire twelfths
 quindeciens:fifteen times, neutr. sing., fifteen hundred thousand sesterces
 quindecies:fifteen times, neutr. sing., fifteen hundred thousand sesterces
 quindecim:fifteen;
 quindecimvir:a member of a college, commission, board of fifteen men
-quindecimviralis:of or belonging to the quindecimvirs, council of fifteen, fem.
+quindecimviralis:of or belonging to the quindecimvirs, council of fifteen
 quindecimviri:a board of fifteen magistrates
 quingenarius:Consisting of five hundred each
 quingeni:five hundred each
@@ -16823,15 +16820,15 @@ quinquies:five times
 quinquiplico:to multiply by five;
 Quinta:Roman prænomen;
 quintadecimani:the soldiers of the fifteenth legion, the men of the fifteenth
-quintadecumanus:soldiers of the fifteenth legion;
+!quintadecumanus:soldiers of the fifteenth legion;
 quintana:road (w/via) in a Roman camp between fifth and sixth maniples (used as market);
 quintani:the soldiers of the fifth legion
 quintanus:of/belonging to the 5th; falling on 5th of month; occurring at intervals of 5;
-Quintianus:of or belonging to a Quintius, Quintian, commanded by
+!Quintianus:of or belonging to a Quintius, Quintian, commanded by L. Quintius Cincinnatus
 Quintilia:the name of a Roman gens
-Quintilianus2:Quintilian, a Roman surname., the celebrated rhetorician, teacher of Pliny the younger and Juvenal; a native of Calagurris, in Spain, whose rhetorical work, is still extant
-Quintilius:Quintilius; (Roman gens name); (P. ~ Varus general annihilated in 9 AD);
-Quintius:of or belonging to a Quintius, Quintian
+Quintilianus2:Quintilian, a Roman surname: the celebrated rhetorician, teacher of Pliny the younger and Juvenal; a native of Calagurris, in Spain, whose rhetorical work, De Institutione Oratoriā, is still extant
+Quintilius:Quintilius; (Roman gens name); (P. Quintilius Varus general annihilated in 9 AD);
+!Quintius:of or belonging to a Quintius, Quintian
 quintus:the fifth
 Quintus2:Quintus (Roman praenomen); (abb. Q.);
 quippe:of course; as you see; obviously; naturally; by all means;
@@ -18441,7 +18438,7 @@ Sibyllinus:of or connected with a sibyl, sibylline;
 sica:dagger;
 Sicani:a very ancient people of Italy on the Tiber, a portion of whom afterwards migrated to Sicily
 Sicania:the island of Sicily
-Sicanius:S.
+Sicanius:Sicanian; poet. for Siculian, Sicilian
 sicarius:murderer, assassin;
 Siccenses:the inhabitants of Sicca
 siccitas:dryness; drought; dried up condition;
@@ -19052,7 +19049,7 @@ Stratonicenses:the inhabitants of Stratonicea
 Stratonicis:an appellation of Venus among the Smyrneans
 Stratonicus:A Greek sculptor
 stratum:coverlet; bed, couch; horse-blanket;
-Stratus:A town of Acarnania, on the Achelous
+Stratos:A town of Acarnania, on the Achelous; A river of Hyrcania
 strenue:briskly, quickly, promptly, actively, strenuously
 strenuus:active, vigorous, strenuous;
 strepito:to make a great noise, rustling, rattling
@@ -19173,7 +19170,7 @@ subjector:forger; substitutor;
 subjectum:that which is spoken of, the foundation, subject
 subjectus:lying under, near, bordering upon, neighboring, adjacent
 subjectus2:an inferior, subject
-subjicio:to throw under, place under; to make subject; expose;
+!subjicio:to throw under, place under; to make subject; expose;
 subjugius:of or belonging to the yoke, that is attached to the yoke
 subjungo:to join with, unite; to subdue, subject;
 sublabor:to collapse, fall to the ground; to sink, ebb away; to creep up, advance stealthily
@@ -20004,7 +20001,7 @@ Thessali:the inhabitants of Thessaly, the Thessalians
 Thessalia:the country of Thessaly
 Thessalicus:of Thessaly, Thessalian; pl. the inhabitants of Thessaly, the Thessalians
 Thessalonica:a city of Macedonia, on the Sinus Thermaicus, Saloniki
-Thessalonicenses:the inhabitants of Thessalonica
+!Thessalonicenses:the inhabitants of Thessalonica
 Thessalonicensis:an inhabitant of Thessalonica
 Thessalus:Thessalian
 Thestiades:a, descendant of Thestius
@@ -20032,7 +20029,7 @@ Thrax:a Thracian; adj. Thracian
 Threicius:Thracian
 Threissa:a Thracian woman; adj. f., Thracian
 Thucydides:a celebrated Greek historian
-Thule:an island in the extreme nortl of Europe; Iceland; Mainland
+Thule:an island in the extreme north of Europe; Iceland or Mainland (Shetland)
 Thurinus:of or belonging to Thurii, Thurine
 Thyas:a Bacchante
 Thyestes:son of Pelops and brother of Atreus, who set before him for food the flesh of his own son; he was the father of Ægisthus
@@ -20040,7 +20037,7 @@ Thyesteus:of or belonging to Thyestes, Thyestean.
 Thyestiades:the, offspring of Thyestes; Ægisthus
 Thyias:a Bacchante
 thyius:of the arbor vitae
-Thyle:an island in the extreme nortl of Europe; Iceland; Mainland
+!Thyle:an island in the extreme nortl of Europe; Iceland; Mainland
 thymbra:a plant, savory
 Thymbraeus2:the Thymbræan, Apollo
 Thymbre:a city in Troas, with a temple of Apollo
@@ -20057,7 +20054,7 @@ Thyrsis:the name of a shepherd
 thyrsus:Bacchic wand tipped with a fir-cone/tuft of ivy/vine leaves; plant's main stem;
 Ti:Roman praenomen
 tiara:the head-dress of the Orientals, a turban, tiara
-tiaras:the head-dress of the Orientals, a turban, tiara
+!tiaras:the head-dress of the Orientals, a turban, tiara
 Tib:Tiberius, Roman praenomen; (abb. Ti./Tib.);
 Tiberianus:of Tiberius, Tiberian
 Tiberinis:of or belonging to the Tiber, Tiberine, Father Tiber
@@ -21563,7 +21560,7 @@ Volusius:the name of a Roman gens
 volutabrum:a wallowing-place, a hog-pool, slough
 volutatio:a rolling about, wallowing
 voluto:to roll, wallow, turn over in one's mind, think or talk over;
-volva:a wrapper, covering, integument.
+!volva:a wrapper, covering, integument.
 volvo:- to roll, cause to roll; to travel in circle/circuit; to bring around/about; to revolve; - to roll along/forward; (PASS) to move sinuously (snake); to grovel, roll on ground;
 vomer:plowshare; stylus (for writing with (L+S); (metaphor for penis);
 vomica:abscess, boil, gathering of pus; gathering of fluid found in minerals;

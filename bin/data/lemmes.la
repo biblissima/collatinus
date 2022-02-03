@@ -2187,6 +2187,7 @@ astrŏlŏgus=āstrŏlŏgus|lupus|||i, m.|4
 astrŏnŏmĭa=āstrŏnŏmĭa|uita|||ae, f.|3
 astrum=āstrŭm|templum|||i, n.|129
 astrŭo=āstrŭo|lego|āstrūx|āstrūct|is, ere, truxi, tructum|21
+Asturco=Āstūrco|miles|Āstūrcōn||ōnis, m.|5
 Astŭrĭcus=Āstŭrĭcus|doctus|||a, um|2
 !astus2=āstus|doctus|||a, um|8
 astus=āstus|manus|||us, m.|26
@@ -2583,13 +2584,13 @@ bălĭnĕum=bălĭnĕŭm|templum|||i, n.|40
 băliscus=bălīscus|lupus|||i, m.|2
 bālista2=bālīsta|uita|||ae, f.|5
 bālĭtans=bālĭtāns|infans|bālĭtānt||tis|2
-ballaena=bāllāena|uita|||ae, f.|2
-balaenāceus=bālāenācēus,bālāenācĭus,bāllēnācĭus,bāllāenācēus|doctus|||a, um|1
+balaena=bālāena,bāllāena,bālēna,bāllēna|uita|||ae, f.|2
+balaenāceus=bālāenācēus,bālāenācĭus,bāllēnācĭus,bāllāenācēus|doctus|||a, um|2
 Ballĭo=Bāllĭo|miles|Bāllĭōn||ōnis, m.|4
-ballista=bāllīsta|uita|||ae, f.|11
+ballista=bāllīsta,bāllīstra|uita|||ae, f.|11
 balnĕae=bālnĕāe|epulae|||arum, f. pl.|14
-balnĕārĭus=bālnĕārĭus|aureus|||a, um|2
-balnĕātŏr=bālnĕātŏr|miles|bālnĕātōr||ōris, m.|4
+balnĕārĭus=bālnĕārĭus,bălĭnĕārĭus|aureus|||a, um|2
+balnĕātŏr=bālnĕātŏr,bălĭnĕātŏr|miles|bālnĕātōr,bălĭnĕātōr||ōris, m.|4
 balnĕŏlum=bālnĕŏlum|templum|||i, n.|3
 balnĕum=bālnĕŭm|templum|||ei, n.|59
 bālo|amo|||as, are, intr.|6
@@ -3453,6 +3454,7 @@ capto=cāpto|amo|||as, are|109
 captŭs3=cāptŭs|manus|||us, m.|3
 Căpŭa|roma|||ae, f.|70
 căpŭlāris=căpŭlārĭs|fortis|căpŭlār||e|1
+căpŭlātŏr|miles|căpŭlātōr||ōris, m.|3
 căpŭlus|lupus|||i, m.|13
 căpŭt|corpus|căpĭt||itis, n.|1149
 Căpўs|tethys|Căpў,Căpĭ||ios, m.|8
@@ -7049,6 +7051,8 @@ dīverto=dīvērto|lego|dīvērt|dīvērs|is, ere, verti, versum|6
 dīvĕs|diues|dīvĭt,dīt||itis|311
 dīvexo=dīvēxo|amo|||as, are|3
 Dīvĭcĭācus|lupus|||i, m.|21
+Divĭco=Divĭcō̆|miles|Divĭcōn||onis, m.|3
+dīvĭdĭa|uita|||ae, f.|4
 dīvĭdo|lego|dīvīs|dīvīs|is, ere, visi, visum|305
 dīvĭdŭus|aureus|||a, um|7
 dīvīnātĭo=dīvīnātĭō̆|miles|dīvīnātĭōn||onis, f.|7
@@ -9294,6 +9298,7 @@ Gangēs=Gāngēs|ciuis|Gāng||is, m.|9
 Gangētĭcus=Gāngētĭcus|doctus|||a, um|4
 Gangētis=Gāngētis|miles|Gāngētĭd||ĭdis, f.|2
 gannĭo=gānnĭo|audio|||is, ire|3
+gannītŭs=gānnītŭs|manus|||us, m.|2
 Gărămantes=Gărămāntes|opes|Gărămānt||um, m.|6
 Gărămantis=Gărămāntis|miles|Gărămāntĭd||ĭdis, f.|2
 Gărămās|ciuis|Gărămānt||antis, m.|2
@@ -9737,8 +9742,8 @@ Hălaesīnus=Hălāesīnus|doctus|||a, um|10
 Hălaesus=Hălāesus|lupus|||i, m.|9
 halcўŏnēus=hālcўŏnēus|doctus|||a, um|2
 Hălĭacmōn=Hălĭācmōn|miles|Hălĭācmŏn||ŏnis, m.|3
-Hălĭcarnassus=Hălĭcārnāssus|delos|||i, f.|2
-Hălĭcarnāsus=Hălĭcārnāsus|delos|||i, f.|3
+Hălĭcarnassus=Hălĭcārnāssus,Hălĭcārnāsus|delos|||i, f.|4
+!Hălĭcarnāsus=Hălĭcārnāsus|delos|||i, f.|3
 Halicyenses=Halicўēnses|manes|Halicўēns||ium, m.|4
 Hălĭcўensis=Hălĭcўēnsĭs|fortis|Hălĭcўēns||e|4
 hālĭtŭs|manus|||us, m.|12
@@ -11211,12 +11216,17 @@ innātus=īnnātus|doctus|||a, um|1
 innecto=īnnēcto|lego|īnnēxŭ|īnnēx|is, ere, nexui, nexum|15
 innītor=īnnītŏr|sequor||īnnīx|eris, i, nixus sum|27
 innŏcens=īnnŏcēns|infans|īnnŏcēnt||entis|215
+innŏcenter=īnnŏcēntĕr|advr|||adv.|2
 innŏcentĭa=īnnŏcēntĭa|uita|||ae, f.|109
+innŏcŭē=īnnŏcŭē|adve|||adv.|2
 innŏcŭus=īnnŏcŭus|aureus|||a, um|14
 inno=īnno|amo|||as, are|12
 innōtesco=īnnōtēsco|lego|īnnōtŭ||is, ere, innotui|5
 innŏvo=īnnŏvo|amo|||as, are|1
+innoxĭē=īnnoxĭē|adve|||adv.|2
 innoxĭus=īnnōxĭus|doctus|||a, um|50
+innūbĭlus=īnnūbĭlus|doctus|||a, um|2
+innūbis=īnnūbĭs|fortis|īnnūb||e|2
 innŭbus=īnnŭbus|doctus|||a, um|2
 innŭmĕrābĭlis=īnnŭmĕrābĭlĭs|fortis|īnnŭmĕrābĭl||e|91
 innŭmĕrābĭlĭtĕr=īnnŭmĕrābĭlĭtĕr|advr|||adv.|2
@@ -16614,6 +16624,7 @@ persuastrix=pērsŭāstrīx|miles|pērsŭāstrīc||īcis, f.|2
 persuāsŭs2=pērsŭāsŭs|manus|||us, m.|2
 persubtīlis=pērsūbtīlĭs|fortis|pērsūbtīl||e|3
 persulto=pērsūlto|amo|||as, are|10
+pertaedesco=pērtāedēsco|lego|pērtāedŭ||is, ĕre, dui|2
 pertaesus=pērtāesus|doctus|||a, um|2
 pertendo=pērtēndo|lego|pērtēnd|pērtēnt,pērtēns|is, ere, tendi, tensum, and tum|4
 pertĕnŭis=pērtĕnŭĭs|fortis|pērtĕnŭ||e|5
@@ -18662,7 +18673,7 @@ quĭētus|doctus|||a, um|152
 quī|inv|||adv.|193
 quīlĭbĕt|quilibet|||quaelibet, quodlibet|61
 quīnam=quīnăm|quinam|||pron.|92
-Quinctĭānus=Quīnctĭānus|doctus|||a, um|3
+Quinctĭānus=Quīnctĭānus,Quīntĭānus|doctus|||a, um|3
 Quinctĭlĭus=Quīnctĭlĭus|filius|||ii, m.|3
 Quinctĭus=Quīnctĭus,Quīntĭus|filius|||i, m.|135
 quincunx=quīncūnx|ciuis|quīncūnc||ūncis, m.|6
@@ -18697,13 +18708,13 @@ quinquĕvir=quīnquĕvĭr|puer|||viri, m.|3
 quinquĭens=quīnquĭēns|inv|||adv.|4
 quinquĭēs=quīnquĭēs|inv|||adv.|2
 quinquĭplĭco=quīnquĭplĭco|amo|||as, are|2
-quintădĕcĭmāni=quīntădĕcĭmāni|liberi|||orum, m.|2
-quintădĕcŭmānus=quīntădĕcŭmānus|lupus|||i, m.|1
+quintădĕcĭmāni=quīntădĕcĭmāni,quīntădĕcŭmāni|liberi|||orum, m.|4
+!quintădĕcŭmānus=quīntădĕcŭmānus|lupus|||i, m.|1
 quintāna=quīntāna|uita|||ae, f.|1
 quintāni=quīntāni|liberi|||orum, m.|8
 quintānus=quīntānus|lupus|||i, m.|1
 Quinta=Quīnta|roma|||ae, f.|3
-Quintĭānus=Quīntĭānus|doctus|||a, um|9
+!Quintĭānus=Quīntĭānus|doctus|||a, um|9
 Quintĭlĭānus2=Quīntĭlĭānus|lupus|||i, m.|8
 Quintĭlĭa=Quīntĭlĭa|roma|||ae, f.|3
 Quintĭlĭus=Quīntĭlĭus|filius|||ii, m.|16
@@ -20527,7 +20538,7 @@ Sīcĕlis|diues|Sīcĕlĭd||ĭdis|4
 Sĭcĭlĭa|roma|||ae, f.|374
 Sĭcĭlĭensis=Sĭcĭlĭēnsĭs|fortis|Sĭcĭlĭēns||e|23
 sīcīlīmentum=sīcīlīmēntum|templum|||i, n.|2
-sīccĭnĕ,sīcĭnĕ|bene|||adv.|8
+sīcĭnĕ=sīcĭnĕ,sīccĭnĕ|bene|||adv.|8
 Sicinĭus|filius|||i, m.|2
 Sĭcŏrĭs|ciuis|Sĭcŏr||is, m.|3
 sīcŭbĭ|inv|||conj. sub.|15
@@ -21202,7 +21213,7 @@ Strătŏnīcenses=Strătŏnīcēnses|manes|Strătŏnīcēns||ium, m.|3
 Strătŏnīcis|miles|Strătŏnīcĭd||ĭdis, f.|2
 Strătŏnīcus|lupus|||i, m.|1
 strātum=strātŭm|templum|||i, n (strata, orum)|20
-Stratus2|delos|||i, f.|2
+Stratos|delos|||i, f.|2
 strēnuē=strēnŭē|adve|||adv.|32
 strēnuus=strēnŭus|aureus|||a, um|53
 strĕpĭto|amo|||as, are|5
@@ -22341,7 +22352,8 @@ thўmum|templum|||i, n.|17
 Thўōnē|cybele|||es, f.|2
 Thўōnēus|perseus|||ĕi (ĕōs), m.|2
 Thўōnĭānus|lupus|||i, m.|2
-tĭārās|aeneas|||ae, f.|3
+tĭāra|uita|||ae, f.|3
+tĭārās|aeneas|||ae, m., cf. tiara|3
 Tĭbĕrĭānus|doctus|||a, um|2
 Tĭbĕrīnis|miles|Tĭbĕrīnĭd||ĭdis, f.|2
 Tĭbĕrīnus2|doctus|||a, um|15
@@ -22447,7 +22459,7 @@ Tĭtўos|delos|||i, m.|18
 Tītўrus|lupus|||i, m.|17
 Tlēpŏlĕmus|lupus|||i, m.|8
 Tmărĭus|aureus|||a, um|2
-Tmărŏs,Tŏmărus|delos|||i, m.|3
+Tmărŏs=Tmărŏs,Tŏmărus|delos|||i, m.|3
 Tmōlĭus|aureus|||a, um|2
 Tmōlus=Tmōlus,Tĭmōlus|lupus|||i, m.|7
 tōfus|lupus|||i, m.|5
