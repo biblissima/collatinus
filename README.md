@@ -1,4 +1,6 @@
-# Collatinus
+# Collatinus 11
+
+The currently availlable version is the version 11.2, from the "Medieval" branch.
 
 Sources of Collatinus software, the Latin lemmatizer, morphological analyzer and scansion tool.
 Sources of version 10 are available on [collatinus-10-src](https://github.com/biblissima/collatinus-10-src).
