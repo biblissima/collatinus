@@ -21,6 +21,9 @@
  * Je supprime tout ce qui était lié aux fenêtres pour ne garder que le serveur.
  * Philippe Janvier 2019.
  *
+ * J'essaie d'introduire l'option médiévale.
+ * Philippe Décembre 2024.
+ *
  */
 
 #include "server.h"
@@ -262,7 +265,78 @@ void Server::exec ()
             nonHTML = false;
             // Le résultat est en html : je veux conserver les <br/>.
             break;
-        case 'E':
+// Début de l'option médiévale
+        case 'B':
+        case 'b':
+            _lemCore->setMedieval(true);
+            optAcc = 3; // Par défaut : un mot dont la pénultième est commune n'est pas accentué.
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                if ((options.size() > 3) && (options[3].isDigit()))
+                    optAcc = 10 * optAcc + options[3].digitValue();
+            }
+            rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
+            nonHTML = false;
+            rep.replace("\n","<br />\n");
+            _lemCore->setMedieval(false);
+            break;
+        case 'I':
+        case 'i':
+            _lemmatiseur->setHtml(true);
+            nonHTML = false;
+        case 'M':
+        case 'm':
+            _lemCore->setMedieval(true);
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                options = options.mid(3);
+                if ((options.size() > 0) && (options[0].isDigit()))
+                {
+                    optAcc = 10*optAcc+options[0].digitValue();
+                    options = options.mid(1);
+                }
+            }
+            else options = options.mid(2); // Je coupe le "-l".
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemmatiseur->setCible(options);
+            if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
+            else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            rep.replace("</h4>","</big></strong>");
+            rep.replace("<h4>","<strong><big>");
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            _lemCore->setMedieval(false);
+            break;
+        case 'Q':
+        case 'q':
+            _lemCore->setMedieval(true);
+            // Appel au tagueur probabiliste.
+            // Ici, optAcc vaut 0 : n'affiche que la meilleure solution.
+            // Si je veux changer le comportement par défaut, il faut ajouter une ligne :
+            // optAcc = 1;
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                options = options.mid(3);
+            }
+            else options = options.mid(2); // Je coupe le "-l".
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) &&
+                     _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemmatiseur->setCible(options);
+            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
+            // Par défaut, je tague tout le texte.
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            nonHTML = false;
+            // Le résultat est en html : je veux conserver les <br/>.
+            _lemCore->setMedieval(false);
+            break;
+// Fin de l'option médiévale
+            case 'E':
         case 'e':
             // Pour sortir la lemmatisation sous un format CSV
             options = options.mid(2); // Je coupe le "-e".
