@@ -23,8 +23,8 @@
 ^pro$;prō
 ^quo$;quō
 ! ramismes
-(^i([aāăeēĕiīĭoōŏuūŭ][^\W]);j\1
-(^u([aāăeēĕiīĭoōŏuūŭ]);v\1
+^i([aāăeēĕiīĭoōŏuūŭ][^\W]);j\1
+^u([aāăeēĕiīĭoōŏuūŭ]);v\1
 (^|[aāăeēĕoōŏ]|^in|^ad|^per)i([aāăeēĕiīĭoōŏuŭū]);\1j\2
 (^|[aāăeēĕiīĭoōŏ]|[io]n|ad|per)u([aāăeēĕiīĭoōŏuŭū]);\1v\2
 (j[uŭū])u([aaāăeēĕiīĭoōŏ]);\1v\2
