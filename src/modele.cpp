@@ -19,6 +19,14 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file modele.cpp
+ * \brief définit les classes Desinence et Modele
+ *
+ * Ces classes font partie des couches profondes utilisées par
+ * le noyau de lemmatisation, LemCore.
+ */
+
 #include "modele.h"
 
 ///////////////
@@ -27,12 +35,22 @@
 
 /**
  * \fn Desinence::Desinence (QString d, int morph, int nr, Modele *parent)
- * \brief Constructeur de la classe Desinence. d est la graphie avec quantités,
- *        morph est le numéro de morphologie (dans la liste de la classe
- * Lemmat),
- *        nr est le numéro de radical accepté par la désinence, et parent est
- *        un pointeur sur le modèle du lemme et du radical qui utilisent cette
+ * \brief Constructeur de la classe Desinence.
+ * \param d est la graphie avec quantités
+ * \param morph est le numéro de morphologie (dans la liste de la classe
+ * LemCore)
+ * \param nr est le numéro de radical accepté par la désinence
+ * \param parent est
+ *        un pointeur sur le modèle qui utilise cette
  *        désinence.
+ *
+ * Un paradigme, Modele, est associé à un (ou plusieurs) radical(aux), Radical,
+ * et une collection de désinences.
+ * Chaque Desinence est donnée par sa graphie (avec quantité)
+ * mais doit aussi contenir des informations cruciales :
+ *  * l'analyse morphologique à laquelle elle est associée
+ *  * le numéro du radical auquel elle peut se coller
+ *  * le modèle.
  */
 Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
 {
@@ -53,7 +71,8 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
     _gr = Ch::atone(_grq);
     _morpho = morph;
     _numR = nr;
-    _modele = qobject_cast<Modele *>(parent);
+    _modele = parent;
+//    _modele = qobject_cast<Modele *>(parent);
 }
 
 /**
@@ -94,14 +113,37 @@ int Desinence::numRad()
     return _numR;
 }
 
+/**
+ * @brief accesseur de la rareté
+ * @return la valeur de Desinence::_rarete
+ *
+ * La rareté est un paramètre qui permet de séparer l'utilisation
+ * d'une désinence en analyse et en flexion.
+ * En effet, certains paradigmes admettent des désinences rares ou archaïques
+ * qu'il faut reconnaître quand on les rencontre dans un texte.
+ * En revanche, les tableaux de flexion sont plutôt destinés aux débutants.
+ * Il ne serait donc pas opportun d'encombrer leur mémoire de formes
+ * qu'ils ont peu de chance de rencontrer (dans l'immédiat).
+ * Dans le module de Flexion, deux paramètres, @c OMIS et @c PARENTH,
+ * décident de l'affichage ou pas de la forme construite sur ces
+ * désinences rares. Les trois possibilités sont :
+ *  * l'omission
+ *  * l'affichage entre parenthèses
+ *  * l'affichage normal.
+ *
+ * @note Le nom semble mal choisi car les désinences usuelles
+ * sont associées à la valeur @c 10. Les plus rares ont @c 0.
+ */
 int Desinence::rarete()
 {
     return _rarete;
 }
 
 /**
- * \fn void Desinence::setModele (Modele *m)
  * \brief Attribue un modèle à la désinence.
+ *
+ * @deprecated Semble inutilisé.
+ * La valeur de Desinence::_modele est définie lors de la création.
  */
 void Desinence::setModele(Modele *m)
 {
@@ -113,19 +155,26 @@ void Desinence::setModele(Modele *m)
 ////////////
 
 /**
- * \fn Modele::Modele (QStringList ll, Lemmat *parent)
- * \brief Constructeur de la classe modèle. Chaque item
- *        de la liste ll est constitué de champs séparé par
- *        le caractère ':'. Le premier champ est un mot clé.
- *        Le parent est le lemmatiseur. Pour le format du
- *        fichier data/modeles.la, consulter la documentation
+ * \fn Modele::Modele (QStringList ll, LemCore *parent)
+ * \brief Constructeur de la classe modèle.
+ * \param ll : liste de chaines de caractères
+ * \param parent : pointeur vers le noyau de lemmatisation, LemCore
+ *
+ * Chaque item
+ *        de la liste \a ll est constitué de champs séparés par
+ *        le caractère <tt>':'</tt>. Le premier champ est un mot clé
+ * (voir Modele::cles).
+ * Pour le format du
+ *        fichier <tt>data/modeles.la</tt>, consulter la documentation
  *        utilisateur.
  */
-Modele::Modele(QStringList ll, LemCore *parent)
+Modele::Modele(QStringList ll, LemCore *parent) : QObject(parent)
 {
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+    _lemCore = parent;
+//    _lemCore = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
+    _nbr = 0; // Initialisé à 0, je souhaite ignorer certains modèles.
     QMultiMap<QString, int> msuff;
     QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)
@@ -134,7 +183,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
         while (re.indexIn(l) > -1)
         {
             QString v = re.cap(2);
-            QString var = _lemmatiseur->variable(v);
+            QString var = _lemCore->variable(v);
             QString pre = re.cap(1);
             if (!pre.isEmpty()) var.replace(";", ";" + pre);
             l.replace(v, var);
@@ -168,7 +217,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                     {
                         Desinence *nd = new Desinence(g, li.at(i), r, this);
                         _desinences.insert(nd->morphoNum(), nd);
-                        _lemmatiseur->ajDesinence(nd);
+                        _lemCore->ajDesinence(nd);
                     }
                 }
                 // si des+, aller chercher les autres désinences chez le père :
@@ -182,7 +231,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                             // cloner la désinece
                             Desinence *dh = clone(dp);
                             _desinences.insert(i, dh);
-                            _lemmatiseur->ajDesinence(dh);
+                            _lemCore->ajDesinence(dh);
                         }
                     }
                 }
@@ -224,7 +273,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                         Desinence *dsuf = new Desinence
                             (nd+_suf, d->morphoNum(), d->numRad(), this);
                         _desinences.insert(dsuf->morphoNum(), dsuf);
-                        _lemmatiseur->ajDesinence(dsuf);
+                        _lemCore->ajDesinence(dsuf);
                     }
                 }
                 break;
@@ -232,6 +281,13 @@ Modele::Modele(QStringList ll, LemCore *parent)
             case 9: // POS
             {
                 _pos = eclats.at(1).at(0);
+                break;
+            }
+            case 10: // nbr : introduit le 19 décembre 2021
+            {
+                _nbr = eclats.at(1).toInt();
+                // C'est le nombre d'occurrences du modèle dans le corpus du LASLA.
+                // qDebug() << _gr << _nbr;
                 break;
             }
             default:
@@ -257,7 +313,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                     continue;
                 Desinence *dh = clone(d);
                 _desinences.insert(dh->morphoNum(), dh);
-                _lemmatiseur->ajDesinence(dh);
+                _lemCore->ajDesinence(dh);
             }
         }
         // héritage des radicaux
@@ -294,16 +350,20 @@ Modele::Modele(QStringList ll, LemCore *parent)
     foreach (Desinence *dsuf, ldsuf)
     {
         _desinences.insert(dsuf->morphoNum(), dsuf);
-        _lemmatiseur->ajDesinence(dsuf);
+        _lemCore->ajDesinence(dsuf);
     }
 }
 
 /**
  * \fn bool Modele::absent (int a)
  * \brief Renvoie true si la morpho de rang a
- *        n'existe pas dans le modèle. Certains
- *        modèles, par exemple, n'ont pas de singulier,
+ *        n'existe pas dans le modèle.
+ *
+ * Certains substantifs n'ont pas de singulier,
  *        certains verbes n'ont pas de passif.
+ * Pour afficher correctement la flexion, il faut savoir
+ * quelles analyses morphologiques ne sont pas utilisées
+ * pour ce modèle.
  */
 bool Modele::absent(int a) { return _absents.contains(a); }
 
@@ -331,8 +391,9 @@ Desinence *Modele::clone(Desinence *d)
 
 /**
  * \fn bool Modele::deja (int m)
- * \brief Renvoie true si la désinence a une morpho de rang m.
- *        Permet de savoir s'il faut aller chercher la désinence
+ * \brief Renvoie true si le modèle a déjà une désinence avec la morpho de rang m.
+ *
+ * Cette fonction permet de savoir s'il faut aller chercher la désinence
  *        de morpho m chez le modèle père.
  */
 bool Modele::deja(int m) { return _desinences.contains(m); }
@@ -352,7 +413,7 @@ QList<Desinence *> Modele::desinences() { return _desinences.values(); }
 /**
  * \fn bool Modele::estUn (QString m)
  * \brief Renvoie true si le modèle se nomme m, ou si
- *        l'un de ses ancêtre se nomme m
+ *        l'un de ses ancêtres se nomme m
  */
 bool Modele::estUn(QString m)
 {
@@ -376,13 +437,15 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "suf"     // 6
                                                << "sufd"    // 7
                                                << "abs+"    // 8
-                                               << "pos";    // 9
+                                               << "pos"     // 9
+                                               << "nbr";    // 10
 
 /**
  * \fn QString Modele::genRadical (int r)
- * \brief Chaîne permettant de calculer un radical à partir
- *        de la forme canonique d'un lemme. r est le numéro
- *        du radical.
+ * \brief générateur d'un radical
+ * \param r est le numéro du radical.
+ * \return une chaîne permettant de calculer un radical à partir
+ *        de la forme canonique d'un lemme.
  */
 QString Modele::genRadical(int r)
 {
@@ -391,15 +454,21 @@ QString Modele::genRadical(int r)
 
 /**
  * \fn QList<int> Modele::listeI (QString l)
- * \brief Fonction importante permettant de renvoyer
- *        une liste d'entiers à partir d'une chaîne.
+ * \brief conversion d'une chaine de caractère en liste d'entiers
+ * \param l : la chaine initiale
+ * \return la liste des entiers contenus dans la chaine
+ *
+ * Fonction importante permettant de renvoyer
+ *        une liste d'entiers à partir d'une chaîne @a l.
  *        La chaîne est une liste de sections séparées
  *        par des virgules. Une section peut être soit
  *        un entier, soit un intervalle d'entiers. On
  *        donne alors les limites inférieure et supérieure
  *        de l'intervale, séparées par le caractère '-'.
- *        Nombreux exemples d'intervalles dans le fichier
- *        data/modeles.la.
+ * Les limites sont incluses.
+ *
+ * Nombreux exemples d'intervalles dans le fichier
+ *        <tt>data/modeles.la</tt>.
  */
 QList<int> Modele::listeI(QString l)
 {
@@ -434,6 +503,7 @@ QList<int> Modele::morphos() { return _desinences.keys(); }
  */
 QChar Modele::pos()
 {
+    if (_pos == '\0') return 'd';
     return _pos;
     /*
     if (estUn("uita") || estUn("lupus") || estUn("miles") || estUn("manus") ||
@@ -443,4 +513,13 @@ QChar Modele::pos()
     if (estUn("amo") || estUn("imitor")) return 'v';
     return 'd';
     */
+}
+
+/**
+ * @brief Accesseur du nombre d'occurrences du modèle dans le corpus du LASLA.
+ * @return la valeur de Modele::_nbr
+ */
+int Modele::nbr()
+{
+    return _nbr;
 }

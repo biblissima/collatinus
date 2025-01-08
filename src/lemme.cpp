@@ -19,7 +19,20 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/**
+ * \file lemme.cpp
+ * \brief définit les classes Radical et Lemme
+ *
+ * Ces classes font partie des couches profondes utilisées par
+ * le noyau de lemmatisation, LemCore.
+ */
+
 #include "lemme.h"
+
+LemCore* Lemme::_lemCore = NULL;
+// J'ai défini _lemCore comme variable statique dans Lemme (lemme.h).
+// Initialement, je lui donne la valeur NULL (ici, dans lemme.cpp).
+// Quand j'aurai créé le vrai LemCore, je fixerai la bonne valeur (dans LemCore::LemCore).
 
 /////////////
 // RADICAL //
@@ -79,16 +92,17 @@ int Radical::numRad() { return _numero; }
 
 /**
  * \fn Lemme::Lemme (QString linea, QObject *parent)
- * \brief Constructeur de la classe Lemme à partire de la
- *        ligne linea. *parent est le lemmatiseur (classe Lemmat).
+ * \brief Constructeur de la classe Lemme à partir de la
+ *        ligne linea. *parent est le noyau de lemmatisation (classe LemCore).
  */
-Lemme::Lemme(const QString linea, const int origin, QObject *parent)
+Lemme::Lemme(const QString linea, const int origin, QObject *parent) : QObject(parent)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
     //   0 | 1  | 2   | 3 |     4                | 5
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+//    _lemCore = qobject_cast<LemCore *>(parent);
     QStringList eclats = linea.split('|');
     QStringList lg = eclats.at(0).split('=');
+    _nh = 1;
     _cle = Ch::atone(Ch::deramise(lg.at(0)));
     _grd = oteNh(lg.at(0), _nh);
     if (lg.count() == 1)
@@ -98,7 +112,7 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
     // pour l'affichage des dictionnaires, on élimine les doubles de la forme canonique
     _gr = Ch::atone(_grq.section(',',0,0));
     _grModele = eclats.at(1);
-    _modele = _lemmatiseur->modele(_grModele);
+    _modele = _lemCore->modele(_grModele);
     _hyphen = "";
     _origin = origin;
     _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
@@ -116,7 +130,7 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
             foreach (QString rad, lrad)
                 _radicaux[i-1].append(new Radical(rad, i-1, this));
         }
-    _lemmatiseur->ajRadicaux(this);
+    _lemCore->ajRadicaux(this);
 
     _indMorph = eclats.at(4);
     QRegExp c("cf\\.\\s(\\w+)$");
@@ -165,16 +179,23 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
  * Il faut donc le définir à la demande.
     _genre.clear();
     if (_indMorph.contains(" m."))
-        _genre.append(" " + _lemmatiseur->genre(0));
+        _genre.append(" " + _lemCore->genre(0));
 //        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
     if (_indMorph.contains(" f."))
-        _genre.append(" " + _lemmatiseur->genre(1));
+        _genre.append(" " + _lemCore->genre(1));
 //        _genre.append(" féminin");
     if (_indMorph.contains(" n."))
-        _genre.append(" " + _lemmatiseur->genre(2));
+        _genre.append(" " + _lemCore->genre(2));
 //        _genre.append(" neutre");
     _genre = _genre.trimmed();
 */
+}
+
+void Lemme::setLemCore(LemCore * l)
+{
+    if (_lemCore == NULL) _lemCore = l;
+    // Je n'autorise qu'une seule mise à jour de _lemCore :
+    // quand le vrai LemCore est créé.
 }
 
 /**
@@ -244,7 +265,7 @@ QString Lemme::ambrogio()
     foreach (QString lang, _traduction.keys())
     {
         QString trad = _traduction[lang];
-        QString langue = _lemmatiseur->cibles()[lang];
+        QString langue = _lemCore->cibles()[lang];
         if (!trad.isEmpty())
             ss << "<tr><td>- " << langue << "</td><td>&nbsp;" << trad
                << "</td></tr>\n";
@@ -278,7 +299,7 @@ QList<int> Lemme::clesR()
  * \param nm : numéro de morpho
  * \brief Renvoie vrai si la forme irrégulière
  *        avec le n° nm remplace celle construite
- *        sur le radical , faux si la
+ *        sur le radical, faux si la
  *        forme régulière existe aussi.
  */
 bool Lemme::estIrregExcl(int nm)
@@ -287,7 +308,7 @@ bool Lemme::estIrregExcl(int nm)
 }
 
 /**
- * @brief Lemme::genre
+ * @brief Le genre du lemme
  * @return : le (ou les) genre(s) du mot.
  *
  * Cette routine convertit les indications morphologiques,
@@ -301,26 +322,26 @@ QString Lemme::genre()
 {
     QString _genre;
     if (_indMorph.contains(" m."))
-        _genre.append(" " + _lemmatiseur->genre(0));
+        _genre.append(" " + _lemCore->genre(0));
 // J'ai ainsi le genre dans la langue choisie.
     if (_indMorph.contains(" f."))
-        _genre.append(" " + _lemmatiseur->genre(1));
+        _genre.append(" " + _lemCore->genre(1));
 //        _genre.append(" féminin");
     if (_indMorph.contains(" n."))
-        _genre.append(" " + _lemmatiseur->genre(2));
+        _genre.append(" " + _lemCore->genre(2));
 //        _genre.append(" neutre");
     _genre = _genre.trimmed();
     if (!_renvoi.isEmpty() && _genre.isEmpty())
     {
-        Lemme *lr = _lemmatiseur->lemme(_renvoi);
+        Lemme *lr = _lemCore->lemme(_renvoi);
         if (lr != NULL) return lr->genre();
     }
     return _genre;
 }
 
 /**
- * \fn return _gr;
  * \brief Retourne la graphie ramiste du lemme sans diacritiques.
+ * \return _gr;
  */
 QString Lemme::gr()
 {
@@ -357,7 +378,7 @@ QString Lemme::humain(bool html, QString l, bool nbr)
     QString tr;
     if (!_renvoi.isEmpty())
     {
-        Lemme *lr = _lemmatiseur->lemme(_renvoi);
+        Lemme *lr = _lemCore->lemme(_renvoi);
         if (lr != 0)
             tr = lr->traduction(l);
         else
@@ -373,10 +394,19 @@ QString Lemme::humain(bool html, QString l, bool nbr)
         grq.replace("  "," ");
     }
     if (html)
-        flux << "<strong>" << grq << "</strong>, "
+    {
+        if (_nh > 1)
+            flux << "<strong>" << grq << "<sup>" << _nh << "</sup></strong>, "
+                     << "<em>" << _indMorph << "</em>";
+        // Si j'ai un numéro d'homonymie, je le mets en exposant (12 janvier 2021).
+        else
+            flux << "<strong>" << grq << "</strong>, "
                           << "<em>" << _indMorph << "</em>";
+    }
     else
-        flux << grq << ", " << _indMorph;
+        if (_nh > 1)
+            flux << grq << "_" << _nh << ", " << _indMorph;
+        else flux << grq << ", " << _indMorph;
     if ((_nbOcc != 1) && nbr)
     {
         if (html)
@@ -484,7 +514,7 @@ QString Lemme::pos()
 {
     if (_pos.isEmpty() && !_renvoi.isEmpty())
     {
-        Lemme *lr = _lemmatiseur->lemme(_renvoi);
+        Lemme *lr = _lemCore->lemme(_renvoi);
         if (lr != NULL) return lr->pos();
     }
     return _pos;

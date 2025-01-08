@@ -36,16 +36,19 @@
 class LemCore;
 class Modele;
 
+/**
+ * @brief La classe Desinence décrit les désinences associées aux modèles
+ */
 class Desinence : public QObject
 {
     Q_OBJECT
    private:
-    QString _gr;
-    QString _grq;
-    int     _morpho;
-    Modele *_modele;
-    int     _numR;
-    int     _rarete;
+    QString _gr; /*!< voir Desinence::gr */
+    QString _grq; /*!< voir Desinence::grq */
+    int     _morpho; /*!< voir Desinence::morphoNum */
+    Modele *_modele; /*!< voir Desinence::modele */
+    int     _numR; /*!< voir Desinence::numRad */
+    int     _rarete; /*!< voir Desinence::rarete */
 
    public:
     Desinence(QString d, int morph, int nr, Modele *parent = 0);
@@ -58,20 +61,24 @@ class Desinence : public QObject
     void    setModele(Modele *m);
 };
 
+/**
+ * @brief La classe Modele contient les désinences associées aux paradigmes de flexion
+ */
 class Modele : public QObject
 {
     Q_OBJECT
    private:
-    QList<int> _absents;
-    QStringList static const cles;
-    QMultiMap<int, Desinence *> _desinences;
-    QMap<int, QString> _genRadicaux;
-    QString _gr;
-    QString _grq;
-    LemCore *_lemmatiseur;
-    Modele *_pere;
-    QChar   _pos;
-    QString _suf;
+    QList<int> _absents; /*!< Liste des morphos absentes du modèle. */
+    QStringList static const cles; /*!<  ensemble des clefs utilisées dans la descriptions des modèles */
+    QMultiMap<int, Desinence *> _desinences; /*!< Liste des désinences du modèle. */
+    QMap<int, QString> _genRadicaux; /*!< Générateurs des radicaux du modèle. */
+    QString _gr; /*!< Nom du modèle. */
+//    QString _grq;
+    LemCore *_lemCore; /*!< Un pointeur vers le noyau de lemmatisation. */
+    Modele *_pere; /*!< Un pointeur vers le père du modèle. */
+    QChar   _pos; /*!< POS associé au modèle. */
+    QString _suf; /*!< Suffixe à ajouter aux désinences du père. */
+    int _nbr; /*!< Le nombre d'occurrences du modèle dans le corpus du LASLA. */
 
    public:
     Modele(QStringList ll, LemCore *parent = 0);
@@ -85,10 +92,11 @@ class Modele : public QObject
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();
-    QString            grq();
+//    QString            grq();
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();
+    int                nbr();
 };
 
 #endif
