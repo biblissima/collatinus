@@ -26,7 +26,10 @@
  *
  */
 
+#include <QDateTime>
 #include "server.h"
+
+#define VERIF_HIST
 
 /**
  * \fn Server::Server()
@@ -143,6 +146,25 @@ void Server::exec ()
 {
     QByteArray octets = soquette->readAll ();
     QString requete = QString (octets).trimmed();
+
+    #ifdef VERIF_HIST
+    QString debut = QDateTime::currentDateTime().toString(Qt::ISODate);
+    qint64 entier_deb = QDateTime::currentMSecsSinceEpoch();
+    QString historic = "./bin/historique.txt";
+    // Je crée un fichier avec l'historique dans le dossier courant.
+    // On peut évidemment le mettre ailleurs en donnant un chemin complet.
+    QFile stats(historic);
+    stats.open(QFile::WriteOnly|QFile::Text);
+    // Si on veut un historique permanent,
+    // il faut remplacer WriteOnly par Append, comme ci-dessous.
+    // Avec WriteOnly, on écrase le fichier précédent à chaque requête.
+    stats.write(requete.toUtf8());
+    debut.prepend("\nDébut : ");
+    debut.append("\n");
+    stats.write(debut.toUtf8());
+    stats.close();
+    #endif
+
     std::cout << requete.toStdString() << "\n";
     if (requete.isEmpty()) requete = "-?";
     QString texte = "";
@@ -420,10 +442,31 @@ void Server::exec ()
         rep.remove("<br/>"); // Avec -H/h, j'ai la lemmatisation en HTML
     }
 */
+
+    #ifdef VERIF_HIST
+    debut = QDateTime::currentDateTime().toString(Qt::ISODate);
+    entier_deb = QDateTime::currentMSecsSinceEpoch() - entier_deb;
+    stats.open(QFile::Append|QFile::Text);
+    debut.prepend("Fin : ");
+    debut.append("\n");
+    stats.write(debut.toUtf8());
+    debut = "Durée : %1 ms.\n";
+    stats.write(debut.arg(entier_deb).toUtf8());
+    rep.append("\n");
+    stats.write(rep.toUtf8());
+    stats.close();
+    #endif
+
     QByteArray ba = rep.toUtf8();
 //    std::cout << "Je retourne la page.\n";
     soquette->write(ba);
     soquette->close ();
+
+    #ifdef VERIF_HIST
+    stats.open(QFile::Append|QFile::Text);
+    stats.write("OK\n");
+    stats.close();
+    #endif
 }
 
 QString Server::flechis(QString texte)
@@ -439,7 +482,7 @@ QString Server::flechis(QString texte)
 QString Server::consult(QString req, QString texte)
 {
     if (texte.isEmpty()) return "Erreur !";
-    std::cout << req.toStdString() << " " << texte.toStdString() << "\n";
+    //std::cout << req.toStdString() << " " << texte.toStdString() << "\n";
     // D'abord le dico.
     Dictionnaire * dico_courant;
     QString p = req.mid(2);
