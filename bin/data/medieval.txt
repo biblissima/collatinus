@@ -44,5 +44,6 @@ ti([aeio]|u[^aeiou]);ci\1
 ti$;ci*
 !
 mpn;mn
+k;c
 ! Il faudra sans doute ajouter d'autres règles…
 !
