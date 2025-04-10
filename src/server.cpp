@@ -213,6 +213,12 @@ void Server::exec ()
         if (texte == "")
             texte = requete.mid(requete.indexOf(" ")+1);
         _lemmatiseur->setMajPert(requete[1].isUpper());
+        texte.remove("(");
+        texte.remove(")");
+        texte.remove("[");
+        texte.remove("]");
+        texte.remove("{");
+        texte.remove("}");
         switch (a)
         {
         case 'S':
