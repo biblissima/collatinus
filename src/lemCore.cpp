@@ -1148,7 +1148,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
         // Si ma forme est toute en majuscule (dans un titre, par exemple),
         // je fais une exception à la majuscule pertinente, sauf pour les nombres.
         if ((debPhr && f.at(0).isUpper()) ||
-                (mm.isEmpty() && (f == f.toUpper()) && !f[0].isDigit()))
+                (mm.isEmpty() && (f == f.toUpper()) && !f[0].isDigit() && (f.size() > 1)))
         {
             // Attention aux nombres qui sont égaux à eux-mêmes en majuscule ou minuscule !
             QString nf = f.toLower();
