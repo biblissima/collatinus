@@ -150,7 +150,7 @@ void Server::exec ()
     #ifdef VERIF_HIST
     QString debut = QDateTime::currentDateTime().toString(Qt::ISODate);
     qint64 entier_deb = QDateTime::currentMSecsSinceEpoch();
-    QString historic = "./bin/historique.txt";
+    QString historic = "/var/log/collatinus/last_request.log";
     // Je crée un fichier avec l'historique dans le dossier courant.
     // On peut évidemment le mettre ailleurs en donnant un chemin complet.
     QFile stats(historic);
