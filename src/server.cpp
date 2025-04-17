@@ -219,6 +219,7 @@ void Server::exec ()
         texte.remove("]");
         texte.remove("{");
         texte.remove("}");
+        texte.remove("_");
         switch (a)
         {
         case 'S':
