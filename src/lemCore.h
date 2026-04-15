@@ -154,6 +154,12 @@ class LemCore : public QObject
     QMap<QString, QString> assims;
     /*! Association des préfixes assimilés et non-assimilés avec quantités */
     QMap<QString, QString> assimsq;
+    // Pas sûr que les QMaps soient une bonne idée ! Ph.
+    QStringList lAss;
+    QStringList lAssq;
+    QStringList lDesAss;
+    QStringList lDesAssq;
+// Je crée des listes pour faire la même chose.
     /*! Association des formes contractées et non-contractées */
     QMap<QString, QString> _contractions;
     /*! Liste des désinences avec forme (clef) et pointeur (valeur) */
