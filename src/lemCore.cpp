@@ -547,7 +547,13 @@ void LemCore::ajAssims()
     {
         QStringList liste = lin.split(':');
         assimsq.insert(liste.at(0), liste.at(1));
+        lAssq.append(liste.at(1));
+        lDesAssq.append(liste.at(0));
         assims.insert(Ch::atone(liste.at(0)), Ch::atone(liste.at(1)));
+        lAss.append(Ch::atone(liste.at(1)));
+        lDesAss.append(Ch::atone(liste.at(0)));
+        // Même si je pense que la QMap est inutile (et néfaste)
+        // je ne la supprime pas encore.
     }
 }
 
@@ -1199,6 +1205,67 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
         break;
     case 2:
         // Assimilation du préfixe
+        for (int numAss = 0; numAss < lAss.size(); numAss++)
+        {
+            // Nouvelle version basée sur une liste ordonnée.
+            // Voir commentaires ci-dessous; Ph. avril 2026.
+            if (f.startsWith(lDesAss[numAss]))
+            {
+                fd = lAss[numAss] + f.mid(lDesAss[numAss].size());
+//                qDebug() << f << fd << lDesAss[numAss];
+                MapLem nmm = lemmatiseM(fd, debPhr, 3);
+                // désassimiler les résultats
+                foreach (Lemme *nl, nmm.keys())
+                {
+                    for (int i = 0; i < nmm[nl].count(); ++i)
+                    {
+                        QString formQ = nmm[nl][i].grq;
+                        QString form = Ch::atone(formQ);
+                        if (form.startsWith(lAss[numAss]))
+                        {
+                            formQ = lDesAssq[numAss] + formQ.mid(lAssq[numAss].size());
+                            nmm[nl][i].grq = formQ;
+                        }
+                        else qDebug() << f << fd << formQ << lAssq[numAss];
+                        // Normalement, ça ne devrait pas arriver...
+//                        nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
+                    }
+                    mm.insert(nl, nmm.value(nl));
+                }
+                return mm;
+            }
+            // Et dans l'autre sens.
+            if (f.startsWith(lAss[numAss]))
+            {
+                fd = lDesAss[numAss] + f.mid(lAss[numAss].size());
+//                qDebug() << f << fd << lAss[numAss];
+                MapLem nmm = lemmatiseM(fd, debPhr, 3);
+                // ré-assimiler les résultats
+                foreach (Lemme *nl, nmm.keys())
+                {
+                    for (int i = 0; i < nmm[nl].count(); ++i)
+                    {
+                        QString formQ = nmm[nl][i].grq;
+                        QString form = Ch::atone(formQ);
+                        if (form.startsWith(lDesAss[numAss]))
+                        {
+                            formQ = lAssq[numAss] + formQ.mid(lDesAssq[numAss].size());
+                            nmm[nl][i].grq = formQ;
+                        }
+                        else qDebug() << f << fd << formQ << lAssq[numAss];
+                    }
+                    mm.insert(nl, nmm.value(nl));
+                }
+                return mm;
+            }
+        }
+/*
+ * Ancienne version du traitement de l'assimilation du préfixe.
+ * Elle était basée sur une QMap et ne fonctionnait pas bien,
+ * en particulier pour les formes adst => ast.
+ * La liste assimilation.la est ordonnée, c'est à dire qu'il faut
+ * traiter "adst => ast" avant de traiter "ads => ass" qui est le
+ * cas général (sous entendu, sauf les cas particuliers).
         fd = assim(f);
         if (fd != f)
         {
@@ -1224,6 +1291,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
             }
             return mm;
         }
+*/
         break;
     case 1:
         // suffixes
