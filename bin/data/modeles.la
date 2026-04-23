@@ -1200,6 +1200,33 @@ des+:339-350:4:$lupus
 des+:351-362:4:$uita
 des+:363-374:4:$templum
 
+modele:orior
+pere:patior
+R:4:2,ūnd
+! R0 == "ori" R2 == "ort" R3 == "or" R4 == "oriund"
+des:122-125:3:īrĭs,ĕrĭs;ĭtŭr;ĭmŭr;ĭmĭnī
+! subjonctif
+des:163-168:3:īrĕr;īrērĭs,īrērĕ;īrētŭr,ĕrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr,ĕrēntŭr
+! impératif
+des:181-186:3:ĕrĕ;ĭmĭnī
+des:299-301:3:ītŏr;ītŏr;ĭūntŏr
+! infinitif
+des:187:3:īrī
+! participe futur
+des:225-236:0:tūr$lupus
+des:237-248:0:tūr$uita
+des:249-260:0:tūr$templum
+! gérondif et supin
+des:261-264:4:ŭm;ī;ō;ō
+des+:261-264:0:ēndŭm;ēndī;ēndō;ēndō
+! adj. verbal
+des:339-350:4:$lupus
+des:351-362:4:$uita
+des:363-374:4:$templum
+des+:339-350:0:ēnd$lupus
+des+:351-362:0:ēnd$uita
+des+:363-374:0:ēnd$templum
+
 modele:eo
 pere:audio
 R:4:2,ī
