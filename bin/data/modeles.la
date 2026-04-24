@@ -101,6 +101,9 @@ $templum=ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
 $se=sē,sēsē;sŭī;sĭbī;sē,sēsē
 $tu=ū;ē;ŭī;ĭbĭ;ē
 $uita=ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārŭm;īs;īs
+$lupus_rar=ŭs3;ĕ3;ŭm3;ī3;ō3;ō3;ī3;ī3;ōs3;ōrŭm3;īs3;īs3
+$templum_rar=ŭm3;ŭm3;ŭm3;ī3;ō3;ō3;ă3;ă3;ă3;ōrŭm3;īs3;īs3
+$uita_rar=ă3;ă3;ăm3;āe3;āe3;ā3;āe3;āe3;ās3;ārŭm3;īs3;īs3
 
 modele:inv
 R:0:0,0
@@ -1220,12 +1223,17 @@ des:249-260:0:tūr$templum
 des:261-264:4:ŭm;ī;ō;ō
 des+:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! adj. verbal
+des:339-350:0:ēnd$lupus_rar
+des:351-362:0:ēnd$uita_rar
+des:363-374:0:ēnd$templum_rar
 des:339-350:4:$lupus
 des:351-362:4:$uita
 des:363-374:4:$templum
-des+:339-350:0:ēnd$lupus
-des+:351-362:0:ēnd$uita
-des+:363-374:0:ēnd$templum
+! Attention! des+ importe les désinences du père
+! même si ces désinences ont été redéfinies !
+! En revanche, on peut ajouter des désinences,
+! en utilisant plusieurs fois des.
+! L'ordre est inversé dans le tableau de flexion.
 
 modele:eo
 pere:audio
