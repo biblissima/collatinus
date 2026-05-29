@@ -24,6 +24,8 @@ Methods, Tools, Perspectives._
 Center for Hellenic Studies/Harvard University, 2022. 
 Disponible aussi sur https://hal.archives-ouvertes.fr/hal-02385036
 
+1. [Collatinus: A swiss-knife for Latin](https://doi.org/10.60923/issn.2532-8816/23866). Philippe Verkerk ; _Umanistica Digitale_, **10(23)**, p. 121–132.  DOI: [https://doi.org/10.60923/issn.2532-8816/23866]()
+
 
 ## Interventions orales
 
